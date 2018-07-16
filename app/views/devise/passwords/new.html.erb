@@ -1,0 +1,11 @@
+<section class="sign">
+  <h3 class="sign_up_text">비밀번호 분실</h3>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "sign_in" }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="form-group">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "이메일 주소" %>
+    </div>
+    <%= f.submit "이메일로 비밀번호 안내받기", class: "btn btn-primary sign_up_btn login_btn" %>
+  <% end %>
+</section>

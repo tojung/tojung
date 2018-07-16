@@ -1,0 +1,2 @@
+class PersonAssosDetail < ApplicationRecord
+end

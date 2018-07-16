@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  propose_id: 1
+  person_id: 1
+  from_email: MyText
+  to_email: MyText
+  content: MyText
+  title: MyText
+
+two:
+  propose_id: 1
+  person_id: 1
+  from_email: MyText
+  to_email: MyText
+  content: MyText
+  title: MyText

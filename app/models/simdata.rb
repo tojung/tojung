@@ -1,0 +1,2 @@
+class Simdata < ApplicationRecord
+end

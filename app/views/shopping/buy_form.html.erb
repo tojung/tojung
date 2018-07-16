@@ -1,0 +1,200 @@
+<!-- Tissue Cover -->
+<section class="tissue_cover">
+  <div class="brand pl-4 pt-4 visible-lg">
+    <a class="navbar-brand py-0 mr-0" href="/">
+      <%=image_tag("/images/tojung_green.png", class:"logo")%>
+    </a>
+  </div>
+</section>
+<!-- //Tissue Cover -->
+<!-- Tissue Complete -->
+<section class="tissue_order">
+  <form enctype="multipart/form-data" action="/shop/buy" accept-charset="UTF-8" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>
+    <h4 class="font-18 font-weight-bold text-center mb-4 mb-lg-5">상품 선택하기</h4>
+    <div class="order_form">
+      <div class="order_info d-flex justify-content-between mb-4">
+        <label class="my-lg-1 mr-2 pt-2" for="note">나는 투표했다 노트</label>
+        <select class="custom-select my-1 mr-sm-2" name="note" id="note" onchange="cost_cal(this)">
+          <option value="" disabled selected> 남은 수량 <%= @note.remain_num %></option>
+          <% (0..@note.remain_num).to_a.each do |op| %>
+           <option value="<%= op %>"> <%= op %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="order_info d-flex justify-content-between mb-4">
+        <label class="my-lg-1 mr-2 pt-2" for="tissue">잘 뽑았는가 휴지</label>
+        <select class="custom-select my-1 mr-sm-2" name="tissue" id="tissue" onchange="cost_cal(this)">
+          <option value="" disabled selected> 남은 수량 <%= @tissue.remain_num %></option>
+          <% (0..@tissue.remain_num).to_a.each do |op| %>
+            <option value="<%= op %>"> <%= op %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="order_info d-flex justify-content-between mb-4">
+        <label class="my-lg-1 mr-2 pt-2" for="file">투표는 잘 하셨는가 파일</label>
+        <select class="custom-select my-1 mr-sm-2" name="file" id="file" onchange="cost_cal(this)">
+          <option value="" disabled selected> 남은 수량 <%= @file.remain_num %></option>
+          <% (0..@file.remain_num).to_a.each do |op| %>
+            <option value="<%= op %>"> <%= op %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <hr class="line"/>
+    <div class="order_info_group">
+      <div class="order_info d-flex justify-content-between">
+        <p>나는 투표했다 노트 <span id="note_num">0</span>개</p>
+        <p><span id="note_cost">0</span>원</p>
+      </div>
+      <div class="order_info d-flex justify-content-between">
+        <p>잘 뽑았는가 휴지 <span id="tissue_num">0</span>개</p>
+        <p><span id="tissue_cost">0</span>원</p>
+      </div>
+      <div class="order_info d-flex justify-content-between">
+        <p>투표는 잘 하셨는가 파일 <span id="file_num">0</span>개</p>
+        <p><span id="file_cost">0</span>원</p>
+      </div>
+      <div class="order_info d-flex justify-content-between">
+        <p>배송비</p>
+        <p>3000원</p>
+      </div>
+      <div class="order_info my-4 d-flex justify-content-between">
+        <p>TOTAL</p>
+        <p><span id="total_cost">3000</span>원</p>
+      </div>
+    </div>
+    <div class="order_form2">
+      <div class="form-group">
+        <label for="Input0">주문자명</label>
+        <input type="text" name="from_person"  class="form-control" id="Input0" required>
+      </div>
+      <div class="form-group">
+        <label for="Input1">받는 사람</label>
+        <input type="text" name="to_person" class="form-control" id="Input1" required>
+      </div>
+      <div class="form-group">
+        <label for="sample2_postcode">우편번호</label>
+        <div class="d-flex">
+          <input type="text" id="sample2_postcode" class="form-control w-60 mr-3" name="address">
+          <input type="button" class="form-control w-38 font-14 font-sm-10" onclick="sample2_execDaumPostcode();" value="우편번호 찾기" >
+          <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+            <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sample2_address">주소</label>
+        <input type="text" class="form-control" id="sample2_address" name="address_text" required>
+      </div>
+      <div class="form-group">
+        <label for="Input4">상세주소</label>
+        <input type="text" class="form-control" id="Input4" name="address_detail">
+      </div>
+      <div class="form-group">
+        <label for="Input6">휴대폰번호</label>
+        <input type="tel" class="form-control" id="Input6" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="Input5">입금자명</label>
+        <input type="text" class="form-control" id="Input5" name="payer" required>
+      </div>
+
+    </div>
+    <div class="order_message font-18 font-sm-12 my-5 text-center">
+      <p>계좌번호 기업은행 038-143868-01-014(예금주: (주)투정)으로 입금해주시면<p>
+      <p>하루 안에 주문 확인 문자를 드립니다.</p>
+    </div>
+    <button type="submit" class="btn btn-buy btn-white font-sm-12">지금 바로 구매하기</button>
+  </form>
+</section>
+<!-- //Tissue Complete  -->
+
+<script>
+    // 우편번호 찾기 화면을 넣을 element
+    var element_layer = document.getElementById('layer');
+
+    function closeDaumPostcode() {
+        // iframe을 넣은 element를 안보이게 한다.
+        element_layer.style.display = 'none';
+    }
+
+    function sample2_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = data.address; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 기본 주소가 도로명 타입일때 조합한다.
+                if (data.addressType === 'R') {
+                    //법정동명이 있을 경우 추가한다.
+                    if (data.bname !== '') {
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if (data.buildingName !== '') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample2_postcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('sample2_address').value = fullAddr;
+
+                // iframe을 넣은 element를 안보이게 한다.
+                // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+                element_layer.style.display = 'none';
+            },
+            width: '100%',
+            height: '100%',
+            maxSuggestItems: 5
+        }).embed(element_layer);
+
+        // iframe을 넣은 element를 보이게 한다.
+        element_layer.style.display = 'block';
+
+        // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+        initLayerPosition();
+    }
+
+    // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+    // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+    // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+    function initLayerPosition() {
+        var width = 300; //우편번호서비스가 들어갈 element의 width
+        var height = 400; //우편번호서비스가 들어갈 element의 height
+        var borderWidth = 5; //샘플에서 사용하는 border의 두께
+
+        // 위에서 선언한 값들을 실제 element에 넣는다.
+        element_layer.style.width = width + 'px';
+        element_layer.style.height = height + 'px';
+        element_layer.style.border = borderWidth + 'px solid';
+        // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width) / 2 - borderWidth) + 'px';
+        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height) / 2 - borderWidth) + 'px';
+    }
+</script>
+<script type="text/javascript">
+  function cost_cal(item){
+    // note, tissue, file
+    var name = item.id;
+    // 개수
+    var num = item.value;
+    document.getElementById(name+"_num").innerHTML=num;
+
+    if (name=="note"){
+      document.getElementById(name+"_cost").innerHTML=num*3000;
+    }
+    else{
+      document.getElementById(name+"_cost").innerHTML=num*1000;
+    }
+    var total=parseInt(document.getElementById("note_cost").innerHTML)+parseInt(document.getElementById("tissue_cost").innerHTML)+parseInt(document.getElementById("file_cost").innerHTML);
+    document.getElementById("total_cost").innerHTML=total+3000;
+  }
+</script>

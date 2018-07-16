@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+	  <!--    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script> -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114503665-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114503665-1');
+    </script>
+    <!-- Naver 웹마스터도구 -->
+     <meta name="naver-site-verification" content="360ca5343fca7189a0ba8caee9f8db6d01b6b65a"/>
+
+    <title>투정, 국회 입법 크라우드펀딩 서비스</title>
+    <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="tojung" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url"           content="https://2jung.com<%= request.fullpath %>" />
+    <meta property="og:description"   content="투정, 국회 입법 크라우드펀딩 플랫폼" />
+    <%= render 'application/favicon' %>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- Font CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800" rel="stylesheet">
+    <title>입법안 크라우드펀딩 플랫폼, 투정</title>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- FontAWesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+  </head>
+
+  <body>
+    <%= render 'layouts/menu'%>
+    <!-- Mobile Header -->
+
+    <% if notice %>
+      <p class="alert alert-success" id="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger" id="alert"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+    <footer class="footer">
+      <div class="d-flex visible-lg justify-content-between font-10">
+        <div class="footer-left">
+          <p class="company_info">주식회사 투정 | 대표 : 김예인 | tojung22@gmail.com</p>
+          <p class="company_info">주소 : 서울특별시 중구 서소문로9길 28, 101-1402 | 사업자등록번호 : 580-81-00989</p>
+          <div class="menus">
+            <a href="/home/policy" class="mr-3 underbar-none">이용약관</a>
+            <a href="/home/privacy" class="mr-3 underbar-none">개인정보처리방침</a>
+            <a href="http://www.ftc.go.kr/www/bizCommView.do?key=232&apv_perm_no=2018301013030200899&pageUnit=10&searchCnd=wrkr_no&searchKrwd=5808100989&pageIndex=1" class="mr-3 underbar-none">사업자정보확인</a>
+          </div>
+          <div class="copyright font-16 mt-3">ⓒ 투정 2018</div>
+        </div>
+        <div class="footer-right font-16 font-sm-10">
+          <a href="mailto:help@2jung.com" data-originallink="mailto:help@2jung.com" class="mr-3"><i class="fas fa-envelope fa-lg"></i></a>
+          <a href="https://www.facebook.com/2jungcom/" class="mr-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+          <a href="https://www.instagram.com/tojung_/"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+      </div>
+      <div class="visible-xs text-center font-10">
+        <div class="footer-right font-16 font-sm-10">
+          <a href="mailto:help@2jung.com" data-originallink="mailto:help@2jung.com" class="mr-3"><i class="fas fa-envelope fa-lg"></i></a>
+          <a href="https://www.facebook.com/2jungcom/" class="mr-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+          <a href="https://www.instagram.com/tojung_/"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+        <div class="menus mb-2">
+          <a href="/home/policy" class="mr-3 font-grey underbar-none">이용약관</a>
+          <a href="/home/privacy" class="mr-3 font-grey underbar-none">개인정보처리방침</a>
+          <a href="http://www.ftc.go.kr/www/bizCommView.do?key=232&apv_perm_no=2018301013030200899&pageUnit=10&searchCnd=wrkr_no&searchKrwd=5808100989&pageIndex=1" class="mr-3 underbar-none">사업자정보확인</a>
+        </div>
+        <p class="company_info">주식회사 투정 | 대표 : 김예인 | tojung22@gmail.com</p>
+        <p class="company_info">주소 : 서울특별시 중구 서소문로9길 28, 101-1402 | 사업자등록번호 : 580-81-00989</p>
+        <div class="copyright">ⓒ 투정 2018</div>
+      </div>
+    </footer>
+
+
+    <!-- Channel Plugin Scripts -->
+    <script>
+      window.channelPluginSettings = {
+        //"pluginKey": "6abc6af7-61c1-4302-8909-60e9bd0736b7"
+        "pluginKey": "c41b6775-e43d-4cae-888e-8616e0c23cfe"
+      };
+      (function () {
+        var node = document.createElement('div');
+        node.id = 'ch-plugin';
+        document.body.appendChild(node);
+        var async_load = function () {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = '//cdn.channel.io/plugin/ch-plugin-web.js';
+          s.charset = 'UTF-8';
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        };
+        if (window.attachEvent) {
+          window.attachEvent('onload', async_load);
+        } else {
+          window.addEventListener('DOMContentLoaded', async_load, false);
+        }
+      })();
+    </script>
+    <!-- End Channel Plugin -->
+
+    <!-- Alert -->
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#alert').fadeOut(6000);
+        $('#notice').fadeOut(6000);
+      });
+    </script>
+    <!-- // Alert -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+  </body>
+</html>

@@ -1,0 +1,170 @@
+<!-- Funding Detail Cover Desktop-->
+<section class="funding_detail_cover d-flex flex-column justify-content-between align-items-center visible-lg"
+style="background-image: url(<%= @propose.image %>);">
+  <div class="brand pl-4 pt-4 visible-lg">
+    <a class="navbar-brand py-0 mr-0" href="/">
+      <%=image_tag( asset_path("tojung_white.png"), class:"logo")%>
+    </a>
+  </div>
+  <div class="detail_post">
+    <h2 class="detail_title text-white font-20 font-sm-18 font-weight-bold pb-lg-3"><%= @propose.title %></h2>
+    <p class="detail_category text-white font-sm-12 font-weight-bold text-center"></p>
+  </div>
+  <div class="detail_info w-100">
+    <p class="text-white font-20 font-sm-16 font-weight-bold text-center f_money">&#8361;<%=@propose.funded_money%></p>
+    <p class="text-white font-20 font-sm-16 font-weight-bold detail_num"><%= @propose.funded_num + @propose.send_count + @propose.subscribe_count %><span>명</span></p>
+  </div>
+</section>
+<!-- //Funding Detail Cover Desktop-->
+
+<!-- Funding Detail Cover Mobile -->
+<section class="detail_mobile_cover visible-xs-block" style="background-image: url(<%= @propose.image %>);">
+  <h2 class="detail_title font-sm-18 font-weight-bold text-white px-3 py-3"><%= @propose.title %></h2>
+  <div class="detail_infos pt-4">
+    <p class="detail_number text-right pr-3 mb-0 font-12 text-white font-weight-bold"><span class="font-18"><%=@propose.funded_num%></span>명</p>
+    <div class="d-flex justify-content-between">
+      <p class="detail_category font-weight-bold text-white font-10 pl-3 mt-2 mb-0"></p>
+      <p class="detail_money font-weight-bold text-white font-18 pr-3 mb-0 f_money">&#8361;<%=@propose.funded_money%></p>
+    </div>
+  </div>
+</section>
+<!-- //Funding Detail Cover Mobile -->
+
+<!-- Content  -->
+<section class="content font-grey font-12 font-sm-10">
+  <p class="content_text"><%= simple_format @propose.content%></p>
+  <iframe class="iframe" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2F2jung.com%2Fpropose%2F<%= @propose.id %>&width=450&layout=button_count&action=like&size=small&show_faces=true&share=true&height=80&appId=1014670008686658" id="frame" width="450" height="80" style="border:none;overflow:hidden;" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+  <div class="content_links text-right">
+    <a href="<%= @propose.bill_link %>" class="d-block font-grey">&gt; 법안원문 보러가기</a>
+    <% if @is_admin == true %>
+       <a href="/propose/edit/<%= @propose.id %>" class="d-block font-grey">&gt; 관리자용 수정하기 </a>
+    <% end %>
+  </div>
+</section>
+<!-- //Content -->
+
+<!-- 1st Section -->
+<section class="detail_first text-center font-12 font-sm-10 font-grey">
+  <h3 class="big_num">1</h3>
+  <div class="first_text mt-3 mb-5 mb-lg-5">
+    <p class="mb-1">우리나라는 법을 만들수 있는 권한을 <span class="font-weight-extra-bold">오직 국회</span>가 갖고 있습니다.</p>
+    <p class="mb-1">그리고 주제별로 맞게 배정된 국회 내</p>
+    <p class="mb-1"><span class="font-weight-extra-bold">'상임위' 국회의원들의 만장일치</span>가 있어야 통과까지 이어집니다.</p>
+    <br />
+    <p class="mb-1">이 입법안이 반드시 필요하다고 생각한다면</p>
+    <p class="mb-1"><span class="font-weight-extra-bold"><%= @propose.assos %></span> 위원들에게 <span class="font-weight-extra-bold">청원 이메일</span>을 보내봅시다</p>
+    <br>
+    <p class="mb-1">사진을 클릭해 이메일을 보내보세요!</p>
+  </div>
+  <div class="ovals d-flex justify-content-center font-weight-bold mb-lg-4">
+    <div class="oval cons"></div>
+    <p class="mr-3">반대</p>
+    <div class="oval pros"></div>
+    <p class="mr-3">찬성</p>
+    <div class="oval no_respond"></div>
+    <p>미응답</p>
+  </div>
+  <div class="maker_cards container">
+    <div class="row mx-0">
+		<% if current_vuser != nil and current_vuser.email == "admin@2jung.com" %>
+		 <h1 style="color: red;">
+		<a href="/propose/<%= @propose.id %>/email/<%= @test.id %>" class="d-block text-white underbar-none h-100">
+		    테스트 의원
+		</a> </h1>
+		<% end %>
+      <% @people.each do |person| %>
+      <!-- 여기 의원 이미지 -->
+      <%if @people_res[person.id].response_type.include?("찬성")%>
+      <div class="col-4 col-lg-2 maker_card text-white font-weight-bold" style="background-image: linear-gradient(to bottom, rgba(106, 150, 141, 0.6), rgba(106, 150, 141, 0.6)), url(<%= person.properties %>);">
+      <%elsif @people_res[person.id].response_type.include?("반대")%>
+      <div class="col-4 col-lg-2 maker_card text-white font-weight-bold" style="background-image: linear-gradient(to bottom, rgba(148, 54, 66, 0.6), rgba(148, 54, 66, 0.6)), url(<%= person.properties %>);;">
+      <%else%>
+      <div class="col-4 col-lg-2 maker_card text-white font-weight-bold" style="background-image: linear-gradient(to bottom, rgba(184, 155, 117, 0.6), rgba(184, 155, 117, 0.6)), url(<%= person.properties %>);;">
+      <%end%>
+        <a href="/propose/<%= @propose.id %>/email/<%= person.id %>" class="d-block text-white underbar-none h-100">
+          <div class="maker_card_info">
+            <p class="mt-2 mt-lg-0 mb-0"><%= person.name %></p>
+            <p class="mb-2"><%= person.polynm %></p>
+            <p class="mb-1 mb-lg-0"><span><%= @people_res[person.id].send_count %></span>관심</p>
+          </div>
+        </a>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- //1st Section -->
+
+<!-- 2nd Section -->
+<section class="detail_second font-grey font-12 font-sm-10 text-center">
+  <h3 class="big_num">2</h3>
+  <p class="">이 입법안에 대한 사람들의 관심을 더 이끌어내고 싶나요?</p>
+  <iframe class="iframe" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2F2jung.com%2Fpropose%2F<%= @propose.id %>&width=450&layout=button_count&action=like&size=small&show_faces=true&share=true&height=80&appId=1014670008686658" id="frame" width="450" height="80" style="border:none;overflow:hidden;padding-left:25%;" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+  <div class="d-flex justify-content-center mb-4">
+    <%=image_tag( asset_path("product.png"), class:"product_img mr-2")%>
+    <img src="<%= @propose.goods %>" class="product_img ml-2">
+  </div>
+  <div class="buttons d-flex w-100 justify-content-center mt-3">
+    <button class="btn underbar-none btn-white font-14 font-sm-12 mr-2 mr-lg-3"><a class="underbar-none font-grey" href="/propose/<%= @propose.id %>/subscribe">구독하기</a></button>
+    <button class="btn underbar-none btn-white font-14 font-sm-12 ml-2 ml-lg-3"><a class="underbar-none font-grey" href="<%= @propose.tumb %>">굿즈겟또로 후원하기</a></button>
+  </div>
+</section>
+<!-- //2nd Section -->
+
+<!-- 3rd Section -->
+<section class="detail_third font-grey text-center font-12 font-sm-10">
+  <h3 class="big_num">3</h3>
+  <p class="mb-4">굿즈 수익금으로는 이러한 캠페인이 진행되고 있습니다.</p>
+  <img class="campaign_img" src="<%= @propose.campaign%>">
+  <!-- 캠페인 내용 -->
+  <p class="mt-4 mb-1 campaign_content"><%=simple_format @propose.campaign_content%></p>
+</section>
+<!-- //3rd Section -->
+
+<!-- Height -->
+<script type="text/javascript">
+var wid = $('.maker_card').width();
+$('.maker_card').css({'height':(wid*1.35)+'px'});
+</script>
+<!-- Layer -->
+<!-- 원화 콤마찍기 -->
+<script type="text/javascript">
+  function comma(str) {
+      str = String(str);
+      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  }
+  var i = 0
+  while( i< $(".f_money").length){
+    var money=$(".f_money")[i].innerHTML;
+    var newMoney=comma(money);
+    $(".f_money")[i].innerHTML=newMoney;
+    i+=1;
+  }
+</script>
+<!-- <script type="text/javascript">
+  var num = <%=@propose.id%>
+  if (num ==1){
+		$(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(206,142,160,0.6), rgba(206,142,160,0.6)), url(<%= @propose.image %>)');
+		$(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(206,142,160,0.6), rgba(206,142,160,0.6)), url(<%= @propose.image %>)');
+	}
+  else if (num == 2){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(221,181,67,0.6), rgba(221,181,67,0.6)), url(<%= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(221,181,67,0.6), rgba(221,181,67,0.6)), url(<%= @propose.image %>)');
+  }
+  else if (num == 3){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(148,54,66,0.6), rgba(148,54,66,0.6)), url(<%= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(148,54,66,0.6), rgba(148,54,66,0.6)), url(<%= @propose.image %>)');
+  }
+  else if (num == 4){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(184,155,117,0.6), rgba(184,155,117,0.6)), url(<%= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(184,155,117,0.6), rgba(184,155,117,0.6)), url(<%= @propose.image %>)');
+  }
+  else if (num == 5){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(60,35,62,0.6), rgba(60,35,62,0.6)), url(<%= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(60,35,62,0.6), rgba(60,35,62,0.6)), url(<%= @propose.image %>)');
+  }
+  else{
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(71,120,140,0.6), rgba(71,120,140,0.6)), url(<%= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(71,120,140,0.6), rgba(71,120,140,0.6)), url(<%= @propose.image %>)');
+  }
+</script> -->

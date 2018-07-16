@@ -1,0 +1,194 @@
+<!-- Funding Detail Cover Desktop-->
+<section class="funding_detail_cover d-flex flex-column justify-content-between align-items-center visible-lg" style="background-image: url(<%= @propose.image %>);">
+  <div class="brand pl-4 pt-4 visible-lg">
+    <a class="navbar-brand py-0 mr-0" href="/">
+      <%=image_tag("/images/tojung_white.png", class:"logo")%>
+    </a>
+  </div>
+  <div class="detail_post">
+    <h2 class="detail_title text-white font-20 font-sm-18 font-weight-bold pb-lg-3"><%= @propose.title %></h2>
+    <p class="detail_category text-white font-sm-12 font-weight-bold text-center"></p>
+  </div>
+  <div class="detail_info w-100">
+    <p class="text-white font-20 font-sm-16 font-weight-bold text-center f_money">\<%=@propose.funded_money%></p>
+    <p class="text-white font-20 font-sm-16 font-weight-bold detail_num"><%= @propose.funded_num + @propose.send_count + @propose.subscribe_count %><span>명</span></p>
+  </div>
+</section>
+<!-- //Funding Detail Cover Desktop-->
+
+<!-- Funding Detail Cover Mobile -->
+<a class="d-block underbar-none text-white" href="/propose/<%=@propose.id%>">
+<section class="detail_mobile_cover visible-xs-block" style="background-image: url(<%= @propose.image %>);">
+  <h2 class="detail_title font-sm-18 font-weight-bold text-white px-3 py-3"><%= @propose.title %></h2>
+  <div class="detail_infos pt-4">
+    <p class="detail_number text-right pr-3 mb-0 font-12 text-white font-weight-bold"><span class="font-18"><%=@propose.funded_num%></span>명</p>
+    <div class="d-flex justify-content-between">
+      <p class="detail_category font-weight-bold text-white font-10 pl-3 mt-2 mb-0"></p>
+      <p class="detail_money font-weight-bold text-white font-18 pr-3 mb-0 f_money">&#8361;<%=@propose.funded_money%></p>
+    </div>
+  </div>
+</section>
+</a>
+<!-- //Funding Detail Cover Mobile -->
+
+<!-- Maker Profile -->
+<section class="maker_profile mb-lg-5 text-center font-grey">
+  <% if @person_res.response_type == "무응답" %>
+    <h4 class="font-18 font-sm-10 font-weight-bold my-4 my-md-5"><%= @person.name %> 의원에게 답변을 촉구합니다.</h4>
+  <% elsif @person_res.response_type == "응답" %>
+	  <h4 class="font-18 font-sm-10 font-weight-bold my-4 my-md-5">
+		  <%= @person.name %> 의원이 응답했습니다. <br>
+      </h4>
+  <% else %>
+	  <h4 class="font-18 font-sm-10 font-weight-bold my-4 my-md-5">
+		  <%= @person.name %> 의원이 '<%= @person_res.response_type %>'응답했습니다. <br>
+		  세부 응답을 듣고싶다면 이메일 청원해주세요!
+	</h4>
+  <% end %>
+  <div class="maker_imgs d-flex justify-content-center flex-wrap">
+    <img src="https://s3.ap-northeast-2.amazonaws.com/tojung2018/person_image/<%= @person_detail.num%>_1.jpg" class="maker_img mr-lg-3" onerror="this.style.display='none';">
+    <img src="https://s3.ap-northeast-2.amazonaws.com/tojung2018/person_image/<%= @person_detail.num %>_2.jpg" class="maker_img mr-lg-3" onerror="this.style.display='none';">
+    <img src="https://s3.ap-northeast-2.amazonaws.com/tojung2018/person_image/<%= @person_detail.num %>_3.jpg" class="maker_img mr-lg-3" onerror="this.style.display='none';">
+    <img src="https://s3.ap-northeast-2.amazonaws.com/tojung2018/person_image/<%= @person_detail.num %>_4.jpg" class="maker_img mr-lg-3" onerror="this.style.display='none';">
+    <img src="https://s3.ap-northeast-2.amazonaws.com/tojung2018/person_image/<%= @person_detail.num %>_5.jpg" class="maker_img mr-lg-3" onerror="this.style.display='none';">
+    <img src="https://s3.ap-northeast-2.amazonaws.com/tojung2018/person_image/<%= @person_detail.num %>_6.jpg" class="maker_img mr-lg-3" onerror="this.style.display='none';">
+  </div>
+  <p class="font-14 font-sm-10 mb-5" style="white-space: pre-line"><%= @person_detail.desc1 %></p>
+  <!-- 의원 이력  + 이미지 -->
+</section>
+<!-- //Maker Profile -->
+<!-- Email Response -->
+<% if @person_res.response_text != nil and @person_res.response_text != "" %>
+<section class="email_response">
+  <p class="font-14 font-sm-10">
+    <!-- 의원의 대답!! -->
+    <%= @person_res.response_text%>
+  </p>
+</section>
+<% end %>
+<!-- //Email Response -->
+
+<!-- Email Form -->
+<section class="email_form">
+  <form class="font-sm-10" enctype="multipart/form-data" action="/propose/<%= @propose.id %>/email/<%= @person.id %>" accept-charset="UTF-8" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: :form_token %>
+    <div class="form-group">
+      <input type="email" class="form-control" name="user_email" placeholder="내 이메일 주소">
+    </div>
+    <div class="form-group">
+      <input type="text" name="title" class="form-control" value="<%= @propose.assos %>에 계류되어있는 <%=@propose.bill_id %> 의안인 '<%= @propose.bill_name %>'이 왜 통과되지 않나요?   " placeholder="<%= @propose.assos %>에 계류되어있는 <%=@propose.bill_id %> 의안인 '<%= @propose.bill_name %>'이 왜 통과되지 않나요?">
+    </div>
+	<div class="form-group">
+	  <% if @person_res.response_type == "무응답" %>
+      <textarea class="form-control" name="content" rows="10" placeholder="안녕하세요, <%= @person.name %> 의원님!
+<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %> 의안인 ‘<%= @propose.bill_name %>’이 왜 통과되지 않는지 궁금합니다.
+<%= @person.name %> 의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.
+이메일 청원합니다." > 안녕하세요, <%= @person.name %> 의원님!
+<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %> 의안인 ‘<%= @propose.bill_name %>’이 왜 통과되지 않는지 궁금합니다.
+<%= @person.name %> 의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.
+이메일 청원합니다. </textarea>
+  <% elsif @person_res.response_text == nil or @person_res.response_text == "" %>
+ <textarea class="form-control" name="content" rows="10" placeholder="안녕하세요, <%= @person.name %> 의원님!
+<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %> 의안인 ‘<%= @propose.bill_name %>’이 왜 통과되지 않는지 궁금합니다.
+<%= @person_res.response_type %> 의견을 보내주신 <%= @person.name %> 의원님은 이 입법안에 대해 어떤 세부 의견을 가지고 계시는지 알려주세요. 이 입법을 꼭 빠르게 추진해주세요.
+이메일 청원합니다." > 안녕하세요, <%= @person.name %> 의원님!
+<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %> 의안인 ‘<%= @propose.bill_name %>’이 왜 통과되지 않는지 궁금합니다.
+<%= @person_res.response_type %> 의견을 보내주신 <%= @person.name %> 의원님은 이 입법안에 대해 어떤 세부 의견을 가지고 계시는지 알려주세요. 이 입법을 꼭 빠르게 추진해주세요.
+이메일 청원합니다.</textarea>
+  <% elsif @person_res.response_type == "찬성" %>
+	  <textarea class="form-control" name="content" rows="10" placeholder=" 안녕하세요. <%= @person.name %>의원님! <%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %>의안인 '<%= @propose.bill_name %>'에 대한 의원님의 응답에 감사드립니다! 국회에서의 신속한 진행 부탁드립니다.">
+<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %>의안인 '<%= @propose.bill_name %>'에 대한 의원님의 응답에 감사드립니다! 국회에서의 신속한 진행 부탁드립니다."
+	  </textarea>
+  <% elsif @person_res.response_type == "반대" %>
+	  <textarea class="form-control" name="content" rows="10" placeholder=" 안녕하세요 <%= @person.name %>의원님!<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %> 의안인 '<%= @propose.bill_name %>'에 대한 의원님의 응답 중 이해가 되지 않는 부분이 있습니다.">
+ 안녕하세요 <%= @person.name %>의원님!<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %> 의안인 '<%= @propose.bill_name %>'에 대한 의원님의 응답 중 이해가 되지 않는 부분이 있습니다. "
+	  </textarea>
+  <% elsif @person_res.response_type == "응답" %>
+ <textarea class="form-control" name="content" rows="10" placeholder=" 안녕하세요. <%= @person.name %>의원님! <%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %>의안인 '<%= @propose.bill_name %>'에 대한 의원님의 응답에 감사드립니다! 국회에서의 신속한 진행 부탁드립니다.">
+<%= @propose.assos %>에 계류되어있는 <%= @propose.bill_id %>의안인 '<%= @propose.bill_name %>'에 대한 의원님의 응답에 감사드립니다! 국회에서의 신속한 진행 부탁드립니다."
+	  </textarea>
+<% end %>
+    </div>
+    <button type="submit" class="alert-success btn btn-email btn-white mt-3 mt-lg-4 font-sm-12" onclick="email_check();">이메일 보내기</button>
+  </form>
+</section>
+<!-- //Email Form -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+function email_check() {
+	swal({
+    title: "당신의 투정 칭찬해~",
+    text: "해당 의원에게 이메일이 전송되었습니다",
+    icon: "success",
+    button: false,
+    timer: 3000,
+  });
+}
+</script>
+<script>
+  $('.funding_detail_cover').wrap('<a class="d-block underbar-none text-white" href="/propose/<%=@propose.id%>"></a>');
+</script>
+<!-- 원화 콤마찍기 -->
+<script type="text/javascript">
+  function comma(str) {
+      str = String(str);
+      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  }
+  var i = 0
+  while( i< $(".f_money").length){
+    var money=$(".f_money")[i].innerHTML;
+    var newMoney=comma(money);
+    $(".f_money")[i].innerHTML=newMoney;
+    i+=1;
+  }
+</script>
+<!-- 메일 테스트중!
+<hr>
+대표 이미지: <%#= @propose.image %>
+<hr>
+의원 이름: <%#= @person.name %>
+<hr>
+의원 메일: <%#= @person.email %>
+<hr>
+응답 상태: <%#= @person_res.response_type %>
+<hr>
+응답 내용: <%#= @person_res.response_text %>
+<hr>
+메일 보낸 사람 수: <%#= @person_res.send_count %>
+<hr>
+<form class="propose_form w-100 font-sm-10" enctype="multipart/form-data" action="/propose/<%#= @propose.id %>/email_send/<%#= @person.id %>" accept-charset="UTF-8" method="get">
+    <input type="text" name="user_email" placeholder="이메일을 보내는 사람">
+     <input type="text" name="person_email" placeholder="이메일을 받는 사람">
+     <input type="text" name="title" placeholder="보내는 메일 제목">
+     <input type="text" name="content" placeholder="보내는 메일 내용">
+     <input type="submit">
+</form> -->
+
+<!-- Layer -->
+<!-- <script type="text/javascript">
+var num = <%#=@propose.id%>
+  if (num ==1){
+		$(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(206,142,160,0.6), rgba(206,142,160,0.6)), url(<%#= @propose.image %>)');
+		$(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(206,142,160,0.6), rgba(206,142,160,0.6)), url(<%#= @propose.image %>)');
+	}
+  else if (num == 2){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(221,181,67,0.6), rgba(221,181,67,0.6)), url(<%#= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(221,181,67,0.6), rgba(221,181,67,0.6)), url(<%#= @propose.image %>)');
+  }
+  else if (num == 3){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(148,54,66,0.6), rgba(148,54,66,0.6)), url(<%#= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(148,54,66,0.6), rgba(148,54,66,0.6)), url(<%#= @propose.image %>)');
+  }
+  else if (num == 4){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(184,155,117,0.6), rgba(184,155,117,0.6)), url(<%#= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(184,155,117,0.6), rgba(184,155,117,0.6)), url(<%#= @propose.image %>)');
+  }
+  else if (num == 5){
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(60,35,62,0.6), rgba(60,35,62,0.6)), url(<%#= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(60,35,62,0.6), rgba(60,35,62,0.6)), url(<%#= @propose.image %>)');
+  }
+  else{
+    $(".funding_detail_cover").css('background-image', 'linear-gradient(to bottom, rgba(71,120,140,0.6), rgba(71,120,140,0.6)), url(<%#= @propose.image %>)');
+    $(".detail_mobile_cover").css('background-image', 'linear-gradient(to bottom, rgba(71,120,140,0.6), rgba(71,120,140,0.6)), url(<%#= @propose.image %>)');
+  }
+</script> -->

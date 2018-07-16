@@ -1,0 +1,83 @@
+<!-- Funding Detail Cover Desktop-->
+<section class="funding_detail_cover d-flex flex-column justify-content-between align-items-center visible-lg" style="background-image: url(<%= @propose.image %>);">
+  <div class="brand pl-4 pt-4 visible-lg">
+    <a class="navbar-brand py-0 mr-0" href="/">
+      <%=image_tag("/images/tojung_white.png", class:"logo")%>
+    </a>
+  </div>
+  <div class="detail_post">
+    <h2 class="detail_title text-white font-20 font-sm-18 font-weight-bold pb-lg-3"><%= @propose.title %></h2>
+    <p class="detail_category text-white font-sm-12 font-weight-bold text-center"></p>
+  </div>
+  <div class="detail_info w-100">
+    <p class="text-white font-20 font-sm-16 font-weight-bold text-center f_money">\<%=@propose.funded_money%></p>
+    <p class="text-white font-20 font-sm-16 font-weight-bold detail_num"><%= @propose.funded_num + @propose.send_count + @propose.subscribe_count %><span>명</span></p>
+  </div>
+</section>
+<!-- //Funding Detail Cover Desktop-->
+
+<!-- Funding Detail Cover Mobile -->
+<a class="d-block underbar-none text-white" href="/propose/<%=@propose.id%>">
+<section class="detail_mobile_cover visible-xs-block" style="background-image: url(<%= @propose.image %>);">
+  <h2 class="detail_title font-sm-18 font-weight-bold text-white px-3 py-3"><%= @propose.title %></h2>
+  <div class="detail_infos pt-4">
+    <p class="detail_number text-right pr-3 mb-0 font-12 text-white font-weight-bold"><span class="font-18"><%=@propose.funded_num%></span>명</p>
+    <div class="d-flex justify-content-between">
+      <p class="detail_category font-weight-bold text-white font-10 pl-3 mt-2 mb-0"></p>
+      <p class="detail_money font-weight-bold text-white font-18 pr-3 mb-0 f_money">&#8361;<%=@propose.funded_money%></p>
+    </div>
+  </div>
+</section>
+</a>
+<!-- //Funding Detail Cover Mobile -->
+
+<!-- Content  -->
+<section class="content font-grey font-12 font-sm-10">
+  <div class="content_links text-center">
+    <a href="<%= @propose.bill_link %>" class="d-block font-grey">&gt; 법안원문 보러가기</a>
+  </div>
+</section>
+<!-- //Content -->
+
+<section class="email_form">
+  <h4 class="text-center font-18 font-sm-10 font-weight-bold my-4 my-md-5">
+    반대를 선택하셨습니다
+  </h4>
+  <%= form_tag("/discuss?response_id=#{ @pr }&type=disagree&key=@key", method: "get", class: "font-sm-10") do %>
+    <%= hidden_field_tag 'key', "#{ @key }" %>
+    <%= hidden_field_tag 'type', "disagree" %>
+    <%= text_area_tag 'content', "", class: "form-control", placeholder: "의원님의 추가 의견을 알려주세요", rows: 10%>
+    <%= submit_tag "답변하기", class: "alert-success btn btn-email btn-white mt-3 mt-lg-4 font-sm-12", onclick: "email_check();" %>
+  <% end %>
+</section>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+function email_check() {
+	swal({
+    title: "감사합니다",
+    text: "의원님의 의견이 반영되었습니다.",
+    icon: "success",
+    button: false,
+    timer: 7000,
+  });
+}
+</script>
+
+<!-- 원화 콤마찍기 -->
+<script type="text/javascript">
+  function comma(str) {
+      str = String(str);
+      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+  }
+  var i = 0
+  while( i< $(".f_money").length){
+    var money=$(".f_money")[i].innerHTML;
+    var newMoney=comma(money);
+    $(".f_money")[i].innerHTML=newMoney;
+    i+=1;
+  }
+</script>
+
+<script>
+  $('.funding_detail_cover').wrap('<a class="d-block underbar-none text-white" href="/propose/<%=@propose.id%>"></a>');
+</script>

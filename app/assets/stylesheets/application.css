@@ -1,0 +1,474 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* Custom settings */
+/* Custom settings */
+*{
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.bg-light{
+  background-color: white !important;
+}
+
+.bg-grey{
+  background-color: #f1f1f1;
+}
+
+.font-10{
+  font-size: 0.625rem;
+}
+
+.font-12{
+  font-size: 0.75rem;
+}
+
+.font-14{
+  font-size: 0.875rem;
+}
+
+.font-16{
+  font-size: 1rem;
+}
+
+.font-18{
+  font-size: 1.125rem;
+}
+
+.font-20{
+  font-size: 1.25rem;
+}
+
+.font-24{
+  font-size: 1.5rem;
+}
+
+.font-36{
+  font-size: 2.25rem;
+}
+
+.font-weight-extra-bold{
+  font-weight: 800;
+}
+
+.font-grey{
+  color: #858585;
+}
+
+.text-primary{
+  color: #3e6373 !important;
+}
+
+.visible-xs{
+  display: none;
+}
+
+.visible-xs-block{
+  display: none;
+}
+
+.alert{
+  position: absolute;
+  float: left;
+  width: 100%;
+  z-index: 10000;
+}
+
+.active{
+  color: #3e6373 !important;
+}
+
+.logo{
+  width: 44px;
+  height: 40px;
+  color: white;
+}
+
+.brand{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.underbar-none{
+  text-decoration: none;
+}
+
+.underbar-none:hover{
+  text-decoration: none;
+}
+/* Footer */
+.footer{
+  padding: 60px 40px;
+  background-color: #F9F9F9;
+}
+.footer p{
+  margin-bottom: 0;
+  line-height: 20px;
+}
+.menus{
+  margin-top: 10px;
+  line-height: 20px;
+  color: black;
+}
+
+.menus a{
+  color: black !important;
+}
+
+.footer-right a{
+  color: black !important;
+}
+
+@media screen and (max-width: 576px) {
+  .footer{
+    padding: 20px 10px;
+  }
+
+}
+/*Detail Cover*/
+.detail_num{
+  position: relative;
+  left: 90%;
+  bottom: 46px;
+}
+
+.funding_detail_cover{
+  background-image: linear-gradient(to bottom, rgba(221,181,67,0.6), rgba(221,181,67,0.6)), url(../images/woman.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: calc(100vw * 0.53);
+  padding-top: 5%;
+}
+
+.detail_post{
+  margin-top: 10%;
+}
+
+.funding_detail_content{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.btn-white{
+  background-color: white;
+  border: 1px solid #a7a7a7;
+  border-radius: 0;
+  width: 217px;
+  color: #a7a7a7;
+}
+
+.btn-share{
+  width: 15%;
+}
+
+.border-bottom{
+  border-bottom: 1px solid #a7a7a7;
+}
+
+form input{
+  border-radius: 3px;
+}
+
+form input[placeholder], form textarea[placeholder]{
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 18px 22px;
+}
+
+::placeholder{
+  color: #aab2bd !important;
+}
+
+@media screen and (max-width: 576px) {
+
+  .visible-xs{
+    display: inline;
+  }
+
+  .visible-xs-block{
+    display: block !important;
+  }
+
+  .visible-lg{
+    display: none !important;
+  }
+
+  .font-sm-8{
+    font-size: 0.5rem !important;
+  }
+  .font-sm-10{
+    font-size: 0.625rem !important;
+  }
+
+  .font-sm-12{
+    font-size: 0.75rem !important;
+  }
+
+  .font-sm-14{
+    font-size: 0.875rem !important;
+  }
+
+  .font-sm-16{
+    font-size: 1rem !important;
+  }
+
+  .font-sm-18{
+    font-size: 1.125rem !important;
+  }
+
+  .font-sm-20{
+    font-size: 1.25rem !important;
+  }
+
+  /*Header*/
+  .logo{
+    width: 36px;
+    height: 34px;
+  }
+
+  /* Detail Cover */
+  .detail_img{
+    width: 90%;
+  }
+
+  .detail_mobile_cover{
+    background-image: linear-gradient(to bottom, rgba(148,54,66,0.6), rgba(148,54,66,0.6)), url(../images/woman.jpg);
+    height: calc(100vw * 0.53);
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .detail_title{
+    width: 60%;
+    height: 50%;
+    margin-bottom: 0;
+  }
+
+  .detail_infos{
+    height: 50%;
+  }
+
+  form input[placeholder], form textarea[placeholder]{
+    font-size: 10px;
+    line-height: 1.5;
+    padding: 8px 13px;
+  }
+
+}
+
+video{
+  height: 576px;
+  width: 100%;
+}
+
+
+/* -------------------------------- SIGN --------------------------------- */
+/* SignUp */
+.sign{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10%;
+}
+
+.sign_up_text{
+  font-size: 1.5rem;
+  line-height: 1.67;
+  color: #3e6373;
+  margin-bottom: 2.5%;
+}
+
+.custom-control.custom-checkbox{
+  margin: 4% 0;
+}
+
+.custom-control-label{
+  font-size: 0.875rem;
+  color: #3e6373;
+}
+
+.btn-primary{
+  background-color: #3e6373 !important;
+  width: 100%;
+  border-color: #3e6373 !important;
+}
+
+.sign_up_btn{
+  font-size: 0.875rem;
+  line-height: 1.07;
+  padding: 3.5%;
+  border-radius: 3px;
+  box-shadow: 0 1px 5px 0 rgba(171, 175, 179, 0.6), inset 0 -2px 2px 0 rgba(122, 125, 128, 0.2);
+  border: solid 1px rgba(122, 125, 128, 0.3);
+}
+
+input[checkbox]:checked{
+  background-color: #3e6373 !important;
+}
+
+/* SignUp_lawmaker */
+.img-form{
+  box-shadow: none !important;
+  border: none;
+  display: inline-block;
+}
+
+.img_upload{
+  line-height: 1.5;
+  font-size: 1rem;
+  color: #3e6373;
+}
+
+.custom-file-label{
+  font-size: 0.875rem;
+  color: #aab2bd;
+  height: auto;
+  padding: 3%;
+}
+
+.custom-file-label::after{
+  height: auto;
+  padding: 3%;
+  content: "Browse";
+  font-size: 0.875rem;
+}
+
+.file_btn{
+  border: 1px solid #cccccc;
+}
+
+/* Sign In */
+.social_sign{
+  padding-top: 5%;
+  padding-bottom: 4%;
+  width: 20%;
+}
+
+.btn-facebook{
+  background-color: #3a589b;
+  font-size: 0.875rem;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.fb_icon{
+  width: auto;
+  height: 25px;
+  margin-top: 2%;
+  margin-left: 3%;
+  background-color: #3a589b;
+}
+
+.fb_text, .kakao_text{
+  margin-right: 3%;
+}
+
+.btn-kakao{
+  background-color: #ffea00;
+  font-size: 0.875rem;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.kakao_icon{
+  width: auto;
+  height: 25px;
+  margin-top: 3%;
+  margin-left: 5%;
+  background-color: #ffea00;
+}
+
+.btn-lawmaker{
+  border-radius: 8px;
+}
+
+.social_sign > .btn-primary{
+  font-size: 0.875rem;
+}
+
+.social_sign > button.btn{
+  line-height: 2.5;
+}
+
+.or_img{
+  width: 20%;
+  padding-bottom: 4%;
+}
+
+
+form.sign_in ::placeholder{
+  color: #3e6373 !important;
+}
+
+form.sign_in .form-group{
+  background-color: white;
+  box-shadow: none;
+}
+
+form.sign_in input{
+  background-color: #eeeeee;
+  border: none;
+  box-shadow: none;
+  padding: 7%;
+  border-radius: 8px;
+}
+
+form.sign_in input:hover{
+  background-color: #eeeeee;
+  border: none;
+}
+
+.custom-checkbox.d-flex{
+  justify-content: space-between;
+}
+
+.custom-checkbox button{
+  width: 50%;
+  padding: 8%;
+  border-radius: 8px;
+}
+
+.custom-checkbox .custom-control-label{
+  margin-top: 7%;
+}
+
+.custom-checkbox .custom-control-label::before{
+  margin-top: 6%;
+}
+
+.custom-checkbox .custom-control-label::after{
+  margin-top: 6%;
+}
+
+.sign_in_text{
+  font-size: 1.125rem !important;
+}
+
+.login_click{
+  font-size: 0.875rem;
+  color: #3e6373 !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-primary{
+  color: #3e6373 !important;
+}
