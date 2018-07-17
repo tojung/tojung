@@ -8,7 +8,7 @@ localhost.key
 openssl
 nohup.out
 public/assets/
-
+oldProject/
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
