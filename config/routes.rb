@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   get 'home/index'
 
   get 'home/about'
+  
+  devise_for :users, :controllers => { 
+    omniauth_callbacks: 'user/omniauth_callbacks',
+    registrations: 'user/registrations'
+  } 
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
