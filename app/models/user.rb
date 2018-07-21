@@ -13,6 +13,7 @@ class User < ApplicationRecord
       user.name = auth.info.name   # assuming the user model has a name
       user.confirmed_at = Time.now.utc
       user.confirmation_token  = nil
+      user.skip_confirmation!
       # user.image = auth.info.image # assuming the user model has an image
     end 
   end
