@@ -51,7 +51,7 @@ Devise.setup do |config|
   # The same considerations mentioned for authentication_keys also apply to request_keys.
   # config.request_keys = []
   
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'tojung@2jung.com'
   config.omniauth :facebook, ENV["FB_APP_ID"], ENV["FB_APP_SECRET"]
   config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH_CLIENT_ID"], ENV["GOOGLE_OAUTH_SECRET"], {
 	scope: "email"
