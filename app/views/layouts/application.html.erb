@@ -16,7 +16,12 @@
     
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    
+    <!-- 회원 가입/회원정보 수정 및 로그인/로그아웃 링크 --> 
+    <div>
+      <%= render 'devise/menu/registration_items' %><br>
+      <%= render 'devise/menu/login_items' %><br>
+    </div>
     <%= yield %>
+  
   </body>
 </html>
