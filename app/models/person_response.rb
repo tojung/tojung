@@ -1,2 +1,0 @@
-class PersonResponse < ApplicationRecord
-end

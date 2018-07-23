@@ -8,24 +8,19 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  config.secret_key = ENV["DEVISE_SECRET_KEY"]
-
+  # config.secret_key = '6d45afc794d2d29f2f3c55bf30e0daa3e614df16dd63654918bc2d4199146d8709016ede36cd402a602bbde595fa22ed6d557daac6ac0710cee9f637980c7e7d'
+  
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
+  config.secret_key = ENV["DEVISE_SECRET_KEY"]
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-  config.omniauth :kakao, ENV["KAKAO_CLIENT_ID"], :redirect_path => "/vusers/auth/kakao/callback" 
-  config.omniauth :facebook, ENV["FB_APP_ID"], ENV["FB_APP_SECRET"]
-  config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH_CLIENT_ID"], ENV["GOOGLE_OAUTH_SECRET"], {
-	scope: "email"
-  }
+  config.mailer_sender = 'tojung@2jung.com'
 
-  
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
@@ -47,6 +42,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [:email]
+  config.secret_key = ENV["DEVISE_SECRET_KEY"]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -54,7 +50,13 @@ Devise.setup do |config|
   # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.
   # The same considerations mentioned for authentication_keys also apply to request_keys.
   # config.request_keys = []
-
+  
+  config.mailer_sender = 'tojung@2jung.com'
+  config.omniauth :facebook, ENV["FB_APP_ID"], ENV["FB_APP_SECRET"]
+  config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH_CLIENT_ID"], ENV["GOOGLE_OAUTH_SECRET"], {
+	scope: "email"
+  }
+  
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
@@ -120,7 +122,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '0d65c02dabf4c421af92f4971e8680dec21655d0613efc8b218c0762c4167e2870258c65428b7b663c8f4763568f78a11c9c4ee6d9ffa977e5cfc0fb8838f29c'
+  # config.pepper = 'f890c17f0f55e55a08725d35a3f6943c75e2268d71431856b270cbbab0eb5a2802c3c58f5804e81b054d71576335e6787aa6919d7a74f9aa6bbb0b74f75f3be0'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false

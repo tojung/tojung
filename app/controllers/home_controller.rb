@@ -1,12 +1,7 @@
 class HomeController < ApplicationController
-  
   def index
-    @proposes = Vpropose.all
   end
 
-  def policy
+  def about
   end
-
-  def privacy
-  end 
 end

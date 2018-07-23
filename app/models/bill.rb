@@ -1,2 +1,0 @@
-class Bill < ApplicationRecord
-end

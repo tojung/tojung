@@ -5,19 +5,14 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <% if OmniAuth::Utils.camelize(provider) == "Facebook"%>
-      <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-facebook text-white mb-2 px-0" do %>
-        <%=image_tag("/assets/images/facebook.png", class: "fb_icon", align: "left")%>
-        <span class="fb_text font-weight-bold">Facebook으로 로그인</span>
+      <%= button_to omniauth_authorize_path(resource_name, provider) do %>
+        
+        <span>Facebook으로 로그인</span>
       <%end%>
-    <%elsif OmniAuth::Utils.camelize(provider) == "Kakao"%>
-      <!-- <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-kakao text-black mb-2 px-0" do %>
-        <%=image_tag("/assets/images/kakao.png", class: "kakao_icon", align: "left")%>
-        <span class="kakao_text">KaKao Talk으로 로그인</span>
-      <%end%> -->
     <%else%>
-      <!-- <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-google text-white mb-2 px-0" do %> -->
-        <!-- <%=image_tag("/assets/images/google.png", class: "google_icon", align: "left")%> -->
-        <!-- <span class="fb_text">Google로 로그인</span> -->
+        <%= button_to omniauth_authorize_path(resource_name, provider) do %>
+       
+        <span>Google로 로그인</span>
       <%end%>
     <%end%>
   <% end -%>

@@ -2,38 +2,15 @@ Rails.application.routes.draw do
   
   root 'home#index'
 
+  get 'home/index'
   get 'home/about'
-  get 'home/policy'
-  get 'home/privacy'
-
-
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
-  get 'shop' => 'shopping#index'
-  get 'shop/buy' => 'shopping#buy_form'
-  post 'shop/buy' => 'shopping#buy'
+  get 'additional_info' => 'userupdaters#additional'
+  post 'additional_update' => 'userupdaters#additional_update'
 
-    get 'disagree' => 'response#disagree'
-  get 'agree' => 'response#agree'
-  get '/discuss' => 'response#discuss'
+  devise_for :users, :controllers => { 
+    omniauth_callbacks: 'user/omniauth_callbacks',
+    registrations: 'user/registrations'
+  } 
 
-  get 'propose/new' => 'propose#new', as: "propose_new"
-  post 'propose' => 'propose#create'
-  get 'propose/edit/:id' => 'propose#edit'
-  patch 'propose/:id' => 'propose#update'
-  get 'propose/:id' => 'propose#detail'
-  
-  get 'propose/:id/subscribe' => 'propose#subscribe_form'
-  post 'propose/:id/subscribe' => 'propose#subscribe'
-  
-  post 'propose/:id/email/:person_id' => 'propose#email_send'
-  get 'propose/:id/email/:person_id' => 'propose#email_form'
-
-
-  devise_for :vusers, controllers: {
-      sessions: 'vuser/sessions',
-      registrations: 'vuser/registrations',
-	  omniauth_callbacks: 'vuser/omniauth_callbacks'
-  }
-  
 end

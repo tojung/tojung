@@ -33,6 +33,7 @@ Rails.application.configure do
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
@@ -47,7 +48,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+      api_key: ENV["MAILGUN_KEY"],
+      domain: '2jung.com'
+  }
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker

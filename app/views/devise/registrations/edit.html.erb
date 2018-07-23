@@ -1,32 +1,43 @@
-<section class="sign">
-  <h3 class="sign_up_text">회원정보 수정하기</h3>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-    <div class="form-group box-none">
-      <%= f.label :email, "이메일", class: "pl-lg-1 font-sm-12" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "이메일 주소" %>
-    </div>
-    <!-- <div class="form-group box-none">
-      <%= f.label :real_name, "이름(실명)", class: "pl-lg-1 font-sm-12" %>
-      <%= f.text_field :real_name, class: 'form-control', placeholder: "이름(실명)" %>
-    </div> -->
-    <div class="form-group box-none">
-      <%= f.label :phone_number, "휴대폰 번호", class: "pl-lg-1 font-sm-12" %>
-      <%= f.text_field :phone_number, class: 'form-control', placeholder: "휴대폰 번호"%>
-    </div>
-    <div class="form-group box-none">
-      <%= f.label :name, "닉네임", class: "pl-lg-1 font-sm-12" %>
-      <%= f.text_field :name, class: 'form-control', placeholder: "닉네임" %>
-    </div>
-    <%= f.submit "수정하기", class: "btn btn-primary sign_up_btn" %>
-  <% end %>
-  <div class="login_click mt-lg-5 mt-3">
-    <%= link_to "탈퇴하기", registration_path(resource_name), data: { confirm: "정말 탈퇴하시겠습니까?" }, method: :delete, class: "text-primary px-lg-4 px-3"%>
-    <span>|</span>
-    <%= link_to "돌아가기", :back, class: "text-primary px-lg-4 px-3" %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-</section>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
