@@ -1,5 +1,5 @@
 rails_root = Rails.root || File.dirname(__FILE__) + '/../..'
-rails_env = Rails.env || ‘development’
+rails_env = Rails.env || 'development'
 redis_config = YAML.load_file(rails_root.to_s + '/config/redis.yml')
 redis_config.merge! redis_config.fetch(Rails.env, {})
 redis_config.symbolize_keys!
