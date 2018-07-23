@@ -9,7 +9,7 @@ class UserupdatersController < ApplicationController
   # POST /additional_update
   def additional_update
     current_user.update(email: params[:email])
-    current_user.update_phone(params[:phone])
+    current_user.update_phone(params[:phone_number])
     current_user.update_addresses(address_num: params[:address_num],
                                   address_text: params[:address_text],
                                   extra_address: params[:extra_address])

@@ -20,7 +20,8 @@ class User < ApplicationRecord
 
   def update_phone(phone_number)
     nil if phone_number.nil? || (phone_number == '')
-    update_attribute(:phone_number, phone_number)
+    self.phone_number = phone_number
+    self.save
   end
 
   def update_addresses(address_num:, address_text:, extra_address:)
@@ -28,6 +29,6 @@ class User < ApplicationRecord
     self.address_num = address_num
     self.address_text = address_text
     self.address_extra = extra_address
-    self.save 
+    self.save
   end
 end
