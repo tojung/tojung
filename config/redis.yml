@@ -1,0 +1,9 @@
+development:
+  host: localhost
+  port: 6379
+test:
+  host: localhost
+  port: 6379
+production:
+  host: tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com
+  port: 6379

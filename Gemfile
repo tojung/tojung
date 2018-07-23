@@ -61,3 +61,5 @@ gem 'mailgun_rails'
 
 gem 'sidekiq'
 gem 'sinatra', require: false #used for web interface
+gem 'devise-async'
+
