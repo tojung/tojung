@@ -59,3 +59,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'mailgun_rails'
 
+gem 'sidekiq'
+gem 'sinatra', require: false #used for web interface
+gem 'devise-async'
+gem 'redis-rails'

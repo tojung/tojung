@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   
   root 'home#index'
 
@@ -12,5 +13,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'
   } 
-
+  
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
