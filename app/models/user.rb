@@ -28,5 +28,6 @@ class User < ApplicationRecord
     self.address_num = address_num
     self.address_text = address_text
     self.address_extra = extra_address
+    self.save 
   end
 end
