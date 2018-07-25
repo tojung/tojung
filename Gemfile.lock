@@ -18,6 +18,8 @@ GEM
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0, < 6)
     actionview (5.1.6)
       activesupport (= 5.1.6)
       builder (~> 3.1)
@@ -96,11 +98,6 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    logstash-event (1.2.02)
-    logstasher (1.2.2)
-      activesupport (>= 4.0)
-      logstash-event (~> 1.2.0)
-      request_store
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -197,8 +194,6 @@ GEM
       redis-store (>= 1.2, < 2)
     redis-store (1.5.0)
       redis (>= 2.2, < 5)
-    request_store (1.4.1)
-      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -275,6 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
@@ -282,7 +278,6 @@ DEPENDENCIES
   devise-async
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
-  logstasher
   mailgun_rails
   mysql2
   omniauth
