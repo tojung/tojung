@@ -58,7 +58,7 @@ Rails.application.configure do
   config.cache_store = :redis_store, {
      expires_in: 1.hour,
      namespace: 'cache',
-     redis: { host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 0 },
+     redis: { host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 1 },
   }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
