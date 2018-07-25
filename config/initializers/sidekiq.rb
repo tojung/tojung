@@ -11,8 +11,10 @@ Sidekiq.configure_client do |config|
  config.redis = { url: "redis://#{redis_config[:host]}:#{redis_config[:port]}/12" }
 end
 if Rails.env == "development"
-  $redis = Redis.new(:host => redis_config[:development][:host], :port => redis_config[:development][:port])
+  $redis = Redis.new(:host => redis_config[:development]["host"], :port => redis_config[:development]["port"])
 else
- $redis = Redis.new(:host => redis_config[:production][:host], :port => redis_config[:production][:port])
+ $redis = Redis.new(:host => redis_config[:production]["host"], :port => redis_config[:production]["port"])
+ print($redis)
+ print(redis_config)
+ print(redis_config[:production]["host"])
 end
-print(redis_config[:development])
