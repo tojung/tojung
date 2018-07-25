@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com
   channel_prefix: t_production
