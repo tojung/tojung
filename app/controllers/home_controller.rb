@@ -2,11 +2,13 @@ class HomeController < ApplicationController
   before_action :require_more_data
   def index
     print("Hello World")
-    users = $redis.get('users')
-    if users.nil?
-      @users = User.all
-      $redis.set("users", @users)
-      $redis.exprie('users', 1.hour.to_i)
+    @users = $redis.get('users_json')
+    if @users.nil?
+      print(@users)
+      # @users = User.all 캐시에는 문자열로 저장된다. 
+	  @users = User.all.to_json
+      $redis.set("users_json", @users)
+      $redis.exprie('users_json', 1.hour.to_i)
     end
   end
 
