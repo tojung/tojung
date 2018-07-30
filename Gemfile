@@ -63,3 +63,5 @@ gem 'sidekiq'
 gem 'sinatra', require: false #used for web interface
 gem 'devise-async'
 gem 'redis-rails'
+gem 'carrierwave'
+gem 'fog-aws'
