@@ -1,0 +1,2 @@
+class Mainimage < ApplicationRecord
+end

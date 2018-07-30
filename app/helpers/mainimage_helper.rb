@@ -1,0 +1,2 @@
+module MainimageHelper
+end
