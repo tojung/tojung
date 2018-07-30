@@ -1,0 +1,10 @@
+<h1> 메인 화면 이미지 생성 페이지 </h1>
+<hr>
+<%= form_tag '/mainimage/create', multipart: true do %>
+  <%= file_field_tag 'image0', accept: 'image/png,image/gif,image/jpeg' %>
+  <%= file_field_tag 'image1', accept: 'image/png,image/gif,image/jpeg' %>
+  <%= file_field_tag 'image2', accept: 'image/png,image/gif,image/jpeg' %>
+
+  <hr>
+  <%= submit_tag '저장' %>
+<% end %>

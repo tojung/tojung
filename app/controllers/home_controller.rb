@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   before_action :require_more_data, :check_admin
+
+  # GET '/' 메인 페이지
   def index
     # @users = $redis.get('users_json')
     # if @users.nil?
@@ -11,15 +13,15 @@ class HomeController < ApplicationController
     # end
   end
 
-  def about
-  end
+  # GET '/about' about 페이지
+  def about; end
 
   private
 
   def require_more_data
     redirect_to additional_info_path if user_signed_in? && !current_user.check_user_data
   end
-  
+
   def check_admin
     @is_admin = current_user.admin if user_signed_in?
   end
