@@ -1,6 +1,11 @@
+
+<a href="/product/edit/<%= @product.id %>"> 상품 기본 정보 수정 하러 가기 </a>
+( ** 생성할때의 항목과 같음. ( 이미지, 펀딩기간 제외 ) ** ) <br>
+<hr><hr><hr>
 <div style="background-color: #DADADA">
-  썸네일 이미지:
-  <img src="<%= @product.image0 %>">
+  메인 이미지:
+  <img src="<%= @product.image0 %>" style="width: 300px; height: 300px;">
+  <br><a href="/product/image0/<%= @product.id %>"> 메인 이미지 수정하러 가기 </a>
 </div><hr>
 
 <div style="background-color: cornflowerblue">
@@ -18,7 +23,7 @@
 <div style="background-color: bisque">
   <p> ** 유튜브 플레이어 붙이면 영상 썸네일도 자동으로 보일수있을듯 ㄱ ㄱ ㄱ**</p>
   유튜브 링크 주소: <%= @product.youtb_url %> <br>
-  영상 설명: <%= @product.video_text %> <br>
+  영상 설명: <%= simple_format(@product.video_text) %> <br>
   <a href="<%=  @product.bill_url %>"> 법안 원문 보러가기 링크 </a><br>
 </div>
 
@@ -38,10 +43,12 @@
 <div style="background-color: cyan">
   패키지 정리 이미지 부분 <br>
   <% if @product.image1.url == nil %>
-      아직 이미지가 없습니다. 추가 바람.
+      아직 이미지가 없습니다.
   <% else %>
-      <img href="<%= @product.image1 %>">
+      <img src="<%= @product.image1 %>">
   <% end %>
+  <br>
+  <a href="/product/image1/<%= @product.id.to_s %>"> 패키지 정리 이미지 생성/수정 페이지로 이동 </a>
 </div>
 
 <div style="background-color: chartreuse">
