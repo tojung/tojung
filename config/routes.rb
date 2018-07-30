@@ -16,6 +16,14 @@ Rails.application.routes.draw do
   post 'product/create'
   get 'product/:product_id' => 'product#detail'
   get 'product/ready/:product_id' => 'product#detail_ready'
+  post 'product/update/:product_id' => 'product_updater#update'
+  get 'product/edit/:product_id' => 'product_updater#edit'
+
+  get 'product/image0/:product_id' => 'product_updater#imagedit'
+  post 'product/image0/:product_id' => 'product_updater#update_image0'
+
+  get 'product/image1/:product_id' => 'product_updater#imagedit2'
+  post 'product/image1/:product_id' => 'product_updater#update_image1'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',

@@ -1,0 +1,10 @@
+<%= form_tag '/product/image1/'+@product.id.to_s, multipart: true do %>
+  <h1> 패키지 정리 이미지 수정 페이지 </h1>
+  <hr>
+  기존 이미지:
+  <img src="<%= @product.image1 %>" style="width: 300px; height: 300px;">
+  <hr>
+
+  메인 이미지 수정하기 : <%= file_field_tag 'image1' %>
+  <%= submit_tag '수정 완료'%>
+<%end %>
