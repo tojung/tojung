@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723084657) do
+ActiveRecord::Schema.define(version: 20180730074556) do
 
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
@@ -19,6 +19,29 @@ ActiveRecord::Schema.define(version: 20180723084657) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.text "name"
+    t.text "subname", default: ""
+    t.datetime "start_date", default: "2018-07-30 08:10:19", null: false
+    t.datetime "end_date", default: "2018-08-29 08:10:19", null: false
+    t.text "youtb_url", default: ""
+    t.text "video_text", default: ""
+    t.text "bill_url", default: ""
+    t.text "image0", default: ""
+    t.text "assos", default: ""
+    t.text "fb_url", default: ""
+    t.text "image1", default: ""
+    t.text "content", default: ""
+    t.integer "funded_money", default: 0
+    t.integer "funded_count", default: 0
+    t.text "status", default: ""
+    t.text "category", default: ""
+    t.integer "goal_money", default: 1000000
+    t.boolean "visible", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
