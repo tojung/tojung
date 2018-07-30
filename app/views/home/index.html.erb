@@ -1,4 +1,23 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
 
-<%= @users %>
+<div style="background-color: azure">
+  <p> ** 맨위에 메인 이미지 세개 (캐로우젤)** </p>
+  <img src="<%= @mainimage0 %>">
+  <img src="<%= @mainimage1 %>">
+  <img src="<%= @mainimage2 %>">
+  <hr>
+</div>
+
+<div style="background-color: #DADADA">
+  <% if @is_admin %>
+    <hr>
+    <p> ** 관리자만 보임 ** </p>
+    <strong> <a href="/mainimage/new">메인이미지 수정 하기 페이지로 이동하기 링크 </a></strong>
+  <% end %>
+</div>
+
+<div style="background-color: cornflowerblue">
+  <p> ** 관리자만 보임 **</p>
+  <strong><a href="#">상품 생성 하기 페이지로 이동하기</a></strong>
+</div>

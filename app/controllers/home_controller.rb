@@ -11,6 +11,10 @@ class HomeController < ApplicationController
     #   $redis.set('users_json', @users)
     #   $redis.exprie('users_json', 1.hour.to_i)
     # end
+    @mainimage0 = $redis.get('mainimage0')
+    @mainimage1 = $redis.get('mainimage1')
+    @mainimage2 = $redis.get('mainimage2')
+
   end
 
   # GET '/about' about 페이지

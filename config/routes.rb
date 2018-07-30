@@ -10,10 +10,8 @@ Rails.application.routes.draw do
   post 'additional_update' => 'userupdaters#additional_update'
 
   get 'mainimage/new'
-  get 'mainimage/edit'
 
   post 'mainimage/create'
-  post 'mainimage/update'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
