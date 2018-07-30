@@ -9,15 +9,18 @@
   <hr>
 </div>
 
+<% if @is_admin %>
 <div style="background-color: #DADADA">
-  <% if @is_admin %>
     <hr>
     <p> ** 관리자만 보임 ** </p>
     <strong> <a href="/mainimage/new">메인이미지 수정 하기 페이지로 이동하기 링크 </a></strong>
-  <% end %>
 </div>
+<% end %>
 
+<% if @is_admin %>
 <div style="background-color: cornflowerblue">
+
   <p> ** 관리자만 보임 **</p>
-  <strong><a href="#">상품 생성 하기 페이지로 이동하기</a></strong>
+  <strong><a href="/product/new">상품 생성 하기 페이지로 이동하기</a></strong>
 </div>
+<% end %>
