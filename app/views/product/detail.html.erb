@@ -1,0 +1,41 @@
+<div style="background-color: #DADADA">
+  썸네일 이미지:
+  <img src="<%= @product.image0 %>">
+</div><hr>
+
+<div style="background-color: cornflowerblue">
+  제목: <strong> <%= @product.name %></strong> <br>
+
+  부제목: <strong><%= @product.subname %></strong><br>
+
+  현재 펀딩 금액: <strong> <%= @product.funded_money %></strong><br>
+
+  펀딩률: <strong> <%= @product.funded_money / @product.goal_money %> </strong><br>
+
+  펀딩 남은 시간 (일): <%= ( Time.now - @product.end_date) / 1.days %> <br>
+</div>
+
+<div style="background-color: bisque">
+  <p> ** 유튜브 플레이어 붙이면 영상 썸네일도 자동으로 보일수있을듯 ㄱ ㄱ ㄱ**</p>
+  유튜브 링크: <%= @product.youtb_url %> <br>
+  영상 설명: <%= @product.video_text %> <br>
+  <a href="<%=  @product.bill_url %>"> 법안 원문 보러가기 링크 </a><br>
+</div>
+
+<div style="background-color: teal">
+  좋아요 기능 / 공유 기능 적용 예정
+</div>
+
+<div style="background-color: lightgrey;">
+  투정에서 인생 법안 배송 받기 배너 <br>
+  이건 static 하게 이미지 넣읍시다
+</div>
+
+<div style="background-color: mediumseagreen">
+  제품 선택 부분 구현
+</div>
+
+<div style="background-color: cyan">
+  패키지 정리 이미지
+  <img href="<%= @product.image1 %>">
+</div>
