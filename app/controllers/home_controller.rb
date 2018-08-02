@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_action :require_more_data, :check_admin
-
+  before_action :set_redis_or_read, only: [:index]
   # GET '/' 메인 페이지
   def index
     # @users = $redis.get('users_json')
@@ -28,5 +28,11 @@ class HomeController < ApplicationController
 
   def check_admin
     @is_admin = current_user.admin if user_signed_in?
+  end
+
+  def set_redis_or_read
+    if $redis.get('mainimage0') == nil
+      redirect_to '/mainimage/new'
+    end
   end
 end
