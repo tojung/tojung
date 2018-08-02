@@ -31,8 +31,11 @@ class HomeController < ApplicationController
   end
 
   def set_redis_or_read
-    if $redis.get('mainimage0') == nil
+    mainimages = Mainimage.last
+    if $redis.get('mainimage0') == nil and mainimages == nil
       redirect_to '/mainimage/new'
+    else
+      mainimages.setRedis
     end
   end
 end
