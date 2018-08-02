@@ -20,16 +20,29 @@ class HomeController < ApplicationController
   end
 
   def image_read_or_set
-    mainimages = Mainimage.last
-    if $redis.get('mainimage0') == nil and mainimages == nil
-      redirect_to '/mainimage/new'
-    elsif $redis.get('mainimage0') == nil
-      mainimages.setRedis
-    else 
-      @mainimage0 = $redis.get('mainimage0')
-      @mainimage1 = $redis.get('mainimage1')
-      @mainimage2 = $redis.get('mainimage2')
-    end
+#    mainimages = Mainimage.last
+#    if $redis.get('mainimage0') == nil and mainimages == nil
+#      redirect_to '/mainimage/new'
+#    elsif $redis.get('mainimage0') == nil
+#      mainimages.setRedis
+#    else 
+#      @mainimage0 = $redis.get('mainimage0')
+#      @mainimage1 = $redis.get('mainimage1')
+#      @mainimage2 = $redis.get('mainimage2')
+#    end
+     mainimage0 = $redis.get('mainimage0')
+     if mainimage0 == nil 
+       mainimages = Mainimage.last
+       if mainimages == nil 
+         redirect_to '/mainimage/new'
+       else 
+         mainimages.setRedis
+       end
+     else
+         @mainimage0 = $redis.get('mainimage0')
+         @mainimage1 = $redis.get('mainimage1')
+         @mainimage2 = $redis.get('mainimage2')
+     end
   end
 
 end
