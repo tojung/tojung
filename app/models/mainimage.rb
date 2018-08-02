@@ -10,4 +10,14 @@ class Mainimage < ApplicationRecord
     self.image2 = param[:image2]
     self.save
   end
+
+  def setRedis
+    cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
+
+    $redis.set('mainimage0', cdn_url + self.image0.path)
+  
+    $redis.set('mainimage1', cdn_url + self.image1.path)
+
+    $redis.set('mainimage2', cdn_url + self.image2.path)
+  end
 end
