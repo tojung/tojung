@@ -1,6 +1,13 @@
-
 <a href="/product/edit/<%= @product.id %>"> 상품 기본 정보 수정 하러 가기 </a>
 ( ** 생성할때의 항목과 같음. ( 이미지, 펀딩기간 제외 ) ** ) <br>
+<hr><hr><hr>
+<% if @product.visible == true or @product.visible == 1%>
+  <a href="/product/visible/<%= @product.id %>"> 상품 공개 하기</a>
+  <br>(*** 이 링크를 클릭하면 상품이 공개됩니다. ****) <br>
+<% else %>
+<a href="/product/visible/<%= @product.id %>"> 상품 비공개 하기</a>
+  <br>(*** 이 링크를 클릭하면 상품이 비공개됩니다. ****) <br>
+<% end %>
 <hr><hr><hr>
 <div style="background-color: #DADADA">
   메인 이미지:

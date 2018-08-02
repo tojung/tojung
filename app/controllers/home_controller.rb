@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_action :require_more_data, :check_admin
-  before_action :image_read_or_set, only: [:index]
+  before_action :image_read_or_set, :products_read,:set_cdn_url, only: [:index]
   
   # GET '/' 메인 페이지
   def index
@@ -34,5 +34,16 @@ class HomeController < ApplicationController
          @mainimage2 = $redis.get('mainimage2')
      end
   end
+  
+  def products_read
+    # Redis 적용 예정
+    @products = Product.where(visible: [true, 1])
+    if user_signed_in? and current_user.admin
+      @products_unvisible = Product.where(visible: [false, 0])
+    end
+  end
 
+  def set_cdn_url
+    @cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
+  end
 end

@@ -24,7 +24,10 @@ Rails.application.routes.draw do
 
   get 'product/image1/:product_id' => 'product_updater#imagedit2'
   post 'product/image1/:product_id' => 'product_updater#update_image1'
+  
+  get 'product/visible/:product_id' => 'product_updater#set_visible'
 
+  
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'

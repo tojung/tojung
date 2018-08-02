@@ -24,3 +24,15 @@
   <strong><a href="/product/new">상품 생성 하기 페이지로 이동하기</a></strong>
 </div>
 <% end %>
+
+cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
+
+<div style='blue'>
+    <h1> 공개 표시한 상품들 </h1>
+   <% @products.each do |product| %>
+      <hr>
+      <img src="<%= @cdn_url%>product.image0.path">
+      <h2> <%= @product.name %></h2> 
+      <h2> <%= @product.subname %></h2>
+   <% end %>
+</div>
