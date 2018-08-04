@@ -25,14 +25,27 @@
 </div>
 <% end %>
 
-cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
+<% if @is_admin %>
+<div style='#DADADA'>
+    <h1> 비공개 표시 상품들 </h1>
+    <% @products_unvisible.each do |product| %>
+      <hr>
+      <img src="<%= @cdn_url + product.image0.path %>">
+      <h2> <%= product.name %></h2> 
+      <h2> <%= product.subname %></h2>
+<a href="/product/ready/<%= product.id %>"> 상세 페이지로 이동하기 </a>   <
+   <% end %>
+</div>
+<% end %>
 
 <div style='blue'>
     <h1> 공개 표시한 상품들 </h1>
    <% @products.each do |product| %>
       <hr>
-      <img src="<%= @cdn_url%>product.image0.path">
-      <h2> <%= @product.name %></h2> 
-      <h2> <%= @product.subname %></h2>
+      <img src="<%= @cdn_url + product.image0.path %>">
+      <h2> <%= product.name %></h2> 
+      <h2> <%= product.subname %></h2>
+      <a href="/product/<%= product.id %>"> 상세 페이지로 이동하기 </a>
    <% end %>
 </div>
+
