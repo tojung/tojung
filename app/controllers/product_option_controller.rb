@@ -1,5 +1,6 @@
 class ProductOptionController < ApplicationController
-  before_action :check_admin
+  before_action :redirect_root_without_admin
+
   before_action :find_product, only: [:new, :create]
   before_action :find_product_option, only: [:edit, :update]
   # GET '/product/:product_id/new_option'
@@ -21,10 +22,6 @@ class ProductOptionController < ApplicationController
   end
 
   private
-
-  def check_admin
-    redirect_to '/' if !user_signed_in? || !current_user.admin
-  end
 
   def find_product
     @product = Product.find(params[:product_id])

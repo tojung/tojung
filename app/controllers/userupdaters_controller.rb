@@ -7,7 +7,6 @@ class UserupdatersController < ApplicationController
     @user = current_user
   end
 
-  # userupdaters#additional 폼에서 제출한 파라미터를 처리하는 액션
   # POST /additional_update
   def additional_update
     current_user.update(email: params[:email])

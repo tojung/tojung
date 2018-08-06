@@ -1,7 +1,7 @@
 <a href="/product/edit/<%= @product.id %>"> 상품 기본 정보 수정 하러 가기 </a>
 ( ** 생성할때의 항목과 같음. ( 이미지, 펀딩기간 제외 ) ** ) <br>
 <hr><hr><hr>
-<% if @product.visible == true or @product.visible == 1%>
+<% if @product.visible == false or @product.visible == 0%>
   <a href="/product/visible/<%= @product.id %>"> 상품 공개 하기</a>
   <br>(*** 이 링크를 클릭하면 상품이 공개됩니다. ****) <br>
 <% else %>
@@ -52,9 +52,11 @@
   <% @product_options.each do |product_option|%>
     <h2><%= product_option.name %></h2>
     <img src="<%= @cdn_url + product_option.image0.path %>">
-    <p>설명: <%= product_option.content %></p>
+    <p>설명: <%= simple_format(product_option.content) %></p>
     <p> 가격: <%= product_option.price %></p>
-    <a href="#"> 자세히 보러 가기 </a>
+    <h2> 자세히 보러가기 이미지 </h2>
+    <img src="<%= @cdn_url + product_option.image1.path if product_option.image1.path != nil %>">
+
     <a href="/product_options/<%= product_option.id.to_s %>/edit"> 제품 수정 하기 </a>
   <% end %>
 </div>
