@@ -1,0 +1,269 @@
+<% category={"인권,성평등"=>"A","동물"=>"B","육아/교육"=>"C","안전,환경"=>"D","보건/복지"=>"E","외교/통일/국방"=>"F"}%>
+
+<!-- Product Thumbnail -->
+<div class="scrolling-wrapper center height-auto" id="all">
+  <!-- Product card -->
+  <% @products.each do |x|%>
+    <div class="card">
+      <a href="/product/<%=x.id%>" class="d-block h-100">
+        <div class="pro-tag text-white"><p class="h-100"><%=x.category%></p></div>
+        <%=image_tag(x.image0, class: "pro-thumbimg")%>
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-1">
+            <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+            <span class="font-red font-weight-bold">980%</span>
+          </div>
+          <p class="card-text mb-2"><%=x.subname%></p>
+          <div class="d-flex font-12 justify-content-between">
+            <span class="funding-money"><%=x.funded_money%>원</span>
+            <span class="funding-days">3일 남음</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  <%end%>
+  <!-- Product Card -->
+</div>
+<!-- //Product Thumbnail -->
+
+<!-- Product Thumbnail -->
+<div class="scrolling-wrapper center" id="A">
+  <!-- Product card -->
+  <% @products.each do |x|%>
+    <% if x.category=='인권,성평등'%>
+      <div class="card">
+        <a href="/product/<%=x.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=x.category%></div>
+          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-1">
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <span class="font-red font-weight-bold">980%</span>
+            </div>
+            <p class="card-text mb-2"><%=x.subname%></p>
+            <div class="d-flex font-12 justify-content-between">
+              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-days">3일 남음</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end%>
+  <%end%>
+  <!-- Product Card -->
+</div>
+<!-- //Product Thumbnail -->
+
+<!-- Product Thumbnail -->
+<div class="scrolling-wrapper center" id="B">
+  <!-- Product card -->
+  <% @products.each do |x|%>
+    <% if x.category=='동물'%>
+      <div class="card">
+        <a href="/product/<%=x.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=x.category%></div>
+          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-1">
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <span class="font-red font-weight-bold">980%</span>
+            </div>
+            <p class="card-text mb-2"><%=x.subname%></p>
+            <div class="d-flex font-12 justify-content-between">
+              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-days">3일 남음</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end%>
+  <%end%>
+  <!-- Product Card -->
+</div>
+<!-- //Product Thumbnail -->
+
+<!-- Product Thumbnail -->
+<div class="scrolling-wrapper center" id="C">
+  <!-- Product card -->
+  <% @products.each do |x|%>
+    <% if x.category=="육아/교육"%>
+      <div class="card">
+        <a href="/product/<%=x.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=x.category%></div>
+          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-1">
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <span class="font-red font-weight-bold">980%</span>
+            </div>
+            <p class="card-text mb-2"><%=x.subname%></p>
+            <div class="d-flex font-12 justify-content-between">
+              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-days">3일 남음</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end%>
+  <%end%>
+  <!-- Product Card -->
+</div>
+<!-- //Product Thumbnail -->
+
+<!-- Product Thumbnail -->
+<div class="scrolling-wrapper center" id="D">
+  <!-- Product card -->
+  <% @products.each do |x|%>
+    <% if x.category=='안전/환경'%>
+      <div class="card">
+        <a href="/product/<%=x.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=x.category%></div>
+          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-1">
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <span class="font-red font-weight-bold">980%</span>
+            </div>
+            <p class="card-text mb-2"><%=x.subname%></p>
+            <div class="d-flex font-12 justify-content-between">
+              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-days">3일 남음</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end%>
+  <%end%>
+  <!-- Product Card -->
+</div>
+<!-- //Product Thumbnail -->
+
+<!-- Product Thumbnail -->
+<div class="scrolling-wrapper center" id="E">
+  <!-- Product card -->
+  <% @products.each do |x|%>
+    <% if x.category=='보건/복지'%>
+      <div class="card">
+        <a href="/product/<%=x.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=x.category%></div>
+          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-1">
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <span class="font-red font-weight-bold">980%</span>
+            </div>
+            <p class="card-text mb-2"><%=x.subname%></p>
+            <div class="d-flex font-12 justify-content-between">
+              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-days">3일 남음</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end%>
+  <%end%>
+  <!-- Product Card -->
+</div>
+<!-- //Product Thumbnail -->
+
+<!-- Product Thumbnail -->
+<div class="scrolling-wrapper center" id="F">
+  <!-- Product card -->
+  <% @products.each do |x|%>
+    <% if x.category=='외교/통일/국방'%>
+      <div class="card">
+        <a href="/product/<%=x.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=x.category%></div>
+          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-1">
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <span class="font-red font-weight-bold">980%</span>
+            </div>
+            <p class="card-text mb-2"><%=x.subname%></p>
+            <div class="d-flex font-12 justify-content-between">
+              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-days">3일 남음</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end%>
+  <%end%>
+  <!-- Product Card -->
+</div>
+<!-- //Product Thumbnail -->
+<script>
+$(document).ready(function () {
+  $('.center').not('.slick-initialized').slick({
+  arrows: false,
+  centerPadding: '10px',
+  slidesToShow: 4,
+  slidesToScroll: 2,
+  variableWidth: true,
+  touchMove: true,
+  draggable: true,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+  })
+});
+
+</script>
+
+<script>
+  function find_cate(){
+    $(document).ready(function () {
+      $('.scrolling-wrapper').filter(".height-auto");
+    });
+  }
+  function cate_change(item){
+    $(document).ready(function () {
+      $('.scrolling-wrapper').filter('.height-auto').removeClass("height-auto").addClass("height-none");
+
+      var y = $(item).html();
+      $('.category-keyword').filter('.cate-red').removeClass("cate-red");
+      $(item).addClass("cate-red");
+      if (y == '인권/성평등'){
+        $('#A').removeClass("height-none").addClass("height-auto");
+      }
+      else if (y == '동물'){
+        $('#B').removeClass("height-none").addClass("height-auto");
+      }
+      else if (y == '육아/교육'){
+        $('#C').removeClass("height-none").addClass("height-auto");
+      }
+      else if (y == '안전/환경'){
+        $('#D').removeClass("height-none").addClass("height-auto");
+      }
+      else if (y == '보건/복지'){
+        $('#E').removeClass("height-none").addClass("height-auto");
+      }
+      else if (y == '외교/통일/국방'){
+        $('#F').removeClass("height-none").addClass("height-auto");
+      }
+      else {
+        $('#all').removeClass("height-none").addClass("height-auto");
+      }
+    });
+  }
+</script>

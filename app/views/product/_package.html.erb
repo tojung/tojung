@@ -1,0 +1,92 @@
+<nav id="packageBar" class="bg-white">
+  <div class="dismiss">
+  <div class="package-row scrolling-wrapper">
+    <div class="card bg-white">
+        <%=image_tag("product.png", class: "package-img d-block mx-auto border-red")%>
+      <div class="card-body text-center py-1 font-14">
+        <p class="font-red mb-1">\0</p>
+        <h5 class="text-black font-weight-bold mb-1 font-14" lang="en">PACKAGE A</h5>
+        <pre class="font-12 mb-2">
+국회청원하기
+법안현황구독
+커뮤니티가입</pre>
+      </div>
+    </div>
+    <div class="card bg-white">
+        <%=image_tag("product.png", class: "package-img d-block mx-auto border-red")%>
+      <div class="card-body text-center py-1 font-14">
+        <p class="font-red mb-1">\0</p>
+        <h5 class="text-black font-weight-bold mb-1 font-14" lang="en">PACKAGE A</h5>
+        <pre class="font-12 mb-2">
+국회청원하기
+법안현황구독
+커뮤니티가입</pre>
+      </div>
+    </div>
+    <div class="card bg-white">
+        <%=image_tag("product.png", class: "package-img d-block mx-auto border-red")%>
+      <div class="card-body text-center py-1 font-14">
+        <p class="font-red mb-1">\0</p>
+        <h5 class="text-black font-weight-bold mb-1 font-14" lang="en">PACKAGE A</h5>
+        <pre class="font-12 mb-2">
+국회청원하기
+법안현황구독
+커뮤니티가입</pre>
+      </div>
+    </div>
+    <div class="card bg-white">
+        <%=image_tag("product.png", class: "package-img d-block mx-auto border-red")%>
+      <div class="card-body text-center py-1 font-14">
+        <p class="font-red mb-1">\0</p>
+        <h5 class="text-black font-weight-bold mb-1 font-14" lang="en">PACKAGE A</h5>
+        <pre class="font-12 mb-2">
+국회청원하기
+법안현황구독
+커뮤니티가입</pre>
+      </div>
+    </div>
+  </div>
+  </div>
+</nav>
+
+<script type='text/javascript'>
+  $(document).ready(function () {
+    $('.package-row').not('.slick-initialized').slick({
+    infinite: false,
+    speed: 300,
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          slidesToShow: 5
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          arrows: false,
+          slidesToShow: 3
+        }
+      }
+    ]
+    });
+
+      $('.package-img').click(function(){
+      $(this).toggleClass('border-red');
+    });
+
+    $('.packageBar').unwrap();
+  });
+</script>

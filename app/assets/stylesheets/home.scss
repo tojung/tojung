@@ -1,3 +1,130 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Index.html
+
+.cover_img{
+  height: calc(100vw*0.914);
+}
+
+.carousel-indicators .active{
+  background-color: rgba(148, 54, 66, 0.9);
+}
+
+.carousel-indicators li{
+  background-color: white;
+  height: 6px;
+  width: 35px;
+}
+
+// Category
+.category-list{
+  padding: 30px;
+}
+
+.category-keyword{
+  margin: 7px 10px;
+  font-size: 12px;
+}
+
+// Product Thumbnail
+.scrolling-wrapper{
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: nowrap;
+  --webkit-overflow-scrolling: touch;
+  align-items: center;
+  .card{
+    // display: inline-block;
+    // border: none;
+    margin-left: 7px;
+    margin-right: 7px;
+    border: none;
+    background-color: #f9f9f9;
+    // width: 306px;
+    // flex: 0 0 auto;
+  }
+
+  .card:active, .card:focus{
+    outline: none;
+    border: none;
+  }
+}
+
+.slick-track{
+  margin-top: 25px;
+}
+
+.pro-tag{
+  width: 68px;
+  height: 82px;
+  background-color: rgba(148, 54, 66, 0.9);
+  padding-top: 50px;
+  position: absolute;
+  z-index: 999;
+  top: -25px;
+  left: 230px;
+}
+
+.pro-thumbimg{
+  width: 306px;
+  height: 306px;
+}
+
+.card-body{
+  padding: 14px 0;
+}
+
+.card-title{
+  font-size: 16px;
+}
+
+.card-text{
+  color: #7f7f7f;
+  font-size: 12px;
+}
+
+#all{
+  transition: all 1s;
+  height: auto;
+}
+
+.cate-red{
+  color: #943642 !important;
+  font-weight: bold;
+}
+
+#all.height-auto, #A.height-auto, #B.height-auto, #C.height-auto, #D.height-auto, #E.height-auto, #F.height-auto{
+  height: auto;
+  opacity: 1;
+  transition: all 1s;
+}
+
+#all.height-none, #A.height-none, #B.height-none, #C.height-none, #D.height-none, #E.height-none, #F.height-none{
+  height: 0;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+#A, #B, #C, #D, #E, #F{
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 1s ease-out;
+}
+
+// MD's CONTENTS
+.contents{
+  margin-top: 30px;
+}
+.shape{
+  height: 14px;
+}
+
+.content-heading{
+  margin: 12px 10px 12px 30px;
+}

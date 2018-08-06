@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/about'
 
+  get 'home/categorize/:category_id' => 'home#categorize'
   get 'additional_info' => 'userupdaters#additional'
   post 'additional_update' => 'userupdaters#additional_update'
 

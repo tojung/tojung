@@ -16,7 +16,7 @@ class ProductController < ApplicationController
   def detail
     # 이 페이지는 redis 적용 예정
     @product = Product.find(params[:product_id])
-    redirect_to '/' unless @product.visible
+    # redirect_to '/' unless @product.visible
   end
 
   # GET '/product/ready/#{num}'

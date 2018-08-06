@@ -13,3 +13,23 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
+
+function sidebar_click(){
+$(document).ready(function () {
+  $('#dismiss, .overlay').on('click', function () {
+      // hide sidebar
+      $('#sidebar').css("margin-right","-300px");
+      // hide overlay
+      $('.overlay').removeClass('active');
+  });
+
+    // open sidebar
+    $('#sidebar').css("margin-right","0px");
+    // fade in the overlay
+    $('.overlay').addClass('active');
+    $('.collapse.in').toggleClass('in');
+    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+});
+}

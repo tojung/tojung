@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     @mainimage0 = $redis.get('mainimage0')
     @mainimage1 = $redis.get('mainimage1')
     @mainimage2 = $redis.get('mainimage2')
-
+    @products = Product.all
   end
 
   # GET '/about' about 페이지
