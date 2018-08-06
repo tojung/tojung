@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   mount_uploader :image0, ImageUploader
   mount_uploader :image1, ImageUploader
-
+  has_many :product_options
   def createNew(params)
     self.name    = params[:title]
     self.subname = params[:subtitle]
@@ -41,4 +41,15 @@ class Product < ApplicationRecord
     self.save
   end
 
+  def createProductOption(params)
+    p = self.product_options.new
+    p.name = params[:name]
+    p.image0 = params[:image0]
+    p.image1 = params[:image1]
+    p.content = params[:content]
+    p.status = "판매중"
+    p.price = params[:price].to_i
+    p.remain_count = params[:remain_count]
+    p.save
+  end
 end

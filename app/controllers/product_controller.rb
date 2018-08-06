@@ -1,7 +1,7 @@
 class ProductController < ApplicationController
   before_action :check_admin, only: [:new, :create, :detail_ready]
-  before_action :read_product, :check_visible, only: [:detail]
-
+  before_action :check_visible, only: [:detail]
+  before_action :set_cdn_url, :read_product
   # GET '/product/new'
   def new; end
 
@@ -20,7 +20,6 @@ class ProductController < ApplicationController
   # GET '/product/ready/#{num}'
   def detail_ready
     # 일반 유저에게 배포하기전 페이지
-    @product = Product.find(params[:product_id])
   end
 
   private
@@ -28,16 +27,17 @@ class ProductController < ApplicationController
   def check_admin
     redirect_to '/' if !user_signed_in? || !current_user.admin
   end
-  
+
   def read_product
-    # Redis 적용 예정 
+    # Redis 적용 예정
     @product = Product.find(params[:product_id])
+    @product_options = @product.product_options
   end
-  
+
   def check_visible
     if @product.visible == false and !(user_signed_in? and current_user.admin)
      redirect_to '/' unless @product.visible
-    end 
+    end
   end
 
   def product_params
@@ -53,4 +53,8 @@ class ProductController < ApplicationController
                   :image0,
                   :goal_money)
   end
+  def set_cdn_url
+    @cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
+  end
+
 end

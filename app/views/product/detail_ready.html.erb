@@ -9,6 +9,9 @@
   <br>(*** 이 링크를 클릭하면 상품이 비공개됩니다. ****) <br>
 <% end %>
 <hr><hr><hr>
+
+<a href="/product/<%= @product.id %>/new_option"> 제품 추가 하기 </a>
+
 <div style="background-color: #DADADA">
   메인 이미지:
   <img src="<%= @product.image0 %>" style="width: 300px; height: 300px;">
@@ -44,7 +47,16 @@
 </div>
 
 <div style="background-color: mediumseagreen">
-  제품 선택 부분 구현중
+  <h1> 제품 부분!! </h1>
+  <% i = 0 %>
+  <% @product_options.each do |product_option|%>
+    <h2><%= product_option.name %></h2>
+    <img src="<%= @cdn_url + product_option.image0.path %>">
+    <p>설명: <%= product_option.content %></p>
+    <p> 가격: <%= product_option.price %></p>
+    <a href="#"> 자세히 보러 가기 </a>
+    <a href="/product_options/<%= product_option.id.to_s %>/edit"> 제품 수정 하기 </a>
+  <% end %>
 </div>
 
 <div style="background-color: cyan">
