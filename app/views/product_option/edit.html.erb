@@ -1,0 +1,12 @@
+<h1> 제품 수정 페이지 </h1>
+
+<%= form_tag '/product_options/' + @product_option.id.to_s + '/update', multipart: true do %>
+  제품 이름 <%= text_field_tag 'name', @product_option.name , placeholder: '제품 이름', :required => true %><hr>
+  제품 설명   <%= text_area_tag 'content', @product_option.content, placeholder: '제품 설명 적는 칸', rows: 30, cols: 40%><hr>
+  제품 메인 이미지 <%= file_field_tag 'image0'%> <hr>
+  제품 상세 설명 이미지<%= file_field_tag 'image1'%> <hr>
+  가격 <%= text_field_tag 'price', @product_option.price , placeholder: '금액', :required => true%> <hr>
+  남은 수량 <%= text_field_tag 'remain_count' ,@product_option.remain_count ,:required => true %><hr>
+  제품 상태 <%= text_field_tag 'status', @product_option.status %>
+  <hr><%= submit_tag '추가 완료' %>
+<%end %>

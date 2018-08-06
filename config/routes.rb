@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 
   get 'product/new'
   post 'product/create'
+
   get 'product/:product_id' => 'product#detail'
   get 'product/ready/:product_id' => 'product#detail_ready'
+
   post 'product/update/:product_id' => 'product_updater#update'
   get 'product/edit/:product_id' => 'product_updater#edit'
 
@@ -27,7 +29,12 @@ Rails.application.routes.draw do
   
   get 'product/visible/:product_id' => 'product_updater#set_visible'
 
-  
+  get 'product/:product_id/new_option' => 'product_option#new'
+  post 'product/:product_id/create_option' => 'product_option#create'
+
+  get 'product_options/:product_option_id/edit' => 'product_option#edit'
+  post 'product_options/:product_option_id/update' => 'product_option#update'
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'
