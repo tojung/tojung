@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   mount_uploader :image1, ImageUploader
   has_many :product_options
   has_many :packages
+
   def createNew(params)
     self.name    = params[:title]
     self.subname = params[:subtitle]

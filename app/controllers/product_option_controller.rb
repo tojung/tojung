@@ -1,5 +1,6 @@
 class ProductOptionController < ApplicationController
   before_action :redirect_root_without_admin
+
   before_action :find_product, only: [:new, :create]
   before_action :find_product_option, only: [:edit, :update]
   # GET '/product/:product_id/new_option'

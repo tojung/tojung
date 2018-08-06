@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'product/:product_id/package/new' => 'package#new'
   post 'product/:product_id/package/create' => 'package#create'
 
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'

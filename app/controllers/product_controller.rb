@@ -2,6 +2,7 @@ class ProductController < ApplicationController
   before_action :redirect_root_without_admin, only: [:new, :create, :detail_ready]
   before_action :check_visible, only: [:detail]
   before_action :read_product
+
   # GET '/product/new'
   def new; end
 

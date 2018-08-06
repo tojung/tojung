@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180806172708) do
 
+
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
     t.string "provider"

@@ -56,6 +56,7 @@
     <p> 가격: <%= product_option.price %></p>
     <h2> 자세히 보러가기 이미지 </h2>
     <img src="<%= @cdn_url + product_option.image1.path if product_option.image1.path != nil %>">
+
     <a href="/product_options/<%= product_option.id.to_s %>/edit"> 제품 수정 하기 </a>
   <% end %>
 </div>
