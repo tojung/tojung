@@ -1,7 +1,7 @@
 class ProductController < ApplicationController
-  before_action :check_admin, only: [:new, :create, :detail_ready]
+  before_action :redirect_root_without_admin, only: [:new, :create, :detail_ready]
   before_action :check_visible, only: [:detail]
-  before_action :set_cdn_url, :read_product
+  before_action :read_product
   # GET '/product/new'
   def new; end
 
@@ -23,10 +23,6 @@ class ProductController < ApplicationController
   end
 
   private
-
-  def check_admin
-    redirect_to '/' if !user_signed_in? || !current_user.admin
-  end
 
   def read_product
     # Redis 적용 예정
@@ -53,8 +49,4 @@ class ProductController < ApplicationController
                   :image0,
                   :goal_money)
   end
-  def set_cdn_url
-    @cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
-  end
-
 end
