@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
+
  /* Custom Settings */
   /* Font */
   @font-face { font-family: 'Chosunilbo_myungjo'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -379,6 +379,13 @@
    background-color: #434343;
    box-shadow: none;
    border: none;
+ }
+
+ input[type="button"]{
+     border-radius: 8px;
+     background-color: #434343 !important;
+     box-shadow: none;
+     border: none;
  }
 
  .login-row{

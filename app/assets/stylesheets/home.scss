@@ -70,6 +70,12 @@
   left: 230px;
 }
 
+@media (min-width: 768px ){
+  .pro-tag{
+    width: 0;
+    visibility: hidden;
+  }
+}
 .pro-thumbimg{
   width: 306px;
   height: 306px;

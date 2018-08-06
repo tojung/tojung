@@ -1,5 +1,8 @@
 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
   <%=image_tag("jaekyung.png", class: "w-100 mb-4")%>
+  <div class="youtubeWrap">
+    <iframe width="560" height="315" src="xxx" frameborder="0" allowfullscreen></iframe>
+  </div>
   <%= @product.youtb_url %>
   <p class="text-center video-text mb-4"><span class="font-red">00:03</span> <%= @product.video_text %></p>
   <a href="<%=  @product.bill_url %>" class="d-block text-right font-grey font-14 pr-3 mb-4">>법안 원문 보러가기</a>

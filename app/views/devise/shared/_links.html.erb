@@ -1,27 +1,39 @@
+<div class="d-flex pl-2 links justify-content-between font-12 my-3">
 <%- if controller_name != 'sessions' %>
   <%= link_to "Log in", new_session_path(resource_name) %><br />
 <% end -%>
 
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "회원가입하기", new_registration_path(resource_name) %><br />
+<% end -%>
+<span>|</span>
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "비밀번호를 잊었다!", new_password_path(resource_name) %><br />
+<% end -%>
+
+<!-- <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+<% end -%> -->
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+<% end -%>
+
+<!--  -
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <% if OmniAuth::Utils.camelize(provider) == "Facebook"%>
       <%= button_to omniauth_authorize_path(resource_name, provider) do %>
-        
+
         <span>Facebook으로 로그인</span>
       <%end%>
     <%else%>
         <%= button_to omniauth_authorize_path(resource_name, provider) do %>
-       
+
         <span>Google로 로그인</span>
       <%end%>
     <%end%>
   <% end -%>
 <% end -%>
-
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-<% end -%>
-
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
-<% end -%>
+ -->
+</div>
