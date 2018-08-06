@@ -40,4 +40,5 @@ class Product < ApplicationRecord
     self.image1 = params[:image1]
     self.save
   end
+
 end

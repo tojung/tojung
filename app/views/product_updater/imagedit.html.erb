@@ -1,10 +1,14 @@
 <%= form_tag '/product/image0/'+@product.id.to_s, multipart: true do %>
   <h1> 메인 이미지 수정 페이지 </h1>
-<hr>
-기존 이미지:
+  <hr>
+  기존 이미지:
   <img src="<%= @product.image0 %>" style="width: 300px; height: 300px;">
-<hr>
+  <hr>
 
-메인 이미지 수정하기 : <%= file_field_tag 'image0' %>
-<%= submit_tag '수정 완료'%>
+  메인 이미지 수정하기 : <%= file_field_tag 'image0' %>
+  <%= submit_tag '수정 완료'%>
 <%end %>
+<div>
+  <%= product hello mand  %>
+  <%=  je;; pkmsd;%>
+</div>
