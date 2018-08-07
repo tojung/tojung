@@ -1,19 +1,20 @@
+<!-- 네이밍좀.................... x........ ........... -->
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center height-auto" id="all">
   <!-- Product card -->
-  <% @products.each do |x|%>
+  <% @products.each do |product|%>
     <div class="card">
-      <a href="/product/<%=x.id%>" class="d-block h-100">
-        <div class="pro-tag text-white"><p class="h-100"><%=x.category%></p></div>
-        <%=image_tag(x.image0, class: "pro-thumbimg")%>
+      <a href="/product/<%=product.id%>" class="d-block h-100">
+        <div class="pro-tag text-white"><p class="h-100"><%=product.category%></p></div>
+        <%=image_tag(product.image0, class: "pro-thumbimg")%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
-            <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+            <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
             <span class="font-red font-weight-bold">980%</span>
           </div>
-          <p class="card-text mb-2"><%=x.subname%></p>
+          <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
-            <span class="funding-money"><%=x.funded_money%>원</span>
+            <span class="funding-money"><%=product.funded_money%>원</span>
             <span class="funding-days">3일 남음</span>
           </div>
         </div>
@@ -27,20 +28,20 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="A">
   <!-- Product card -->
-  <% @products.each do |x|%>
-    <% if x.category=='인권,성평등'%>
+  <% @products.each do |product|%>
+    <% if product.category=='인권,성평등'%>
       <div class="card">
-        <a href="/product/<%=x.id%>" class="d-block h-100">
-          <div class="pro-tag text-white text-center"><%=x.category%></div>
-          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+        <a href="/product/<%=product.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=product.category%></div>
+          <%=image_tag(product.image0, class: "pro-thumbimg")%>
           <div class="card-body">
             <div class="d-flex justify-content-between mb-1">
-              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
               <span class="font-red font-weight-bold">980%</span>
             </div>
-            <p class="card-text mb-2"><%=x.subname%></p>
+            <p class="card-text mb-2"><%=product.subname%></p>
             <div class="d-flex font-12 justify-content-between">
-              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-money"><%=product.funded_money%>원</span>
               <span class="funding-days">3일 남음</span>
             </div>
           </div>
@@ -55,20 +56,20 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="B">
   <!-- Product card -->
-  <% @products.each do |x|%>
-    <% if x.category=='동물'%>
+  <% @products.each do |product|%>
+    <% if product.category=='동물'%>
       <div class="card">
-        <a href="/product/<%=x.id%>" class="d-block h-100">
-          <div class="pro-tag text-white text-center"><%=x.category%></div>
-          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+        <a href="/product/<%=product.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=product.category%></div>
+          <%=image_tag(product.image0, class: "pro-thumbimg")%>
           <div class="card-body">
             <div class="d-flex justify-content-between mb-1">
-              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
               <span class="font-red font-weight-bold">980%</span>
             </div>
-            <p class="card-text mb-2"><%=x.subname%></p>
+            <p class="card-text mb-2"><%=product.subname%></p>
             <div class="d-flex font-12 justify-content-between">
-              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-money"><%=product.funded_money%>원</span>
               <span class="funding-days">3일 남음</span>
             </div>
           </div>
@@ -83,20 +84,20 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="C">
   <!-- Product card -->
-  <% @products.each do |x|%>
-    <% if x.category=="육아/교육"%>
+  <% @products.each do |product|%>
+    <% if product.category=="육아/교육"%>
       <div class="card">
-        <a href="/product/<%=x.id%>" class="d-block h-100">
-          <div class="pro-tag text-white text-center"><%=x.category%></div>
-          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+        <a href="/product/<%=product.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=product.category%></div>
+          <%=image_tag(product.image0, class: "pro-thumbimg")%>
           <div class="card-body">
             <div class="d-flex justify-content-between mb-1">
-              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
               <span class="font-red font-weight-bold">980%</span>
             </div>
-            <p class="card-text mb-2"><%=x.subname%></p>
+            <p class="card-text mb-2"><%=product.subname%></p>
             <div class="d-flex font-12 justify-content-between">
-              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-money"><%=product.funded_money%>원</span>
               <span class="funding-days">3일 남음</span>
             </div>
           </div>
@@ -111,20 +112,20 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="D">
   <!-- Product card -->
-  <% @products.each do |x|%>
-    <% if x.category=='안전/환경'%>
+  <% @products.each do |product|%>
+    <% if product.category=='안전/환경'%>
       <div class="card">
-        <a href="/product/<%=x.id%>" class="d-block h-100">
-          <div class="pro-tag text-white text-center"><%=x.category%></div>
-          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+        <a href="/product/<%=product.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=product.category%></div>
+          <%=image_tag(product.image0, class: "pro-thumbimg")%>
           <div class="card-body">
             <div class="d-flex justify-content-between mb-1">
-              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
               <span class="font-red font-weight-bold">980%</span>
             </div>
-            <p class="card-text mb-2"><%=x.subname%></p>
+            <p class="card-text mb-2"><%=product.subname%></p>
             <div class="d-flex font-12 justify-content-between">
-              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-money"><%=product.funded_money%>원</span>
               <span class="funding-days">3일 남음</span>
             </div>
           </div>
@@ -139,20 +140,20 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="E">
   <!-- Product card -->
-  <% @products.each do |x|%>
-    <% if x.category=='보건/복지'%>
+  <% @products.each do |product|%>
+    <% if product.category=='보건/복지'%>
       <div class="card">
-        <a href="/product/<%=x.id%>" class="d-block h-100">
-          <div class="pro-tag text-white text-center"><%=x.category%></div>
-          <%=image_tag(x.image0, class: "pro-thumbimg")%>
+        <a href="/product/<%=product.id%>" class="d-block h-100">
+          <div class="pro-tag text-white text-center"><%=product.category%></div>
+          <%=image_tag(product.image0, class: "pro-thumbimg")%>
           <div class="card-body">
             <div class="d-flex justify-content-between mb-1">
-              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
+              <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
               <span class="font-red font-weight-bold">980%</span>
             </div>
-            <p class="card-text mb-2"><%=x.subname%></p>
+            <p class="card-text mb-2"><%=product.subname%></p>
             <div class="d-flex font-12 justify-content-between">
-              <span class="funding-money"><%=x.funded_money%>원</span>
+              <span class="funding-money"><%=product.funded_money%>원</span>
               <span class="funding-days">3일 남음</span>
             </div>
           </div>
@@ -167,25 +168,25 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="F">
   <!-- Product card -->
-  <% @products.each do |x|%>
-    <% if x.category=='외교/통일/국방'%>
+  <% @products.each do |product|%>
+    <% if product.category=='외교/통일/국방'%>
       <div class="card">
-        <a href="/product/<%=x.id%>" class="d-block h-100">
-          <div class="pro-tag text-white text-center"><%=x.category%></div>
-          <%=image_tag(x.image0, class: "pro-thumbimg")%>
-          <div class="card-body">
-            <div class="d-flex justify-content-between mb-1">
-              <h5 class="card-title text-black font-weight-bold mb-0"><%=x.name%></h5>
-              <span class="font-red font-weight-bold">980%</span>
-            </div>
-            <p class="card-text mb-2"><%=x.subname%></p>
-            <div class="d-flex font-12 justify-content-between">
-              <span class="funding-money"><%=x.funded_money%>원</span>
-              <span class="funding-days">3일 남음</span>
-            </div>
-          </div>
-        </a>
+  <a href="/product/<%=product.id%>" class="d-block h-100">
+    <div class="pro-tag text-white text-center"><%=product.category%></div>
+    <%=image_tag(product.image0, class: "pro-thumbimg")%>
+    <div class="card-body">
+      <div class="d-flex justify-content-between mb-1">
+        <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
+        <span class="font-red font-weight-bold">980%</span>
       </div>
+      <p class="card-text mb-2"><%=product.subname%></p>
+      <div class="d-flex font-12 justify-content-between">
+        <span class="funding-money"><%=product.funded_money%>원</span>
+        <span class="funding-days">3일 남음</span>
+      </div>
+    </div>
+  </a>
+</div>
     <% end%>
   <%end%>
   <!-- Product Card -->
