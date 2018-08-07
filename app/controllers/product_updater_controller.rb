@@ -1,27 +1,20 @@
 class ProductUpdaterController < ApplicationController
-  before_action :redirect_root_without_admin
+  before_action :redirect_root_except_admin
   before_action :find_product
-
+  # after_action :redirect_ready_page, only: %i[update update_image0 update_image1]
   # GET 'product/edit/:product_id'
-  def edit
-  end
+  def edit; end
 
   # GET 'product/visible/:product_id'
   def set_visible
-    if @product.visible == true or @product.visible == 1
-       @product.visible = true
-       @product.save
-    else
-       @product.visible = false
-       @product.save
-    end
+    @product.reverse_visible
+    redirect_root
   end
 
   # POST '/product/update/:product_id'
   def update
     @product.updateNormal(update_normal_params)
-
-    redirect_to '/product/ready/' + @product.id.to_s
+    redirect_ready_page
   end
 
   # GET '/product/image0/:product_id'
@@ -34,16 +27,14 @@ class ProductUpdaterController < ApplicationController
   def update_image0
     # 메인 이미지
     @product.updateImage0(update_image0_params)
-
-    redirect_to '/product/ready/' + @product.id.to_s
+    redirect_ready_page
   end
 
   # POST '/product/image1/:product_id'
   def update_image1
     # 패키지 정리 이미지
     @product.updateImage1(update_image1_params)
-
-    redirect_to '/product/ready/' + @product.id.to_s
+    redirect_ready_page
   end
 
   private

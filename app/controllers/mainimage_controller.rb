@@ -1,6 +1,5 @@
 class MainimageController < ApplicationController
-  before_action :redirect_root_without_admin
-  after_action :redirect_root, only: %i[create]
+  before_action :redirect_root_except_admin
   # GET 'mainimage/new'
   def new; end
 
@@ -9,6 +8,8 @@ class MainimageController < ApplicationController
     mainimage = Mainimage.new
     mainimage.createNew(mainimage_params)
     redis_set_mainimage(mainimage)
+
+    redirect_root
   end
 
   private
