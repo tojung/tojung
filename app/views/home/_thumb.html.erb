@@ -1,4 +1,6 @@
 <!-- 네이밍좀.................... x........ ........... -->
+<!-- 반복문 여러개로 중복 시킨 부분들 개선 바람..
+맨 위 반복문만 수정사항 반영함. -->
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center height-auto" id="all">
   <!-- Product card -->
@@ -6,7 +8,7 @@
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
         <div class="pro-tag text-white"><p class="h-100"><%=product.category%></p></div>
-        <%=image_tag(product.image0, class: "pro-thumbimg")%>
+        <%=image_tag(@cdn_url + product.image0.path, class: "pro-thumbimg") if product.image0.path != nil%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
