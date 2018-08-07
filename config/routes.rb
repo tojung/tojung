@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   post 'product/:product_id/package/create' => 'package#create'
   get 'package/:package_id/product_option/:product_option_id' => 'package#insert_option_to_package'
 
+  get 'package/:package_id' => 'package#edit'
+  post 'package/:package_id' => 'package#update'
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'

@@ -17,20 +17,30 @@
 <% end %>
 <hr><hr><hr>
 
-<a href="/product/<%= @product.id %>/new_option"> **제품 추가 하기 </a>
-
+<a href="/product/<%= @product.id %>/new_option"> **제품 추가 하기 </a><hr>
+<a href="/product/<%= @product.id %>/package/new">**패키지 추가하기 </a>
 <div style="background-color: #DADADA">
   <br><a href="/product/image0/<%= @product.id %>"> **메인 이미지 수정하러 가기 </a>
 </div><hr>
 
-<!-- 페이스북 공유하기/좋아요 기능 -->
-<div style="background-color: teal">
-  <iframe src="https://www.facebook.com/plugins/like.php?href=https://ren.2jung.com/product/ready/<%=@product.id %>&width=186&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=1014670008686658" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+<div style="background-color: greenyellow">
+<% @product.packages.each do |package| %>
+    <hr>
+    패키지 이름: <%= package.name %><br>
+    패키지 속 상품 현황: <% package.product_options.each do |product_option| %>  <%= product_option.name %>, <% end %><br>
+    <a href="/product/<%= @product.id %>/package/<%= package.id %>"> **패키지의 상품 구성 수정 페이지로 이동하기**</a><br>
+    <a href="/package/<%= package.id %>">**패키지의 기본정보 수정 페이지로 이동하기 ( 이름, 내용, 가격, 패키지메인이미지 )** </a>
+<% end %>
 </div>
 
 <div style="background-color: cyan">
   <br>
-  <a href="/product/image1/<%= @product.id.to_s %>"> 패키지 정리 이미지 생성/수정 페이지로 이동 </a>
+  <a href="/product/image1/<%= @product.id.to_s %>"> **패키지 정리 이미지 생성/수정 페이지로 이동 </a>
+</div>
+
+<!-- 페이스북 공유하기/좋아요 기능 -->
+<div style="background-color: teal">
+  <iframe src="https://www.facebook.com/plugins/like.php?href=https://ren.2jung.com/product/ready/<%=@product.id %>&width=186&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=1014670008686658" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 </div>
 
 <div style="background-color: #B00100">
