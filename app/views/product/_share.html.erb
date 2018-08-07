@@ -1,7 +1,10 @@
 <nav id="shareBar" class="bg-white">
   <section class="share">
-    <%=image_tag("fb.svg", class: "d-block mx-auto mb-3")%>
-    <%=image_tag("kakao.jpg", class: "kakao_icon d-block mx-auto mb-3")%>
+    <a id="kakao-link-btn" href="javascript:;">
+    <%=image_tag("kakao.jpg", class: "kakao_icon d-block mx-auto mb-3") %>
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
+      <%=image_tag("fb.svg", class: "d-block mx-auto mb-3")%></a>
   </section>
 </nav>
 <div class="overlay"></div>
@@ -9,4 +12,23 @@
   $(document).ready(function(){
     $('#shareBar').unwrap();
   });
+</script>
+
+<script type='text/javascript'>
+    //<![CDATA[
+    Kakao.init('d88e4ac3d481a3491b72e73fcb0ae1fc');
+    Kakao.Link.createTalkLinkButton({
+        container: '#kakao-link-btn',
+        label: '투정!',
+        image: {
+            src: '/',
+            width: '300',
+            height: '200'
+        },
+        webButton: {
+            text: 'ㄱ',
+            url: 'https://ren.2jung.com'
+        }
+    });
+    //]]>
 </script>
