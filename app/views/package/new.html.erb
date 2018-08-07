@@ -1,0 +1,10 @@
+<h2> 패키지 생성 페이지 </h2>
+
+<%= form_tag 'product/' + params[:product_id] + '/package/create', multipart: true do %>
+
+  패키지에 추가할 제품
+  <% @product_options.each do |product_option| %>
+  <% end %>
+
+  <%= submit_tag '저장' %>
+<% end %>

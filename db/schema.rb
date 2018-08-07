@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180730083817) do
+ActiveRecord::Schema.define(version: 20180806172708) do
+
 
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
@@ -30,11 +31,44 @@ ActiveRecord::Schema.define(version: 20180730083817) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "packages", force: :cascade do |t|
+    t.text "selled_count"
+    t.text "remain_count"
+    t.integer "product_id"
+    t.text "price"
+    t.text "name"
+    t.text "content"
+    t.text "image0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_packages_on_product_id"
+  end
+
+  create_table "packages_product_options", id: false, force: :cascade do |t|
+    t.integer "package_id", null: false
+    t.integer "product_option_id", null: false
+  end
+
+  create_table "product_options", force: :cascade do |t|
+    t.integer "product_id"
+    t.text "name", default: ""
+    t.text "content", default: ""
+    t.integer "price", default: 0
+    t.text "status", default: ""
+    t.integer "selled_count", default: 0
+    t.integer "remain_count", default: 0
+    t.text "image0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "image1"
+    t.index ["product_id"], name: "index_product_options_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname", default: ""
-    t.datetime "start_date", default: "2018-07-30 08:10:19", null: false
-    t.datetime "end_date", default: "2018-08-29 08:10:19", null: false
+    t.datetime "start_date", default: "2018-08-06 12:09:53", null: false
+    t.datetime "end_date", default: "2018-09-05 12:09:53", null: false
     t.text "youtb_url", default: ""
     t.text "video_text", default: ""
     t.text "bill_url", default: ""

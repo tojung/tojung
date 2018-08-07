@@ -1,7 +1,17 @@
-
 <a href="/product/edit/<%= @product.id %>"> 상품 기본 정보 수정 하러 가기 </a>
 ( ** 생성할때의 항목과 같음. ( 이미지, 펀딩기간 제외 ) ** ) <br>
 <hr><hr><hr>
+<% if @product.visible == false or @product.visible == 0%>
+  <a href="/product/visible/<%= @product.id %>"> 상품 공개 하기</a>
+  <br>(*** 이 링크를 클릭하면 상품이 공개됩니다. ****) <br>
+<% else %>
+<a href="/product/visible/<%= @product.id %>"> 상품 비공개 하기</a>
+  <br>(*** 이 링크를 클릭하면 상품이 비공개됩니다. ****) <br>
+<% end %>
+<hr><hr><hr>
+
+<a href="/product/<%= @product.id %>/new_option"> 제품 추가 하기 </a>
+
 <div style="background-color: #DADADA">
   메인 이미지:
   <img src="<%= @product.image0 %>" style="width: 300px; height: 300px;">
@@ -28,7 +38,7 @@
 </div>
 
 <div style="background-color: teal">
-  좋아요 기능 / 공유 기능 적용 예정
+  <iframe src="https://www.facebook.com/plugins/like.php?href=https://ren.2jung.com/product/ready/<%=@product.id %>&width=186&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=1014670008686658" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 </div>
 
 <div style="background-color: lightgrey;">
@@ -37,7 +47,18 @@
 </div>
 
 <div style="background-color: mediumseagreen">
-  제품 선택 부분 구현중
+  <h1> 제품 부분!! </h1>
+  <% i = 0 %>
+  <% @product_options.each do |product_option|%>
+    <h2><%= product_option.name %></h2>
+    <img src="<%= @cdn_url + product_option.image0.path %>">
+    <p>설명: <%= simple_format(product_option.content) %></p>
+    <p> 가격: <%= product_option.price %></p>
+    <h2> 자세히 보러가기 이미지 </h2>
+    <img src="<%= @cdn_url + product_option.image1.path if product_option.image1.path != nil %>">
+
+    <a href="/product_options/<%= product_option.id.to_s %>/edit"> 제품 수정 하기 </a>
+  <% end %>
 </div>
 
 <div style="background-color: cyan">

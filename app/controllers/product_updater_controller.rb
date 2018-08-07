@@ -1,9 +1,20 @@
 class ProductUpdaterController < ApplicationController
-  before_action :check_admin
+  before_action :redirect_root_without_admin
   before_action :find_product
 
   # GET 'product/edit/:product_id'
   def edit
+  end
+
+  # GET 'product/visible/:product_id'
+  def set_visible
+    if @product.visible == true or @product.visible == 1
+       @product.visible = true
+       @product.save
+    else
+       @product.visible = false
+       @product.save
+    end
   end
 
   # POST '/product/update/:product_id'
@@ -36,10 +47,6 @@ class ProductUpdaterController < ApplicationController
   end
 
   private
-
-  def check_admin
-    redirect_to '/' if !user_signed_in? || !current_user.admin
-  end
 
   def find_product
     @product = Product.find(params[:product_id])
