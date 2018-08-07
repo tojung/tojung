@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
   def set_cdn_url
     @cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
   end
+
+  def redirect_root
+    redirect_to '/'
+  end
 end
