@@ -40,15 +40,15 @@
             {
                 title: '웹으로 보기',
                 link: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com'
+                    mobileWebUrl: '<%= request.base_url + request.original_fullpath %>',
+                    webUrl: '<%= request.base_url + request.original_fullpath %>'
                 }
             },
             {
                 title: '앱으로 보기',
                 link: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com'
+                    mobileWebUrl: '<%= request.base_url + request.original_fullpath %>',
+                    webUrl: '<%= request.base_url + request.original_fullpath %>'
                 }
             }
         ]
