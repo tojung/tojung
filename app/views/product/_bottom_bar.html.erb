@@ -1,0 +1,37 @@
+<!-- Bottom bar -->
+<nav class="navbar bottom-bar py-2 fixed-bottom align-items-center text-center">
+  <button class="button-none buy-button font-14 ml-4 text-white" id="packageBarCollapse" onclick="packagebar_click();">
+    내 인생으로 배송받기
+  </button>
+  <a href="/" class="d-block ml-5 text-white">
+    <%=image_tag("heart.svg")%>
+  </a>
+  <button class="button-none buy-button text-white" id="shareBarCollapse" onclick="sharebar_click();">
+    <%=image_tag("link.svg")%>
+  </button>
+</nav>
+<!-- // Bottom bar -->
+<%=render 'package'%>
+<%=render 'share'%>
+
+<script>
+  function packagebar_click(){
+    $(document).ready(function () {
+        // open sidebar
+        $('#packageBar').toggleClass("open");
+        // fade in the overlay
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+  }
+
+  function sharebar_click(){
+    $(document).ready(function () {
+        // open sidebar
+        $('#shareBar').toggleClass("open");
+        // fade in the overlay
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+  }
+</script>

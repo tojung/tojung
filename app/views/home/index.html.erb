@@ -1,13 +1,65 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!-- Cover -->
+<section class="cover">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%=image_tag(@mainimage0, class: "d-block w-100 cover_img")%>
+      </div>
+      <div class="carousel-item">
+        <%=image_tag(@mainimage1, class: "d-block w-100 cover_img")%>
+      </div>
+      <div class="carousel-item">
+        <%=image_tag(@mainimage2, class: "d-block w-100 cover_img")%>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- //Cover -->
 
-<div style="background-color: azure">
+<!-- Category -->
+<ul class="category-list d-flex flex-wrap justify-content-center mb-0">
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">HOT</a>
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">NEW</a>
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">인권/성평등</a>
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">동물</a>
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">육아/교육</a>
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">안전/환경</a>
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">보건/복지</a>
+  <a href="javascript:void(0);" class="category-keyword" onclick="cate_change(this);">외교/통일/국방</a>
+</ul>
+<!-- // Category -->
+<%=render 'thumb'%>
+<!-- MD's Contents -->
+<section class="contents">
+  <h4 class="d-inline-block content-heading font-18" lang="en">MD's CONTENTS</h4>
+  <%=image_tag("shape.png", class: "shape")%>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-6 px-0 pb-3">
+        <%=image_tag("jaekyung.png", class: "w-100")%>
+      </div>
+      <div class="col-12 col-lg-6 px-0 pb-3">
+        <%=image_tag("doohee.png", class: "w-100")%>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // MD's Contents -->
+
+<%=render 'bottom_bar'%>
+
+<!-- <div style="background-color: azure">
   <p> ** 맨위에 메인 이미지 세개 (캐로우젤)** </p>
   <img src="<%= @mainimage0 %>">
   <img src="<%= @mainimage1 %>">
   <img src="<%= @mainimage2 %>">
   <hr>
-</div>
+</div> -->
 
 <% if @is_admin %>
 <div style="background-color: #DADADA">
@@ -31,7 +83,7 @@
     <% @products_unvisible.each do |product| %>
       <hr>
       <img src="<%= @cdn_url + product.image0.path %>">
-      <h2> <%= product.name %></h2> 
+      <h2> <%= product.name %></h2>
       <h2> <%= product.subname %></h2>
 <a href="/product/ready/<%= product.id %>"> 상세 페이지로 이동하기 </a>   <
    <% end %>
@@ -43,9 +95,8 @@
    <% @products.each do |product| %>
       <hr>
       <img src="<%= @cdn_url + product.image0.path %>">
-      <h2> <%= product.name %></h2> 
+      <h2> <%= product.name %></h2>
       <h2> <%= product.subname %></h2>
       <a href="/product/<%= product.id %>"> 상세 페이지로 이동하기 </a>
    <% end %>
 </div>
-

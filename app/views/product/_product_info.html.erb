@@ -1,0 +1,9 @@
+<div class="pro-info">
+  <h4 class="font-18 font-weight-bold"><%= @product.name %></h4>
+  <p class="font-14"><%= @product.subname %></p>
+  <div class="d-flex font-16 font-weight-bold justify-content-between">
+    <span><%= @product.funded_money %>원</span>
+    <span class="font-red"><%= @product.funded_money / @product.goal_money %> %</span>
+    <span>광고 펀딩 <%= ( Time.now - @product.end_date) / 1.days %>일 남음</span>
+  </div>
+</div>

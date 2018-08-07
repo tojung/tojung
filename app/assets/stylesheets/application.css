@@ -13,3 +13,392 @@
  *= require_tree .
  *= require_self
  */
+
+ /* Custom Settings */
+  /* Font */
+  @font-face { font-family: 'Chosunilbo_myungjo'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff'); font-weight: normal; font-style: normal; }
+  @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+ body{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    background-color: #f9f9f9;
+ }
+
+ :lang=[en]{
+    font-family: 'Noto Sans', sans-serif;
+ }
+
+ .visible-xs{
+   display: none !important;
+ }
+
+ .font-grey{
+   color: #858585 !important;
+ }
+
+ .font-red{
+   color: #943642 !important;
+ }
+
+ .font-10{
+   font-size: 10px !important;
+ }
+
+ .font-12{
+   font-size: 12px !important;
+ }
+
+ .font-14{
+   font-size: 14px !important;
+ }
+
+ .font-16{
+   font-size: 16px !important;
+ }
+
+ .font-18{
+   font-size: 18px !important;
+ }
+
+ a{
+   text-decoration: none;
+   color: black !important;
+ }
+
+ a:hover, a:focus, a:active{
+   text-decoration: none;
+   outline: none;
+   border: none;
+ }
+
+ pre{
+   color: black;
+   font-family: 'Noto Sans KR', sans-serif;
+ }
+
+ .bg-base{
+   background-color: #f9f9f9;
+ }
+
+ .bg-light{
+   background-color: white !important;
+ }
+
+ .button-none{
+   border: none;
+   cursor: pointer;
+ }
+
+ .button-none:focus{
+   border: none;
+   outline: none;
+ }
+
+ @media (min-width: 992px) {
+
+   .category-list a{
+     font-size: 16px !important;
+   }
+
+   .font-lg-14{
+     font-size: 14px !important;
+   }
+
+   .font-lg-16{
+     font-size: 16px !important;
+   }
+
+   .font-lg-18{
+     font-size: 18px !important;
+   }
+
+   .font-lg-20{
+     font-size: 20px !important;
+   }
+ }
+
+ @media screen and (max-width: 576px){
+
+   .visible-xs{
+     display: block !important;
+   }
+
+   .visible-lg{
+     display: none !important;
+   }
+
+   .font-sm-10{
+     font-size: 10px !important;
+   }
+
+ }
+ /* Header */
+
+ .header{
+   background-color: #f9f9f9 !important;
+ }
+ .navbar{
+   align-items: baseline;
+   padding: .5rem 1.5rem;
+ }
+
+ .navbar-light .navbar-toggler {
+   border: none;
+ }
+
+ .navbar-light .navbar-toggler:focus {
+   border: none;
+   outline: none;
+ }
+
+ .navbar-toggler{
+   padding: 0 0;
+ }
+
+ .brand .navbar-brand{
+   font-family: 'Chosunilbo_myungjo', sans-serif;
+   color: #434343;
+   font-size: 20px;
+ }
+
+ .icon_bars{
+   width: 21px;
+   height: 18px;
+ }
+
+ .icon_search{
+   width: 18px;
+   height: 18px;
+ }
+
+ .navbar-right{
+   position: fixed;
+   top: 0;
+ }
+
+ /* Sidebar */
+ #sidebar{
+   overflow-y: scroll;
+   width: 300px;
+   margin-right: -300px;
+   background-color: white !important;
+   position: fixed;
+   top: 0;
+   right: 0;
+   z-index: 999;
+   /* top layer */
+   transition: all 0.3s;
+ }
+
+ .overlay {
+     display: none;
+     position: fixed;
+     /* full screen */
+     width: 100vw;
+     height: 100vh;
+     /* transparent black */
+     background: rgba(0, 0, 0, 0.7);
+     /* middle layer, i.e. appears below the sidebar */
+     z-index: 998;
+     opacity: 0;
+     /* animate the transition */
+     transition: all 0.5s ease-in-out;
+ }
+
+ .overlay.active {
+     display: block;
+     opacity: 1;
+ }
+
+ #dismiss {
+     width: 35px;
+     height: 25px;
+     margin-left: 8px;
+     margin-top: 5px;
+     margin-bottom: 20px;
+     /* top right corner of the sidebar */
+ }
+
+ .sign-status{
+   font-family: 'Noto Sans KR',sans-serif;
+   margin-right: 26px;
+   font-size: 12px;
+   color: #7f7f7f;
+ }
+
+ #sidebar > .container-fluid > .row{
+   padding: 16px 0;
+   margin: 0;
+   border-top: 1px solid #7f7f7f;
+   border-bottom: 1px solid #7f7f7f;
+ }
+
+ #sidebar > .container-fluid > .row > .col-3{
+   padding-left: 0px;
+   padding-right: 0px;
+ }
+
+ .category-icon{
+   height: 20px;
+ }
+
+ .category-title{
+   font-size: 12px;
+ }
+
+ .sidebar-menus, .sidebar-sns{
+   margin-top: 20px;
+   margin-left: 25px;
+   margin-bottom: 40px;
+ }
+
+ .sidebar-menu{
+   display: block;
+   color: black;
+   margin-bottom: 7px;
+   font-size: 12px;
+ }
+ /* //Sidebar */
+ /* // Header */
+
+ /* Bottom bar */
+
+ .bottom-bar{
+   height: 60px;
+   z-index: 999;
+ }
+
+ .bottom-icon{
+   height: 20px;
+ }
+
+ .wrapper{
+   background-color: #f9f9f9;
+   margin-top: 62px;
+   margin: 62px auto 0 auto;
+   width: 1000px;
+ }
+
+ @media screen and (max-width: 768px)  {
+   .wrapper{
+     width: 700px;
+     margin: 62px auto 0 aut0;
+   }
+ }
+ @media screen and (max-width: 576px)  {
+   .wrapper{
+     width: auto;
+     margin: 62px auto 0 aut0;
+   }
+ }
+ /* Footer */
+
+ .footer{
+   padding: 60px 40px;
+   background-color: #F9F9F9;
+   margin-bottom: 60px;
+ }
+ .footer p{
+   margin-bottom: 0;
+   line-height: 20px;
+ }
+ .menus{
+   margin-top: 10px;
+   line-height: 20px;
+   color: black;
+ }
+
+ .menus a{
+   color: black !important;
+ }
+
+ .footer-right a{
+   color: black !important;
+ }
+
+ @media screen and (max-width: 576px) {
+   .footer{
+     padding: 20px 10px;
+   }
+
+ }
+
+ .policy{
+   padding: 60px 16px;
+   margin: 0 9%;
+ }
+ .policy_text p{
+   line-height: 32px;
+   margin-bottom: 0;
+ }
+
+ @media screen and (max-width: 576px) {
+   .policy{
+     margin: 0 5%;
+     padding: 40px 0 20px 0;
+   }
+ }
+
+ /* Devise */
+ .field input{
+   width: 230px;
+   height: 52px;
+   border-radius: 8px;
+   background-color: #eeeeee !important;
+   box-shadow: none;
+   border: none;
+   padding: 16px 20px;
+   color: #434343;
+ }
+
+ .field input:focus, .field input:active{
+   outline: none;
+   border: 2px solid skyblue;
+ }
+
+ .field input::placeholder{
+   font-size: 14px;
+   color: #434343;
+ }
+
+ .field input[type=checkbox]{
+   width: 20px;
+   height: 20px;
+   border-radius: 4px;
+   background-color: #eeeeee !important;
+   box-shadow: none;
+   position: relative;
+   top: 5px;
+ }
+
+ .btn-login{
+   width: 100px;
+   height: 52px;
+   border-radius: 8px;
+   background-color: #434343;
+   box-shadow: none;
+   border: none;
+ }
+
+ input[type="button"]{
+     border-radius: 8px;
+     background-color: #434343 !important;
+     box-shadow: none;
+     border: none;
+ }
+
+ .login-row{
+   width: 230px;
+   margin: 0 auto;
+ }
+
+ .links{
+   width: 230px;
+   margin: 0 auto;
+ }
+
+ .box-230{
+   width: 230px;
+   margin: 0 auto;
+ }

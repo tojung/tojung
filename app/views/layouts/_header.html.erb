@@ -1,0 +1,87 @@
+<!-- Header -->
+<header class="header fixed-top">
+  <nav class="navbar navbar-light">
+    <h4 class="brand"><a class="navbar-brand" href="/">투정</a></h4>
+    <div class="nav-right">
+      <a class="navbar-brand mr-1" href="#"><%=image_tag("search.png", class: "icon_search")%></a>
+      <button class="button-none bg-base" type="button" id="sidebarCollapse" onclick="sidebar_click();">
+          <%=image_tag("bars.png", class: "icon_bars bg-base")%>
+      </button>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <div id="dismiss" class="bg-white">
+      <button class="button-none bg-white" type="button"><%=image_tag("exit.svg", class: "bg-white")%></button>
+    </div>
+    <pre class="sign-status bg-white text-right">현재 로그아웃 상태입니다.
+로그인을 하시면 더 많은 정보를
+확인하실 수 있습니다.</pre>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("hot@3x.png", class: "category-icon")%>
+            <p class="category-title" lang="en">HOT</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("new@3x.png", class: "category-icon")%>
+            <p class="category-title" lang="en">NEW</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("woman@3x.png", class: "category-icon")%>
+            <p class="category-title">인권/성평등</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("dog@3x.png", class: "category-icon")%>
+            <p class="category-title">동물</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("army@3x.png", class: "category-icon")%>
+            <p class="category-title mb-0">통일/국방</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("health@3x.png", class: "category-icon")%>
+            <p class="category-title mb-0">보건/복지</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("environment@3x.png", class: "category-icon")%>
+            <p class="category-title mb-0">안전/환경</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <%=image_tag("book@3x.png", class: "category-icon")%>
+            <p class="category-title mb-0">육아교육</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-menus" lang="en">
+      <a href="/" class="sidebar-menu">HOME</a>
+      <a href="" class="sidebar-menu">BRAND</a>
+      <a href="" class="sidebar-menu">MY PAGE</a>
+      <a href="" class="sidebar-menu">BILL DATA FOR PROFESSION </a>
+    </div>
+    <div class="sidebar-sns" lang="en">
+      <a href="" class="sidebar-menu">FACEBOOK</a>
+      <a href="" class="sidebar-menu">YOUTUBE</a>
+      <a href="" class="sidebar-menu">INSTAGRAM</a>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+</header>
+<div class="overlay"></div>
+<!-- //Header -->

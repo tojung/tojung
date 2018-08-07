@@ -1,38 +1,33 @@
-<h2>Sign up</h2>
+<section class="sign_up mb-5 text-center">
+<h2 class="font-18 my-4">투정 가입하기</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, :required => true%>
-
+  <div class="field mb-3">
+    <%= f.text_field :name, :required => true, placeholder: "닉네임"%>
   </div>
 
-<!--  <input type="tel" name="phone_number" placeholder="010-xxxx-yyyy" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br><br>-->
-  <%= f.text_field :phone_number, :pattern => '[0-9]{3}-[0-9]{4}-[0-9]{4}', :placeholder => '010-xxxx-yyyy', :required => true%>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => 'example@example.com', :required => true %>
+  <div class="field mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "이메일"  %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="field mb-3">
+    <%= f.text_field :phone_number, :pattern => '[0-9]{3}-[0-9]{4}-[0-9]{4}', :placeholder => '010-xxxx-yyyy', :required => true%>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="field mb-3">
+    <%= f.password_field :password, autocomplete: "off", placeholder: "비밀번호" %>
   </div>
-   <br><br>
+
+  <div class="field mb-3">
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "비밀번호 확인" %>
+  </div>
+
   <!-- 우편 번호 찾기 -->
-  <div>
-    <%= f.text_field :address_num, :pattern => '[0-9]{5}', :placeholder => '우편번호', :id => 'sample3_postcode', :required => true %>
-    <input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
+  <div class="field mb-3">
+    <%= f.text_field :address_num, :pattern => '[0-9]{5}', :placeholder => '우편번호', :id => 'sample3_postcode', :class => 'mb-3', :required => true %>
+    <input type="button" class="btn-login font-14 text-white" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
 
     <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
       <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
@@ -43,12 +38,22 @@
 <!--    <input type="text" name="extra_address" placeholder="상세 주소" name="address_extra" required>-->
   </div>
 
+  <div class="field box-230 text-left">
+    <%= f.check_box :remember_me%>
+    <%= f.label :remember_me, "개인 정보 수집 약관에 동의합니다.", class: "font-12" %>
+  </div>
+
+  <div class="field box-230 text-left mb-3">
+    <%= f.check_box :remember_me%>
+    <%= f.label :remember_me, "이용 약관에 동의합니다.", class: "font-12" %>
+  </div>
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "회원가입", class: "btn-login text-white font-14"  %>
   </div>
 <% end %>
+</section>
 
-<%= render "devise/shared/links" %>
 
 
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>

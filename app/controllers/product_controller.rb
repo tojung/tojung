@@ -16,6 +16,7 @@ class ProductController < ApplicationController
 
   # GET '/product/#{num}'
   def detail
+
   end
 
   # GET '/product/ready/#{num}'
