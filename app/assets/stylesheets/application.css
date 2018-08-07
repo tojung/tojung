@@ -24,10 +24,10 @@
     font-size: 16px;
     background-color: #f9f9f9;
  }
-
- :lang=[en]{
-    font-family: 'Noto Sans', sans-serif;
- }
+ /* 배포시에 이 부분에서 에러 발생함 */
+ /*:lang=[en]{*/
+    /*font-family: 'Noto Sans', sans-serif;*/
+ /*}*/
 
  .visible-xs{
    display: none !important;
