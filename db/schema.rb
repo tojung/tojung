@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180806172708) do
-
+ActiveRecord::Schema.define(version: 20180807144829) do
 
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
@@ -32,10 +31,10 @@ ActiveRecord::Schema.define(version: 20180806172708) do
   end
 
   create_table "packages", force: :cascade do |t|
-    t.text "selled_count"
-    t.text "remain_count"
+    t.integer "selled_count", default: 0
+    t.integer "remain_count", default: 10000
     t.integer "product_id"
-    t.text "price"
+    t.integer "price", default: 0
     t.text "name"
     t.text "content"
     t.text "image0"

@@ -59,4 +59,14 @@ class Product < ApplicationRecord
     self.visible = (visible == 0 ? true : !visible)
     save
   end
+
+  def createPackage(params)
+    p = self.packages.new
+    p.name = params[:name]
+    p.content = params[:content]
+    p.image0 = params[:image0]
+    p.price = params[:price].to_i
+    p.save
+    p
+  end
 end

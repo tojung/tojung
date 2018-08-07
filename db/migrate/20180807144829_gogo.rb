@@ -1,4 +1,4 @@
-class CreateJoinTablePackagesProductOptions < ActiveRecord::Migration[5.1]
+class Gogo < ActiveRecord::Migration[5.1]
   def change
     create_join_table :packages, :product_options do |t|
       # t.index [:package_id, :product_option_id]

@@ -1,10 +1,10 @@
-class CreatePackages < ActiveRecord::Migration[5.1]
+class Go < ActiveRecord::Migration[5.1]
   def change
     create_table :packages do |t|
-      t.text :selled_count
-      t.text :remain_count
+      t.integer :selled_count, default: 0
+      t.integer :remain_count, default: 10000
       t.references :product, foreign_key: true
-      t.text :price
+      t.integer :price, default: 0
       t.text :name
       t.text :content
       t.text :image0
