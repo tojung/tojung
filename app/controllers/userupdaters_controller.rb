@@ -1,6 +1,6 @@
 class UserupdatersController < ApplicationController
   before_action :require_login
-
+  after_action :redirect_root, only: %i[additional_update]
   # 소셜 로그인의 경우 추가로 정보를 입력하게 하는 폼
   # GET /additional_info
   def additional
@@ -14,7 +14,6 @@ class UserupdatersController < ApplicationController
     current_user.update_addresses(address_num: params[:address_num],
                                   address_text: params[:address_text],
                                   extra_address: params[:extra_address])
-    redirect_to '/'
   end
 
   private

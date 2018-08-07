@@ -6,7 +6,6 @@ class MainimageController < ApplicationController
 
   # POST 'mainimage/create'
   def create
-    # cdn_url = "http://d1eq7v76s8dt2n.cloudfront.net/"
     mainimage = Mainimage.new
     mainimage.createNew(mainimage_params)
 
