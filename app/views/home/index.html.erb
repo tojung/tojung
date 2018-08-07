@@ -55,9 +55,9 @@
 
 <!-- <div style="background-color: azure">
   <p> ** 맨위에 메인 이미지 세개 (캐로우젤)** </p>
-  <img src="<%= @mainimage0 %>">
-  <img src="<%= @mainimage1 %>">
-  <img src="<%= @mainimage2 %>">
+  <img src="<%#= @mainimage0 %>">
+  <img src="<%#= @mainimage1 %>">
+  <img src="<%#= @mainimage2 %>">
   <hr>
 </div> -->
 
@@ -82,13 +82,12 @@
     <h1> 비공개 표시 상품들 </h1>
     <% @products_unvisible.each do |product| %>
       <hr>
-      <img src="<%= @cdn_url + product.image0.path %>">
+      <img src="<%= @cdn_url + product.image0.path if product.image0.path != nil %>">
       <h2> <%= product.name %></h2>
       <h2> <%= product.subname %></h2>
 <a href="/product/ready/<%= product.id %>"> 상세 페이지로 이동하기 </a>   <
    <% end %>
 </div>
-<% end %>
 
 <div style='blue'>
     <h1> 공개 표시한 상품들 </h1>
@@ -100,3 +99,4 @@
       <a href="/product/<%= product.id %>"> 상세 페이지로 이동하기 </a>
    <% end %>
 </div>
+<% end %>
