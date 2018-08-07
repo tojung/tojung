@@ -45,6 +45,12 @@
 
 <div style="background-color: #B00100">
   이메일 청원 클릭 부분 <br>구현중 <br>
+  <% @makers.each do |maker|%>
+    <hr>
+     <img src="<%= maker.image0 %>">
+     의원이름: <%= maker.name %>
+    <br> 의원 정당: <%= maker.desc2 %>
+  <% end %>
 </div>
 
 <div style="background-color: darkgrey">

@@ -27,6 +27,7 @@ class ProductController < ApplicationController
     # Redis 적용 예정
     @product = Product.find(params[:product_id])
     @product_options = @product.product_options
+    @makers = Maker.where(assos: @product.assos)
   end
 
   def product_params
