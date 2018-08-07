@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
   mount_uploader :image0, ImageUploader
   mount_uploader :image1, ImageUploader
-  has_many :product_options
-  has_many :packages
+  has_many :product_options, dependent: :destroy
+  has_many :packages, dependent: :destroy
 
   def createNew(params)
     self.name    = params[:title]

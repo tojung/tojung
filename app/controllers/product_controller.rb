@@ -1,8 +1,7 @@
 class ProductController < ApplicationController
   before_action :redirect_root_except_admin, only: %i[new create detail_ready]
   # before_action :check_visible, only: [:detail]
-  before_action :read_product, only: %i[new detail_ready detail]
-
+  before_action :read_product, :check_admin, only: %i[detail_ready detail]
   # GET '/product/new'
   def new; end
 
@@ -11,7 +10,7 @@ class ProductController < ApplicationController
     product = Product.new
     product.createNew(product_params)
 
-    redirect_to '/product/ready/' + product.id.to_s
+    redirect_to "/product/ready/#{product.id}"
   end
 
   # GET '/product/#{num}'
@@ -29,12 +28,6 @@ class ProductController < ApplicationController
     @product = Product.find(params[:product_id])
     @product_options = @product.product_options
   end
-
-  # def check_visible
-  #   if @product.visible == false and !(user_signed_in? and current_user.admin)
-  #    redirect_to '/' unless @product.visible
-  #   end
-  # end
 
   def product_params
     params.permit(:title,

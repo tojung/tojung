@@ -1,6 +1,5 @@
 class MainimageController < ApplicationController
-  before_action :redirect_root_without_admin
-
+  before_action :redirect_root_except_admin
   # GET 'mainimage/new'
   def new; end
 
@@ -13,7 +12,7 @@ class MainimageController < ApplicationController
     $redis.set('mainimage1', @cdn_url + mainimage.image1.path)
     $redis.set('mainimage2', @cdn_url + mainimage.image2.path)
 
-    redirect_to '/'
+    redirect_root
   end
 
   private

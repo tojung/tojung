@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_root
-    redirect_to '/'
+    # noinspection RubyUnnecessaryReturnStatement
+    return redirect_to '/'
   end
 
   def redirect_root_except_visible
@@ -35,4 +36,9 @@ class ApplicationController < ActionController::Base
     # noinspection RubyResolve,RubyDeadCode
     user_signed_in? && current_user.admin?
   end
+
+  def redirect_ready_page
+    redirect_to "/product/ready/#{@product.id}"
+  end
+
 end
