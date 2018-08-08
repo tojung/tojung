@@ -85,8 +85,9 @@
   border: 4px;
 }
 
-.package-img:focus, .package-img:active{
+.package-img:focus, .package-img:hover, .package-img:active{
   border: 4px solid #943642;
+  cursor: pointer;
 }
 
 .border-red{
