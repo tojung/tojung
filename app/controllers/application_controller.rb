@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cdn_url
-    @cdn_url = 'http://d1eq7v76s8dt2n.cloudfront.net/'
+    @cdn_url = 'https://d1eq7v76s8dt2n.cloudfront.net/'
   end
 
   # noinspection RubyResolve
