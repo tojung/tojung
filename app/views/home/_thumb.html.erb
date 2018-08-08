@@ -30,10 +30,10 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="A">
   <!-- Product card -->
+  <% if @products_A.empty?%>
+  <h3 class="text-center">상품이 준비중입니다.</h3>
+  <% end %>
   <% @products_A.each do |product|%>
-    <% if @products_A == nil%>
-    <h3 class="text-center">상품이 준비중입니다.</h3>
-    <% end %>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
         <div class="pro-tag text-white text-center"><%=product.category%></div>
@@ -89,6 +89,9 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="C">
   <!-- Product card -->
+  <%if @products_C.empty?%>
+  <h4 class="text-center">상품 준비중입니다.</h4>
+  <%end%>
   <% @products_C.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
@@ -115,6 +118,9 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="D">
   <!-- Product card -->
+  <%if @products_D.empty?%>
+  <h4 class="text-center">상품 준비중입니다.</h4>
+  <%end%>
   <% @products_D.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
@@ -141,6 +147,9 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="E">
   <!-- Product card -->
+  <%if @products_E.empty?%>
+  <h4 class="text-center">상품 준비중입니다.</h4>
+  <%end%>
   <% @products_E.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
@@ -167,6 +176,9 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="F">
   <!-- Product card -->
+  <%if @products_F.empty?%>
+  <h4 class="text-center">상품 준비중입니다.</h4>
+  <%end%>
   <% @products_F.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
