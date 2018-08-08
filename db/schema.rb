@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180806172708) do
 
-
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
     t.string "provider"
@@ -67,8 +66,8 @@ ActiveRecord::Schema.define(version: 20180806172708) do
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname", default: ""
-    t.datetime "start_date", default: "2018-08-06 12:09:53", null: false
-    t.datetime "end_date", default: "2018-09-05 12:09:53", null: false
+    t.datetime "start_date", default: "2018-08-02 07:44:03", null: false
+    t.datetime "end_date", default: "2018-09-01 07:44:03", null: false
     t.text "youtb_url", default: ""
     t.text "video_text", default: ""
     t.text "bill_url", default: ""

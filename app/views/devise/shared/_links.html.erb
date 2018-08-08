@@ -19,21 +19,5 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end -%>
 
-<!--  -
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <% if OmniAuth::Utils.camelize(provider) == "Facebook"%>
-      <%= button_to omniauth_authorize_path(resource_name, provider) do %>
 
-        <span>Facebook으로 로그인</span>
-      <%end%>
-    <%else%>
-        <%= button_to omniauth_authorize_path(resource_name, provider) do %>
-
-        <span>Google로 로그인</span>
-      <%end%>
-    <%end%>
-  <% end -%>
-<% end -%>
- -->
 </div>

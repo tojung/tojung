@@ -1,6 +1,6 @@
 class ProductController < ApplicationController
   before_action :redirect_root_without_admin, only: [:new, :create, :detail_ready]
-  before_action :check_visible, only: [:detail]
+  # before_action :check_visible, only: [:detail]
   before_action :read_product
 
   # GET '/product/new'
@@ -32,11 +32,11 @@ class ProductController < ApplicationController
     @product_options = @product.product_options
   end
 
-  def check_visible
-    if @product.visible == false and !(user_signed_in? and current_user.admin)
-     redirect_to '/' unless @product.visible
-    end
-  end
+  # def check_visible
+  #   if @product.visible == false and !(user_signed_in? and current_user.admin)
+  #    redirect_to '/' unless @product.visible
+  #   end
+  # end
 
   def product_params
     params.permit(:title,

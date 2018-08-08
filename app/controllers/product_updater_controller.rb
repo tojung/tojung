@@ -9,12 +9,14 @@ class ProductUpdaterController < ApplicationController
   # GET 'product/visible/:product_id'
   def set_visible
     if @product.visible == true or @product.visible == 1
-       @product.visible = true
-       @product.save
-    else
        @product.visible = false
        @product.save
+    else
+       @product.visible = true
+       @product.save
     end
+
+    redirect_to '/'
   end
 
   # POST '/product/update/:product_id'
