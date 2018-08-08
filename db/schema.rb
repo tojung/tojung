@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180806172708) do
+ActiveRecord::Schema.define(version: 20180807144829) do
 
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
@@ -22,19 +22,19 @@ ActiveRecord::Schema.define(version: 20180806172708) do
   end
 
   create_table "mainimages", force: :cascade do |t|
-    t.text "image0", default: ""
-    t.text "image1", default: ""
-    t.text "image2", default: ""
-    t.text "ver_name", default: ""
+    t.text "image0"
+    t.text "image1"
+    t.text "image2"
+    t.text "ver_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "packages", force: :cascade do |t|
-    t.text "selled_count"
-    t.text "remain_count"
+    t.integer "selled_count", default: 0
+    t.integer "remain_count", default: 10000
     t.integer "product_id"
-    t.text "price"
+    t.integer "price", default: 0
     t.text "name"
     t.text "content"
     t.text "image0"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 20180806172708) do
 
   create_table "product_options", force: :cascade do |t|
     t.integer "product_id"
-    t.text "name", default: ""
-    t.text "content", default: ""
+    t.text "name"
+    t.text "content"
     t.integer "price", default: 0
-    t.text "status", default: ""
+    t.text "status"
     t.integer "selled_count", default: 0
     t.integer "remain_count", default: 0
     t.text "image0"
@@ -65,21 +65,21 @@ ActiveRecord::Schema.define(version: 20180806172708) do
 
   create_table "products", force: :cascade do |t|
     t.text "name"
-    t.text "subname", default: ""
-    t.datetime "start_date", default: "2018-08-02 07:44:03", null: false
-    t.datetime "end_date", default: "2018-09-01 07:44:03", null: false
-    t.text "youtb_url", default: ""
-    t.text "video_text", default: ""
-    t.text "bill_url", default: ""
-    t.text "image0", default: ""
-    t.text "assos", default: ""
-    t.text "fb_url", default: ""
-    t.text "image1", default: ""
-    t.text "content", default: ""
+    t.text "subname"
+    t.datetime "start_date", default: "2018-08-08 06:16:42", null: false
+    t.datetime "end_date", default: "2018-09-07 06:16:42", null: false
+    t.text "youtb_url"
+    t.text "video_text"
+    t.text "bill_url"
+    t.text "image0"
+    t.text "assos"
+    t.text "fb_url"
+    t.text "image1"
+    t.text "content"
     t.integer "funded_money", default: 0
     t.integer "funded_count", default: 0
-    t.text "status", default: ""
-    t.text "category", default: ""
+    t.text "status"
+    t.text "category"
     t.integer "goal_money", default: 1000000
     t.boolean "visible", default: false
     t.datetime "created_at", null: false

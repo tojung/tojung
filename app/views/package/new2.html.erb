@@ -1,0 +1,31 @@
+<a href="/"> 완료 및 홈으로 가기 </a>
+<h1> 패키지에 상품 추가하기 페이지 </h1>
+<h1>현재 추가 되어있는 상품들</h1>
+<% @package.product_options.each do |product_option|%>
+  <div class="col-6 col-lg-3 px-0">
+    <div class="pro-card">
+      <%#=image_tag("email.png", class: "w-100")%>
+      <img src="<%= @cdn_url + product_option.image0.path %>" class="w-100">
+      <div class="card-body py-4 text-center">
+        <h4 class="pro-num mb-2"><%= product_option.name %></h4>
+        <p class="cost font-12 font-grey"><span class="font-14 font-weight-bold text-dark"><%= product_option.price %> </span>원~</p>
+        <a href="/package/<%= @package.id %>/product_option/<%= product_option.id %>"> 패키지에 제거하기를 원한다면 누르시오 </a>
+      </div>
+    </div>
+  </div>
+<% end %>
+<hr><hr><hr><hr><hr><hr>
+<h1> 추가할 상품을 클릭 하시오 </h1>
+<% @product_options.each do |product_option|%>
+  <div class="col-6 col-lg-3 px-0">
+    <div class="pro-card">
+      <%#=image_tag("email.png", class: "w-100")%>
+      <img src="<%= @cdn_url + product_option.image0.path %>" class="w-100">
+      <div class="card-body py-4 text-center">
+        <h4 class="pro-num mb-2"><%= product_option.name %></h4>
+        <p class="cost font-12 font-grey"><span class="font-14 font-weight-bold text-dark"><%= product_option.price %> </span>원~</p>
+        <a href="/package/<%= @package.id %>/product_option/<%= product_option.id %>"> 패키지에 추가하기를 원한다면 누르시오 </a>
+      </div>
+    </div>
+  </div>
+<% end %>

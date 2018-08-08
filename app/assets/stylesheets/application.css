@@ -24,10 +24,10 @@
     font-size: 16px;
     background-color: #f9f9f9;
  }
-
- :lang=[en]{
-    font-family: 'Noto Sans', sans-serif;
- }
+ /* 배포시에 이 부분에서 에러 발생함 */
+ /*:lang=[en]{*/
+    /*font-family: 'Noto Sans', sans-serif;*/
+ /*}*/
 
  .visible-xs{
    display: none !important;
@@ -353,6 +353,17 @@
    color: #434343;
  }
 
+ .field textarea{
+   width: 230px;
+   height: 400px;
+   border-radius: 8px;
+   background-color: #eeeeee !important;
+   box-shadow: none;
+   border: none;
+   padding: 16px 20px;
+   color: #434343;
+ }
+ 
  .field input:focus, .field input:active{
    outline: none;
    border: 2px solid skyblue;

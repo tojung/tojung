@@ -37,14 +37,14 @@
 <!-- MD's Contents -->
 <section class="contents">
   <h4 class="d-inline-block content-heading font-18" lang="en">MD's CONTENTS</h4>
-  <%=image_tag("shape.png", class: "shape")%>
+  <%=image_tag(@cdn_url+"shape.png", class: "shape")%>
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-lg-6 px-0 pb-3">
         <%=image_tag("jaekyung.png", class: "w-100")%>
       </div>
       <div class="col-12 col-lg-6 px-0 pb-3">
-        <%=image_tag("doohee.png", class: "w-100")%>
+        <%=image_tag(@cdn_url+"doohee.png", class: "w-100")%>
       </div>
     </div>
   </div>
@@ -55,9 +55,9 @@
 
 <!-- <div style="background-color: azure">
   <p> ** 맨위에 메인 이미지 세개 (캐로우젤)** </p>
-  <img src="<%= @mainimage0 %>">
-  <img src="<%= @mainimage1 %>">
-  <img src="<%= @mainimage2 %>">
+  <img src="<%#= @mainimage0 %>">
+  <img src="<%#= @mainimage1 %>">
+  <img src="<%#= @mainimage2 %>">
   <hr>
 </div> -->
 
@@ -88,7 +88,6 @@
 <a href="/product/ready/<%= product.id %>"> 상세 페이지로 이동하기 </a>   <
    <% end %>
 </div>
-<% end %>
 
 <div style='blue'>
     <h1> 공개 표시한 상품들 </h1>
@@ -100,3 +99,4 @@
       <a href="/product/<%= product.id %>"> 상세 페이지로 이동하기 </a>
    <% end %>
 </div>
+<% end %>

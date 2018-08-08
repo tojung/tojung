@@ -1,9 +1,8 @@
 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-  <%=image_tag("jaekyung.png", class: "w-100 mb-4")%>
+  <%=image_tag(@cdn_url+"jaekyung.png", class: "w-100 mb-4")%>
   <div class="youtubeWrap">
-    <iframe width="560" height="315" src="https://youtu.be/L9bgo6W1DAE" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/<%= @product.youtb_url %>" frameborder="0" allowfullscreen></iframe>
   </div>
-  <%= @product.youtb_url %>
   <p class="text-center video-text mb-4"><span class="font-red">00:03</span> <%= @product.video_text %></p>
   <a href="<%=  @product.bill_url %>" class="d-block text-right font-grey font-14 pr-3 mb-4">>법안 원문 보러가기</a>
   <div class="share-button text-center mb-4">공유하기</div>
@@ -11,7 +10,27 @@
   <!-- 상품들 -->
   <div class="container-fluid">
     <div class="row">
-      <!-- 상품 1-->
+      <!-- 상품들 -->
+      <% @product_options.each do |product_option|%>
+        <div class="col-6 col-lg-3 px-0">
+          <div class="pro-card">
+            <%#=image_tag("email.png", class: "w-100")%>
+            <img src="<%= @cdn_url + product_option.image0.path %>" class="w-100">
+            <div class="card-body py-4 text-center">
+              <h4 class="pro-num mb-2"><%= product_option.name %></h4>
+              <p class="font-grey font-12 mb-2">모든 패키지에 포함</p>
+              <pre class="font-14 font-weight-bold mb-2"> <%= product_option.content.gsub("\r\n", "<br />").html_safe %> </pre>
+              <p class="cost font-12 font-grey"><span class="font-14 font-weight-bold text-dark"><%= product_option.price %> </span>원~</p>
+              <a href="" class="pro-link font-14 font-weight-bold d-block">자세히 보기></a>
+              <% if @is_admin %>
+               ** 관리자만 보임 **<br>
+                <a href="/product_options/<%= product_option.id.to_s %>/edit"> 제품 수정 하기 </a>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
       <div class="col-6 col-lg-3 px-0">
           <div class="pro-card">
             <%=image_tag("email.png", class: "w-100")%>
@@ -83,7 +102,7 @@
     <!-- //상품들 -->
     <section class="package my-5">
       <h4 class="font-18 font-weight-bold mb-4">PACKAGE 정리</h4>
-      <%=image_tag("package.png", class: "d-block w-100")%>
+      <%=image_tag(@cdn_url + @product.image1.path, class: "d-block w-100") if @product.image1.path != nil%>
     </section>
     <section class="usage mb-5">
       <h4 class="font-18 font-weight-bold mb-5">법안 광고 캠페인은 어디에?</h4>
