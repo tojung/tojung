@@ -33,3 +33,9 @@ $(document).ready(function () {
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 });
 }
+
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('#notice_wrapper').addClass('fadeout');
+    }, 4500);
+  });
