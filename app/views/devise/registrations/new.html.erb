@@ -30,7 +30,7 @@
     <input type="button" class="btn-login font-14 text-white" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
 
     <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-      <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+      <img src="https://t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
     </div>
     <%= f.text_field :address_text, :placeholder => '주소', :id => 'sample3_address', :required => true %>
 <!--    <input type="text" id="sample3_address" class="d_form large" placeholder="주소" name="address_text" required>-->
@@ -56,7 +56,7 @@
 
 
 
-<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<!--<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>-->
 <script>
     // 우편번호 찾기 찾기 화면을 넣을 element
     var element_wrap = document.getElementById('wrap');
