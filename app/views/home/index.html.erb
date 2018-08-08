@@ -59,17 +59,7 @@
 <!-- // MD's Contents -->
 
 <%=render 'bottom_bar'%>
-
-<!-- <div style="background-color: azure">
-  <p> ** 맨위에 메인 이미지 세개 (캐로우젤)** </p>
-  <img src="<%#= @mainimage0 %>">
-  <img src="<%#= @mainimage1 %>">
-  <img src="<%#= @mainimage2 %>">
-  <hr>
-</div> -->
-
-
-
+<!-- 관리자 뷰 -->
 <% if @is_admin %>
 <div style="background-color: cornflowerblue">
 
@@ -105,6 +95,7 @@
   <!-- Product Card -->
 </div>
 <!-- //Product Thumbnail -->
+
 <!-- Product Thumbnail -->
 <h1> 공개 표시 상품들 </h1>
 <div class="scrolling-wrapper center height-auto" id="all">
@@ -132,3 +123,5 @@
 </div>
 <!-- //Product Thumbnail -->
 <% end %>
+
+<!-- 관리자 뷰 -->

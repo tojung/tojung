@@ -31,6 +31,9 @@
 <div class="scrolling-wrapper center" id="A">
   <!-- Product card -->
   <% @products_A.each do |product|%>
+    <% if @products_A == nil%>
+    <h3 class="text-center">상품이 준비중입니다.</h3>
+    <% end %>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
         <div class="pro-tag text-white text-center"><%=product.category%></div>
@@ -54,8 +57,12 @@
 <!-- //Product Thumbnail -->
 
 <!-- Product Thumbnail -->
+
 <div class="scrolling-wrapper center" id="B">
   <!-- Product card -->
+  <%if @products_B.empty?%>
+  <h4 class="text-center">상품 준비중입니다.</h4>
+  <%end%>
   <% @products_B.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
