@@ -1,30 +1,27 @@
 <%= render "devise/shared/social" %>
 <section class="sign_in text-center">
   <div class="notice"><%= flash[:error] %></div>
-  <h2 class="text-center font-18 text-black my-4">이메일로 로그인하기</h2>
+<h2 class="text-center font-18 text-black my-4">이메일로 로그인하기</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field mb-3">
-      <%= f.email_field :email, autofocus: false, autocomplete: "off", placeholder: "이메일" %>
-    </div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field mb-3">
+    <%= f.email_field :email, autofocus: false, autocomplete: "off", placeholder: "이메일" %>
+  </div>
 
-    <div class="field mb-3">
-      <%= f.password_field :password, autocomplete: "off", placeholder: "비밀번호" %>
-    </div>
+  <div class="field mb-3">
+    <%= f.password_field :password, autocomplete: "off", placeholder: "비밀번호" %>
+  </div>
 
-    <div class="d-flex justify-content-between login-row">
-      <% if devise_mapping.rememberable? -%>
-        <div class="field d-inline-block my-auto">
-          <%= f.check_box :remember_me%>
-          <%= f.label :remember_me, "로그인 기억", class: "font-12" %>
-        </div>
-      <% end -%>
-
-      <div class="actions d-inline-block">
-        <%= f.submit "로그인", class: "btn-login text-white font-14" %>
+  <div class="d-flex justify-content-between login-row">
+    <% if devise_mapping.rememberable? -%>
+      <div class="field d-inline-block my-auto">
+        <%= f.check_box :remember_me%>
+        <%= f.label :remember_me, "로그인 기억", class: "font-12" %>
       </div>
+    <% end -%>
+    <div class="actions d-inline-block">
+      <%= f.submit "로그인", class: "btn-login text-white font-14" %>
     </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+  </div>
+<% end %>
 </section>

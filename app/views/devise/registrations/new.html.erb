@@ -1,30 +1,22 @@
 <section class="sign_up mb-5 text-center">
-<h2 class="font-18 my-4">투정 가입하기</h2>
+  <h2 class="font-18 my-4">투정 회원가입</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field mb-3">
-    <%= f.text_field :name, :required => true, placeholder: "닉네임"%>
-  </div>
+    <div class="field mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "이메일" %>
+    </div>
 
-  <div class="field mb-3">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "이메일"  %>
-  </div>
+    <div class="field mb-3">
+      <%= f.password_field :password, autocomplete: "off", placeholder: "비밀번호" %>
+    </div>
 
-  <div class="field mb-3">
-    <%= f.text_field :phone_number, :pattern => '[0-9]{3}-[0-9]{4}-[0-9]{4}', :placeholder => '010-xxxx-yyyy', :required => true%>
-  </div>
+    <div class="field mb-3">
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "비밀번호 확인" %>
+    </div>
 
-  <div class="field mb-3">
-    <%= f.password_field :password, autocomplete: "off", placeholder: "비밀번호" %>
-  </div>
-
-  <div class="field mb-3">
-    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "비밀번호 확인" %>
-  </div>
-
-  <!-- 우편 번호 찾기 -->
+    <!-- 우편 번호 찾기 -->
   <div class="field mb-3">
     <%= f.text_field :address_num, :pattern => '[0-9]{5}', :placeholder => '우편번호', :id => 'sample2_postcode', :class => 'mb-3', :required => true %>
     <input type="button" class="btn-login font-14 text-white mb-3" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -53,10 +45,8 @@
   <div class="actions">
     <%= f.submit "회원가입", class: "btn-login text-white font-14"  %>
   </div>
-<% end %>
+  <% end %>
 </section>
-
-
 
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script>
