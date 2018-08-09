@@ -18,7 +18,7 @@
 
 function sidebar_click(){
 $(document).ready(function () {
-  $('#dismiss, .overlay').on('click', function () {
+  $('#dismiss, #dismiss-button, .overlay, #exit-button').on('click', function () {
       // hide sidebar
       $('#sidebar').css("margin-right","-300px");
       // hide overlay
