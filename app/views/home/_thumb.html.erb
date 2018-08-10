@@ -12,12 +12,12 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
-            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %> %</span>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days"> <%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
           </div>
         </div>
       </a>
@@ -41,12 +41,12 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
-            <span class="font-red font-weight-bold">980%</span>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days">3일 남음</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
           </div>
         </div>
       </a>
@@ -71,12 +71,12 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
-            <span class="font-red font-weight-bold">980%</span>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days">3일 남음</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
           </div>
         </div>
       </a>
@@ -100,12 +100,12 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
-            <span class="font-red font-weight-bold">980%</span>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days">3일 남음</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
           </div>
         </div>
       </a>
@@ -129,12 +129,12 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
-            <span class="font-red font-weight-bold">980%</span>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days">3일 남음</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
           </div>
         </div>
       </a>
@@ -158,12 +158,12 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
-            <span class="font-red font-weight-bold">980%</span>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days">3일 남음</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
           </div>
         </div>
       </a>
@@ -187,12 +187,12 @@
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
-            <span class="font-red font-weight-bold">980%</span>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days">3일 남음</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
           </div>
         </div>
       </a>
@@ -274,4 +274,15 @@ $(document).ready(function () {
       }
     });
   }
+
+  // 원화 콤마찍기
+  $(document).ready(function(){
+    var money = $('.funding-money').html();
+    money = money.substring(0,money.length-1)
+    money = Number(money);
+    money = money.toLocaleString();
+    money = money+"원";
+    $('.funding-money').html(money);
+  });
+  
 </script>
