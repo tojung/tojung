@@ -63,11 +63,21 @@
   width: 68px;
   height: 82px;
   background-color: rgba(148, 54, 66, 0.9);
-  padding-top: 50px;
+  padding-top: 45px;
   position: absolute;
   z-index: 999;
   top: -25px;
   left: 230px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.pro-tag p{
+  font-size: 12px;
+  text-align: center;
+  white-space: normal;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 768px ){

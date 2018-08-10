@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require_self
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
@@ -33,9 +34,3 @@ $(document).ready(function () {
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 });
 }
-
-  $(document).ready(function(){
-    setTimeout(function(){
-      $('#notice_wrapper').addClass('fadeout');
-    }, 4500);
-  });

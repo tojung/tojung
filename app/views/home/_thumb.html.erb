@@ -7,7 +7,7 @@
   <% @products.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <div class="pro-tag text-white"><p class="h-100"><%=product.category%></p></div>
+        <div class="pro-tag text-white"><p class=""><%=product.category%></p></div>
         <%=image_tag(@cdn_url + product.image0.path, class: "pro-thumbimg") if product.image0.path != nil%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
@@ -36,7 +36,7 @@
   <% @products_A.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <div class="pro-tag text-white text-center"><%=product.category%></div>
+        <div class="pro-tag text-white text-center"><p><%=product.category%></p></div>
         <%=image_tag(product.image0, class: "pro-thumbimg")%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
@@ -66,7 +66,7 @@
   <% @products_B.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <div class="pro-tag text-white text-center"><%=product.category%></div>
+        <div class="pro-tag text-white text-center"><p><%=product.category%></p></div>
         <%=image_tag(product.image0, class: "pro-thumbimg")%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
@@ -95,7 +95,7 @@
   <% @products_C.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <div class="pro-tag text-white text-center"><%=product.category%></div>
+        <div class="pro-tag text-white text-center"><p><%=product.category%></p></div>
         <%=image_tag(product.image0, class: "pro-thumbimg")%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
@@ -124,7 +124,7 @@
   <% @products_D.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <div class="pro-tag text-white text-center"><%=product.category%></div>
+        <div class="pro-tag text-white text-center"><p><%=product.category%></p></div>
         <%=image_tag(product.image0, class: "pro-thumbimg")%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
@@ -153,7 +153,7 @@
   <% @products_E.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <div class="pro-tag text-white text-center"><%=product.category%></div>
+        <div class="pro-tag text-white text-center"><p><%=product.category%></p></div>
         <%=image_tag(product.image0, class: "pro-thumbimg")%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">
@@ -182,7 +182,7 @@
   <% @products_F.each do |product|%>
     <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <div class="pro-tag text-white text-center"><%=product.category%></div>
+        <div class="pro-tag text-white text-center"><p><%=product.category%></p></div>
         <%=image_tag(product.image0, class: "pro-thumbimg")%>
         <div class="card-body">
           <div class="d-flex justify-content-between mb-1">

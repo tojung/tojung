@@ -21,7 +21,7 @@ class UserupdatersController < ApplicationController
 
   def require_login
     unless user_signed_in?
-      flash[:error] = 'You must be logged in to access this section'
+      flash[:error] = '먼저 로그인을 해야 합니다.'
       redirect_to new_user_session_path
     end
   end
