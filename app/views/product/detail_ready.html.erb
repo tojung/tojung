@@ -5,46 +5,37 @@
 </div>
 <%=render 'bottom_bar'%>
 
-<a href="/product/edit/<%= @product.id %>"> 상품 기본 정보 수정 하러 가기 </a>
-( ** 생성할때의 항목과 같음. ( 이미지, 펀딩기간 제외 ) ** ) <br>
+<a href="/product/<%= @product.id %>/edit"> 상품 정보 수정 하러 가기 </a>
 <hr><hr><hr>
-<% if @product.visible == false or @product.visible == 0%>
-  <a href="/product/visible/<%= @product.id %>"> 상품 공개 하기</a>
-  <br>(*** 이 링크를 클릭하면 상품이 공개됩니다. ****) <br>
-<% else %>
-<a href="/product/visible/<%= @product.id %>"> 상품 비공개 하기</a>
-  <br>(*** 이 링크를 클릭하면 상품이 비공개됩니다. ****) <br>
+<%= form_tag "/product/#{ @product.id }", method: "patch" do %>
+  <%= hidden_field_tag 'visible', !@product.visible  %>
+  <% ment = "비" if @product.visible else ""%>
+  <%= submit_tag "상품 #{ment}공개 하기"%>
 <% end %>
+
 <hr><hr><hr>
 
-<a href="/product/<%= @product.id %>/new_option"> **제품 추가 하기 </a><hr>
-<a href="/product/<%= @product.id %>/package/new">**패키지 추가하기 </a>
-<div style="background-color: #DADADA">
-  <br><a href="/product/image0/<%= @product.id %>"> **메인 이미지 수정하러 가기 </a>
-</div><hr>
+<a href="/product_option/new?product_id=<%= @product.id %>"> **제품 추가 하기 </a><hr>
+<a href="/package/new?product_id=<%= @product.id %>">**패키지 추가하기 </a>
 
 <div style="background-color: greenyellow">
 <% @product.packages.each do |package| %>
     <hr>
     패키지 이름: <%= package.name %><br>
     패키지 속 상품 현황: <% package.product_options.each do |product_option| %>  <%= product_option.name %>, <% end %><br>
-    <a href="/product/<%= @product.id %>/package/<%= package.id %>"> **패키지의 상품 구성 수정 페이지로 이동하기**</a><br>
-    <a href="/package/<%= package.id %>">**패키지의 기본정보 수정 페이지로 이동하기 ( 이름, 내용, 가격, 패키지메인이미지 )** </a>
+    <a href="/package/<%= package.id %>/"> **패키지의 상품 구성 수정 페이지로 이동하기**</a><br>
+    <a href="/package/<%= package.id %>/edit">**패키지의 기본정보 수정 페이지로 이동하기 ( 이름, 내용, 가격, 패키지메인이미지 )** </a>
 <% end %>
-</div>
-
-<div style="background-color: cyan">
-  <br>
-  <a href="/product/image1/<%= @product.id.to_s %>"> **패키지 정리 이미지 생성/수정 페이지로 이동 </a>
-</div>
-
-<!-- 페이스북 공유하기/좋아요 기능 -->
-<div style="background-color: teal">
-  <iframe src="https://www.facebook.com/plugins/like.php?href=https://ren.2jung.com/product/ready/<%=@product.id %>&width=186&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=1014670008686658" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 </div>
 
 <div style="background-color: #B00100">
   이메일 청원 클릭 부분 <br>구현중 <br>
+  <% @makers.each do |maker|%>
+    <hr>
+     <img src="<%= maker.image0 %>">
+     의원이름: <%= maker.name %>
+    <br> 의원 정당: <%= maker.desc2 %>
+  <% end %>
 </div>
 
 <div style="background-color: darkgrey">

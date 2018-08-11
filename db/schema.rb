@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180807144829) do
+ActiveRecord::Schema.define(version: 20180810182230) do
 
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
@@ -26,6 +26,37 @@ ActiveRecord::Schema.define(version: 20180807144829) do
     t.text "image1", default: ""
     t.text "image2", default: ""
     t.text "ver_name", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "maker_responses", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "maker_id"
+    t.string "name"
+    t.string "response_type", default: "무응답"
+    t.text "response_text"
+    t.integer "send_count"
+    t.text "agree_hash"
+    t.text "disagree_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_maker_responses_on_maker_id"
+    t.index ["product_id"], name: "index_maker_responses_on_product_id"
+  end
+
+  create_table "makers", force: :cascade do |t|
+    t.text "name"
+    t.integer "num"
+    t.text "assos"
+    t.text "desc1"
+    t.text "desc2"
+    t.text "desc3"
+    t.text "image0"
+    t.text "image1"
+    t.text "image2"
+    t.text "email"
+    t.text "email2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

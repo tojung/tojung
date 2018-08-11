@@ -1,12 +1,12 @@
 class MainimageController < ApplicationController
   before_action :redirect_root_except_admin
+
   # GET 'mainimage/new'
   def new; end
 
-  # POST 'mainimage/create'
+  # POST 'mainimage'
   def create
-    mainimage = Mainimage.new
-    mainimage.createNew(mainimage_params)
+    mainimage = Mainimage.create(mainimage_params)
     redis_set_mainimage(mainimage)
 
     redirect_root
@@ -15,7 +15,10 @@ class MainimageController < ApplicationController
   private
 
   def mainimage_params
-    params.permit(:ver_name, :image0, :image1, :image2)
+    params.permit(:ver_name,
+                  :image0,
+                  :image2,
+                  :image1)
   end
 
   # noinspection RubyResolve

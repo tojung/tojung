@@ -2,22 +2,22 @@ class ProductOptionController < ApplicationController
   before_action :redirect_root_except_admin
   before_action :find_product, only: %i[new create]
   before_action :find_product_option, only: %i[edit update]
-  # after_action :redirect_ready_page, only: %i[update create]
-  # GET '/product/:product_id/new_option'
+
+  # GET '/product_option/new?product_id='
   def new; end
 
   # GET '/product_options/:product_option_id/edit'
   def edit; end
 
-  # POST '/product_options/:product_option_id/update'
+  # PATCH '/product_options/:product_option_id'
   def update
-    @product_option.updateOption(product_options_params)
+    @product_option.update_attributes(product_options_params)
     redirect_ready_page
   end
 
-  # POST '/product/:product_id/create_option'
+  # POST '/product/:product_id'
   def create
-    @product.createProductOption(product_options_params)
+    @product.product_options.create(product_options_params)
     redirect_ready_page
   end
 
@@ -38,9 +38,13 @@ class ProductOptionController < ApplicationController
 
   def product_options_params
     params.permit(
-      :name, :content,
-      :price, :remain_count, :image0,
-      :status, :image1
+      :name,
+      :content,
+      :price,
+      :image0,
+      :remain_count,
+      :status,
+      :image1
     )
   end
 end

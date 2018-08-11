@@ -1,8 +1,8 @@
 <h1> 추가 정보를 입력하면 회원가입이 완료됩니다. </h1>
 
 <%= form_tag('/additional_update') do |f| %>
-  <input type="email" name="email" placeholder="<%= @user.email %>" value="<%= @user.email %>" required> <br><br>
-  <input type="tel" name="phone_number" placeholder="010-xxxx-yyyy" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br><br>
+  <input type="email" name="email" placeholder="<%= current_user.email %>" value="<%= current_user.email %>" required> <br><br>
+  <input type="tel" name="phone_number" value="<%= current_user.phone_number %>"placeholder="010-xxxx-yyyy" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br><br>
 
   <!-- 우편 번호 찾기 -->
   <div>
@@ -13,7 +13,7 @@
       <img src="https://t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
     </div>
     <input type="text" id="sample3_address" class="d_form large" placeholder="주소" name="address_text" required>
-    <input type="text" name="extra_address" placeholder="상세 주소" name="address_extra" required>
+    <input type="text" name="address_extra" placeholder="상세 주소" required>
   </div>
 
   <%= submit_tag %>

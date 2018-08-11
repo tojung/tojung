@@ -1,0 +1,2 @@
+class MakerController < ApplicationController
+end
