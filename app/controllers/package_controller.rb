@@ -1,58 +1,58 @@
 class PackageController < ApplicationController
   before_action :redirect_root_except_admin
-  before_action :find_options_and_product, only: %i[new new2 create]
+  before_action :find_product, only: %i[create]
+  before_action :find_package, only: %i[edit update show opt_to_package]
+  before_action :find_product_options, only: %i[show]
 
-  # GET '/product/:product_id/package/new'
+  # GET '/package/new?product_id='
   def new; end
 
-  # GET '/package/:package_id'
-  def edit
-    @package = Package.find(params[:package_id])
-  end
+  # GET '/package/:package_id?product_id=' 패키지 상품 구성 하는 페이지
+  def show; end
 
-  # POST '/package/:product_id'
-  def update
-    @package = Package.find(params[:package_id])
-    @package.image0 = params[:image0]
-    @package.name = params[:name]
-    @package.content = params[:content]
-    @package.price = params[:price]
-    @package.remain_count = params[:remain_count]
-    @package.save
+  # GET '/package/:package_id/edit'
+  def edit; end
 
-    redirect_root
-  end
-  # GET '/product/:product_id/package/:package_id'
-  def new2
-    @package = Package.find(params[:package_id])
-  end
-
-  # POST '/product/:product_id/package/create'
+  # POST '/package'
   def create
-    p = @product.createPackage(package_params)
-    redirect_to "/product/#{@product.id}/package/#{p.id}"
+    package = @product.packages.create(package_params)
+    redirect_to "/package/#{package.id}?product_id=#{@product.id}"
+  end
+2
+  # PATCH '/package/:product_id'
+  def update
+    @package.update_attributes(package_params)
+    redirect_to "/product/#{@package.product.id}"
   end
 
-  # GET '/package/:package_id/product_option/:product_option_id'
-  def insert_option_to_package
-    package = Package.find(params[:package_id])
-    if package.product_options.where(id: params[:product_option_id]).length == 0
-      package.product_options << ProductOption.find(params[:product_option_id])
-    else
-      package.product_options.delete(ProductOption.find(params[:product_option_id]))
-    end
-    package.save
-
-    redirect_to "/product/#{package.product.id}/package/#{ package.id }"
+  # POST '/package/:package_id/options'
+  def opt_to_package
+    @package.product_options.where(id: params[:product_option_id]).empty? ?
+        @package.product_options << (ProductOption.find(params[:product_option_id])) :
+        @package.product_options.delete(ProductOption.find(params[:product_option_id]))
+    redirect_to "/package/#{params[:package_id]}?product_id=#{@package.product.id}"
   end
+
   private
 
-  def find_options_and_product
+  def find_package
+    @package = Package.find(params[:package_id])
+  end
+
+  def find_product
     @product = Product.find(params[:product_id])
-    @product_options = @product.product_options
+  end
+
+  def find_product_options
+    @product_options = ProductOption.where(product_id: params[:product_id])
   end
 
   def package_params
-    params.permit(:name, :content, :price, :image0)
+    params.permit(:name,
+                  :content,
+                  :remain_count,
+                  :image0,
+                  :product_id,
+                  :price)
   end
 end

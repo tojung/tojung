@@ -1,6 +1,7 @@
 <h2> 패키지 생성 페이지 </h2>
 <p> ** 다음 페이지부터 패키지에 들어갈 제품/가격 선택하게됨 </p>
-<%= form_tag '/product/' + params[:product_id] + '/package/create', multipart: true do %>
+<%= form_tag '/package', multipart: true do %>
+  <%= hidden_field_tag 'product_id', params[:product_id] %>
   패키지 이름 <%= text_field_tag 'name', nil, placeholder: '패키지 이름. ex) 패키지 B', :required => true %><br>
   패키지 설명 <%= text_area_tag 'content', nil, placeholder: '패키지 설명. ex) A + 스티커, ...', :required => true%> <br>
   패키지 메인 사진: <%= file_field_tag 'image0' %><br>
