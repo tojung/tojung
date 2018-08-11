@@ -1,0 +1,4 @@
+var x = '<%=escape_javascript(render :partial => "home/newcard", :locals => {:products_categorized => @products_categorized, :cdn_url => @cdn_url})%>';
+var y = $(x).addClass("height-none");
+$('.scrolling-wrapper').replaceWith(y);
+$('.scrolling-wrapper').removeClass("height-none").addClass("height-auto");

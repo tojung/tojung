@@ -33,6 +33,7 @@
 
 // Product Thumbnail
 .scrolling-wrapper{
+  transition: all 1s;
   overflow-x: auto;
   overflow-y: auto;
   white-space: nowrap;
@@ -106,7 +107,6 @@
 
 #all{
   transition: all 1s;
-  height: auto;
 }
 
 .cate-red{

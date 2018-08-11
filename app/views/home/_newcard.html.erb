@@ -1,0 +1,58 @@
+<div class="scrolling-wrapper center" id="all">
+  <% @products_categorized.each do |product|%>
+    <div class="card slick-slide slick-current slick-center" style="" data-slick-index="0" aria-hidden="true" tabindex="0">
+      <a href="/product/<%=product.id%>" class="d-block h-100">
+        <div class="pro-tag text-white"><p class=""><%=product.category%></p></div>
+        <%=image_tag(@cdn_url + product.image0.path, class: "pro-thumbimg") if product.image0.path != nil%>
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-1">
+            <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
+            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
+          </div>
+          <p class="card-text mb-2"><%=product.subname%></p>
+          <div class="d-flex font-12 justify-content-between">
+            <span class="funding-money"><%=product.funded_money%>원</span>
+            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  <%end%>
+</div>
+
+<script>
+$(document).ready(function () {
+  $('.center').not('.slick-initialized').slick({
+  arrows: false,
+  centerPadding: '10px',
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  variableWidth: true,
+  touchMove: true,
+  draggable: true,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+  })
+});
+
+</script>

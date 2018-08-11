@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'home/about'
+  get 'categorize/:category_id' => 'home#categorize'
 
   get 'home/policy'
   get 'home/privacy'
