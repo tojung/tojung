@@ -15,11 +15,11 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
-config.cache_store = :redis_store, {
-  expires_in: 1.hour,
-  namespace: 'cache',
-  redis: { host: 'localhost', port: 6379, db: 0 },
-  }
+    config.cache_store = :redis_store, {
+      expires_in: 1.hour,
+      namespace: 'cache',
+      redis: { host: 'localhost', port: 6379, db: 0 }
+    }
 
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
@@ -54,8 +54,8 @@ config.cache_store = :redis_store, {
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
-      api_key: ENV["MAILGUN_KEY"],
-      domain: '2jung.com'
+    api_key: ENV['MAILGUN_KEY'],
+    domain: '2jung.com'
   }
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
