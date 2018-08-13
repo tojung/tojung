@@ -9,7 +9,8 @@
 <hr><hr><hr>
 <%= form_tag "/product/#{ @product.id }", method: "patch" do %>
   <%= hidden_field_tag 'visible', !@product.visible  %>
-  <% ment = "비" if @product.visible else ""%>
+  <% ment = "비" if @product.visible %>
+  <% ment = "" if @product.visible%>
   <%= submit_tag "상품 #{ment}공개 하기"%>
 <% end %>
 
