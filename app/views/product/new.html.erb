@@ -5,37 +5,28 @@
 <p> ** 이 폼이 제출되어도 일반유저에게 상품이 보이지않음.**</p>
 <br>
 
-<%= form_tag '/product/create', class: "text-center", multipart: true do %>
-  <div class="field mb-3">
-  <%= text_field_tag 'title', nil, placeholder: '상품 제목', :required => true %>
-  </div>
-  <div class="field mb-3">
-  <%= text_field_tag 'subtitle', nil, placeholder: '상품 부제목', :required => true %>
-  </div>
-  <div class="field mb-3">
+<%= form_tag '/product', multipart: true do %>
+  <%= text_field_tag 'name', nil, placeholder: '상품 제목', :required => true, autocomplete: 'off' %>
+  <br>
+  <%= text_field_tag 'subname', nil, placeholder: '상품 부제목', :required => true, autocomplete: 'off' %>
+  <br>
   <%= date_field_tag 'start_date', nil, placeholder: '펀딩 시작 날짜' %>
   <%= date_field_tag 'end_date', nil, placeholder: '펀딩 종료 날짜' %>
-  </div>
-  <div class="field mb-3">
-  <%= text_field_tag 'youtb_url', nil, placeholder: '유튜브 영상 주소(VIDEO_ID만 적어야함 URL에서 v= 뒤에 나오는 코드)', :required => true%>
-  </div>
-  <div class="field mb-3">
-  <%= text_area_tag 'youtb_content', nil, placeholder: '영상 설명 적는 칸. 줄바꿈 먹힘', rows: 20, cols: 40, :required => true%>
-  </div>
-  <div class="field mb-3">
-  <%= text_field_tag 'bill_url', nil, placeholder: '법안 원문 주소', :required => true%>
-  </div>
-  <div class="field mb-3">
-  <%= text_field_tag 'assos', '', placeholder: '상임위원회 이름', :required => true %>
-  </div>
-  <div class="field mb-3">
-  <%= text_field_tag 'fb_url', 'https://facebook.com', placeholder: '페이스북 그룹 주소', :required => true%>
-  </div>
-  <div class="field mb-3">
-  상품 메인 이미지: <%= file_field_tag 'image0', accept: 'image/png,image/gif,image/jpeg' %>
-  </div>
-  <div class="field mb-3">
-  <%= text_field_tag 'goal_money', nil, placeholder: '펀딩 목표 금액', :required => true %>
-  </div>
-  <%= submit_tag '저장', class: "btn-login text-white font-14" %>
+  <br>
+  <%= text_field_tag 'youtb_url', nil, placeholder: '유튜브 영상 주소', :required => true, autocomplete: 'off'%>
+  <%= text_area_tag 'video_text', nil, placeholder: '영상 설명 적는 칸. 줄바꿈 먹힘', rows: 30, cols: 40, :required => true, autocomplete: 'off'%>
+  <br>
+  <%= text_field_tag 'bill_url', nil, placeholder: '법안 원문 주소', :required => true, autocomplete: 'off'%>
+  <br>
+  <%= text_field_tag 'assos', '', placeholder: '상임위원회 이름', :required => true, autocomplete: 'off' %>
+  <br>
+  <%= text_field_tag 'category', '', placeholder: '카테고리 이름. ex) 인권', :required => true, autocomplete: 'off' %>
+  <br>
+  <%= text_field_tag 'fb_url', '', placeholder: '페이스북 그룹 주소', :required => true , autocomplete: 'off'   %>
+  <br>
+  상품 메인 이미지: <%= file_field_tag 'image0', accept: 'image/png,image/gif,image/jpeg' , autocomplete: 'off' %>
+  <br>
+  <%= text_field_tag 'goal_money', nil, placeholder: '펀딩 목표 금액', :required => true , autocomplete: 'off' %>
+  <br>
+  <%= submit_tag '저장' %>
 <% end %>

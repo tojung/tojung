@@ -1,6 +1,8 @@
 <h1> 제품 추가 페이지 </h1>
 
-<%= form_tag '/product/' + @product.id.to_s + '/create_option', multipart: true do %>
+<%= form_tag '/product_option', multipart: true do %>
+  <%= hidden_field_tag 'product_id', params[:product_id] %>
+  <%= hidden_field_tag 'status', '판매중' %>
   제품 이름 <%= text_field_tag 'name', '' , placeholder: '제품 이름', :required => true %><hr>
   제품 설명   <%= text_area_tag 'content', '', placeholder: '제품 설명 적는 칸', rows: 30, cols: 40%><hr>
   제품 메인 이미지 <%= file_field_tag 'image0', :required => true%> <hr>

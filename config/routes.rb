@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
 
   root 'home#index'
-
   get 'home/index'
   get 'home/about'
   get 'categorize/:category_id' => 'home#categorize'
@@ -13,47 +12,22 @@ Rails.application.routes.draw do
   get 'additional_info' => 'userupdaters#additional'
   post 'additional_update' => 'userupdaters#additional_update'
 
-  get 'mainimage/new'
-  post 'mainimage/create'
+  resources :mainimage
 
-  get 'product/new'
-  post 'product/create'
-
-  get 'product/:product_id' => 'product#detail'
+  resources :product, param: :product_id
   get 'product/ready/:product_id' => 'product#detail_ready'
 
-  post 'product/update/:product_id' => 'product_updater#update'
-  get 'product/edit/:product_id' => 'product_updater#edit'
+  resources :package, param: :package_id
+  post 'package/:package_id/options' => 'package#opt_to_package'
 
-  get 'product/image0/:product_id' => 'product_updater#imagedit'
-  post 'product/image0/:product_id' => 'product_updater#update_image0'
-
-  get 'product/image1/:product_id' => 'product_updater#imagedit2'
-  post 'product/image1/:product_id' => 'product_updater#update_image1'
-
-  get 'product/visible/:product_id' => 'product_updater#set_visible'
-
-  get 'product/:product_id/new_option' => 'product_option#new'
-  post 'product/:product_id/create_option' => 'product_option#create'
-
-  get 'product_options/:product_option_id/edit' => 'product_option#edit'
-  post 'product_options/:product_option_id/update' => 'product_option#update'
-
-  get 'product/:product_id/package/new' => 'package#new'
-  get 'product/:product_id/package/:package_id' => 'package#new2'
-
-  post 'product/:product_id/package/create' => 'package#create'
-  get 'package/:package_id/product_option/:product_option_id' => 'package#insert_option_to_package'
-
-  get 'package/:package_id' => 'package#edit'
-  post 'package/:package_id' => 'package#update'
+  resources :product_option, param: :product_option_id
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'
   }
 
-  authenticate(:user, ->(u) do
+  authenticate(:user, lambda do |u|
     u.admin
   end) do
     mount Sidekiq::Web => '/sidekiq'

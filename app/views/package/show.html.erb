@@ -9,7 +9,11 @@
       <div class="card-body py-4 text-center">
         <h4 class="pro-num mb-2"><%= product_option.name %></h4>
         <p class="cost font-12 font-grey"><span class="font-14 font-weight-bold text-dark"><%= product_option.price %> </span>원~</p>
-        <a href="/package/<%= @package.id %>/product_option/<%= product_option.id %>"> 패키지에 제거하기를 원한다면 누르시오 </a>
+        <%= form_tag "/package/#{ @package.id }/options", method: "post" do %>
+          <%= hidden_field_tag "product_option_id", product_option.id %>
+          <%= submit_tag "패키지를 제거하기를 원한다면 누르시오" %>
+        <% end %>
+<!--        <a href="/package/<%#= @package.id %>/<%#= product_option.id %>"> 패키지에 제거하기를 원한다면 누르시오 </a>-->
       </div>
     </div>
   </div>
@@ -24,8 +28,10 @@
       <div class="card-body py-4 text-center">
         <h4 class="pro-num mb-2"><%= product_option.name %></h4>
         <p class="cost font-12 font-grey"><span class="font-14 font-weight-bold text-dark"><%= product_option.price %> </span>원~</p>
-        <a href="/package/<%= @package.id %>/product_option/<%= product_option.id %>"> 패키지에 추가하기를 원한다면 누르시오 </a>
-      </div>
+        <%= form_tag "/package/#{ @package.id }/options", method: "post" do %>
+          <%= hidden_field_tag "product_option_id", product_option.id %>
+          <%= submit_tag "패키지를 추가하기를 원한다면 누르시오" %>
+        <% end %>      </div>
     </div>
   </div>
 <% end %>
