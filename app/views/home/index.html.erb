@@ -1,20 +1,32 @@
 <!-- Cover -->
 <section class="cover">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators mb-1">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%=image_tag(@mainimage0, class: "d-block w-100 cover_img")%>
+        <%=image_tag(@mainimage0, class: "d-block cover_img")%>
+        <pre class="cover_text text-1">
+법안 배송받기를 클릭하면
+국회에 심사촉구청원이
+보내집니다</pre>
       </div>
       <div class="carousel-item">
-        <%=image_tag(@mainimage1, class: "d-block w-100 cover_img")%>
+        <%=image_tag(@mainimage1, class: "d-block cover_img")%>
+        <pre class="cover_text text-2">
+내 삶을 바꾸는
+법안쇼핑몰</pre>
       </div>
       <div class="carousel-item">
-        <%=image_tag(@mainimage2, class: "d-block w-100 cover_img")%>
+        <%=image_tag(@mainimage2, class: "d-block cover_img")%>
+        <pre class="cover_text text-3">
+참여를 인증하는
+예쁜 굿즈를 받고,
+내 문제를 공론화하는
+지하철광고를 실어보아요</pre>
       </div>
     </div>
   </div>

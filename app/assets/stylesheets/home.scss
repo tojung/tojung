@@ -9,10 +9,56 @@
 
 .cover_img{
   height: calc(100vw*0.914);
+  overflow: hidden;
+  margin-left: -40%;
+}
+
+.cover_text{
+  font-family: 'Chosunilbo_myungjo', sans-serif;
+  line-height: 2;
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: 50%;
+}
+
+.text-1{
+  color: white;
+  height: 85px;
+}
+
+.text-2{
+  height: 52px;
+}
+
+.text-3{
+  height: 115px;
+}
+
+@media (min-width: 768px){
+  .cover_img{
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .cover_text{
+    font-size: 24px;
+  }
+  .text-1{
+    height: 150px;
+  }
+  .text-2{
+    height: 100px;
+  }
+  .text-3{
+    height: 195px;
+  }
 }
 
 .carousel-indicators .active{
-  background-color: rgba(148, 54, 66, 0.9);
+  background-color: rgba(209, 42, 45, 0.8);
 }
 
 .carousel-indicators li{
