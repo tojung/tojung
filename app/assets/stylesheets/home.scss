@@ -197,3 +197,8 @@ span.or{
   border-radius: 300px;
   border: 1px solid #dcdcdc;
 }
+
+// Bottom bar
+.bottom-bar .text-dark:hover, .bottom-bar .text-dark:active, .bottom-bar .text-dark:focus{
+  font-weight: bold;
+}

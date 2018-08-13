@@ -46,7 +46,7 @@
    opacity: 0;
  }
 
- .visible-xs{
+ .visible-xs, .visible-xs-flex{
    display: none !important;
  }
 
@@ -139,6 +139,9 @@
 
    .visible-xs{
      display: block !important;
+   }
+   .visible-xs-flex{
+     display: flex !important;
    }
 
    .visible-lg{
