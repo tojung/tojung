@@ -27,8 +27,10 @@
       <div class="row">
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <%=image_tag(@cdn_url+"hot@3x.png", class: "category-icon")%>
-            <p class="category-title" lang="en">HOT</p>
+            <a href="/categorize/1" class="d-block h-100">
+              <%=image_tag(@cdn_url+"hot@3x.png", class: "category-icon")%>
+              <p class="category-title" lang="en">HOT</p>
+            </a>
           </div>
         </div>
         <div class="col-3">

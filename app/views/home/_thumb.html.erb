@@ -63,6 +63,31 @@ $(document).ready(function () {
     money = money.toLocaleString();
     money = money+"원";
     $('.funding-money').html(money);
+
+  });
+
+  $(window).resize(function(){
+    if (window.matchMedia("screen and (max-width: 576px)").matches) {
+      $('.card-body').css('display','none');
+      var cardMent = $('.card').filter('.slick-center').children().children();
+      cardMent = cardMent[1];
+      $(cardMent).css('display','block');
+
+      $('.center').on('swipe', function(event, slick, direction){
+          $('.card-body').css('display','none');
+          var cardMent = $('.card').filter('.slick-center').children().children();
+          cardMent = cardMent[1];
+          $(cardMent).css('display','block');
+      });
+    }
+  });
+  $(window).resize(function(){
+    if (window.matchMedia("screen and (min-width: 768px)").matches){
+      $('.card-body').css('display','block');
+      $('.center').on('swipe', function(event, slick, direction){
+        $('.card-body').css('display','block');
+      });
+    }
   });
 
 </script>

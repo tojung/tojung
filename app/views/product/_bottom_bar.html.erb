@@ -1,5 +1,5 @@
 <!-- Bottom bar -->
-<nav class="navbar bottom-bar py-2 fixed-bottom align-items-center text-center">
+<nav class="navbar bottom-bar visible-xs-flex py-2 fixed-bottom align-items-center text-center">
   <button class="button-none buy-button font-14 ml-4 text-white" id="packageBarCollapse" onclick="packagebar_click();">
     내 인생으로 배송받기
   </button>
@@ -19,6 +19,7 @@
     $(document).ready(function () {
         // open sidebar
         $('#packageBar').toggleClass("open");
+        $('#packageBarCollapse').toggleClass("font-weight-bold");
         // fade in the overlay
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');

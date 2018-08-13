@@ -35,11 +35,11 @@
 #myTab.nav-tabs .nav-link.active{
   background-color: #f9f9f9;
   border: none;
-  border-bottom: solid 4px #943642;
+  border-bottom: solid 4px #434343;
 }
 
 #myTab.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
-  border-bottom: solid 4px #943642;
+  border-bottom: solid 4px #434343;
   box-shadow: none;
 }
 
@@ -106,6 +106,12 @@
   height: 62px;
 }
 
+.refund, .refund h4{
+  line-height: 24px;
+}
+// #packageBarCollapse:hover, #packageBarCollapse:focus, packageBarCollapse:active{
+//   font-weight: bold;
+// }
 // Package bar
 #packageBar{
   overflow-y: scroll;
@@ -120,6 +126,9 @@
 
 #packageBar.open{
   margin-bottom: 60px !important;
+  #packageBarCollapse{
+    font-weight: bold;
+  }
 }
 
 // Share bar
