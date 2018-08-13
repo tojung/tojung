@@ -109,12 +109,11 @@
 .pro-tag{
   width: 68px;
   height: 82px;
-  background-color: rgba(148, 54, 66, 0.9);
+  background-color: rgba(209, 42, 45, 0.8);
   padding-top: 45px;
   position: absolute;
   z-index: 999;
-  top: -25px;
-  left: 230px;
+  left: calc(100vw*0.7);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -156,29 +155,14 @@
 }
 
 .cate-red{
-  color: #943642 !important;
+  color: #d12a2d !important;
   font-weight: bold;
 }
 
-#all.height-auto, #A.height-auto, #B.height-auto, #C.height-auto, #D.height-auto, #E.height-auto, #F.height-auto{
-  height: auto;
-  opacity: 1;
-  transition: all 1s;
+#empty-ment{
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
-
-#all.height-none, #A.height-none, #B.height-none, #C.height-none, #D.height-none, #E.height-none, #F.height-none{
-  height: 0;
-  opacity: 0;
-  transition: opacity 1s ease-out;
-}
-
-#A, #B, #C, #D, #E, #F{
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: opacity 1s ease-out;
-}
-
 // MD's CONTENTS
 .contents{
   margin-top: 30px;
