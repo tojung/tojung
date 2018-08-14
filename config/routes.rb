@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   post 'package/:package_id/options' => 'package#opt_to_package'
 
   resources :product_option, param: :product_option_id
+  resources :maker, param: :maker_response_id
+  post 'maker/:maker_response_id/send_mail' => 'maker#send_mail'
+
+  get 'agree' => 'response#agree'
+  get 'disagree' => 'response#disagree'
+  post 'discuss' => 'response#discuss'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',

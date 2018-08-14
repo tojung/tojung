@@ -31,11 +31,12 @@
 
 <div style="background-color: #B00100">
   이메일 청원 클릭 부분 <br>구현중 <br>
-  <% @makers.each do |maker|%>
+  <% @maker_responses.each do |maker_response|%>
     <hr>
-     <img src="<%= maker.image0 %>">
-     의원이름: <%= maker.name %>
-    <br> 의원 정당: <%= maker.desc2 %>
+     <img src="<%= maker_response.maker.image0 %>">
+     의원이름: <%= maker_response.maker.name %>
+    <br> 의원 정당: <%= maker_response.maker.desc2 %>
+    <a href="/maker/<%= maker_response.id %>"> 의원에게 이메일 전송하는 링크 </a>
   <% end %>
 </div>
 

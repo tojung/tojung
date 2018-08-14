@@ -8,7 +8,8 @@ class ProductController < ApplicationController
 
   # POST '/product'
   def create
-    product = Product.create(product_params)
+    product = Product.create product_params
+    create_maker_responses product
     redirect_to "/product/ready/#{product.id}"
   end
 
@@ -31,15 +32,27 @@ class ProductController < ApplicationController
 
   private
 
+  def create_maker_responses(product)
+    makers = Maker.where(assos: product.assos)
+    makers.each do |maker|
+      MakerResponse.create(product_id: product.id,
+                           maker_id: maker.id,
+                           name: maker.name,
+                           send_count: 0,
+                           agree_hash: SecureRandom.base64(50),
+                           disagree_hash: SecureRandom.base64(50))
+    end
+  end
+
   def find_product
     @product = Product.find(params[:product_id])
   end
 
   def read_product_infos
     # Redis 적용 예정
-    @product = Product.find(params[:product_id])
+    @product = Product.find(params[:product_id].to_i)
     @product_options = @product.product_options
-    @makers = Maker.where(assos: @product.assos)
+    @maker_responses = @product.maker_responses
   end
 
   def product_params
@@ -56,6 +69,8 @@ class ProductController < ApplicationController
                   :image1,
                   :goal_money,
                   :category,
-                  :visible)
+                  :visible,
+                  :bill_id,
+                  :bill_name)
   end
 end

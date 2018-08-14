@@ -52,13 +52,13 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   config.cache_store = :redis_store, {
-     expires_in: 1.hour,
-     namespace: 'cache',
-     redis: { host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 1 },
+    expires_in: 1.hour,
+    namespace: 'cache',
+    redis: { host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 1 }
   }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
@@ -76,21 +76,20 @@ Rails.application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
-config.action_mailer.default_url_options = { host: 'ren.2jung.com' }
-
+  config.action_mailer.default_url_options = { host: 'ren.2jung.com' }
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
-      api_key: ENV["MAILGUN_KEY"],
-      domain: '2jung.com'
+    api_key: ENV['MAILGUN_KEY'],
+    domain: '2jung.com'
   }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -98,5 +97,4 @@ config.action_mailer.delivery_method = :mailgun
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
 end

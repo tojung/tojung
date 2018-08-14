@@ -1,0 +1,7 @@
+<%= form_tag '/discuss' do %>
+  <%= hidden_field_tag 'type', 'agree'%>
+  <%= hidden_field_tag 'mr_id', @maker_response[0].id %>
+  <%= hidden_field_tag 'key', @key %>
+  <%= text_area_tag 'content', nil, placeholder: "찬성을 선택하셨습니다. 세부 의견을 자유롭게 이야기해주세요.", :required => true %>
+<%= submit_tag '제출하기' %>
+<% end %>
