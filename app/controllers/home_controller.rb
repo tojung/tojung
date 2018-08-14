@@ -57,12 +57,6 @@ class HomeController < ApplicationController
   def products_read
     # Redis 적용 예정
     @products = Product.where(visible: [true, 1])
-    @products_A= @products.where(category: "인권/성평등")
-    @products_B= @products.where(category: "동물")
-    @products_C= @products.where(category: "육아/교육")
-    @products_D= @products.where(category: "안전/환경")
-    @products_E= @products.where(category: "보건/복지")
-    @products_F= @products.where(category: "외교/통일/국방")
     # noinspection RubyResolve
     if user_signed_in? and current_user.admin
       @products_unvisible = Product.where(visible: [false, 0])

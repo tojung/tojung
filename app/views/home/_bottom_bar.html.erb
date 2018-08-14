@@ -1,15 +1,15 @@
 <!-- Bottom bar -->
-<nav class="navbar bottom-bar visilbe-xs-flex fixed-bottom text-center bg-light">
+<nav class="navbar bottom-bar visible-xs-flex fixed-bottom text-center bg-light">
   <a href="/index" class="d-block text-dark">
-    <%=image_tag("brand.svg", class: "bottom-icon")%>
+    <%=image_tag(@cdn_url + "brand.svg", class: "bottom-icon")%>
     <p class="font-12 mb-0" lang="en">BRAND</p>
   </a>
   <a href="/home/index" class="d-block text-dark">
-    <%=image_tag("home.svg", class: "bottom-icon")%>
+    <%=image_tag(@cdn_url+"home.svg", class: "bottom-icon")%>
     <p class="font-12 mb-0" lang="en">HOME</p>
   </a>
   <a href="" class="d-block text-dark">
-    <%=image_tag("my.svg", class: "bottom-icon")%>
+    <%=image_tag(@cdn_url+"my.svg", class: "bottom-icon")%>
     <p class="font-12 mb-0" lang="en">MY</p>
   </a>
 </nav>
