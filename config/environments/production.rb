@@ -83,7 +83,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
     api_key: ENV['MAILGUN_KEY'],
-    domain: 'ren.2jung.com'
+    domain: '2jung.com'
   }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
