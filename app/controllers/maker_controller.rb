@@ -14,6 +14,14 @@ class MakerController < ApplicationController
                             params[:content],
                             @maker_response.agree_hash,
                             @maker_response.disagree_hash).deliver_now
+    @maker_response.send_count += 1
+    @maker_response.save
+    Sendlog.create(from_email: current_user.email,
+                   to_email: @maker_response.maker.email,
+                   user_id: current_user.id,
+                   content: params[:content],
+                   title: params[:title]
+                   )
     redirect_to "/product/#{@maker_response.product.id}"
   end
 
