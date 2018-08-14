@@ -39,6 +39,9 @@
 
   기존 패키지 정리 이미지 수정하기 : <%= file_field_tag 'image1' %>
 
+  <%= text_field_tag 'bill_id', @product.bill_id , placeholder: '법안 번호', :required => true, autocomplete: 'off'%>
+  <br>
+  <%= text_field_tag 'bill_name', @product.bill_name, placeholder: '법안 이름', :required => true, autocomplete: 'off'%>
 
   <hr><%= submit_tag '수정 완료' %>
 <% end %>

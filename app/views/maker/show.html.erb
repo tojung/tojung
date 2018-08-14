@@ -1,2 +1,32 @@
 <h1> 의원 이메일 청원 테스트 페이지 </h1>
 
+<img src="<%= @maker_response.maker.image0 %>"
+<%= @maker_response.name %>
+<hr>
+<p> <%= @maker_response.maker.desc1.gsub('/', '').gsub('\n','<br>').html_safe %></p>
+<hr>
+<%= @maker_response.maker.email %>
+<hr>
+<%= @maker_response.maker.assos %>
+<hr>
+<%= form_tag "/maker/#{ @maker_response.id }/send_mail" do %>
+    <%= text_field_tag 'title', @title, placeholder: @title, :required => true, style: 'width: 88%;'%><br>
+    <%= text_area_tag 'content', @content, placeholder: @content, :required => true, style: 'width: 88%; height: 500px;' %><br>
+  <%= submit_tag '이메일 전송 완료' %>
+<% end %>
+
+<% if @maker_response.response_type == "무응답" %>
+  <!-- 무응답 -->
+<h1> <%= @maker_response.maker.name %> 의원에게 답변을 촉구합니다.</h1>
+<% elsif @maker_response.response_text == nil %>
+<!-- 찬반 응답은 하였지만 세부 의견을 안남긴경우 -->
+    <h1> <%= @maker_response.maker.name%>의원이 '<%= @maker_response.response_type %>'응답했습니다.</h1>
+    <h2> 세부 응답을 듣고싶다면 이메일 청원해주세요! </h2>
+<% else %>
+<!-- 찬반 응답을 하였으며, 세부의견을 남긴 경우 -->
+  <h1> <%= @maker_response.maker.name%>의원이 '<%= @maker_response.response_type %>'응답했습니다.</h1>
+  <h2> 세부 응답을 더 듣고싶다면 이메일 청원해주세요! </h2>
+
+  <!-- 응답 내용-->
+  <strong> <%= @maker_response.response_text %></strong>
+<% end %>
