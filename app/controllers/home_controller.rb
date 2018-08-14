@@ -4,8 +4,22 @@ class HomeController < ApplicationController
 
   # GET '/' 메인 페이지
   def index
-
-
+    if params.has_key?(:sidebar)
+      @num=params[:sidebar]
+      if (@num == '1')
+        @products = @products.where(category: "인권/성평등")
+      elsif @num == '2'
+        @products = @products.where(category: "동물")
+      elsif @num == '3'
+        @products = @products.where(category: "육아/교육")
+      elsif @num == '4'
+        @products = @products.where(category: "안전/환경")
+      elsif @num == '5'
+        @products = @products.where(category: "보건/복지")
+      elsif @num == '6'
+        @products = @products.where(category: "외교/통일/국방")
+      end
+    end
   end
 
 
@@ -25,13 +39,17 @@ class HomeController < ApplicationController
       @products_categorized = @products.where(category: "보건/복지")
     elsif @num == '6'
       @products_categorized = @products.where(category: "외교/통일/국방")
+
     respond_to do |format|
       format.js { render :locals => { :products_categorized => @products_categorized } }
     end
     end
-
   end
 
+  def sidebar_categorize
+    @num = params[:id]
+    redirect_to root_path(sidebar: @num)
+  end
   # GET '/about' about 페이지
   def about; end
 

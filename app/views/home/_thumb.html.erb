@@ -53,17 +53,7 @@ $(document).ready(function () {
     });
   }
 
-  // 원화 콤마찍기
-  $(document).ready(function(){
-    var money = $('.funding-money').html();
-    money = money.substring(0,money.length-1)
-    money = Number(money);
-    money = money.toLocaleString();
-    money = money+"원";
-    $('.funding-money').html(money);
-
-  });
-
+  // Mobile Center 만 Card body 보이게 하기
   function cardBodyShow(){
     $('.card-body').css('display','none');
     var cardMent = $('.card').filter('.slick-active').children().children();
@@ -71,30 +61,49 @@ $(document).ready(function () {
     $(cardMent).css('display','block');
   }
 
+  // 모바일로 접근시에 CardBodyShow 작동
   $(document).ready(function(){
     if (window.matchMedia("screen and (max-width: 576px)").matches) {
-        cardBodyShow();
+      cardBodyShow();
       $('.center').on('swipe', function(event, slick, direction){
         cardBodyShow();
       });
     }
   });
 
+  // window 사이즈가 줄어들었을 때 CardBodyShow 작동
   $(window).resize(function(){
     if (window.matchMedia("screen and (max-width: 576px)").matches) {
-        cardBodyShow();
+      cardBodyShow();
       $('.center').on('swipe', function(event, slick, direction){
         cardBodyShow();
       });
     }
   });
 
+  // window 사이즈가 늘어났을 때 CardBodyShow 작동
   $(window).resize(function(){
     if (window.matchMedia("screen and (min-width: 768px)").matches){
       $('.card-body').css('display','block');
       $('.center').on('swipe', function(event, slick, direction){
         $('.card-body').css('display','block');
       });
+    }
+  });
+
+  // 원화 콤마 찍기
+  $(document).ready(function(){
+    for (let i=0; i<$('.funding-money').length; i++){
+      putMoney = $('.funding-money')[i];
+      money = $('.funding-money')[i];
+      money = $(money).html();
+      if (money !== "0원"){
+        money = money.substring(0,money.length-1)
+        money = Number(money);
+        money = money.toLocaleString();
+        money = money+"원";
+        $(putMoney).html(money);
+      }
     }
   });
 
