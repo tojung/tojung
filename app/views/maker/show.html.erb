@@ -3,7 +3,7 @@
 <img src="<%= @maker_response.maker.image0 %>"
 <%= @maker_response.name %>
 <hr>
-<p> <%= @maker_response.maker.desc1.gsub('/', '').gsub('\n','<br>').html_safe %></p>
+<p> <%= @maker_response.maker.desc1.gsub('/', '').gsub('\r','').gsub('\n','<br>').html_safe %></p>
 <hr>
 <%= @maker_response.maker.email %>
 <hr>
