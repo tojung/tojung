@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-  before_action :require_more_data, :check_admin
+  before_action :require_more_data, :check_admin, :set_cdn_url
   before_action :image_read_or_set, :products_read, :set_cdn_url, only: [:index]
-
+  before_action :set_cdn_url, only: [:index, :policy, :privacy, :brand]
   # GET '/' 메인 페이지
   def index
     if params.has_key?(:sidebar)
@@ -47,12 +47,13 @@ class HomeController < ApplicationController
   end
 
   def sidebar_categorize
-    @num = params[:id]
-    redirect_to root_path(sidebar: @num)
+    redirect_to root_path(sidebar: params[:id])
   end
   # GET '/about' about 페이지
   def about; end
-
+  def privacy; end
+  def policy; end
+  def brand; end
   private
 
   def image_read_or_set

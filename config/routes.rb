@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
   get 'home/about'
+  get 'home/brand'
   get 'categorize/:category_id' => 'home#categorize'
   get 'side_cate/:id' => 'home#sidebar_categorize'
 

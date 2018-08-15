@@ -78,8 +78,16 @@
    font-size: 18px !important;
  }
 
+ .font-20{
+   font-size: 20px !important;
+ }
+
  .font-22{
    font-size: 22px !important;
+ }
+
+ .font-24{
+   font-size: 24px !important;
  }
 
  a{
@@ -136,6 +144,38 @@
 
    .font-lg-20{
      font-size: 20px !important;
+   }
+
+   .font-lg-22{
+     font-size: 22px !important;
+   }
+
+   .font-lg-24{
+     font-size: 24px !important;
+   }
+
+   .font-lg-26{
+     font-size: 26px !important;
+   }
+
+   .font-lg-28{
+     font-size: 28px !important;
+   }
+
+   .font-lg-30{
+     font-size: 30px !important;
+   }
+
+   .font-lg-32{
+     font-size: 32px !important;
+   }
+
+   .font-lg-34{
+     font-size: 34px !important;
+   }
+
+   .font-lg-36{
+     font-size: 36px !important;
    }
  }
 

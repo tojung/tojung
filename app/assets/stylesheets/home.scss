@@ -69,7 +69,7 @@
 
 // Category
 .category-list{
-  padding: 30px;
+  padding: 30px 10px;
 }
 
 .category-keyword{
@@ -215,4 +215,23 @@ span.or{
 // Bottom bar
 .bottom-bar .text-dark:hover, .bottom-bar .text-dark:active, .bottom-bar .text-dark:focus{
   font-weight: bold;
+}
+
+// Brand.html
+.brand_cover{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vw*0.66);
+}
+
+.brand-text pre{
+  line-height: 28px;
+  white-space: pre-wrap;
+}
+
+@media (min-width: 768px){
+  .brand_cover{
+    height: 500px;
+  }
 }
