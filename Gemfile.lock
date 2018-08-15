@@ -77,6 +77,8 @@ GEM
     devise-async (1.0.0)
       activejob (>= 5.0)
       devise (>= 4.0)
+    devise-i18n (1.6.4)
+      devise (>= 4.4)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.7.1)
@@ -300,6 +302,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-async
+  devise-i18n
   fog-aws
   jbuilder (~> 2.5)
   jquery-rails

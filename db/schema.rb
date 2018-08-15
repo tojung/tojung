@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(version: 20180814171643) do
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname"
-    t.datetime "start_date", default: "2018-08-15 20:33:08", null: false
-    t.datetime "end_date", default: "2018-09-14 20:33:08", null: false
+    t.datetime "start_date", default: "2018-08-08 06:16:42", null: false
+    t.datetime "end_date", default: "2018-09-07 06:16:42", null: false
     t.text "youtb_url"
     t.text "video_text"
     t.text "bill_url"
