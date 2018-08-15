@@ -202,6 +202,11 @@
  .header{
    background-color: #f9f9f9 !important;
  }
+
+ .logo{
+   width: 90px;
+   height: 28px;
+ }
  .navbar{
    align-items: baseline;
    padding: .5rem 1.5rem;
