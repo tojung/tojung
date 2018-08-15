@@ -55,7 +55,7 @@
  }
 
  .font-red{
-   color: #943642 !important;
+   color: #d12a2d !important;
  }
 
  .font-10{
@@ -76,6 +76,10 @@
 
  .font-18{
    font-size: 18px !important;
+ }
+
+ .font-22{
+   font-size: 22px !important;
  }
 
  a{

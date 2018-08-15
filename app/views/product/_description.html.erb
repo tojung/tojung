@@ -2,12 +2,20 @@
   <div class="youtubeWrap mb-4">
     <iframe width="560" height="315" src="http://www.youtube.com/embed/<%= @product.youtb_url %>?controls=2" frameborder="0" allowfullscreen></iframe>
   </div>
-  <p class="text-center video-text mb-4"><span class="font-red">00:03</span> <%= @product.video_text %></p>
+  <p class="text-center video-text mb-4"><%= @product.video_text %></p>
   <a href="<%=  @product.bill_url %>" class="d-block text-right font-grey font-14 pr-3 mb-4">>법안 원문 보러가기</a>
   <div class="share-button text-center mb-4">
     <iframe src="https://www.facebook.com/plugins/like.php?href=https://ren.2jung.com/product/ready/<%=@product.id %>&width=186&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=1014670008686658" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
   </div>
-  <%=image_tag("pro-banner.svg", class: "d-block mx-auto mb-4")%>
+<div class="banner-text px-3 mb-5">
+  <hr class="mb-4 banner-line ml-0">
+  <pre class="font-22 font-weight-bold">
+내 인생으로 배송받기를 누르면
+국회에 청원이 전달되고,
+법안을 공론화하는 광고가 실리고,
+예쁜 굿즈를 받습니다</pre>
+  <hr class="mt-4 banner-line ml-0">
+</div>
   <!-- 상품들 -->
   <div class="container-fluid">
     <div class="row">
@@ -19,7 +27,7 @@
             <img src="<%= @cdn_url + product_option.image0.path %>" class="w-100">
             <div class="card-body py-4 text-center">
               <h4 class="pro-num mb-2"><%= product_option.name %></h4>
-              <p class="font-grey font-12 mb-2"><% product_option.packages.each do |package| %>  <%= package.name %> <% end %>패키지에 포함</p>
+              <p class="font-grey font-12 mb-4"><% product_option.packages.each do |package| %>  <%= package.name %> <% end %>패키지에 포함</p>
               <pre class="font-14 font-weight-bold mb-2"> <%= product_option.content.gsub("\r\n", "<br />").html_safe %> </pre>
               <p class="cost font-12 font-grey"><span class="font-14 font-weight-bold text-dark"><%= product_option.price %> </span>원~</p>
               <a href="" class="pro-link font-14 font-weight-bold d-block">자세히 보기></a>
@@ -37,6 +45,7 @@
 
     <section class="package my-5 mx-4">
       <h4 class="font-18 font-weight-bold mb-4">PACKAGE 정리</h4>
+      <%=image_tag("package-collection.png", class: "pack-collection-img")%>
       <%=image_tag(@cdn_url + @product.image1.path, class: "d-block w-100") if @product.image1.path != nil%>
     </section>
 
@@ -51,7 +60,7 @@
     <section class="usage mb-5 mx-4">
       <h4 class="font-18 font-weight-bold mb-5">법안 광고 캠페인은 어디에?</h4>
       <p class="text-center font-weight-bold">광고 펀딩 기간 내</p>
-      <table class="table font-14">
+      <table class="table font-14 mb-4">
         <tbody>
           <tr>
             <th scope="row">0~99% 달성</th>
@@ -67,6 +76,10 @@
           </tr>
         </tbody>
       </table>
+      <p class="text-center font-weight-bold mt-5">광고 펀딩 이후</p>
+      <p class="text-center font-14 mb-1">법안 페이스북 광고</p>
+      <p class="text-center font-14 mb-1">서버 유지비</p>
+      <p class="text-center font-14 mb-1">후속 컨텐츠 발행비</p>
     </section>
 
     <section class="refund mb-5 mx-4 font-14">

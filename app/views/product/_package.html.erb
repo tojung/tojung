@@ -5,8 +5,8 @@
        <div class="card bg-white">
           <%=image_tag(@cdn_url + package.image0.path , class: "package-img d-block mx-auto")%>
         <div class="card-body text-center py-1 font-14">
-          <p class="font-red mb-q1"><%= package.price %></p>
-          <h5 class="text-black font-weight-bold mb-1 font-14" lang="en">PACKAGE <%= package.name %></h5>
+          <p class="font-red mb-1">\<%= package.price %></p>
+          <h5 class="text-black font-weight-bold mb-1 font-14" lang="en"><%= package.name %></h5>
           <pre class="font-12 mb-2"><%= package.content.gsub("\r\n", "<br />").html_safe %></pre>
         </div>
       </div>
@@ -15,7 +15,6 @@
   </div>
 </nav>
 
-<div class="overlay"></div>
 <script type='text/javascript'>
   $(document).ready(function () {
     $('.package-row').not('.slick-initialized').slick({
@@ -37,11 +36,11 @@
         breakpoint: 480,
         settings: {
           arrows: false,
-          slidesToShow: 3
+          slidesToShow: 4
         }
       },
       {
-        breakpoint: 320,
+        breakpoint: 330,
         settings: {
           arrows: false,
           slidesToShow: 3
@@ -50,10 +49,19 @@
     ]
     });
 
+    // 패키지 선택 function
     $('.package-img').click(function(){
-        $(this).toggleClass('border-red');
+        if ($(this).hasClass("border-red")){
+          $(this).removeClass("border-red");
+        }
+        else{
+          for(let i=0;i<$('.package-img').length;i++){
+            $('.package-img').removeClass('border-red');
+          }
+          $(this).addClass("border-red");
+        }
     });
 
-    $('.packageBar').unwrap();
+    // $('.packageBar').unwrap();
   });
 </script>

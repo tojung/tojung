@@ -1,8 +1,9 @@
 <!-- Bottom bar -->
-<nav class="navbar bottom-bar visible-xs-flex py-2 fixed-bottom align-items-center text-center">
-  <button class="button-none buy-button font-14 ml-4 text-white" id="packageBarCollapse" onclick="packagebar_click();">
+<div class="overlay2"></div>
+<nav class="navbar bottom-bar py-2 fixed-bottom align-items-center text-center">
+  <a class="d-block buy-button pay-link font-14 ml-4 text-white" id="packageBarCollapse" onclick="packagebar_click();">
     내 인생으로 배송받기
-  </button>
+  </a>
   <a href="/" class="d-block ml-5 text-white">
     <%=image_tag(@cdn_url+"heart.svg")%>
   </a>
@@ -10,17 +11,34 @@
     <%=image_tag(@cdn_url+"link.svg")%>
   </button>
 </nav>
-<!-- // Bottom bar -->
 <%=render 'package'%>
 <%=render 'share'%>
+<!-- // Bottom bar -->
 
 <script>
+  // Unwrap
+  $(document).ready(function(){
+    $('.bottom-bar').unwrap();
+    $('.overlay2').unwrap();
+  });
+
+  // PACKAGE 클릭 이벤트
   function packagebar_click(){
     $(document).ready(function () {
+      $('.overlay2').on('click', function () {
+          // hide sidebar
+          $('#packageBar').removeClass("open");
+          $('#packageBarCollapse').removeClass("font-weight-bold");
+          $('.pay-link').removeAttr("href");
+          // hide overlay
+          $('.overlay2').removeClass('active');
+      });
         // open sidebar
-        $('#packageBar').toggleClass("open");
-        $('#packageBarCollapse').toggleClass("font-weight-bold");
+        $('#packageBar').addClass("open");
+        $('#packageBarCollapse').addClass("font-weight-bold");
+        $('.pay-link').attr("href","/");
         // fade in the overlay
+        $('.overlay2').addClass('active');
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
@@ -28,11 +46,25 @@
 
   function sharebar_click(){
     $(document).ready(function () {
+      $('.overlay2').on('click', function () {
+          // hide sidebar
+          $('#shareBar').removeClass("open");
+          // hide overlay
+          $('.overlay2').removeClass('active');
+      });
         // open sidebar
-        $('#shareBar').toggleClass("open");
+        $('#shareBar').addClass("open");
         // fade in the overlay
+        $('.overlay2').addClass('active');
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
   }
+
+  // 결제하기로 넘어가기
+  $(document).ready(function(){
+    if ($('.pay-link').hasClass("font-weight-bold")){
+      $('.pay-link').attr("href","/");
+    }
+  });
 </script>

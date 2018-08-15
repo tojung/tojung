@@ -1,6 +1,6 @@
 <h2> 패키지 생성 페이지 </h2>
 <p> ** 다음 페이지부터 패키지에 들어갈 제품/가격 선택하게됨 </p>
-<%= form_tag '/package', multipart: true do %>
+<%= form_tag '/package', class: "text-center", multipart: true do %>
   <%= hidden_field_tag 'product_id', params[:product_id] %>
   <div class="field mb-3">
   패키지 이름 <%= text_field_tag 'name', nil, placeholder: '패키지 이름. ex) 패키지 B', :required => true %>
@@ -11,9 +11,8 @@
   <div class="field mb-3">
   패키지 메인 사진: <%= file_field_tag 'image0' %>
   </div>
-</div>
-<div class="field mb-3">
-  패키지 가격: <%= text_field_tag 'price', nil, placeholder: '패키지 가격', :required => true %>
-</div>
+  <div class="field mb-3">
+    패키지 가격: <%= text_field_tag 'price', nil, placeholder: '패키지 가격', :required => true %>
+  </div>
   <%= submit_tag '저장', class: "btn-login text-white" %>
 <% end %>
