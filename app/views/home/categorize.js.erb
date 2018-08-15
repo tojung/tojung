@@ -1,0 +1,3 @@
+var x = '<%=escape_javascript(render :partial => "home/newcard", :locals => {:products_categorized => @products_categorized, :cdn_url => @cdn_url})%>';
+$('#empty-ment').remove();
+$('.scrolling-wrapper').replaceWith(x);

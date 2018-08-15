@@ -1,6 +1,6 @@
 <h1> 제품 추가 페이지 </h1>
 
-<%= form_tag '/product_option', multipart: true do %>
+<%= form_tag '/product_option', multipart: true, class: "text-center" do %>
   <%= hidden_field_tag 'product_id', params[:product_id] %>
   <%= hidden_field_tag 'status', '판매중' %>
   제품 이름 <%= text_field_tag 'name', '' , placeholder: '제품 이름', :required => true %><hr>

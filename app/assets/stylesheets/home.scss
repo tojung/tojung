@@ -9,10 +9,56 @@
 
 .cover_img{
   height: calc(100vw*0.914);
+  overflow: hidden;
+  margin-left: -40%;
+}
+
+.cover_text{
+  font-family: 'Chosunilbo_myungjo', sans-serif;
+  line-height: 2;
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: 50%;
+}
+
+.text-1{
+  color: white;
+  height: 85px;
+}
+
+.text-2{
+  height: 52px;
+}
+
+.text-3{
+  height: 115px;
+}
+
+@media (min-width: 768px){
+  .cover_img{
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .cover_text{
+    font-size: 24px;
+  }
+  .text-1{
+    height: 150px;
+  }
+  .text-2{
+    height: 100px;
+  }
+  .text-3{
+    height: 195px;
+  }
 }
 
 .carousel-indicators .active{
-  background-color: rgba(148, 54, 66, 0.9);
+  background-color: rgba(209, 42, 45, 0.8);
 }
 
 .carousel-indicators li{
@@ -23,7 +69,7 @@
 
 // Category
 .category-list{
-  padding: 30px;
+  padding: 30px 10px;
 }
 
 .category-keyword{
@@ -33,6 +79,7 @@
 
 // Product Thumbnail
 .scrolling-wrapper{
+  transition: all 3s;
   overflow-x: auto;
   overflow-y: auto;
   white-space: nowrap;
@@ -55,19 +102,42 @@
   }
 }
 
+.height-auto{
+  height: auto;
+  opacity: 1;
+}
+
+.height-none{
+  height: 0;
+  opacity: 0;
+}
+
 .slick-track{
   margin-top: 25px;
+}
+
+.visible-lg-only{
+  display: block;
 }
 
 .pro-tag{
   width: 68px;
   height: 82px;
-  background-color: rgba(148, 54, 66, 0.9);
-  padding-top: 50px;
+  background-color: rgba(209, 42, 45, 0.8);
+  padding-top: 45px;
   position: absolute;
   z-index: 999;
-  top: -25px;
-  left: 230px;
+  left: calc(100vw*0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.pro-tag p{
+  font-size: 12px;
+  text-align: center;
+  white-space: normal;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 768px ){
@@ -96,33 +166,17 @@
 
 #all{
   transition: all 1s;
-  height: auto;
 }
 
 .cate-red{
-  color: #943642 !important;
+  color: #d12a2d !important;
   font-weight: bold;
 }
 
-#all.height-auto, #A.height-auto, #B.height-auto, #C.height-auto, #D.height-auto, #E.height-auto, #F.height-auto{
-  height: auto;
-  opacity: 1;
-  transition: all 1s;
+#empty-ment{
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
-
-#all.height-none, #A.height-none, #B.height-none, #C.height-none, #D.height-none, #E.height-none, #F.height-none{
-  height: 0;
-  opacity: 0;
-  transition: opacity 1s ease-out;
-}
-
-#A, #B, #C, #D, #E, #F{
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: opacity 1s ease-out;
-}
-
 // MD's CONTENTS
 .contents{
   margin-top: 30px;
@@ -133,4 +187,51 @@
 
 .content-heading{
   margin: 12px 10px 12px 30px;
+}
+
+h2.background{
+  position: relative;
+    z-index: 1;
+
+  &:before {
+      border-top: 2px solid #dfdfdf;
+      content:"";
+      margin: 0 auto; /* this centers the line to the full width specified */
+      position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+      top: 70%; left: 0; right: 0; bottom: 0;
+      width: 230px;
+      z-index: -1;
+    }
+}
+
+span.or{
+  background: #ffffff;
+  padding: 15px;
+  font-size: 12px;
+  border-radius: 300px;
+  border: 1px solid #dcdcdc;
+}
+
+// Bottom bar
+.bottom-bar .text-dark:hover, .bottom-bar .text-dark:active, .bottom-bar .text-dark:focus{
+  font-weight: bold;
+}
+
+// Brand.html
+.brand_cover{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vw*0.66);
+}
+
+.brand-text pre{
+  line-height: 28px;
+  white-space: pre-wrap;
+}
+
+@media (min-width: 768px){
+  .brand_cover{
+    height: 500px;
+  }
 }
