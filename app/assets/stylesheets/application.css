@@ -29,7 +29,24 @@
     /*font-family: 'Noto Sans', sans-serif;*/
  /*}*/
 
- .visible-xs{
+ #notice_wrapper{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1111;
+  background: rgba(220, 227, 233, 0.85);
+  padding: 20px 0;
+  text-align: center;
+  color: black;
+  transition: all 2s;
+ }
+ #notice_wrapper.fadeout{
+   height: 0;
+   padding: 0;
+   opacity: 0;
+ }
+
+ .visible-xs, .visible-xs-flex{
    display: none !important;
  }
 
@@ -38,7 +55,7 @@
  }
 
  .font-red{
-   color: #943642 !important;
+   color: #d12a2d !important;
  }
 
  .font-10{
@@ -59,6 +76,18 @@
 
  .font-18{
    font-size: 18px !important;
+ }
+
+ .font-20{
+   font-size: 20px !important;
+ }
+
+ .font-22{
+   font-size: 22px !important;
+ }
+
+ .font-24{
+   font-size: 24px !important;
  }
 
  a{
@@ -116,12 +145,47 @@
    .font-lg-20{
      font-size: 20px !important;
    }
+
+   .font-lg-22{
+     font-size: 22px !important;
+   }
+
+   .font-lg-24{
+     font-size: 24px !important;
+   }
+
+   .font-lg-26{
+     font-size: 26px !important;
+   }
+
+   .font-lg-28{
+     font-size: 28px !important;
+   }
+
+   .font-lg-30{
+     font-size: 30px !important;
+   }
+
+   .font-lg-32{
+     font-size: 32px !important;
+   }
+
+   .font-lg-34{
+     font-size: 34px !important;
+   }
+
+   .font-lg-36{
+     font-size: 36px !important;
+   }
  }
 
  @media screen and (max-width: 576px){
 
    .visible-xs{
      display: block !important;
+   }
+   .visible-xs-flex{
+     display: flex !important;
    }
 
    .visible-lg{
@@ -137,6 +201,11 @@
 
  .header{
    background-color: #f9f9f9 !important;
+ }
+
+ .logo{
+   width: 90px;
+   height: 28px;
  }
  .navbar{
    align-items: baseline;
@@ -187,6 +256,7 @@
    top: 0;
    right: 0;
    z-index: 999;
+   height: 100%;
    /* top layer */
    transition: all 0.3s;
  }
@@ -246,6 +316,10 @@
  .category-title{
    font-size: 12px;
  }
+
+.sidebar_cate > .row > .col-3 > .sidebar-category a:hover, .sidebar_cate > .row > .col-3 > .sidebar-category a:focus{
+  font-weight: bold;
+}
 
  .sidebar-menus, .sidebar-sns{
    margin-top: 20px;
@@ -352,6 +426,16 @@
    color: #434343;
  }
 
+ .field textarea{
+   width: 230px;
+   border-radius: 8px;
+   background-color: #eeeeee !important;
+   box-shadow: none;
+   border: none;
+   padding: 16px 20px;
+   color: #434343;
+ }
+
  .field input:focus, .field input:active{
    outline: none;
    border: 2px solid skyblue;
@@ -379,6 +463,14 @@
    background-color: #434343;
    box-shadow: none;
    border: none;
+ }
+
+ .btn-login:hover, .btn-login:active, .btn-login:focus{
+   cursor: pointer;
+   border: none;
+   border-radius: none;
+   box-shadow: none;
+   outline: none;
  }
 
  input[type="button"]{

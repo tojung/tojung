@@ -1,0 +1,21 @@
+<section class="social_sign_in text-center pt-5">
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <% if OmniAuth::Utils.camelize(provider) == "Facebook"%>
+      <%= button_to omniauth_authorize_path(resource_name, provider), class: "button-none bg-base" do %>
+      <%=image_tag("fb_login.svg", class: "d-block mx-auto mb-3")%>
+      <%end%>
+    <%elsif OmniAuth::Utils.camelize(provider) == "Kakao"%>
+        <!-- 카카오 로그인 지원 안함. -->
+        <%#= button_to omniauth_authorize_path(resource_name, provider), class: "button-none bg-base" do %>
+      <%#=image_tag("kakao_login.svg", class: "d-block mx-auto mb-3")%>
+      <%#end%>
+    <%else%>
+      <%= button_to omniauth_authorize_path(resource_name, provider), class: "button-none bg-base" do %>
+      <%=image_tag("google.svg", class: "d-block mx-auto mb-3")%>
+      <%end%>
+    <%end%>
+  <% end -%>
+<% end -%>
+  <h2 class="background text-center mt-3 mb-5"><span class="or">OR</span></h2>
+</section>

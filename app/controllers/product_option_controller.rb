@@ -1,13 +1,16 @@
 class ProductOptionController < ApplicationController
   before_action :redirect_root_except_admin
   before_action :find_product, only: %i[new create]
-  before_action :find_product_option, only: %i[edit update]
+  before_action :find_product_option, only: %i[edit update detail]
 
   # GET '/product_option/new?product_id='
   def new; end
 
   # GET '/product_options/:product_option_id/edit'
   def edit; end
+
+  # GET '/product_options/:product_option_id/detail'
+  def detail; end
 
   # PATCH '/product_options/:product_option_id'
   def update
