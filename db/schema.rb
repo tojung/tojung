@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810182230) do
+ActiveRecord::Schema.define(version: 20180814171643) do
 
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
@@ -113,6 +113,18 @@ ActiveRecord::Schema.define(version: 20180810182230) do
     t.text "category"
     t.integer "goal_money", default: 1000000
     t.boolean "visible", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "bill_id"
+    t.text "bill_name"
+  end
+
+  create_table "sendlogs", force: :cascade do |t|
+    t.string "from_email"
+    t.string "to_email"
+    t.integer "user_id"
+    t.text "content"
+    t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

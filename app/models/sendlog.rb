@@ -1,0 +1,2 @@
+class Sendlog < ApplicationRecord
+end
