@@ -30,7 +30,7 @@
               <p class="font-grey font-12 mb-4"><% product_option.packages.each do |package| %>  <%= package.name %> <% end %>패키지에 포함</p>
               <pre class="font-14 font-weight-bold mb-2"> <%= product_option.content.gsub("\r\n", "<br />").html_safe %> </pre>
               <p class="cost font-12 font-grey"><span class="font-14 font-weight-bold text-dark"><%= product_option.price %> </span>원~</p>
-              <a href="" class="pro-link font-14 font-weight-bold d-block">자세히 보기></a>
+              <a href="/product_option/<%=product_option.id.to_s%>/detail" class="pro-link font-14 font-weight-bold d-block">자세히 보기></a>
               <% if @is_admin %>
                ** 관리자만 보임 **<br>
                 <a href="/product_option/<%= product_option.id.to_s %>/edit"> 제품 수정 하기 </a>

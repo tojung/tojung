@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :product_option, param: :product_option_id
   resources :maker, param: :maker_response_id
+  get 'product_option/:product_option_id/detail' => 'product_option#detail'
   post 'maker/:maker_response_id/send_mail' => 'maker#send_mail'
 
   get 'agree' => 'response#agree'
