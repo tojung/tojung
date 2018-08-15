@@ -6,9 +6,10 @@
       <%=image_tag("fb_login.svg", class: "d-block mx-auto mb-3")%>
       <%end%>
     <%elsif OmniAuth::Utils.camelize(provider) == "Kakao"%>
-      <%= button_to omniauth_authorize_path(resource_name, provider), class: "button-none bg-base" do %>
-      <%=image_tag("kakao_login.svg", class: "d-block mx-auto mb-3")%>
-      <%end%>
+        <!-- 카카오 로그인 지원 안함. -->
+        <%#= button_to omniauth_authorize_path(resource_name, provider), class: "button-none bg-base" do %>
+      <%#=image_tag("kakao_login.svg", class: "d-block mx-auto mb-3")%>
+      <%#end%>
     <%else%>
       <%= button_to omniauth_authorize_path(resource_name, provider), class: "button-none bg-base" do %>
       <%=image_tag("google.svg", class: "d-block mx-auto mb-3")%>
