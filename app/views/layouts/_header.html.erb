@@ -16,12 +16,11 @@
     </div>
     <pre class="sign-status bg-white text-right">
 <%if user_signed_in?%>
-<a class="font-weight-bold" href="/users/sign_out">LOGOUT</a>
+<a class="font-grey" href="/users/sign_out">로그아웃</a>
 <%else%>
 현재 로그아웃 상태입니다.
-로그인을 하시면 더 많은 정보를
-확인하실 수 있습니다.
-<a class="font-weight-bold" href="/users/sign_in">LOGIN</a>
+로그인을 하시면 더 많은 정보를 볼 수 있습니다.
+<a class="font-grey" href="/users/sign_in">로그인</a> / <a class="font-grey" href="/users/sign_up">회원가입</a>
 <%end%></pre>
     <div class="container-fluid sidebar_cate">
       <div class="row">
