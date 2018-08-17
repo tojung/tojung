@@ -3,10 +3,10 @@ ActiveAdmin.register Package do
   permit_params :product_id, :name, :content, :price, :image0, :remain_count, :product_option_ids
 
   scope :all, default: true
-  Package.all.each do |package|
-    next if package.product.nil?
-    scope package.product.name do
-      Package.where(product_id: package.product.id)
+  Product.all.each do |product|
+    next if product.packages.count == 0
+    scope product.name do
+      Package.where(product_id: product.id)
     end
   end
 
