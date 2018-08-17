@@ -3,9 +3,10 @@ ActiveAdmin.register ProductOption do
 
   menu label: '제품'
   scope :all, default: true
-  Product.all.each do |product|
-    scope product.name do |_product_options|
-      product.product_options
+
+  ProductOption.all.each do |product_option|
+    scope(product_option.product.name) do
+      ProductOption.where(product_id: product_option.product.id)
     end
   end
 

@@ -127,9 +127,8 @@ ActiveAdmin.register Product do
       end
     end
     def update
-      assos = @product.assos
       super
-      if @product.assos != assos
+      if @product.maker_responses.empty?
         makers = Maker.where(assos: @product.assos)
         makers.each do |maker|
           MakerResponse.create(product_id: @product.id,
