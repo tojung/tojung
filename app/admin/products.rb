@@ -17,6 +17,45 @@ ActiveAdmin.register Product do
                 :bill_id,
                 :bill_name,
                 :status
+  show do
+    panel '법안상품' do
+      table_for product i18n: Product do
+        column 'id'
+        column '법안상품 이름', :name
+        column '부제목', :subname
+        column '메인이미지', :image0 do |product|
+          image_tag product.image0, style: 'width: 30%'
+        end
+        column '패키지정리이미지', :image1 do |product|
+          image_tag product.image1, style: 'width: 30%'
+        end
+      end
+
+      table_for product i18n: Product do |_product|
+        column '법안 번호', :bill_id
+        column '법안 링크', :bill_url
+        column '법안 이름', :bill_name
+        column '상임위 이름', :assos
+        column '카테고리', :category
+      end
+
+      table_for product i18n: Product do |_product|
+        column '펀딩 금액', :funded_money
+        column '펀딩 참여 수', :funded_count
+        column '목표 금액', :goal_money
+      end
+
+      table_for product i18n: Product do |_product|
+        column '시작일', 'start_date'
+        column '종료일', 'end_date'
+        column '페북그룹주소', 'fb_url'
+        column '유튜브영상주소', :youtb_url
+        column '영상설명', :video_text
+        column '공개여부', :visible
+      end
+    end
+  end
+
   index do
     selectable_column
     column '법안상품이름' do |product|
@@ -72,5 +111,35 @@ ActiveAdmin.register Product do
 
     input 'visible', label: '공개 여부'
     actions
+  end
+
+  controller do
+    def create
+      super
+      makers = Maker.where(assos: @product.assos)
+      makers.each do |maker|
+        MakerResponse.create(product_id: @product.id,
+                             maker_id: maker.id,
+                             name: maker.name,
+                             send_count: 0,
+                             agree_hash: SecureRandom.base64(50),
+                             disagree_hash: SecureRandom.base64(50))
+      end
+    end
+    def update
+      assos = @product.assos
+      super
+      if @product.assos != assos
+        makers = Maker.where(assos: @product.assos)
+        makers.each do |maker|
+          MakerResponse.create(product_id: @product.id,
+                               maker_id: maker.id,
+                               name: maker.name,
+                               send_count: 0,
+                               agree_hash: SecureRandom.base64(50),
+                               disagree_hash: SecureRandom.base64(50))
+        end
+      end
+    end
   end
 end

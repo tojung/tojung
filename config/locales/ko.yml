@@ -1,4 +1,4 @@
 ko:
     time:
         formats:
-            long: "long"
+            long: "%Y-%m-%d"
