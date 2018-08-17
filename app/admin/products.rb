@@ -1,15 +1,10 @@
 ActiveAdmin.register Product do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
   menu label: '법안 상품'
-  # has_many :packages
-  # has_many :product_options
   permit_params :name,
                 :subname,
                 :start_date,
-                :end_date,
                 :youtb_url,
+                :end_date,
                 :video_text,
                 :bill_url,
                 :assos,
@@ -22,6 +17,21 @@ ActiveAdmin.register Product do
                 :bill_id,
                 :bill_name,
                 :status
+  index do
+    selectable_column
+    column '법안상품이름' do |product|
+      link_to product.name, admin_product_path(product)
+    end
+    column '부제목', :subname
+    column '이미지', :image0 do |product|
+      image_tag(product.image0, style: 'width: 30%;')
+    end
+    column '펀딩금액', :funded_money
+    column '펀딩수', :funded_count
+    column '법안 주소', :bill_url
+    column '소관위', :assos
+    column '페북그룹주소', :fb_url
+  end
 
   form title: '법안 상품 추가/수정 하기' do |_f|
     inputs 'Details' do
@@ -61,19 +71,6 @@ ActiveAdmin.register Product do
     end
 
     input 'visible', label: '공개 여부'
-
-    # panel 'Markup' do
-    #  "The following can be used in the content below..."
-    # end
-    para 'Press cancel to return to the list without saving.'
     actions
   end
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
 end
