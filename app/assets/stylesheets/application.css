@@ -41,6 +41,13 @@
   color: black;
   transition: all 2s;
  }
+
+ #notice_wrapper.red-alert{
+   background-color: #f8d7da;
+   opacity: 0.85;
+   color: #721c24;
+ }
+
  #notice_wrapper.fadeout{
    height: 0;
    padding: 0;
