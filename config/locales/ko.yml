@@ -1,0 +1,4 @@
+ko:
+    time:
+        formats:
+            long: "%Y-%m-%d"

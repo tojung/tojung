@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= stub "active_admin"
  */
 
  /* Custom Settings */
@@ -40,7 +41,6 @@
   color: black;
   transition: all 2s;
  }
-
  #notice_wrapper.fadeout{
    height: 0;
    padding: 0;
