@@ -209,6 +209,7 @@
 
  .header{
    background-color: #f9f9f9 !important;
+   height: 62px;
  }
 
  .logo{
@@ -368,12 +369,14 @@
      margin: 62px auto 0 aut0;
    }
  }
+
  @media screen and (max-width: 576px)  {
    .wrapper{
      width: auto;
      margin: 62px auto 0 aut0;
    }
  }
+
  /* Footer */
 
  .footer{
