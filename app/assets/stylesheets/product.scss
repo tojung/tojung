@@ -56,12 +56,32 @@
   height: 80px;
 }
 
-.share-button{
+.dropdown-share{
   width: 48%;
   margin: 0 1%;
+}
+
+.share-button{
+  width: 100%;
   height: 40px;
   background-color: inherit;
   border: 1px solid #666;
+}
+
+.button:hover{
+  cursor: pointer;
+}
+
+.dropdown-share:hover{
+  cursor: pointer;
+}
+
+.share-button:hover{
+  cursor: pointer;
+}
+
+li:hover{
+  cursor: pointer;
 }
 
 .buy-button-lg{

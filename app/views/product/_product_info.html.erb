@@ -22,46 +22,44 @@
     </div>
 
     <div class="dropdown my-3 w-100">
-    <button type="button" id="packageButton" class="btn btn-white text-left dropdown-toggle d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%=image_tag("shirt.png", class: "package-item mx-3 my-3")%>
-        <div class="package-info my-auto">
-          <span>패키지 선택하기</span>
-        </div>
-        <span class="glyphicon glyphicon-chevron-down"></span>
-    </button>
+      <button type="button" id="packageButton" class="btn btn-white text-left dropdown-toggle d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%=image_tag("shirt.png", class: "package-item mx-3 my-3")%>
+          <div class="package-info my-auto">
+            <span>패키지 선택하기</span>
+          </div>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+      </button>
 
-    <ul class="dropdown-menu w-100">
-      <li class="d-flex" onclick="packageDropdown(this);">
-        <%=image_tag("shirt.png", class: "package-item mx-3 my-3")%>
-          <div class="package-info my-auto">
-            <p class="mb-0 font-red font-weight-bold">\0</p>
-            <p class="mb-0 font-weight-bold">PACKAGE A</p>
-            <p class="mb-0">A+ 스티커, 핸드폰케이스</p>
-          </div>
-      </li>
-      <li class="d-flex" onclick="packageDropdown(this);">
-        <%=image_tag("shirt.png", class: "package-item mx-3 my-3")%>
-          <div class="package-info my-auto">
-            <p class="mb-0 font-red font-weight-bold">\0</p>
-            <p class="mb-0 font-weight-bold">PACKAGE A</p>
-            <p class="mb-0">A+ 스티커, 핸드폰케이스</p>
-          </div>
-      </li>
-      <li class="d-flex" onclick="packageDropdown(this);">
-        <%=image_tag("shirt.png", class: "package-item mx-3 my-3")%>
-          <div class="package-info my-auto">
-            <p class="mb-0 font-red font-weight-bold">\0</p>
-            <p class="mb-0 font-weight-bold">PACKAGE A</p>
-            <p class="mb-0">A+ 스티커, 핸드폰케이스</p>
-          </div>
-      </li>
-
-    </ul>
-  </div>
+      <ul class="dropdown-menu w-100">
+        <% @product.packages.each do |package|%>
+        <li class="d-flex" onclick="packageDropdown(this);">
+          <%=image_tag("shirt.png", class: "package-item mx-3 my-3")%>
+            <div class="package-info my-auto">
+              <p class="mb-0 font-red font-weight-bold">\<%= package.price %></p>
+              <p class="mb-0 font-weight-bold"><%= package.name %></p>
+              <p class="mb-0"><%= package.content.gsub("\r\n", "<br />").html_safe %></p>
+            </div>
+        </li>
+        <% end %>
+      </ul>
+    </div>
     <div class="buttons">
       <div class="d-flex">
-      <button class="share-button">공유하기</button>
-      <button class="share-button">♡ 찜하기</button>
+        <div class="dropdown-share">
+          <button class="share-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공유하기</button>
+          <ul class="dropdown-menu" id="shareDropdown">
+            <li class="d-block">
+              <a id="kakao-link-btn" href="javascript:;">
+              <%=image_tag("kakao.svg", class: "kakao_icon d-block mx-auto mb-3") %>
+              </a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
+                <%=image_tag("fb.svg", class: "d-block mx-auto mb-3")%></a>
+            </li>
+          </ul>
+        </div>
+        <div class="dropdown-share">
+          <button class="share-button heart">♡ 찜하기</button>
+        </div>
       </div>
       <button class="buy-button-lg mt-3">내 인생으로 배송받기</button>
     </div>
@@ -76,4 +74,9 @@
 
     });
   }
+
+  $(document).ready(function(){
+    var x = $('.dropdown-share').width();
+    $('#shareDropdown').width(x);
+  });
 </script>
