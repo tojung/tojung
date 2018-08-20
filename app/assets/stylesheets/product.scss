@@ -84,6 +84,10 @@ li:hover{
   cursor: pointer;
 }
 
+.package-box{
+  padding: 0 12px;
+}
+
 .buy-button-lg{
   width: 98%;
   margin: 0 1%;
@@ -100,6 +104,10 @@ li:hover{
 
 .dropdown-menu{
   transform: translate3d(0px, 126px, 0px);
+}
+
+.package-box:hover{
+  border: 3px solid #d12a2d;
 }
 // navbar
 #myTab.nav-tabs{
