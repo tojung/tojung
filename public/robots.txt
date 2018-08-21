@@ -1,1 +1,17 @@
-# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /maker
+Disallow: /product_order
+Disallow: /maker_response
+Disallow: /mainimage
+Disallow: /product_option
+Disallow: /package
+Disallow: /userupdaters
+Disallow: /agree
+Disallow: /disagree
+Disallow: /home/privacy
+Disallow: /home/policy
+
+Sitemap: https://2jung.com/sitemap.xml
