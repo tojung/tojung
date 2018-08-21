@@ -1,57 +1,131 @@
-<h1> 주문하기 페이지 </h1>
-<hr>
-<h2>상품/패키지정보</h2><br>
-<img src="<%= @package.image0 %>">
-<h3><%= @product.name %></h3>
-<h4><%= @package.name %></h4>
-<h4><%= @package.content %></h4>
-
-<%= form_tag '/product_order' do %>
-  주문할 금액: <%= number_field_tag 'product_price', @package.price, min: @package.price %>
-  <!-- 자바스크립트 함수 적용 예정-->
-  <%= hidden_field_tag 'delivery_price', '3000' %>
-  <%= hidden_field_tag 'total_price', @package.price + 3000 %>
-  <%= hidden_field_tag 'payment_method', '무통장입금' %>
-  <%= hidden_field_tag 'product_id', @product.id %>
-  <%= hidden_field_tag 'package_id', @package.id %>
-  <%= hidden_field_tag 'user_id', current_user.id %>
-  주문 고객 이름: <%= text_field_tag 'name', current_user.name, placeholder: '주문 고객 이름'%>
-  이메일: <input type="email" name="email" placeholder="<%= current_user.email %>" value="<%= current_user.email %>" required> <br><br>
-  폰번호: <input type="tel" name="phone_num" value="<%= current_user.phone_number %>" placeholder="010-xxxx-yyyy" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required><br><br>
-
-  <!-- 우편 번호 찾기 -->
-  <div>
-    <input type="text" id="sample3_postcode" value="<%= current_user.address_num %>" placeholder="우편번호" name="address_num" required>
-    <input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
-
-    <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-      <img src="https://t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+<div class="order-info">
+  <button class="btn btn-light order-btn mb-3">주문하기</button>
+  <%= form_tag '/product_order' do %>
+    <%= hidden_field_tag 'delivery_price', '3000' %>
+    <%= hidden_field_tag 'total_price', @package.price + 3000 %>
+    <%= hidden_field_tag 'payment_method', '무통장입금' %>
+    <%= hidden_field_tag 'product_id', @product.id %>
+    <%= hidden_field_tag 'package_id', @package.id %>
+    <%= hidden_field_tag 'user_id', current_user.id %>
+  <div class="package-selected bg-white mb-3 d-flex mx-0 px-3 py-3">
+    <%=image_tag(@product.image0, class: "order-img")%>
+    <div class="package-info pl-3">
+      <h4 class="font-14 font-weight-bold"><%= @product.name %></h4>
+      <p class="font-grey font-14 mb-0"><%= @package.name %></p>
+      <p class="font-grey font-14 package-info"><%= @package.content %></p>
+      <p class="font-14 font-weight-bold order-money text-right mb-0"><%= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>원</p>
+      <p>더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p><!-- css 적용 필요 -->
     </div>
-    <input type="text" id="sample3_address" value="<%= current_user.address_text %>" class="d_form large" placeholder="주소" name="address_text" required>
-    <input type="text" name="address_text2" value="<%= current_user.address_extra %>" placeholder="상세 주소" required>
   </div>
-  <hr>
+
+  <!-- 주문 정보 -->
+    <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">주문 고객 정보</h4>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="user_name" class="col-4 px-0 col-form-label">주문 고객명</label>
+      <div class="col-8 px-0">
+<!--        <input type="text" class="form-control px-0" id="user_name" placeholder="이름을 입력해 주세요.">-->
+        <%= text_field_tag 'name', current_user.name, placeholder: '주문 고객 이름', class: 'form-control px-0', onkeydown: "if (event.keyCode == 13) { return false;}" %>
+      </div>
+    </div>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="phone_num" class="col-4 px-0 col-form-label">휴대폰 번호</label>
+      <div class="col-8 px-0">
+<!--        <input type="tel" class="form-control px-0" id="phone_num" placeholder="휴대폰 번호를 (-) 빼고 입력해주세요">-->
+        <input type="tel" name="phone_num" value="<%= current_user.phone_number %>" placeholder="010-xxxx-yyyy" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onkeydown="if (event.keyCode == 13) { return false;}" required>
+      </div>
+    </div>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="user_email" class="col-4 px-0 col-form-label">이메일 주소</label>
+      <div class="col-8 px-0">
+<!--        <input type="email" class="form-control px-0" id="user_email" placeholder="이메일 주소를 입력해 주세요.">-->
+        <input type="email" name="email" placeholder="<%= current_user.email %>" value="<%= current_user.email %>" class="form-control px-0" onkeydown="if (event.keyCode == 13) { return false;}" required>
+      </div>
+    </div>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="sample2_postcode" class="col-4 px-0 col-form-label">우편번호</label>
+      <div class="col-8 px-0">
+        <input type="text" id="sample3_postcode" value="<%= current_user.address_num %>" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
+        <input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
+      </div>
+      <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+        <img src="https://t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+      </div>
+    </div>
+
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="sample2_address" class="col-4 px-0 col-form-label">주소</label>
+      <div class="col-8 px-0">
+        <input type="text" id="sample3_address" value="<%= current_user.address_text %>" class="d_form large" placeholder="주소" name="address_text" onkeydown="if (event.keyCode == 13) { return false;}" required>
+      </div>
+    </div>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="extra_address" class="col-4 px-0 col-form-label">상세주소</label>
+      <div class="col-8 px-0">
+        <input type="text" name="address_text2" value="<%= current_user.address_extra %>" placeholder="상세 주소" onkeydown="if (event.keyCode == 13) { return false;}" required>
+      </div>
+    </div>
+  <!-- //주문정보 -->
+
+  <!-- 국회 청원  -->
+  <div class="bg-white mb-3 px-3 py-3">
+    <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">국회 청원 내용</h4>
+    <pre class="text-center font-14 my-3">
   내 인생으로 배송하기를 누르면
   이 법안의 심사를 담당하고 있는 ‘<%= @product.assos %>’
   국회의원 <%= @product.maker_responses.count %>명에게
   청원 이메일이 자동으로 전달됩니다.
-  <hr>
-  <%= text_area_tag 'send_email_content', "안녕하세요, 000 의원님!
+    </pre>
+<!--      <textarea name="" id="" cols="30" rows="10" placeholder="안녕하세요, 000 의원님!-->
+<!--여성가족 위원회에 계류되어있는 2006073 의안인 ‘데이트폭력법’이 왜 통과되지 않는지 궁금합니다.-->
+<!--000 의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.-->
+<!--이메일 청원합니다."></textarea>-->
+      <%= text_area_tag 'send_email_content', "안녕하세요, 의원님!
 #{@product.assos}에 계류되어있는 #{@product.bill_id} 의안인 '#{@product.bill_name}'이 왜 통과되지 않는지 궁금합니다.
-000 의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.
-이메일 청원합니다.", style: 'width: 88%; height: 400px;'%>
-  <hr>
-  <h2>주문 금액</h2>
-  <!-- 자바스크립트 함수 적용 예정-->
-  총 상품 금액: <div id="product_price_description"> <%= @package.price %></div><br>
-  국회 청원: <div> <%= @product.maker_responses.count %></div><br>
-  배송비: <div>3000</div><br>
-  최종 결제 금액: <div><%= @package.price + 3000%></div>
-  <hr>
-  <%= submit_tag '내인생으로 배송 받기' %>
-<% end %>
-<hr>
+의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.
+이메일 청원합니다.", cols: 30, rows: 10, onkeydown: "if (event.keyCode == 13) { return false;}"%>
+  </div>
+  <!-- // 국회 청원  -->
 
+  <!-- 주문 금액 -->
+  <div class="bg-white mb-3 font-14 py-3">
+    <h4 class="font-18 font-weight-bold pb-2 border-bottom-black mx-3">주문 금액</h4>
+    <div class="d-flex justify-content-around order-card-row">
+      <div class="order-card">
+        <p class="mb-0">총 상품 금액</p>
+        <p class="font-weight-bold mb-0" id="product_price_description"><%= @package.price %>원</p>
+      </div>
+      <div class="order-card">
+        <p class="mb-0">국회 청원</p>
+        <p class="font-weight-bold mb-0">이메일 <%= @product.maker_responses.count %>건</p>
+      </div>
+      <div class="order-card">
+        <p class="mb-0">배송비</p>
+        <p class="font-weight-bold mb-0">3,000원</p>
+      </div>
+    </div>
+    <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price + 3000 %>원</span></p>
+    <input type="checkbox">광고 후원 굿즈는<%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %> 에 일괄 배송 시작됩니다.
+    <input type="checkbox">개인정보 수집 및 이용에 동의합니다.
+  </div>
+  <!-- // 주문 금액 -->
+
+  <!-- 결제 -->
+  <div class="bg-white font-14 font-weight-bold px-3 py-3">
+    <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
+    <div class="d-flex flex-wrap justify-content-around">
+      <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
+      <button type="button" class="pay-button mb-3" onclick="extra_payment();">신용카드</button>
+      <button type="button" class="pay-button mb-3" onclick="extra_payment();">휴대폰</button>
+      <button type="button" class="pay-button mb-3" onclick="extra_payment();">TOSS</button>
+    </div>
+    <hr>
+    <div id="payment_method_description">
+    </div>
+<!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
+  </div>
+    <%= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4' %>
+
+<% end %>
 
 <script>
     // 우편번호 찾기 찾기 화면을 넣을 element
@@ -107,6 +181,26 @@
         var evt = (evt) ? evt : ((event) ? event : null);
         var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
         if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+    }
+
+    function change_product_price() {
+        var product_price = parseInt(document.getElementsByName('product_price')[0].value);
+        var product_price_description = document.getElementById('product_price_description');
+        var product_price_description2 = document.getElementById('product_price_description2');
+        var total_price = document.getElementById('total_price');
+        product_price_description.innerText = product_price;
+        product_price_description2.innerText = product_price + 3000;
+        total_price.value = product_price + 3000;
+
+        console.log("changed");
+    }
+    function normal_payment(){
+        var payment_method =  document.getElementById('payment_method_description');
+        payment_method.innerText = '무통장입금을 선택하였습니다.';
+    }
+    function extra_payment(){
+        var payment_method =  document.getElementById('payment_method_description');
+        payment_method.innerText = '해당 옵션은 현재 제공하지않습니다.';
     }
     document.onkeypress = stopRKey;
 </script>

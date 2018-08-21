@@ -36,7 +36,8 @@
         // open sidebar
         $('#packageBar').addClass("open");
         $('#packageBarCollapse').addClass("font-weight-bold");
-        $('.pay-link').attr("href","/");
+        var pid = $('.border-red')[0].id;
+        $('.pay-link').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
         // fade in the overlay
         $('.overlay2').addClass('active');
         $('.collapse.in').toggleClass('in');
@@ -64,7 +65,8 @@
   // 결제하기로 넘어가기
   $(document).ready(function(){
     if ($('.pay-link').hasClass("font-weight-bold")){
-      $('.pay-link').attr("href","/");
+        var pid = $('.border-red')[0].id;
+      $('.pay-link').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
     }
   });
 </script>

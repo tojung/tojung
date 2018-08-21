@@ -16,7 +16,7 @@ ActiveAdmin.register Product do
                 :visible,
                 :bill_id,
                 :bill_name,
-                :status
+                :status, :goods_dilivery_date
   show do
     panel '법안상품' do
       table_for product i18n: Product do
@@ -108,7 +108,11 @@ ActiveAdmin.register Product do
       input 'image0', label: '상품 메인 이미지'
       input 'image1', label: '패키지 정리 이미지'
     end
-
+    input 'goods_dilivery_date', as: :datepicker,
+          datepicker_options: {
+              min_date: '2018-08-08',
+              max_date: '+9D'
+          }, label: '굿즈배송일'
     input 'visible', label: '공개 여부'
     actions
   end

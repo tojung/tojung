@@ -1,7 +1,7 @@
 class ProductOrderController < ApplicationController
   before_action :authenticate_user!
-  before_action :init_package, only: %i[new]
-  before_action :init_product, only: %i[new]
+  before_action :init_package, only: %i[new create]
+  before_action :init_product, only: %i[new create]
   before_action :check_user, :check_price, only: %i[create]
   def new; end
 
