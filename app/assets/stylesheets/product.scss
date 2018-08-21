@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .pro-img{
-  height: 383px;
-  width: 383px;
+  height: 451px;
+  width: 451px;
   display: block;
   margin: auto 0;
 }
@@ -29,16 +29,16 @@
 }
 
 .pro-info{
-  width: 577px;
-  margin: auto 0 auto 40px;
+  width: 50%;
+  padding: 2%;
 }
 
-@media screen and (max-width: 768px){
-  .pro-info{
-    margin: auto 40px;
-    width: 317px;
-  }
-}
+// @media screen and (max-width: 768px){
+//   .pro-info{
+//     margin: auto 40px;
+//     width: 317px;
+//   }
+// }
 
 .pro-money{
   border-bottom: 1px solid black;
@@ -47,7 +47,7 @@
 
 .btn-white{
    background-color: inherit;
-   border: 1px solid #666;
+   border: 1px solid #c5c5c5;
    width: 100%;
 }
 

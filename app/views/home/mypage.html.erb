@@ -1,0 +1,57 @@
+<div class="mypage">
+
+  <section class="profile d-flex px-3 py-3">
+    <div class="mylog font-12 justify-content-around">
+      <div class="d-flex">
+        <div class="mylog-box mx-2 text-center">
+          <p class="mb-0 font-weight-bold font-18">4</p>
+          <p class="text-grey mb-2 font-weight-bold">인생법안</p>
+        </div>
+        <div class="mylog-box mx-2 text-center">
+          <p class="mb-0 font-weight-bold font-18">5</p>
+          <p class="text-grey mb-2 font-weight-bold">관심법안</p>
+        </div>
+        <div class="mylog-box mx-2 text-center">
+          <p class="mb-0 font-weight-bold font-18">4</p>
+          <p class="text-grey mb-2 font-weight-bold">새로운 소식</p>
+        </div>
+      </div>
+      <button class="d-block text-center mypage-edit font-14">개인정보 수정</button>
+    </div>
+    <%=image_tag("shirt.png", class: "profile-img")%>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="my-product-card text-center col-4 px-0" style="background-image: url(<%=asset_path("shirt.png")%>);">
+        <div class="my-product-card-body py-3 d-flex flex-column justify-content-center text-white h-100">
+          <h4 class="font-14 font-weight-bold">데이트폭력법</h4>
+          <pre class="font-14 text-white text-center mb-0">
+Package B
+9,900원 후원
+8/23 배송예정</pre>
+        </div>
+      </div>
+      <div class="my-product-card col-4 text-center col-4 px-0" style="background-image: url(<%=asset_path("shirt.png")%>);">
+        <%=image_tag("layer.png", class:"layer-img w-100")%>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <hr>
+  <section class="news-wrapper font-14">
+    <h4>새로운 소식</h4>
+    <div class="news px-3 py-3">
+      <span>8/20</span>
+      <p>'데이트폭력법'</p>
+      <p>국회의원 1명이 새롭게 응답했습니다.</p>
+    </div>
+    <div class="news px-3 py-3">
+      <span>8/20</span>
+      <p>'데이트폭력법'</p>
+      <p>국회의원 1명이 새롭게 응답했습니다.</p>
+    </div>
+  </section>
+</div>
