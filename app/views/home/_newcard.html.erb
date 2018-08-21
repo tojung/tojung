@@ -10,12 +10,12 @@
           <div class="d-flex justify-content-between mb-1">
             <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
             <!-- 이부분 000명으로 수정 -->
-            <span class="font-red font-weight-bold"><%= product.funded_money / product.goal_money %>%</span>
+            <span class="font-red font-weight-bold"></span>
           </div>
           <p class="card-text mb-2"><%=product.subname%></p>
           <div class="d-flex font-12 justify-content-between">
             <span class="funding-money"><%=product.funded_money%>원</span>
-            <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
+            <span class="funding-days"><% -1*(( Time.now - product.end_date) / 1.days).to_i %></span>
           </div>
         </div>
       </a>
@@ -57,5 +57,62 @@ $(document).ready(function () {
   ]
   })
 });
+
+</script>
+
+<script>
+  // Mobile Center 만 Card body 보이게 하기
+  function cardBodyShow(){
+    $('.card-body').css('display','none');
+    var cardMent = $('.card').filter('.slick-active').children().children();
+    cardMent = cardMent[1];
+    $(cardMent).css('display','block');
+  }
+
+  // 모바일로 접근시에 CardBodyShow 작동
+  $(document).ready(function(){
+    if (window.matchMedia("screen and (max-width: 576px)").matches) {
+      cardBodyShow();
+      $('.center').on('swipe', function(event, slick, direction){
+        cardBodyShow();
+      });
+    }
+  });
+
+  // window 사이즈가 줄어들었을 때 CardBodyShow 작동
+  $(window).resize(function(){
+    if (window.matchMedia("screen and (max-width: 576px)").matches) {
+      cardBodyShow();
+      $('.center').on('swipe', function(event, slick, direction){
+        cardBodyShow();
+      });
+    }
+  });
+
+  // window 사이즈가 늘어났을 때 CardBodyShow 작동
+  $(window).resize(function(){
+    if (window.matchMedia("screen and (min-width: 768px)").matches){
+      $('.card-body').css('display','block');
+      $('.center').on('swipe', function(event, slick, direction){
+        $('.card-body').css('display','block');
+      });
+    }
+  });
+
+  // 원화 콤마 찍기
+  $(document).ready(function(){
+    for (let i=0; i<$('.funding-money').length; i++){
+      putMoney = $('.funding-money')[i];
+      money = $('.funding-money')[i];
+      money = $(money).html();
+      if (money !== "0원"){
+        money = money.substring(0,money.length-1)
+        money = Number(money);
+        money = money.toLocaleString();
+        money = money+"원";
+        $(putMoney).html(money);
+      }
+    }
+  });
 
 </script>
