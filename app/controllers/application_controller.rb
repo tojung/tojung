@@ -40,4 +40,7 @@ class ApplicationController < ActionController::Base
     redirect_to "/product/ready/#{@product.id}"
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
 end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # require 'sidekiq/web'
@@ -40,7 +44,8 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'
   }
-
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
   # authenticate(:user, lambda do |u|
   #   u.admin
   # end) do
