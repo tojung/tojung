@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get 'disagree' => 'response#disagree'
   post 'discuss' => 'response#discuss'
 
+  resources :product_order, param: :product_order_id
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'

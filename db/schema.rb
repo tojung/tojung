@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180816204407) do
+ActiveRecord::Schema.define(version: 20180821120356) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -110,6 +110,20 @@ ActiveRecord::Schema.define(version: 20180816204407) do
     t.integer "product_option_id", null: false
   end
 
+  create_table "product_deliveries", force: :cascade do |t|
+    t.integer "product_order_id"
+    t.integer "product_id"
+    t.integer "package_id"
+    t.string "status", default: "준비중"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "product_order_detail_id"
+    t.index ["package_id"], name: "index_product_deliveries_on_package_id"
+    t.index ["product_id"], name: "index_product_deliveries_on_product_id"
+    t.index ["product_order_detail_id"], name: "index_product_deliveries_on_product_order_detail_id"
+    t.index ["product_order_id"], name: "index_product_deliveries_on_product_order_id"
+  end
+
   create_table "product_options", force: :cascade do |t|
     t.integer "product_id"
     t.text "name"
@@ -123,6 +137,44 @@ ActiveRecord::Schema.define(version: 20180816204407) do
     t.datetime "updated_at", null: false
     t.text "image1"
     t.index ["product_id"], name: "index_product_options_on_product_id"
+  end
+
+  create_table "product_order_details", force: :cascade do |t|
+    t.integer "address_num"
+    t.text "address_text"
+    t.text "address_text2"
+    t.string "phone_num"
+    t.string "phone_num2"
+    t.string "email"
+    t.string "name"
+    t.integer "product_price"
+    t.integer "delivery_price"
+    t.integer "total_price"
+    t.string "payment_method"
+    t.integer "payment_amount"
+    t.integer "product_delivery_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "product_order_id"
+    t.index ["product_delivery_id"], name: "index_product_order_details_on_product_delivery_id"
+    t.index ["product_order_id"], name: "index_product_order_details_on_product_order_id"
+  end
+
+  create_table "product_orders", force: :cascade do |t|
+    t.text "name"
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "package_id"
+    t.string "status", default: "입금대기중"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "product_delivery_id"
+    t.integer "product_order_detail_id"
+    t.index ["package_id"], name: "index_product_orders_on_package_id"
+    t.index ["product_delivery_id"], name: "index_product_orders_on_product_delivery_id"
+    t.index ["product_id"], name: "index_product_orders_on_product_id"
+    t.index ["product_order_detail_id"], name: "index_product_orders_on_product_order_detail_id"
+    t.index ["user_id"], name: "index_product_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
