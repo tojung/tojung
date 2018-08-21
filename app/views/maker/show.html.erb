@@ -1,3 +1,54 @@
+
+
+<section class="maker_profile font-14 py-5 text-center font-grey">
+  <img src="<%= @maker_response.maker.image0 %>" class="px-2 pb-4 maker-img">
+  <% if @maker_response.response_type == "무응답" %>
+  <p class="mb-3 font-grey">
+    <%= @maker_response.maker.name %> 의원에게 답변을 촉구합니다.
+  </p>
+  <% elsif @maker_response.response_text == nil %>
+  <p class="mb-3 font-grey">
+    <%= @maker_response.maker.name%>의원이 '<%= @maker_response.response_type %>'응답했습니다.
+  </p>
+  <% else %>
+  <p class="mb-0 font-grey">
+    <%= @maker_response.maker.name%>의원이 '<%= @maker_response.response_type %>'응답했습니다.
+  </p>
+  <p class="mb-3 font-grey">
+   답변에 궁금한 점이 있다면,추가 이메일을 보내세요!
+  </p>
+  <%end%>
+
+  <p class="mb-3 px-2 font-grey">
+    <%= @maker_response.maker.desc1.gsub('/', '').gsub('\r','').gsub('\n','<br>').html_safe %>
+  </p>
+</section>
+
+<% if @maker_response.response_text != nil %>
+  <section class="email_response px-4 py-4">
+    <p class="font-14">
+      <%= @maker_response.response_text %>
+    </p>
+  </section>
+<%else%>
+<%end%>
+
+<section class="email_send px-4 py-4">
+<%= form_tag "/maker/#{ @maker_response.id }/send_mail", class: "email_form" do %>
+    <div class="form-group">
+      <%= text_field_tag 'title', @title, placeholder: @title, class: "form-control", :required => true%>
+    </div>
+    <div class="form-group">
+      <%= text_area_tag 'content', @content, placeholder: @content, class: "form-control", rows: "10", :required => true %>
+    </div>
+  <%= submit_tag '이메일 보내기', class: "d-block btn btn-email mt-2 font-12" %>
+<%end%>
+</section>
+
+
+
+
+
 <h1> 의원 이메일 청원 테스트 페이지 </h1>
 
 <img src="<%= @maker_response.maker.image0 %>"
@@ -31,4 +82,3 @@
   <!-- 응답 내용-->
   <strong> <%= @maker_response.response_text %></strong>
 <% end %>
-

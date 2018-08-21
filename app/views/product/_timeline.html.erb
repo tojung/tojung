@@ -13,30 +13,24 @@
   <!-- 의원 사진 -->
   <div class="maker_cards container px-0">
     <div class="row mx-0">
-      <div class="col-4 col-md-2 maker_card text-white font-weight-bold">
-        <a href="/maker/email" class="d-block text-white h-100">
-          <div class="maker_card_info text-center font-10">
-            <p class="mt-2 mt-lg-0 mb-0 ">표창원</p>
-            <p class="mb-2">(더민주)</p>
+      <% @maker_responses.each do |maker_response|%>
+      <div class="col-4 col-md-2 maker_card text-white font-weight-bold" style="background-image: url(<%= maker_response.maker.image0 %>);">
+        <a href="/maker/<%= maker_response.id %>" class="d-block text-white h-100">
+          <% if maker_response.response_type == '무응답'%>
+          <div class="maker_card_info text-center font-10" style="background-color: rgba(184, 155, 117, 0.6);">
+          <% elsif maker_response.response_type == '반대'%>
+          <div class="maker_card_info text-center font-10" style="background-color: rgba(148, 54, 66, 0.6);">
+          <% elsif maker_response.response_type == '찬성'%>
+          <div class="maker_card_info text-center font-10" style="background-color: rgba(106, 150, 141, 0.6);">
+          <%else%>
+          <div class="maker_card_info text-center font-10" style="background-color: rgba(106, 51, 80, 0.6);">
+          <%end%>
+            <p class="mt-2 mt-lg-0 mb-0 "><%= maker_response.maker.name %></p>
+            <p class="mb-2">(<%= maker_response.maker.desc2.gsub('\n','') %>)</p>
           </div>
         </a>
       </div>
-      <div class="col-4 col-md-2 maker_card text-white font-weight-bold">
-        <a href="/maker/email" class="d-block text-white h-100">
-          <div class="maker_card_info text-center font-10">
-            <p class="mt-2 mt-lg-0 mb-0 ">표창원</p>
-            <p class="mb-2">(더민주)</p>
-          </div>
-        </a>
-      </div>
-      <div class="col-4 col-md-2 maker_card text-white font-weight-bold">
-        <a href="/maker/email" class="d-block text-white h-100">
-          <div class="maker_card_info text-center font-10">
-            <p class="mt-2 mt-lg-0 mb-0 ">표창원</p>
-            <p class="mb-2">(더민주)</p>
-          </div>
-        </a>
-      </div>
+      <%end%>
     </div>
   </div>
   <!-- // 의원 사진 -->

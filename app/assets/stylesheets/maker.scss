@@ -1,3 +1,49 @@
 // Place all the styles related to the maker controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.email_response{
+  background-color: rgba(231, 231, 231, 0.6);
+  color: #3d3d3d;
+}
+
+.email_resoponse p{
+  line-height: 1.5;
+}
+
+.email_form{
+  width: 250px;
+  margin: 0 auto;
+}
+
+.email_form > .form-group > input::placeholder{
+  font-size: 12px;
+  line-height: 15px;
+  color: #aab2bd;
+}
+
+.form-control{
+  font-size: 12px;
+  color: #aab2bd;
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 3px 0 #ccd1d9;
+}
+
+textarea.form-control::placeholder{
+  line-height: 1.5;
+
+}
+
+.btn-email{
+  width: 132px;
+  height: 32px;
+  border: solid 1px #a7a7a7;
+  background-color: #f9f9f9;
+  border-radius: 0;
+  margin: 0 auto;
+  color: #858585;
+}
+
+.maker-img{
+  width: 200px;
+  height: 200px;
+}
