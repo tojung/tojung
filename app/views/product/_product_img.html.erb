@@ -1,1 +1,1 @@
-<%=  image_tag(@cdn_url + @product.image0.path, class: "pro-img") %>
+<%=  image_tag(@cdn_url + @product.image0.path, class: "pro-img") if @product.image0.path != nil%>

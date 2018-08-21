@@ -24,7 +24,7 @@
         <div class="col-6 col-lg-3 px-0">
           <div class="pro-card">
             <%#=image_tag("email.png", class: "w-100")%>
-            <img src="<%= @cdn_url + product_option.image0.path %>" class="w-100">
+            <img src="<%= @cdn_url + product_option.image0.path if product_option.image0.path != nil%>" class="w-100">
             <div class="card-body py-4 text-center">
               <h4 class="pro-num mb-2"><%= product_option.name %></h4>
               <p class="font-grey font-12 mb-4"><% product_option.packages.each do |package| %>  <%= package.name %> <% end %>패키지에 포함</p>
