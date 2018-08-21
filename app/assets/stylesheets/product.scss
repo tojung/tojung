@@ -95,6 +95,12 @@ li:hover{
   background-color: #434343;
   color: white;
   border: none;
+  cursor: pointer;
+}
+
+.buy-button-lg:hover, .buy-button-lg:focus{
+  color: black;
+  outline: none,
 }
 
 .dropdown-toggle::after{

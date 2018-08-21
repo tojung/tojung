@@ -6,12 +6,12 @@
       <div class="d-flex justify-content-between">
         <h5 class="card-title text-black font-weight-bold mb-0 font-18"><%=product.name%></h5>
         <!-- 이부분 000명으로 수정 -->
-        <span class="font-red font-weight-bold font-18"><%= product.funded_money / product.goal_money %>%</span>
+        <span class="font-red font-weight-bold font-18"></span>
       </div>
       <p class="card-text mb-2 font-14"><%=product.subname%></p>
       <div class="d-flex font-14 justify-content-between">
         <span class="funding-money"><%=product.funded_money%>원</span>
-        <span class="funding-days"><%= -1*(( Time.now - product.end_date) / 1.days).to_i %>일 남음</span>
+        <span class="funding-days"><% -1*(( Time.now - product.end_date) / 1.days).to_i %></span>
       </div>
     </div>
   </a>

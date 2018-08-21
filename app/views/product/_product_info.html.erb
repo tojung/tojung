@@ -2,7 +2,7 @@
   <h4 class="font-18 font-weight-bold"><%= @product.name %></h4>
   <p class="font-14"><%= @product.subname %></p>
   <div class="d-flex font-16 font-weight-bold justify-content-between">
-    <span><%= @product.funded_money %>원</span>
+    <span class="funding-money"><%= @product.funded_money %>원</span>
     <span class="font-red"><%= @product.funded_money / @product.goal_money %> %</span>
     <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
   </div>
@@ -16,7 +16,7 @@
       <p class="font-18"><%= @product.subname %></p>
     </div>
     <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">
-      <span><%= @product.funded_money %>원</span>
+      <span class="funding-money"><%= @product.funded_money %>원</span>
       <span class="font-red"><%= @product.funded_money / @product.goal_money %> %</span>
       <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
     </div>
@@ -82,5 +82,17 @@
   $(document).ready(function(){
     var x = $('.dropdown-share').width();
     $('#shareDropdown').width(x);
+  });
+
+  // 원화 콤마
+  $(document).ready(function(){
+      money = $('.funding-money').html();
+      if (money !== "0원"){
+        money = money.substring(0,money.length-1)
+        money = Number(money);
+        money = money.toLocaleString();
+        money = money+"원";
+        $('.funding-money').html(money);
+      }
   });
 </script>

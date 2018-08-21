@@ -1,6 +1,6 @@
 <!-- Header -->
 <header class="header fixed-top">
-  <nav class="navbar navbar-light">
+  <nav class="navbar navbar-light height-inherit">
     <h4 class="brand"><a class="navbar-brand" href="/"><%=image_tag("logo.png", class: "logo")%></a></h4>
     <div class="nav-right">
       <a class="navbar-brand mr-1" href="#"><%=image_tag(@cdn_url+"search.png", class: "icon_search")%></a>
@@ -14,7 +14,7 @@
     <div id="dismiss" class="bg-white">
       <button id="dismiss-button" class="button-none bg-white" type="button"><%=image_tag(@cdn_url+"exit.svg", class: "bg-white", id: "exit-button")%></button>
     </div>
-    <pre class="sign-status bg-white text-right">
+    <pre class="sign-status bg-white text-right mb-2">
 <%if user_signed_in?%>
 <a class="font-grey" href="/users/sign_out">로그아웃</a>
 <%else%>

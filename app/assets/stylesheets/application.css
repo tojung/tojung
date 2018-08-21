@@ -132,6 +132,14 @@
    outline: none;
  }
 
+.height-inherit{
+  height: inherit;
+}
+
+button{
+  cursor: pointer;
+}
+
  @media (min-width: 992px) {
 
    .category-list a{
