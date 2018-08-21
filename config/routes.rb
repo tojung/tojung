@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get 'home/policy'
   get 'home/privacy'
-
+  get 'home/mypage'
   get 'additional_info' => 'userupdaters#additional'
   post 'additional_update' => 'userupdaters#additional_update'
 
