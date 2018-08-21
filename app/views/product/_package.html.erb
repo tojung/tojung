@@ -3,7 +3,7 @@
     <div class="package-row scrolling-wrapper">
       <% @product.packages.each do |package|%>
        <div class="card bg-white">
-          <%=image_tag(@cdn_url + package.image0.path , class: "package-img d-block mx-auto")%>
+          <%=image_tag(@cdn_url + package.image0.path , class: "package-img d-block mx-auto") if package.image0.path != nil%>
         <div class="card-body text-center py-1 font-14">
           <p class="font-red mb-1">\<%= package.price %></p>
           <h5 class="text-black font-weight-bold mb-1 font-14" lang="en"><%= package.name %></h5>
