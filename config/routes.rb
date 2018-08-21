@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  require 'sidekiq/web'
+  # require 'sidekiq/web'
 
   root 'home#index'
   get 'home/index'
@@ -41,9 +41,9 @@ Rails.application.routes.draw do
     registrations: 'user/registrations'
   }
 
-  authenticate(:user, lambda do |u|
-    u.admin
-  end) do
-    mount Sidekiq::Web => '/sidekiq'
-  end
+  # authenticate(:user, lambda do |u|
+  #   u.admin
+  # end) do
+  #   mount Sidekiq::Web => '/sidekiq'
+  # end
 end
