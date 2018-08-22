@@ -125,6 +125,8 @@ li:hover{
 .package-box:hover{
   border: 3px solid #d12a2d;
 }
+
+
 // navbar
 #myTab.nav-tabs{
   border-bottom: 1px solid #979797;
@@ -232,13 +234,15 @@ li:hover{
   background-color: #434343;
 }
 
-.pack-collection-img{
-  width: 100%;
+.package-set{
+  width: 330px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px){
-  .pack-collection-img{
-    width: 70%;
+  .package-set{
+    width: 700px;
+    margin: 0 0;
   }
 }
 // package
