@@ -21,8 +21,12 @@
     </div>
     <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">
       <span class="funding-money"><%= @product.funded_money %>원</span>
-      <span class="font-red"><%= @product.funded_money / @product.goal_money %> %</span>
-      <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
+      <span class="font-red"><%= @product.funded_count %> %</span>
+      <% if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
+        <span>상시펀딩중</span>
+      <% else %>
+        <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
+      <% end %>
     </div>
 
     <div class="dropdown my-3 w-100">
