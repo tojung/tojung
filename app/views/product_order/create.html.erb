@@ -1,12 +1,16 @@
 <div class="order-complete">
-  <div class="package-selected bg-white mb-3 d-flex mx-0 px-3 py-3">
-    <%=image_tag("cover2.png", class: "order-img")%>
-    <div class="package-info pl-3">
-      <h4 class="font-14 font-weight-bold"><%= @product.name %></h4>
-      <p class="font-grey font-14 mb-0"><%= @package.name %></p>
-      <p class="font-grey font-14 package-info"><%= @package.content %></p>
-      <p class="font-14 font-weight-bold order-money text-right mb-0"><%= params[:total_price] %>원</p>
+  <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
+    <div class="package-selected d-flex">
+      <%=image_tag(@product.image0, class: "order-img")%>
+      <div class="package-info pl-3">
+        <h4 class="font-14 font-weight-bold"><%= @product.name %></h4>
+        <p class="font-grey font-14 mb-0"><%= @package.name %></p>
+        <p class="font-grey font-14 package-info"><%= @package.content %></p>
+        <!-- css 적용 필요 -->
+      </div>
     </div>
+    <p class="font-14 font-weight-bold order-money border-bottom-none text-right mb-2"><%= params[:total_price] %>
+      <span class="order-money-won">원</span></p>
   </div>
 
   <section class="complete-message-wrapper px-3 py-3">

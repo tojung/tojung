@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .pro-img{
-  height: 451px;
-  width: 451px;
+  height: 411px;
+  width: 411px;
   display: block;
   margin: auto 0;
 }
@@ -30,7 +30,7 @@
 
 .pro-info{
   width: 50%;
-  padding: 2%;
+  padding: 10px 20px;
 }
 
 // @media screen and (max-width: 768px){
@@ -57,7 +57,7 @@
 }
 
 .dropdown-share{
-  width: 48%;
+  width: 49%;
   margin: 0 1%;
 }
 
@@ -85,7 +85,7 @@ li:hover{
 }
 
 .package-box{
-  padding: 0 12px;
+  padding: 6px 12px;
 }
 
 .buy-button-lg{
@@ -93,7 +93,9 @@ li:hover{
   margin: 0 1%;
   height: 50px;
   background-color: #434343;
-  color: white;
+  color: white !important;
+  text-align: center;
+  padding: 14px 0;
   border: none;
   cursor: pointer;
 }
@@ -106,6 +108,14 @@ li:hover{
 .dropdown-toggle::after{
   margin: auto 0;
   margin-left: 30px;
+}
+
+.share-button.dropdown-toggle::after{
+  display: none;
+}
+
+.sns-icon{
+  width: 180px;
 }
 
 .dropdown-menu{
@@ -138,6 +148,10 @@ li:hover{
   box-shadow: none;
 }
 
+.pay-link.hidden0{
+  visibility: hidden !important;
+}
+
 .overlay2 {
     display: none;
     position: fixed;
@@ -157,14 +171,35 @@ li:hover{
     display: block;
     opacity: 1;
     top: 60px;
-    bottom: 286px;
+    bottom: 302px;
 }
 
 .video-text{
   line-height: 1.25;
 }
 
+.package-row > .slick-list > .slick-track{
+  margin-top: 0px;
+}
 // description
+
+.desc-pro-img{
+  width: 186px;
+  height: 186px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 576px){
+  width: 175px;
+  height: 175px;
+}
+@media screen and (min-width: 770px){
+  .desc-pro-img{
+    width: 242.5px;
+    height: 242.5px;
+    margin: 0 auto;
+  }
+}
+
 .pro-num{
   display: inline-block;
   padding: 3px 9px;
@@ -250,7 +285,7 @@ li:hover{
 #packageBar{
   overflow-y: scroll;
   width: 100%;
-  height: 226px;
+  height: 242px;
   margin-bottom: -166px;
   position: fixed;
   bottom: 0;

@@ -1,5 +1,6 @@
 <nav id="packageBar" class="bg-white visible-xs">
   <div class="dismiss">
+    <h4 class="font-14 font-weight-bold text-center my-3 package-title">패키지 선택하기</h4>
     <div class="package-row scrolling-wrapper">
       <% @product.packages.each do |package|%>
        <div class="card bg-white">
@@ -49,6 +50,7 @@
     ]
     });
 
+
     // 패키지 선택 function
     $('.package-img').click(function(){
         if ($(this).hasClass("border-red")){
@@ -60,8 +62,15 @@
           }
           $(this).addClass("border-red");
         }
+        var pid = $('.border-red')[0].id;
+        $('.pay-link').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
+        setInterval("doBlink()",400);
     });
 
     // $('.packageBar').unwrap();
   });
+
+  function doBlink(){
+    $('.pay-link').toggleClass("hidden0");
+  }
 </script>
