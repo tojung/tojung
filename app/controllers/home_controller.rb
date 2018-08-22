@@ -19,6 +19,10 @@ class HomeController < ApplicationController
         @products = @products.where(category: '보건/복지')
       elsif @num == '6'
         @products = @products.where(category: '외교/통일/국방')
+      elsif @num == '7'
+        @products = @products
+      elsif @num == '8'
+        @products = @products
       end
     end
   end
@@ -39,7 +43,10 @@ class HomeController < ApplicationController
       @products_categorized = @products.where(category: '보건/복지')
     elsif @num == '6'
       @products_categorized = @products.where(category: '외교/통일/국방')
-
+    elsif @num == '7'
+      @products_categorized = @products
+    elsif @num == '8'
+      @products_categorized = @products
       respond_to do |format|
         format.js { render locals: { products_categorized: @products_categorized } }
       end

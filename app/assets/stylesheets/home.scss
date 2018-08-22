@@ -6,6 +6,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // Index.html
+.cover{
+  margin-top: 62px;
+}
 
 .cover_img{
   height: calc(100vw*0.914);
@@ -39,7 +42,7 @@
 
 @media (min-width: 768px){
   .cover_img{
-    height: auto;
+    height: calc(100vw*0.4);
     width: 100%;
     margin: 0 auto;
   }
@@ -296,4 +299,9 @@ span.or{
   .my-product-card{
     height: 230px;
   }
+}
+
+.links-bar{
+  border-right: 1px solid #434343;
+  padding: 0 10px;
 }
