@@ -6,6 +6,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // Index.html
+.cover{
+  margin-top: 62px;
+}
 
 .cover_img{
   height: calc(100vw*0.914);
@@ -39,7 +42,7 @@
 
 @media (min-width: 768px){
   .cover_img{
-    height: auto;
+    height: calc(100vw*0.4);
     width: 100%;
     margin: 0 auto;
   }
@@ -234,4 +237,71 @@ span.or{
   .brand_cover{
     height: 500px;
   }
+}
+
+// MY PAGE
+
+.profile{
+  justify-content: center;
+}
+
+.profile-img{
+  width: 75px;
+  height: 75px;
+  border-radius: 300px;
+  margin-left: 10px;
+}
+
+.text-grey{
+  color: #7f7f7f;
+}
+
+.mypage-edit{
+  width: 220px;
+  height: 26px;
+  border-radius: 2px;
+  border: solid 1px #979797;
+  background-color: white;
+}
+
+.my-product-card{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.my-product-card-body{
+  opacity: 0;
+  transition: all 1s;
+}
+
+.my-product-card-body:hover{
+  opacity: 1;
+  background-color: rgba(67, 67, 67, 0.6);
+}
+
+.layer-img{
+  opacity: 0;
+  height: 100%;
+}
+.layer-img:hover{
+  opacity: 1;
+}
+.news{
+  border-left: 2px solid #979797;
+}
+
+@media (min-width: 768px){
+  .profile{
+    width: 500px;
+    margin: 0 auto;
+  }
+  .my-product-card{
+    height: 230px;
+  }
+}
+
+.links-bar{
+  border-right: 1px solid #434343;
+  padding: 0 10px;
 }

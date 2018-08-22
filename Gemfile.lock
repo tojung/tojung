@@ -229,6 +229,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails_real_favicon (0.0.11)
+      json (>= 1.7, < 3)
+      rails (>= 3.1)
+      rest-client (~> 2.0)
+      rubyzip (~> 1)
     railties (5.1.6)
       actionpack (= 5.1.6)
       activesupport (= 5.1.6)
@@ -351,6 +356,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   puma (~> 3.7)
   rails (~> 5.1.6)
+  rails_real_favicon
   redis-rails
   sass-rails (~> 5.0)
   selenium-webdriver

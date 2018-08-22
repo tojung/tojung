@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="d-flex visible-lg py-3 pro-info-wrapper">
+<div class="d-flex visible-lg py-3 pro-info-wrapper justify-content-center">
   <%=  image_tag(@cdn_url + @product.image0.path, class: "pro-img visible-lg") %>
   <div class="pro-info">
     <div class="product-title">
@@ -22,7 +22,7 @@
     </div>
 
     <div class="dropdown my-3 w-100">
-      <button type="button" id="packageButton" class="btn btn-white text-left dropdown-toggle d-flex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button type="button" id="packageButton" class="btn btn-white text-left dropdown-toggle d-flex justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%=image_tag("shirt.png", class: "package-item mx-3 my-3")%>
           <div class="package-info my-auto">
             <span>패키지 선택하기</span>
@@ -33,7 +33,7 @@
       <ul class="dropdown-menu w-100 py-0" style="transform: translate3d(0px, 126px, 0px) !important; ">
         <% @product.packages.each do |package|%>
         <li class="d-flex package-box" onclick="packageDropdown(this);">
-          <%=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3") if package.image0.path != nil%>
+          <%=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3", id: package.id) if package.image0.path != nil%>
             <div class="package-info my-auto">
               <p class="mb-0 font-red font-weight-bold">\<%= package.price %></p>
               <p class="mb-0 font-weight-bold"><%= package.name %></p>
@@ -50,10 +50,10 @@
           <ul class="dropdown-menu" id="shareDropdown">
             <li class="d-block">
               <a id="kakao-link-btn" href="javascript:;">
-              <%=image_tag("kakao.svg", class: "kakao_icon d-block mx-auto my-3") %>
+              <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
               </a>
               <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
-                <%=image_tag("fb.svg", class: "d-block mx-auto mb-3")%></a>
+                <%=image_tag("fb.svg", class: "sns-icon d-block mx-auto mb-3")%></a>
             </li>
           </ul>
         </div>
@@ -61,17 +61,19 @@
           <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
         </div>
       </div>
-      <button class="buy-button-lg mt-3">내 인생으로 배송받기</button>
+      <a class="d-block buy-button-lg mt-3" id="pay-link-lg">내 인생으로 배송받기</a>
     </div>
   </div>
 </div>
 
 <script>
+
   function packageDropdown(item){
     $(document).ready(function(){
       var x = $(item).html();
       $('#packageButton').html(x);
-
+      var pid = $("#packageButton").children()[0].id;
+      $('#pay-link-lg').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
     });
   }
 

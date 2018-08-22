@@ -1,20 +1,20 @@
 <!-- Cover -->
 <section class="cover">
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
     <ol class="carousel-indicators mb-1">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item">
         <%=image_tag(@mainimage0, class: "d-block cover_img")%>
         <pre class="cover_text text-1">
 법안 배송받기를 클릭하면
 국회에 심사촉구청원이
 보내집니다</pre>
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item active">
         <%=image_tag(@mainimage1, class: "d-block cover_img")%>
         <pre class="cover_text text-2">
 내 삶을 바꾸는
@@ -32,11 +32,11 @@
   </div>
 </section>
 <!-- //Cover -->
-
+<div class="wrapper mt-0">
 <!-- Category -->
 <ul class="category-list d-flex flex-wrap justify-content-center mb-0">
-  <a href="" class="category-keyword" onclick="cate_change(this);">HOT</a>
-  <a href="" class="category-keyword" onclick="cate_change(this);">NEW</a>
+  <a href="/categorize/7" data-remote="true" class="category-keyword" onclick="cate_change(this);">HOT</a>
+  <a href="/categorize/8" data-remote="true" class="category-keyword" onclick="cate_change(this);">NEW</a>
   <a href="/categorize/1" data-remote="true" class="category-keyword" onclick="cate_change(this);">인권/성평등</a>
   <a href="/categorize/2" data-remote="true" class="category-keyword" onclick="cate_change(this);">동물</a>
   <a href="/categorize/3" data-remote="true" class="category-keyword" onclick="cate_change(this);">육아/교육</a>
@@ -46,6 +46,7 @@
 </ul>
 <!-- // Category -->
 <div class="pro-tag text-white"><p id="category-tag">HOT</p></div>
+
 <%=render 'thumb'%>
 <!-- MD's Contents -->
 <section class="contents">
@@ -65,3 +66,9 @@
 <!-- // MD's Contents -->
 
 <%=render 'bottom_bar'%>
+</div>
+<script>
+  $(document).ready(function(){
+    $('.cover').unwrap();
+  });
+</script>
