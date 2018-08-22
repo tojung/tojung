@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180821135902) do
+ActiveRecord::Schema.define(version: 20180822123138) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20180821135902) do
     t.text "ver_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "image3"
+    t.text "image4"
   end
 
   create_table "maker_responses", force: :cascade do |t|
@@ -180,8 +182,8 @@ ActiveRecord::Schema.define(version: 20180821135902) do
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname"
-    t.datetime "start_date", default: "2018-08-08 06:16:42", null: false
-    t.datetime "end_date", default: "2018-09-07 06:16:42", null: false
+    t.datetime "start_date", default: "2018-08-16 20:46:42", null: false
+    t.datetime "end_date", default: "2018-09-15 20:46:42", null: false
     t.text "youtb_url"
     t.text "video_text"
     t.text "bill_url"

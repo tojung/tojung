@@ -83,6 +83,9 @@ class HomeController < ApplicationController
       @mainimage0 = $redis.get('mainimage0')
       @mainimage1 = $redis.get('mainimage1')
       @mainimage2 = $redis.get('mainimage2')
+
+      @mainimage3 = $redis.get('mainimage3')
+      @mainimage4 = $redis.get('mainimage4')
     end
   end
 
