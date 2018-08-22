@@ -1,7 +1,13 @@
 <%= form_tag '/product_order' do %>
   <button class="btn btn-light order-btn mb-3">주문하기</button>
+    <% if @package.price != 0 %>
     <%= hidden_field_tag 'delivery_price', '3000' %>
-    <%= hidden_field_tag 'total_price', @package.price + 3000 %>
+    <% delivery_price = 3000 %>
+    <% else %>
+    <%= hidden_field_tag 'delivery_price', '0' %>
+    <% delivery_price = 0 %>
+  <% end %>
+    <%= hidden_field_tag 'total_price', @package.price + delivery_price %>
     <%= hidden_field_tag 'payment_method', '무통장입금' %>
     <%= hidden_field_tag 'product_id', @product.id %>
     <%= hidden_field_tag 'package_id', @package.id %>
