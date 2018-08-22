@@ -75,7 +75,7 @@ class HomeController < ApplicationController
     if mainimage0.nil?
       mainimages = Mainimage.last
       if mainimages.nil?
-        redirect_to '/mainimage/new'
+        redirect_to '/admin'
       else
         mainimages.redis_set
       end
@@ -86,6 +86,9 @@ class HomeController < ApplicationController
 
       @mainimage3 = $redis.get('mainimage3')
       @mainimage4 = $redis.get('mainimage4')
+
+      @md_link0 = $redis.get('md_link0')
+      @md_link1 = $redis.get('md_link1')
     end
   end
 
