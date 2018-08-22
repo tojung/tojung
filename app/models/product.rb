@@ -4,4 +4,5 @@ class Product < ApplicationRecord
   has_many :product_options, dependent: :destroy
   has_many :packages, dependent: :destroy
   has_many :maker_responses, dependent: :destroy
+  has_many :product_likes, dependent: :destroy
 end

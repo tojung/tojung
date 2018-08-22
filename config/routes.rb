@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'product_like/create'
+
+  get 'product_like/update'
+
   get 'errors/not_found'
 
   get 'errors/internal_server_error'
@@ -44,8 +48,10 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'user/omniauth_callbacks',
     registrations: 'user/registrations'
   }
-  match "/404", :to => "errors#not_found", :via => :all
-  match "/500", :to => "errors#internal_server_error", :via => :all
+  # match '/404', to: 'errors#not_found', via: :all
+  # match '/500', to: 'errors#internal_server_error', via: :all
+
+  resources :product_like, param: :product_like_id
   # authenticate(:user, lambda do |u|
   #   u.admin
   # end) do

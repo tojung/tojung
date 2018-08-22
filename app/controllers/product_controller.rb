@@ -1,8 +1,7 @@
 class ProductController < ApplicationController
   before_action :redirect_root_except_admin, except: %i[show]
-  before_action :read_product_infos, :check_admin, only: %i[detail_ready show]
+  before_action :read_product_infos, :check_admin, :is_liked, only: %i[detail_ready show]
   before_action :find_product, only: %i[update edit]
-
   # GET '/product/new'
   def new; end
 
@@ -31,6 +30,16 @@ class ProductController < ApplicationController
   def detail_ready; end
 
   private
+
+  def is_liked
+    if !user_signed_in?
+      @like = nil
+    else
+      @like = ProductLike.where(user_id: current_user.id, product_id: params[:product_id])
+    end
+    puts "************"
+    print(@like)
+  end
 
   def create_maker_responses(product)
     makers = Maker.where(assos: product.assos)

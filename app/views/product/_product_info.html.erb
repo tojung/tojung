@@ -57,10 +57,39 @@
             </li>
           </ul>
         </div>
-        <div class="dropdown-share">
-          <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
-        </div>
-      </div>
+        <% if @like == nil %>
+          <!-- 비 로그인-->
+          <div class="dropdown-share"><%= form_tag '/product_like' do %>
+              <%= hidden_field_tag 'product_id', @product.id%>
+              <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
+            <% end %>
+          </div>
+        <% elsif @like.empty? %>
+          <!-- 찜 추가-->
+          <div class="dropdown-share">
+            <%= form_tag '/product_like' do %>
+              <%= hidden_field_tag 'product_id', @product.id%>
+              <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
+            <% end %>
+          </div>
+        <% elsif @like[0].status == true  %>
+          <!-- 찜 제거-->
+          <div class="dropdown-share">
+            <%= form_tag "/product_like/#{ @like[0].id }", method: 'put' do %>
+              <%= hidden_field_tag 'product_id', @product.id%>
+              <button class="share-button heart"><i class="far fa-heart"></i> 찜 제거하기</button>
+            <% end %>
+          </div>
+        <% elsif @like[0].status == false %>
+          <!-- 찜 추가-->
+          <div class="dropdown-share">
+            <%= form_tag "/product_like/#{ @like[0].id }", method: 'put' do %>
+              <%= hidden_field_tag 'product_id', @product.id%>
+              <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
+            <% end %>
+          </div>
+        <% end %>
+          </div>
       <a class="d-block buy-button-lg mt-3" id="pay-link-lg">내 인생으로 배송받기</a>
     </div>
   </div>
