@@ -2,12 +2,12 @@
   <button class="btn btn-light order-btn mb-3">주문하기</button>
     <% if @package.price != 0 %>
     <%= hidden_field_tag 'delivery_price', '3000' %>
-    <% delivery_price = 3000 %>
-    <% else %>
+    <%= hidden_field_tag 'total_price', @package.price + 3000 %>
+  <% else %>
     <%= hidden_field_tag 'delivery_price', '0' %>
-    <% delivery_price = 0 %>
+    <%= hidden_field_tag 'total_price', @package.price %>
   <% end %>
-    <%= hidden_field_tag 'total_price', @package.price + delivery_price %>
+
     <%= hidden_field_tag 'payment_method', '무통장입금' %>
     <%= hidden_field_tag 'product_id', @product.id %>
     <%= hidden_field_tag 'package_id', @package.id %>
@@ -110,12 +110,21 @@
         <p class="font-weight-bold mb-0">이메일 <%= @product.maker_responses.count %>건</p>
       </div>
       <div class="order-card">
+        <% if @package.price != 0%>
         <p class="mb-0">배송비</p>
         <p class="font-weight-bold mb-0">3,000원</p>
+          <% else %>
+          <p class="mb-0">배송비</p>
+          <p class="font-weight-bold mb-0">0원</p>
+        <% end %>
       </div>
     </div>
+    <% if @package.price != 0 %>
     <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price + 3000 %>원</span></p>
-    <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %>일에 일괄 배송 시작됩니다.
+      <% else %>
+      <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price %>원</span></p>
+  <% end%>
+      <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %>일에 일괄 배송 시작됩니다.
       <input type="checkbox" class="checkbox"><span class="checkmark"></span>
     </label>
     <label class="checklabel ml-2">개인정보 수집 및 이용에 동의합니다.
@@ -208,5 +217,28 @@
         // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
         element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
         element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+    }
+    function normal_payment(){
+        var payment_method =  document.getElementById('payment_method_description');
+        payment_method.innerText = '무통장입금을 선택하였습니다.';
+    }
+    function extra_payment(){
+        var payment_method =  document.getElementById('payment_method_description');
+        payment_method.innerText = '해당 옵션은 현재 제공하지않습니다.';
+    }
+    function change_product_price() {
+        var product_price = parseInt(document.getElementsByName('product_price')[0].value);
+        var product_price_description = document.getElementById('product_price_description');
+        var product_price_description2 = document.getElementById('product_price_description2');
+        var total_price = document.getElementById('total_price');
+        product_price_description.innerText = product_price;
+        <% if @package.price != 0 %>
+          product_price_description2.innerText = product_price + 3000;
+          total_price.value = product_price + 3000;
+        <% else %>
+        product_price_description2.innerText = product_price;
+        total_price.value = product_price;
+        <% end %>
+        console.log("changed");
     }
 </script>
