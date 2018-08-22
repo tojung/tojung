@@ -16,14 +16,15 @@
           <p class="text-grey mb-2 font-weight-bold">새로운 소식</p>
         </div>
       </div>
-      <button class="d-block text-center mypage-edit font-14">개인정보 수정</button>
+      <button class="d-block text-center mypage-edit font-14"><a href=""> 개인정보 수정</a></button>
     </div>
-    <%=image_tag("shirt.png", class: "profile-img")%>
+    <%=image_tag(current_user.image0, class: "profile-img") if current_user.image0 != nil%>
   </section>
 
   <div class="container">
     <div class="row">
       <% current_user.product_orders.each do |product_order| %>
+        <!-- 링크 <a href="/product/<%#= product_order.product.id %>"-->
         <div class="my-product-card text-center col-4 px-0" style="background-image: url(<%= product_order.package.image0 %>);">
           <div class="my-product-card-body py-3 d-flex flex-column justify-content-center text-white h-100">
             <h4 class="font-14 font-weight-bold"><%= product_order.product.name %></h4>
@@ -35,6 +36,7 @@
         </div>
         <% end %>
       <% current_user.product_likes.each do |product_like|%>
+        <!-- 링크 <a href="/product/<%#= product_like.product.id %>"-->
         <div class="my-product-card col-4 text-center col-4 px-0" style="background-image: url(<%= product_like.product.image0 %>);">
           <%=image_tag("layer.png", class:"layer-img w-100")%>
         </div>
