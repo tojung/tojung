@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  mount_uploader :image0, ImageUploader
   has_many :product_orders
   has_many :product_likes
   devise :database_authenticatable, :registerable,
@@ -23,6 +24,7 @@ class User < ApplicationRecord
     return false if email.nil? ||
                     address_text.nil? ||
                     address_num.nil? ||
+                    image0.nil? ||
                     phone_number.nil? ||
                     address_extra.nil?
     true

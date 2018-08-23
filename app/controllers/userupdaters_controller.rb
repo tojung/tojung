@@ -19,6 +19,7 @@ class UserupdatersController < ApplicationController
                   :address_num,
                   :phone_number,
                   :address_text,
-                  :address_extra)
+                  :address_extra,
+                  :image0)
   end
 end

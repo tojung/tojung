@@ -1,7 +1,7 @@
 <section class="sign_up mb-5 text-center">
 <h2 class="font-18 my-4">추가정보 입력하기</h2>
 
-<%= form_tag('/additional_update') do |f| %>
+<%= form_tag('/additional_update', multipart: true) do |f| %>
 <div class="field mb-3">
   <input type="email" name="email" placeholder="<%= current_user.email %>" value="<%= current_user.email %>" required>
 </div>
@@ -10,9 +10,10 @@
 </div>
   <!-- 우편 번호 찾기 -->
   <div class="field mb-3">
-    <input type="text" class="mb-3" id="sample2_postcode" placeholder="우편번호" name="address_num" pattern="[0-9]{5}" required>
-    <input type="button" class="btn-login text-white font-14 mb-3" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
-    <br>
+
+    <input type="text" id="sample2_postcode" placeholder="우편번호" value="<%= current_user.address_num %>" name="address_num" pattern="[0-9]{5}" required>
+    <input type="button" class="btn-login text-white font-14" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+
     <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
     <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
     <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
@@ -20,8 +21,12 @@
     <input type="text" id="sample2_address" class="mb-3" placeholder="주소" name="address_text" required>
     <input type="text" name="address_extra" placeholder="상세 주소" required>
   </div>
-
+<% if current_user.image0 == nil%>
+      <p>프로필 이미지 </p>
+      <input type="file" name="image0">
+    <% end %>
   <%= submit_tag("추가 완료", class: "btn-login text-white font-14") %>
+
 <% end %>
 </section>
 
