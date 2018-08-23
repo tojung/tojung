@@ -37,7 +37,7 @@
           <span class="glyphicon glyphicon-chevron-down"></span>
       </button>
 
-      <ul class="dropdown-menu w-100 py-0" style="transform: translate3d(0px, 126px, 0px) !important; ">
+      <ul class="dropdown-menu w-100 py-0" aria-labelledby="packageButton">
         <% @product.packages.each do |package|%>
         <li class="d-flex package-box" onclick="packageDropdown(this);">
           <%=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3", id: package.id) if package.image0.path != nil%>
@@ -52,16 +52,21 @@
     </div>
     <div class="buttons">
       <div class="d-flex">
-        <div class="dropdown-share">
+        <div class="dropdown dropdown-share">
           <button class="share-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공유하기</button>
           <ul class="dropdown-menu" id="shareDropdown">
             <li class="d-block">
               <a id="kakao-link-btn" href="javascript:;">
               <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
               </a>
-              <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
-                <%=image_tag("fb.svg", class: "sns-icon d-block mx-auto mb-3")%></a>
             </li>
+
+            <li class="d-block">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
+                <%=image_tag("fb.svg", class: "sns-icon d-block mx-auto mb-3")%>
+              </a>
+            </li>
+
           </ul>
         </div>
         <% if @like == nil %>
@@ -113,10 +118,6 @@
       $('#pay-link-lg').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
     });
   }
-
-    $(document).ready(function () {
-          $('.dropdown-menu').dropdown();
-      });
 
   $(document).ready(function(){
     var x = $('.dropdown-share').width();
