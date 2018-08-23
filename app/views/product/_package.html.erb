@@ -64,10 +64,16 @@
         }
         var pid = $('.border-red')[0].id;
         $('.pay-link').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
-        setInterval("doBlink()",400);
+        var count = 0;
+        var refresh = setInterval(function(){
+          ++count;
+          doBlink();
+          if(count>=4){
+            clearInterval(refresh);
+          }
+        }, 300);
     });
 
-    // $('.packageBar').unwrap();
   });
 
   function doBlink(){
