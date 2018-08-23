@@ -31,7 +31,7 @@
 
     <div class="dropdown my-3 w-100">
       <button type="button" id="packageButton" class="btn btn-white text-left dropdown-toggle d-flex justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="package-info my-auto">
+          <div class="package-info my-auto" id="package-default">
             <span>패키지 선택하기</span>
           </div>
           <span class="glyphicon glyphicon-chevron-down"></span>
@@ -60,13 +60,11 @@
               <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
               </a>
             </li>
-
             <li class="d-block">
               <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
                 <%=image_tag("fb.svg", class: "sns-icon d-block mx-auto mb-3")%>
               </a>
             </li>
-
           </ul>
         </div>
         <% if @like == nil %>
@@ -102,7 +100,7 @@
           </div>
         <% end %>
           </div>
-      <a class="d-block buy-button-lg mt-3" id="pay-link-lg">내 인생으로 배송받기</a>
+      <a class="d-block buy-button-lg mt-3" id="pay-link-lg" onclick="packageSelected();">내 인생으로 배송받기</a>
     </div>
   </div>
 </div>
@@ -119,9 +117,22 @@
     });
   }
 
+  // '패키지를 선택하세요' alert
+  function packageSelected(){
+    $(document).ready(function(){
+      if($('#packageButton').height() == 24){
+        alert('패키지를 선택해주세요');
+      }
+    });
+  }
+
   $(document).ready(function(){
+
+    // dropdown share width
     var x = $('.dropdown-share').width();
     $('#shareDropdown').width(x);
+
+
   });
 
   // 원화 콤마
