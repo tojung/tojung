@@ -18,33 +18,46 @@
 
     <!-- 우편 번호 찾기 -->
   <div class="field mb-3">
-    <%= f.text_field :address_num, :pattern => '[0-9]{5}', :placeholder => '우편번호', :id => 'sample2_postcode', :class => 'mb-3', :required => true %>
-    <input type="button" class="btn-login font-14 text-white mb-3" onclick="sample2_execDaumPostcode();" value="우편번호 찾기"><br>
-
-    <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
-    <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-      <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-    </div>
-
-    <%= f.text_field :address_text, :placeholder => '주소', :id => 'sample2_address', :class => 'mb-3', :required => true %>
-    <!--    <input type="text" id="sample3_address" class="d_form large" placeholder="주소" name="address_text" required>-->
-    <%= f.text_field :address_extra, :placeholder => '상세 주소', :required => true %>
-    <!--    <input type="text" name="extra_address" placeholder="상세 주소" name="address_extra" required>-->
+    <%= f.text_field :address_num, :pattern => '[0-9]{5}', :placeholder => '우편번호', :id => 'sample2_postcode',  :required => true %>
   </div>
 
-    <div class="field mb-3">
-      <%= f.file_field :image0, :required => true%>
-      <%= f.label :image0, "프로필 이미지" %>
+  <div class="field mb-3">
+    <input type="button" class="btn-login font-14 text-white" onclick="sample2_execDaumPostcode();" value="우편번호 찾기">
+  </div>
+      <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+  <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+    <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+  </div>
+
+  <div class="field mb-3">
+    <%= f.text_field :address_text, :placeholder => '주소', :id => 'sample2_address', :required => true %>
+  </div>
+  <div class="field mb-3">
+    <%= f.text_field :address_extra, :placeholder => '상세 주소', :required => true %>
+  </div>
+
+  <div class="field mt-3 mb-3">
+    <%= f.label :image0, "프로필 이미지", class: "d-block mt-2" %>
+    <div class="custom-file h-100">
+      <%= f.file_field :image0, class: "custom-file-input", id: "inputGroupFile02", onchange: "fileName(this);", :required => true%>
+      <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
     </div>
+  </div>
+
+  <div class="field mb-3">
+    <button class="btn btn-login box-230 text-white font-14" onclick="fileUpload();">이미지 업로드</button>
+  </div>
 
     <div class="field box-230 text-left">
     <%= f.check_box :remember_me%>
-    <%= f.label :remember_me, "개인 정보 수집 약관에 동의합니다.", class: "font-12" %>
+    <a href="/home/privacy" class="d-inline-block">
+      <%= f.label :remember_me, "개인 정보 수집 약관에 동의합니다.", class: "font-12" %>
+    </a>
   </div>
 
   <div class="field box-230 text-left mb-3">
     <%= f.check_box :remember_me%>
-    <%= f.label :remember_me, "이용 약관에 동의합니다.", class: "font-12" %>
+    <a href="/home/policy" class="d-inline-block"><%= f.label :remember_me, "이용 약관에 동의합니다.", class: "font-12" %></a>
   </div>
 
   <div class="actions">
@@ -123,4 +136,15 @@
         element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
         element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
     }
+</script>
+
+<script>
+  function fileUpload(){
+    $('#inputGroupFile02').click();
+  }
+
+  function fileName(item){
+    var x = item.files[0].name;
+    $('.custom-file-label').html(x);
+  }
 </script>

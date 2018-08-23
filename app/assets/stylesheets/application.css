@@ -513,3 +513,19 @@ button{
    width: 230px;
    margin: 0 auto;
  }
+
+ .custom-file-label::after{
+   display: none !important;
+ }
+
+.custom-file-label{
+   margin: 0 auto;
+   width: 230px;
+   height: 52px;
+   border-radius: 8px;
+   background-color: #eeeeee !important;
+   box-shadow: none;
+   border: none;
+   padding: 16px 20px;
+   color: #434343;
+}
