@@ -48,10 +48,13 @@
   </div>
 
   <div class="time-row">
-    <div class="time-post mb-4">
-      <p class="date font-18 mb-0"></p>
-      <pre class="font-18 text-right"></pre>
-    </div>
+      <% @product.product_timelines.each do |timeline| %>
+        <div class="time-post mb-4">
+            <p class="date font-18 mb-0"><%= timeline.name.gsub("\r\n", "<br />").gsub("\n", "<br />").html_safe %></p>
+            <pre class="font-18 text-right"><%= timeline.issued_at.year%>.<%= timeline.issued_at.month%>.<%= timeline.issued_at.day%></pre>
+            <img src="<%= timeline.image0%>">
+        </div>
+    <% end %>
   </div>
 
 </div>

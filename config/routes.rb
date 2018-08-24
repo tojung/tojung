@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   # match '/500', to: 'errors#internal_server_error', via: :all
 
   resources :product_like, param: :product_like_id
+  
   # authenticate(:user, lambda do |u|
   #   u.admin
   # end) do
