@@ -31,13 +31,14 @@
 
     <div class="dropdown my-3 w-100">
       <button type="button" id="packageButton" class="btn btn-white text-left dropdown-toggle d-flex justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="package-info my-auto">
+          <div class="package-info my-auto" id="package-default">
+
             <span>패키지 선택하기</span>
           </div>
           <span class="glyphicon glyphicon-chevron-down"></span>
       </button>
 
-      <ul class="dropdown-menu w-100 py-0" style="transform: translate3d(0px, 126px, 0px) !important; ">
+      <ul class="dropdown-menu w-100 py-0" aria-labelledby="packageButton">
         <% @product.packages.each do |package|%>
         <li class="d-flex package-box" onclick="packageDropdown(this);">
           <%=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3", id: package.id) if package.image0.path != nil%>
@@ -52,15 +53,18 @@
     </div>
     <div class="buttons">
       <div class="d-flex">
-        <div class="dropdown-share">
+        <div class="dropdown dropdown-share">
           <button class="share-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공유하기</button>
           <ul class="dropdown-menu" id="shareDropdown">
             <li class="d-block">
               <a id="kakao-link-btn" href="javascript:;">
               <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
               </a>
+            </li>
+            <li class="d-block">
               <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
-                <%=image_tag("fb.svg", class: "sns-icon d-block mx-auto mb-3")%></a>
+                <%=image_tag("fb.svg", class: "sns-icon d-block mx-auto mb-3")%>
+              </a>
             </li>
           </ul>
         </div>
@@ -97,7 +101,7 @@
           </div>
         <% end %>
           </div>
-      <a class="d-block buy-button-lg mt-3" id="pay-link-lg">내 인생으로 배송받기</a>
+      <a class="d-block buy-button-lg mt-3" id="pay-link-lg" onclick="packageSelected();">내 인생으로 배송받기</a>
     </div>
   </div>
 </div>
@@ -114,13 +118,22 @@
     });
   }
 
-    $(document).ready(function () {
-          $('.dropdown-menu').dropdown();
-      });
+  // '패키지를 선택하세요' alert
+  function packageSelected(){
+    $(document).ready(function(){
+      if($('#packageButton').height() == 24){
+        alert('패키지를 선택해주세요');
+      }
+    });
+  }
 
   $(document).ready(function(){
+
+    // dropdown share width
     var x = $('.dropdown-share').width();
     $('#shareDropdown').width(x);
+
+
   });
 
   // 원화 콤마

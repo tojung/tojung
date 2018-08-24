@@ -42,6 +42,18 @@
   transition: all 2s;
  }
 
+ #notice_wrapper2{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1111;
+  background-color: #f8d7da;
+  opacity: 0.85;
+  color: #721c24;
+  text-align: center;
+  transition: all 2s;
+ }
+
  #notice_wrapper.red-alert{
    background-color: #f8d7da;
    opacity: 0.85;
@@ -513,3 +525,19 @@ button{
    width: 230px;
    margin: 0 auto;
  }
+
+ .custom-file-label::after{
+   display: none !important;
+ }
+
+.custom-file-label{
+   margin: 0 auto;
+   width: 230px;
+   height: 52px;
+   border-radius: 8px;
+   background-color: #eeeeee !important;
+   box-shadow: none;
+   border: none;
+   padding: 16px 20px;
+   color: #434343;
+}
