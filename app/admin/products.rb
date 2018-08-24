@@ -7,6 +7,8 @@ ActiveAdmin.register Product do
                 :end_date,
                 :video_text,
                 :bill_url,
+                :funded_money,
+                :funded_count,
                 :assos,
                 :fb_url,
                 :image0,
@@ -95,6 +97,8 @@ ActiveAdmin.register Product do
                         }, label: '종료일'
 
       input 'goal_money', label: '펀딩 목표 금액'
+      input 'funded_count'
+      input 'funded_money'
     end
 
     inputs 'Bill Infos' do

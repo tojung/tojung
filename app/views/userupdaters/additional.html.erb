@@ -10,7 +10,9 @@
     <input type="tel" name="phone_number" value="<%= current_user.phone_number %>"placeholder="010-xxxx-yyyy" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
   </div>
 
+
   <div class="field mb-3">
+
     <input type="text" id="sample2_postcode" placeholder="우편번호" value="<%= current_user.address_num %>" name="address_num" pattern="[0-9]{5}" required>
   </div>
 
@@ -40,6 +42,7 @@
   <div class="field mb-3">
     <button class="btn btn-login box-230 text-white font-14" onclick="fileUpload();">이미지 업로드</button>
   </div>
+
 
   <%= submit_tag("추가 완료", class: "btn-login text-white font-14") %>
 
@@ -126,4 +129,5 @@
     var x = item.files[0].name;
     $('.custom-file-label').html(x);
   }
+
 </script>
