@@ -1,6 +1,6 @@
 <div class="wrapper">
-  <%=render 'product_img'%>
-  <%=render 'product_info'%>
-  <%=render 'navbar'%>
+  <%=render 'product_img', collection: @product, cached: true %>
+  <%=render 'product_info', collection: @product, cached: true%>
+  <%=render 'navbar', collection: @product, cached: true %>
 </div>
-<%=render 'bottom_bar'%>
+<%=render 'bottom_bar', collection: @product, cached: true%>
