@@ -88,7 +88,7 @@
           <div class="dropdown-share">
             <%= form_tag "/product_like/#{ @like[0].id }", method: 'put' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart"><i class="far fa-heart"></i> 찜 제거하기</button>
+              <button class="share-button heart"><i class="fas fa-heart"></i> 찜 제거하기</button>
             <% end %>
           </div>
         <% elsif @like[0].status == false %>
