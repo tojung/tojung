@@ -1,2 +1,3 @@
-
+<% cache @product do %>
 <%=  image_tag(@cdn_url + @product.image0.path, class: "pro-img visible-xs") if @product.image0.path != nil%>
+<% end %>
