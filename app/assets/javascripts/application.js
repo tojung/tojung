@@ -40,3 +40,10 @@ window.onpageshow = function(event) {
         window.location.reload();
     }
 };
+
+
+$(window).bind("pageshow", function(event) {
+    if (event.originalEvent.persisted) {
+        alert("dddd");
+    }
+});
