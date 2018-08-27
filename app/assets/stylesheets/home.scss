@@ -252,6 +252,11 @@ span.or{
   margin-left: 10px;
 }
 
+@media (min-width: 736px){
+  width: 152px;
+  height: 152px;
+}
+
 .text-grey{
   color: #7f7f7f;
 }
@@ -262,6 +267,11 @@ span.or{
   border-radius: 2px;
   border: solid 1px #979797;
   background-color: white;
+}
+
+.mypage-edit:hover{
+  border: solid 1px #979797;
+
 }
 
 .my-product-card{
@@ -281,7 +291,7 @@ span.or{
 }
 
 .layer-img{
-  opacity: 0;
+  opacity: 1;
   height: 100%;
 }
 .layer-img:hover{

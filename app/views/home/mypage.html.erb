@@ -1,6 +1,7 @@
 <div class="mypage">
 
   <section class="profile d-flex px-3 py-3">
+    <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
     <div class="mylog font-12 justify-content-around">
       <div class="d-flex">
         <div class="mylog-box mx-2 text-center">
@@ -16,28 +17,29 @@
           <p class="text-grey mb-2 font-weight-bold">새로운 소식</p>
         </div>
       </div>
-      <button class="d-block text-center mypage-edit font-14"><a href="/users/edit"> 개인정보 수정</a></button>
+      <a href="/users/edit" class="d-block text-center mypage-edit font-14">개인정보 수정</a>
     </div>
-    <%=image_tag(current_user.image0, class: "profile-img") if current_user.image0 != nil%>
+    <%=image_tag(current_user.image0, class: "profile-img visible-xs") if current_user.image0 != nil%>
   </section>
 
   <div class="container">
     <div class="row" id="my-product-row">
       <% current_user.product_orders.each do |product_order| %>
-        <!-- 링크 <a href="/product/<%#= product_order.product.id %>"-->
-        <div class="my-product-card text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_order.package.image0 %>);">
-          <div class="my-product-card-body py-3 d-flex flex-column justify-content-center text-white h-100">
-            <h4 class="font-14 font-weight-bold"><%= product_order.product.name %></h4>
-            <pre class="font-14 text-white text-center mb-0">
-  <%= product_order.package.name %>
-  <%= product_order.product_order_detail.total_price %>원 후원
-  <%= product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %> 배송예정</pre>
+          <div class="my-product-card text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_order.package.image0 %>);">
+            <a href="/product/<%#= product_order.product.id %>" class="d-block h-100 w-100">
+            <div class="my-product-card-body py-3 d-flex flex-column justify-content-center text-white h-100">
+              <h4 class="font-14 font-weight-bold"><%= product_order.product.name %></h4>
+              <pre class="font-14 text-white text-center mb-0">
+<%= product_order.package.name %>
+<%= product_order.product_order_detail.total_price %>원 후원
+<%= product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %> 배송예정</pre>
+            </div>
+            </a>
           </div>
-        </div>
         <% end %>
       <% current_user.product_likes.each do |product_like|%>
         <!-- 링크 <a href="/product/<%#= product_like.product.id %>"-->
-        <div class="my-product-card col-4 text-center col-4 px-0" style="background-image: url(<%= product_like.product.image0 %>);">
+        <div class="my-product-card col-4 text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_like.product.image0 %>);">
           <%=image_tag("layer.png", class:"layer-img w-100")%>
         </div>
       <% end %>

@@ -1,5 +1,11 @@
 ko:
   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "이미 가입된 이메일입니다."
     attributes:
       user:
         confirmation_sent_at: "확인 메일 전송 시간"
