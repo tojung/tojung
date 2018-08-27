@@ -1,27 +1,41 @@
 <div class="mypage">
 
   <section class="profile d-flex px-3 py-3">
-    <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
-    <div class="mylog font-12 justify-content-around">
-      <div class="d-flex">
-        <div class="mylog-box mx-2 text-center">
-          <p class="mb-0 font-weight-bold font-18"><%= current_user.product_orders.count %></p>
-          <p class="text-grey mb-2 font-weight-bold">인생법안</p>
+    <div class="profile-img-box">
+      <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
+    </div>
+    <div class="mylog font-12 font-lg-14 my-auto justify-content-around">
+      <div class="user-email-box visible-lg my-3 d-flex">
+        <h4 class="font-30 user-email ml-3 mb-0">
+          <%=current_user.email%>
+        </h4>
+        <a href="/users/edit" class="d-block text-center mypage-edit font-14 ml-3 mt-1">개인정보 수정</a>
+      </div>
+      <div class="d-flex my-md-3">
+        <div class="mylog-box mx-2 ml-md-3 mr-md-4 text-center">
+          <p class="mb-0 font-weight-bold font-18 visible-xs"><%= current_user.product_orders.count %></p>
+          <p class="text-grey mb-2 font-weight-bold">인생법안
+            <span class="font-18 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
+          </p>
+        </div>
+        <div class="mylog-box mx-2 mr-md-4 text-center">
+          <p class="mb-0 font-weight-bold font-18 visible-xs"><%= current_user.product_likes.count %></p>
+          <p class="text-grey mb-2 font-weight-bold">관심법안
+            <span class="font-18 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
+          </p>
         </div>
         <div class="mylog-box mx-2 text-center">
-          <p class="mb-0 font-weight-bold font-18"><%= current_user.product_likes.count %></p>
-          <p class="text-grey mb-2 font-weight-bold">관심법안</p>
-        </div>
-        <div class="mylog-box mx-2 text-center">
-          <p class="mb-0 font-weight-bold font-18">0</p>
-          <p class="text-grey mb-2 font-weight-bold">새로운 소식</p>
+          <p class="mb-0 font-weight-bold font-18 visible-xs">0</p>
+          <p class="text-grey mb-2 font-weight-bold">새로운 소식
+          <span class="font-18 font-weight-bold visible-lg font-black">0</span></p>
+
         </div>
       </div>
-      <a href="/users/edit" class="d-block text-center mypage-edit font-14">개인정보 수정</a>
+      <a href="/users/edit" class="d-block text-center mypage-edit font-14 visible-xs">개인정보 수정</a>
     </div>
     <%=image_tag(current_user.image0, class: "profile-img visible-xs") if current_user.image0 != nil%>
   </section>
-
+  <hr>
   <div class="container">
     <div class="row" id="my-product-row">
       <% current_user.product_orders.each do |product_order| %>
@@ -38,9 +52,11 @@
           </div>
         <% end %>
       <% current_user.product_likes.each do |product_like|%>
-        <!-- 링크 <a href="/product/<%#= product_like.product.id %>"-->
+
         <div class="my-product-card col-4 text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_like.product.image0 %>);">
+          <a href="/product/<%#= product_like.product.id %>" class="d-block h-100">
           <%=image_tag("layer.png", class:"layer-img w-100")%>
+          </a>
         </div>
       <% end %>
     </div>
@@ -63,3 +79,14 @@
   </section>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    let wid = $('.my-product-card').width();
+    $('.my-product-card').css({'height':(wid)+'px'});
+  });
+  $(window).resize(function(){
+    let wid = $('.my-product-card').width();
+    $('.my-product-card').css({'height':(wid)+'px'});
+  })
+</script>
