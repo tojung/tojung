@@ -1,3 +1,13 @@
 // Place all the styles related to the product_like controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.heart-mobile{
+  width: 23px;
+  height: 26px;
+  border: none;
+  padding: 0;
+  background-color: inherit;
+}
+.heart-mobile:active, .heart-mobile:focus, .heart-mobile:hover{
+  outline: none;
+}
