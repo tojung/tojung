@@ -252,6 +252,21 @@ span.or{
   margin-left: 10px;
 }
 
+@media (min-width: 736px){
+  .profile{
+    justify-content: flex-start;
+  }
+  .profile-img-box{
+    width: 30%;
+  }
+  .profile-img{
+    width: 152px;
+    height: 152px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 .text-grey{
   color: #7f7f7f;
 }
@@ -264,6 +279,18 @@ span.or{
   background-color: white;
 }
 
+.mypage-edit:hover{
+  border: solid 1px #979797;
+}
+@media (min-width: 768px){
+  .mylog-box p{
+    font-weight: normal !important ;
+  }
+  .mypage-edit{
+    width: 100px;
+    border-radius: 3px;
+  }
+}
 .my-product-card{
   background-position: center center;
   background-repeat: no-repeat;
@@ -281,20 +308,21 @@ span.or{
 }
 
 .layer-img{
-  opacity: 0;
+  opacity: 1;
   height: 100%;
 }
+
 .layer-img:hover{
   opacity: 1;
 }
+
 .news{
   border-left: 2px solid #979797;
 }
 
 @media (min-width: 768px){
-  .profile{
-    width: 500px;
-    margin: 0 auto;
+  .layer-img{
+    opacity: 0;
   }
   .my-product-card{
     height: 230px;

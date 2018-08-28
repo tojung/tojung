@@ -5,9 +5,30 @@
   <a class="d-block buy-button pay-link font-14 ml-4 text-white" id="packageBarCollapse" onclick="packagebar_click();">
     내 인생으로 배송받기
   </a>
-  <a href="/" class="d-block ml-5 text-white">
+  <% if @like == nil %>
+  <%= form_tag '/product_like', class: "ml-5 text-white" do %>
+    <%= hidden_field_tag 'product_id', @product.id%>
+    <button class="heart-mobile"><%=image_tag(@cdn_url+"heart.svg")%></button>
+  <% end %>
+  <% elsif @like.empty? %>
+  <%= form_tag '/product_like', class: "ml-5 text-white" do %>
+    <%= hidden_field_tag 'product_id', @product.id%>
+    <button class="heart-mobile"><%=image_tag(@cdn_url+"heart.svg")%></button>
+  <% end %>
+  <% elsif @like[0].status == true  %>
+  <%= form_tag "/product_like/#{ @like[0].id }", class: "ml-5 text-white", method: 'put' do %>
+    <%= hidden_field_tag 'product_id', @product.id%>
+    <button class="heart-mobile"><%=image_tag("heart-red.svg")%></button>
+  <% end %>
+  <% elsif @like[0].status == false %>
+  <%= form_tag "/product_like/#{ @like[0].id }", class: "ml-5 text-white", method: 'put' do %>
+    <%= hidden_field_tag 'product_id', @product.id%>
+    <button class="heart-mobile"><%=image_tag(@cdn_url+"heart.svg")%></button>
+  <% end %>
+  <%end%>
+  <!-- <a href="/" class="d-block ml-5 text-white">
     <%=image_tag(@cdn_url+"heart.svg")%>
-  </a>
+  </a> -->
   <button class="button-none buy-button text-white" id="shareBarCollapse" onclick="sharebar_click();">
     <%=image_tag(@cdn_url+"link.svg")%>
   </button>

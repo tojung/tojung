@@ -14,6 +14,7 @@
     <meta property="og:description"   content="투정, 국회 입법 크라우드펀딩 플랫폼" /> <!-- 상품마다 description 다르게 하기 -->
     <meta property="og:image" content="https://2jung.com/image.png" />
     <meta property="fb:app_id" content="1014670008686658" />
+    <meta name="turbolinks-cache-control" content="no-cache">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
@@ -69,6 +70,13 @@
           $('#notice_wrapper').addClass('fadeout');
         }, 2000);
       });
+
+      $(window).bind("pageshow", function(event) {
+    if (event.originalEvent.persisted) {
+            document.location.reload();
+        }
+    });
+
     </script>
   </body>
 </html>
