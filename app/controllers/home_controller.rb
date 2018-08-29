@@ -83,13 +83,21 @@ class HomeController < ApplicationController
       @mainimage0 = $redis.get('mainimage0')
       @mainimage1 = $redis.get('mainimage1')
       @mainimage2 = $redis.get('mainimage2')
-
+      
       @mainimage3 = $redis.get('mainimage3')
       @mainimage4 = $redis.get('mainimage4')
-
+      
       @md_link0 = $redis.get('md_link0')
       @md_link1 = $redis.get('md_link1')
     end
+
+    if @mainimage3 == nil
+        @mainimage3 = Mainimage.last.image3
+        @mainimage4 = Mainimage.last.image4
+
+        @md_link_0 = Mainimage.last.md_link0
+        @md_link_1 = Mainimage.last.md_link1
+    end 
   end
 
   # noinspection RubyResolve

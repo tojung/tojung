@@ -24,8 +24,8 @@
             container: '#kakao-link-btn',
             objectType: 'feed',
             content: {
-                title: '투정 !',
-                description: '설명 ㄱ',
+                title: '투정, <%= @product.name %>',
+                description: '<%= @product.subname %>',
                 imageUrl: '<%= @cdn_url + @product.image0.path  if @product.image0.path != nil%>',
                 link: {
                     mobileWebUrl: 'https://developers.kakao.com',
