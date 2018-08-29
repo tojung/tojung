@@ -1,5 +1,6 @@
 .DS_Store
 dump.rdb
+temp.rdb
 node_modules/
 .idea/
 *sqlite*
