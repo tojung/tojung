@@ -24,7 +24,7 @@
             container: '#kakao-link-btn',
             objectType: 'feed',
             content: {
-                title: '투정, <%= @product.name %>',
+                title: "투정, <%= @product.name.gsub("'", "") %>",
                 description: '<%= @product.subname %>',
                 imageUrl: '<%= @cdn_url + @product.image0.path  if @product.image0.path != nil%>',
                 link: {
