@@ -11,6 +11,19 @@ class UserupdatersController < ApplicationController
     current_user.update_attributes(user_params)
     redirect_root
   end
+  
+  def edit
+    # 정보 수정 페이지
+      if params[:id] != current_user.id.to_s
+        redirect_to '/'
+        return
+    end
+  end
+
+  def update
+    current_user.update_attributes(user_params)
+    redirect_to '/home/mypage'
+  end
 
   private
 
