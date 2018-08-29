@@ -32,11 +32,11 @@
                     webUrl: 'https://developers.kakao.com'
                 }
             },
-            social: {
-                likeCount: 286,
-                commentCount: 45,
-                sharedCount: 845
-            },
+            // social: {
+            //    likeCount: 286,
+            //    commentCount: 45,
+            //    sharedCount: 845
+            // },
             buttons: [
                 {
                     title: '웹으로 보기',
@@ -44,14 +44,14 @@
                         mobileWebUrl: '<%= request.base_url + request.original_fullpath %>',
                         webUrl: '<%= request.base_url + request.original_fullpath %>'
                     }
-                },
-                {
-                    title: '앱으로 보기',
-                    link: {
-                        mobileWebUrl: '<%= request.base_url + request.original_fullpath %>',
-                        webUrl: '<%= request.base_url + request.original_fullpath %>'
-                    }
                 }
+                //{
+                 //   title: '앱으로 보기',
+                 //   link: {
+                  //      mobileWebUrl: '<%= request.base_url + request.original_fullpath %>',
+                  //      webUrl: '<%= request.base_url + request.original_fullpath %>'
+                  //  }
+                //}
             ]
         });
     }catch (e) {
