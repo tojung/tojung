@@ -1,10 +1,13 @@
 <div class="mypage">
 
   <section class="profile d-flex px-3 py-3">
+    <!-- Desktop -->
     <div class="profile-img-box">
       <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
     </div>
+    <!-- // Desktop -->
     <div class="mylog font-12 font-lg-14 my-auto justify-content-around">
+      <!-- Desktop -->
       <div class="user-email-box visible-lg my-3 d-flex">
         <h4 class="font-30 user-email ml-3 mb-0">
           <%=current_user.email%>
@@ -14,6 +17,7 @@
            <a href="/users/edit" class="d-block text-center mypage-edit font-14 ml-3 mt-1"> 비밀번호 수정 </a>
         <% end %>
       </div>
+      <!-- // Desktop -->
       <div class="d-flex my-md-3">
         <div class="mylog-box mx-2 ml-md-3 mr-md-4 text-center">
           <p class="mb-0 font-weight-bold font-18 visible-xs"><%= current_user.product_orders.count %></p>
@@ -34,7 +38,12 @@
 
         </div>
       </div>
-      <a href="/userupdaters/<%= current_user.id%>/edit" class="d-block text-center mypage-edit font-14 visible-xs">개인정보 수정</a>
+      <div class="d-flex justify-content-between">
+        <a href="/userupdaters/<%= current_user.id%>/edit" class="d-inline-block text-center mypage-edit font-14 visible-xs">개인정보 수정</a>
+        <% if current_user.provider == nil || current_user.provider == "" %>
+           <a href="/users/edit" class="d-inline-block text-center mypage-edit font-14 visible-xs"> 비밀번호 수정 </a>
+        <% end %>
+      </div>
 
     </div>
     <%=image_tag(current_user.image0, class: "profile-img visible-xs") if current_user.image0 != nil%>
