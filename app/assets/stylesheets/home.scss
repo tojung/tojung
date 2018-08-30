@@ -279,6 +279,18 @@ span.or{
   background-color: white;
 }
 
+
+.custom-file-label{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-img-edit{
+  width: 150px;
+  height: 150px;
+  border-radius: 300px;
+
+}
 .mypage-edit:hover{
   border: solid 1px #979797;
 }
