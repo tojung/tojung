@@ -8,11 +8,13 @@
     <meta name="naver-site-verification" content="9156159b4d21b4babe22d4fa97c06964f454f166"/>
     <meta name="description" content="투정, 국회 입법 크라우드펀딩 서비스">
     <%= csrf_meta_tags %>
-    <meta property="og:title" content="투정, 국회 입법 크라우드펀딩 서비스"/>
+    <% if @product != nil %>
+        <meta property="og:title" content="<%= @product.name %>"/>
+        <meta property="og:description"   content="<%= @product.subname%>" /> <!-- 상품마다 description 다르게 하기 -->
+        <meta property="og:image" content="<%= @product.image0 %>" />
+    <% end %>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://2jung.com<%= request.fullpath %>"/>
-    <meta property="og:description"   content="투정, 국회 입법 크라우드펀딩 플랫폼" /> <!-- 상품마다 description 다르게 하기 -->
-    <meta property="og:image" content="https://2jung.com/image.png" />
+    <meta property="og:url" content="https://tojung.me/<%= request.fullpath %>"/>
     <meta property="fb:app_id" content="1014670008686658" />
     <meta name="turbolinks-cache-control" content="no-cache">
 
@@ -78,5 +80,48 @@
     });
 
     </script>
+    <!-- Channel Plugin Scripts -->
+<script>
+  ;window.channelPluginSettings = {
+    "pluginKey": "c41b6775-e43d-4cae-888e-8616e0c23cfe" //please fill with your plugin key
+  };
+  (function() {
+    var w = window;
+    if (w.ChannelIO) {
+      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+    }
+    var d = window.document;
+    var ch = function() {
+      ch.c(arguments);
+    };
+    ch.q = [];
+    ch.c = function(args) {
+      ch.q.push(args);
+    };
+    w.ChannelIO = ch;
+    function l() {
+      if (w.ChannelIOInitialized) {
+        return;
+      }
+      w.ChannelIOInitialized = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState === 'complete') {
+      l();
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', l);
+    } else {
+      window.addEventListener('DOMContentLoaded', l, false);
+      window.addEventListener('load', l, false);
+    }
+  })();
+</script>
+<!-- End Channel Plugin -->
   </body>
 </html>

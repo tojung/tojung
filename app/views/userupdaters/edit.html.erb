@@ -1,22 +1,18 @@
 <section class="sign_up mb-5 text-center">
-<h2 class="font-18 my-4">추가정보 입력하기</h2>
+<h2 class="font-18 my-4">회원 정보 수정</h2>
+<img src="<%= current_user.image0 %>" style="width: 20%; height: 20%;">
 
-<%= form_tag('/additional_update', multipart: true) do |f| %>
-  <div class="field mb-3">
-    <input type="email" name="email" placeholder="<%= current_user.email %>" value="<%= current_user.email %>" required>
-  </div>
-
+<%= form_tag "/userupdaters/#{ current_user.id }", method: "put", multipart: true do |_f|%>
   <div class="field mb-3">
     <input type="tel" name="phone_number" value="<%= current_user.phone_number %>"placeholder="010-xxxx-yyyy" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
   </div>
 
-
   <div class="field mb-3">
-      <% if current_user.address_num != nil && current_user.address_num < 10000 %>
-    <input type="text" id="sample2_postcode" placeholder="우편번호" value="0<%= current_user.address_num %>" name="address_num" pattern="[0-9]{5}" required>
-      <% else %>
+    <% if current_user.address_num < 10000 %>
+        <input type="text" id="sample2_postcode" placeholder="우편번호" value="0<%= current_user.address_num %>" name="address_num" pattern="[0-9]{5}" required>
+    <% else %>
 <input type="text" id="sample2_postcode" placeholder="우편번호" value="<%= current_user.address_num %>" name="address_num" pattern="[0-9]{5}" required>
-      <% end %>
+    <% end %>
   </div>
 
   <div class="field mb-3">
@@ -28,32 +24,29 @@
   </div>
 
   <div class="field mb-3">
-      <input type="text" value="<%= current_user.address_text %>" id="sample2_address" placeholder="주소" name="address_text" required>
+      <input type="text" id="sample2_address" placeholder="주소" name="address_text" value="<%= current_user.address_text%>"required>
   </div>
 
   <div class="field mb-3">
-      <input type="text" name="address_extra" value="<%= current_user.address_extra%>" placeholder="상세 주소" required>
+      <input type="text" name="address_extra" placeholder="상세 주소" value="<%= current_user.address_extra %>" required>
   </div>
 
   <div class="field mt-3 mb-3">
     <h4 class="font-14 mt-2">프로필 이미지</h4>
     <div class="custom-file h-100">
       <input type="file" class="custom-file-input" id="inputGroupFile02" onchange="fileName(this);" name="image0">
-      <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">
-          <%= current_user.image0.path %>
-      </label>
+      <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><%= current_user.image0.path %></label>
     </div>
   </div>
-  <img src="<%= current_user.image0 %>" style="width: 30%; height: 30%">
   <div class="field mb-3">
     <button type="button" class="btn btn-login box-230 text-white font-14" onclick="fileUpload();">이미지 업로드</button>
   </div>
 
-
-  <%= submit_tag("추가 완료", class: "btn-login text-white font-14") %>
+  <div class="actions mb-3">
+    <%= submit_tag '수정 완료'%>
+  </div>    
 
 <% end %>
-</section>
 
 <script>
     // 우편번호 찾기 화면을 넣을 element

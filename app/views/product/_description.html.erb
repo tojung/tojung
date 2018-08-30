@@ -6,7 +6,7 @@
   <p class="text-center video-text mb-4"><%= @product.video_text.gsub("\r\n", "<br />").html_safe %></p>
   <a href="<%=  @product.bill_url %>" class="d-block text-right font-grey font-14 pr-3 mb-4">>법안 원문 보러가기</a>
   <div class="share text-center mb-4">
-    <iframe src="https://www.facebook.com/plugins/like.php?href=https://2jung.com/product/<%=@product.id %>&width=186&layout=button_count&action=like&size=large&show_faces=true&share=true&height=46&appId=1014670008686658" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+      <iframe src="  https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Ftojung.me/product/<%= @product.id %>&layout=button_count&size=large&mobile_iframe=true&appId=1014670008686658&width=104&height=28" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
   </div>
 <div class="banner-text px-3 mb-5">
   <hr class="mb-4 banner-line ml-0">

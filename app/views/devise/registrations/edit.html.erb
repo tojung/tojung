@@ -29,8 +29,5 @@
   </div>
 <% end %>
 
-<%= t('.unhappy') %> <br>
-<%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "font-14" %>
-<span>| </span>
 <%= link_to t('devise.shared.links.back'), :back, class: "font-14" %>
 </section>
