@@ -1,5 +1,5 @@
 <% cache @product do %>
-<div class="tab-pane fade px-4 py-5" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
+<div class="tab-pane fade px-4 pt-3 pb-5" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
   <h4 class="text-center font-16 mb-4"><span class="petit-num"><%=@maker_responses.sum(&:send_count)%> </span>청원</h4>
   <div class="ovals d-flex justify-content-center font-weight-bold mb-lg-4 font-10">
     <div class="oval cons"></div>
@@ -15,6 +15,7 @@
   <div class="maker_cards container px-0">
     <div class="row mx-0">
       <% @maker_responses.each do |maker_response|%>
+      <% if maker_response.maker.name != '노해찬'%>
       <div class="col-4 col-md-2 maker_card text-white font-weight-bold" style="background-image: url(<%= maker_response.maker.image0 %>);">
         <a href="/maker/<%= maker_response.id %>" class="d-block text-white h-100">
           <% if maker_response.response_type == '무응답'%>
@@ -31,6 +32,7 @@
           </div>
         </a>
       </div>
+      <%end%>
       <%end%>
     </div>
   </div>

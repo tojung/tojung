@@ -22,19 +22,19 @@
         <div class="mylog-box mx-2 ml-md-3 mr-md-4 text-center">
           <p class="mb-0 font-weight-bold font-18 visible-xs"><%= current_user.product_orders.count %></p>
           <p class="text-grey mb-2 font-weight-bold">인생법안
-            <span class="font-18 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
+            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
           </p>
         </div>
         <div class="mylog-box mx-2 mr-md-4 text-center">
           <p class="mb-0 font-weight-bold font-18 visible-xs"><%= current_user.product_likes.count %></p>
           <p class="text-grey mb-2 font-weight-bold">관심법안
-            <span class="font-18 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
+            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
           </p>
         </div>
         <div class="mylog-box mx-2 text-center">
           <p class="mb-0 font-weight-bold font-18 visible-xs">0</p>
           <p class="text-grey mb-2 font-weight-bold">새로운 소식
-          <span class="font-18 font-weight-bold visible-lg font-black">0</span></p>
+          <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black">0</span></p>
 
         </div>
       </div>
@@ -53,7 +53,7 @@
     <div class="row" id="my-product-row">
       <% current_user.product_orders.each do |product_order| %>
           <div class="my-product-card text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_order.package.image0 %>);">
-            <a href="/product/<%#= product_order.product.id %>" class="d-block h-100 w-100">
+            <a href="/product/<%= product_order.product.id %>" class="d-block h-100 w-100">
             <div class="my-product-card-body py-3 d-flex flex-column justify-content-center text-white h-100">
               <h4 class="font-14 font-weight-bold"><%= product_order.product.name %></h4>
               <pre class="font-14 text-white text-center mb-0">
@@ -67,7 +67,7 @@
       <% current_user.product_likes.each do |product_like|%>
 
         <div class="my-product-card col-4 text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_like.product.image0 %>);">
-          <a href="/product/<%#= product_like.product.id %>" class="d-block h-100">
+          <a href="/product/<%= product_like.product.id %>" class="d-block h-100">
           <%=image_tag("layer.png", class:"layer-img w-100")%>
           </a>
         </div>
