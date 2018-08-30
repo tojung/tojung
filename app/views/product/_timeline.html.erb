@@ -51,9 +51,9 @@
   <div class="time-row">
       <% @product.product_timelines.each do |timeline| %>
         <div class="time-post mb-4">
-            <p class="date font-18 mb-0"><%= timeline.name.gsub("\r\n", "<br />").gsub("\n", "<br />").html_safe %></p>
-            <pre class="font-18 text-right"><%= timeline.issued_at.year%>.<%= timeline.issued_at.month%>.<%= timeline.issued_at.day%></pre>
-            <img src="<%= timeline.image0%>">
+            <p class="date font-18 mb-0"><%= timeline.issued_at.year%>.<%= timeline.issued_at.month%>.<%= timeline.issued_at.day%></p>
+            <pre class="font-18 text-right"><%= timeline.name.gsub("\r\n", "<br />").gsub("\n", "<br />").html_safe %></pre>
+            <img src="<%= timeline.image0%>" width="240" class="d-block ml-auto">
         </div>
     <% end %>
   </div>
