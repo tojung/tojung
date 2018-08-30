@@ -1,0 +1,4 @@
+var x = '<%=escape_javascript(render :partial => "product_like/likedesktop", :locals => {:like => @like, :product => @product})%>';
+var y = '<%=escape_javascript(render :partial => "product_like/likemobile", :locals => {:like => @like, :product => @product})%>';
+$('#dropdownShare').html(x);
+$('#HeartMobileBox').html(y);

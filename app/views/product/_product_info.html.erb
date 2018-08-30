@@ -69,40 +69,34 @@
             </li>
           </ul>
         </div>
-        <% if @like == nil %>
-          <!-- 비 로그인-->
-          <div class="dropdown-share">
+        <div class="dropdown-share" id="dropdownShare">
+          <% if @like == nil %>
+          <!-- 비 로그인  -->
             <%= form_tag '/product_like' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
+              <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
             <% end %>
-          </div>
-        <% elsif @like.empty? %>
-          <!-- 찜 추가-->
-          <div class="dropdown-share">
-            <%= form_tag '/product_like' do %>
+          <% elsif @like.empty? %>
+          <!-- 찜 생성 -->
+            <%= form_tag '/product_like', remote: true do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
+              <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
             <% end %>
-          </div>
-        <% elsif @like[0].status == true  %>
-          <!-- 찜 제거-->
-          <div class="dropdown-share">
-            <%= form_tag "/product_like/#{ @like[0].id }", method: 'put' do %>
+          <% elsif @like[0].status == true  %>
+          <!-- 찜 제거 -->
+            <%= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart"><i class="fas fa-heart"></i> 찜 제거하기</button>
+              <button class="share-button heart" id="Heart"><%=image_tag("heart-red.svg", class: "heart-img")%> 찜 취소하기</button>
             <% end %>
-          </div>
-        <% elsif @like[0].status == false %>
-          <!-- 찜 추가-->
-          <div class="dropdown-share">
-            <%= form_tag "/product_like/#{ @like[0].id }", method: 'put' do %>
+          <% elsif @like[0].status == false %>
+          <!-- 찜 추가 -->
+            <%= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
+              <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
             <% end %>
-          </div>
-        <% end %>
-          </div>
+          <%end%>
+        </div>
+      </div>
       <a class="d-block buy-button-lg mt-3" id="pay-link-lg" onclick="packageSelected();">내 인생으로 배송받기</a>
     </div>
   </div>
