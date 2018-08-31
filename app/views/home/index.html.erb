@@ -76,4 +76,22 @@
   $(document).ready(function(){
     $('.cover').unwrap();
   });
+
+  <%if @num%>
+    $(document).ready(function () {
+      $('.category-keyword').filter('.cate-red').removeClass("cate-red");
+        for(let i=0;i<$('.category-keyword').length;i++){
+          if($('.category-keyword')[i].innerHTML === '<%=@category_list[@num]%>'){
+            var target = $('.category-keyword')[i];
+            var keyword = '<%=@category_list[@num]%>';
+            $(target).addClass("cate-red");
+            $('#category-tag').html(keyword);
+          }
+      }
+      // Scroll To category list
+      $('html, body').animate({
+         scrollTop: $('#categoryList').offset().top-100
+      }, 'slow');
+    });
+  <%end%>
 </script>

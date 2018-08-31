@@ -43,6 +43,11 @@ textarea.form-control::placeholder{
   color: #858585;
 }
 
+.btn-email:hover, .btn-email:focus{
+  border-color: #434343;
+  color: #434343;
+}
+
 .maker-img{
   width: 200px;
   height: 200px;

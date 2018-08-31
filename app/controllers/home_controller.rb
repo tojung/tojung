@@ -7,26 +7,11 @@ class HomeController < ApplicationController
   def index
     if params.key?(:sidebar)
       @num = params[:sidebar]
-      if @num == '1'
-        @products = @products.where(category: '인권/성평등')
-      elsif @num == '2'
-        @products = @products.where(category: '동물')
-      elsif @num == '3'
-        @products = @products.where(category: '육아/교육')
-      elsif @num == '4'
-        @products = @products.where(category: '안전/환경')
-      elsif @num == '5'
-        @products = @products.where(category: '보건/복지')
-      elsif @num == '6'
-        @products = @products.where(category: '외교/통일/국방')
-      elsif @num == '7'
+      @category_list = {'1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW'}
+      if (@num == '7' || @num == '8')
         @products = @products
-      elsif @num == '8'
-        @products = @products
-      end
-      respond_to do |format|
-        format.js
-        format.html
+      else
+        @products = @products.where(category: @category_list[@num])
       end
     end
   end
@@ -43,46 +28,16 @@ class HomeController < ApplicationController
     @cdn_url = 'https://d1eq7v76s8dt2n.cloudfront.net/'
     @products = Product.where(visible: [true, 1])
     @num = params[:category_id]
-    if @num == '1'
-      @products_categorized = @products.where(category: '인권/성평등')
-    elsif @num == '2'
-      @products_categorized = @products.where(category: '동물')
-    elsif @num == '3'
-      @products_categorized = @products.where(category: '육아/교육')
-    elsif @num == '4'
-      @products_categorized = @products.where(category: '안전/환경')
-    elsif @num == '5'
-      @products_categorized = @products.where(category: '보건/복지')
-    elsif @num == '6'
-      @products_categorized = @products.where(category: '외교/통일/국방')
-    elsif @num == '7'
+    @category_list = {'1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW'}
+    if (@num == '7' || @num == '8')
       @products_categorized = @products
-    elsif @num == '8'
-      @products_categorized = @products
+    else
+      @products_categorized = @products.where(category: @category_list[@num])
     end
   end
 
   def sidebar_categorize
-    @cdn_url = 'https://d1eq7v76s8dt2n.cloudfront.net/'
-    @products = Product.where(visible: [true, 1])
-    @num = params[:id]
-    if @num == '1'
-      @products_categorized = @products.where(category: '인권/성평등')
-    elsif @num == '2'
-      @products_categorized = @products.where(category: '동물')
-    elsif @num == '3'
-      @products_categorized = @products.where(category: '육아/교육')
-    elsif @num == '4'
-      @products_categorized = @products.where(category: '안전/환경')
-    elsif @num == '5'
-      @products_categorized = @products.where(category: '보건/복지')
-    elsif @num == '6'
-      @products_categorized = @products.where(category: '외교/통일/국방')
-    elsif @num == '7'
-      @products_categorized = @products
-    elsif @num == '8'
-      @products_categorized = @products
-    end
+    redirect_to root_path(sidebar: params[:id])
   end
 
   # GET '/about' about 페이지
