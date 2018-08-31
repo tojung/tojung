@@ -47,3 +47,32 @@ $(window).bind("pageshow", function(event) {
         alert("dddd");
     }
 });
+
+// 사이드바 카테고리
+function sidebar_cate_change(item){
+  $(document).ready(function () {
+    $('.category-keyword').filter('.cate-red').removeClass("cate-red");
+    // 통일/국방일 경우 => 외교/통일/국방으로
+    if ($(item).children()[1].innerHTML === '통일/국방'){
+      var target = $('.category-keyword')[7];
+      var keyword = '외교/통일/국방';
+      $(target).addClass("cate-red");
+      $('#category-tag').html(keyword);
+    }
+    // 나머지
+    else {
+      for(let i=0;i<$('.category-keyword').length;i++){
+        if($('.category-keyword')[i].innerHTML === $(item).children()[1].innerHTML){
+          var target = $('.category-keyword')[i];
+          var keyword = $(item).children()[1].innerHTML
+          $(target).addClass("cate-red");
+          $('#category-tag').html(keyword);
+        }
+      }
+    }
+    // Scroll To category list
+    $('html, body').animate({
+       scrollTop: $('#categoryList').offset().top-100
+    }, 'slow');
+});
+}

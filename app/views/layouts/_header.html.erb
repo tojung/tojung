@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/7">
+            <a class="d-block h-100" href="/side_cate/7" data-remote="true" onclick="sidebar_cate_change(this);">
               <%=image_tag(@cdn_url+"hot@3x.png", class: "category-icon")%>
               <p class="category-title" lang="en">HOT</p>
             </a>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/8">
+            <a class="d-block h-100" href="/side_cate/8" data-remote="true" onclick="sidebar_cate_change(this);">
               <%=image_tag(@cdn_url+"new@3x.png", class: "category-icon")%>
               <p class="category-title" lang="en">NEW</p>
             </a>
@@ -43,7 +43,7 @@
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/1">
+            <a class="d-block h-100" href="/side_cate/1" data-remote="true" onclick="sidebar_cate_change(this);">
               <%=image_tag(@cdn_url+"woman@3x.png", class: "category-icon")%>
               <p class="category-title">인권/성평등</p>
             </a>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/2">
+            <a class="d-block h-100" href="/side_cate/2" data-remote="true" onclick="sidebar_cate_change(this);">
               <%=image_tag(@cdn_url+"dog@3x.png", class: "category-icon")%>
               <p class="category-title">동물</p>
             </a>
@@ -59,23 +59,15 @@
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/3">
-              <%=image_tag(@cdn_url+"army@3x.png", class: "category-icon")%>
-              <p class="category-title mb-0">통일/국방</p>
+            <a class="d-block h-100" href="/side_cate/3" data-remote="true" onclick="sidebar_cate_change(this);">
+              <%=image_tag(@cdn_url+"book@3x.png", class: "category-icon")%>
+              <p class="category-title mb-0">육아/교육</p>
             </a>
           </div>
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/4">
-              <%=image_tag(@cdn_url+"health@3x.png", class: "category-icon")%>
-              <p class="category-title mb-0">보건/복지</p>
-            </a>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/5">
+            <a class="d-block h-100" href="/side_cate/4" data-remote="true" onclick="sidebar_cate_change(this);">
               <%=image_tag(@cdn_url+"environment@3x.png", class: "category-icon")%>
               <p class="category-title mb-0">안전/환경</p>
             </a>
@@ -83,9 +75,17 @@
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/6">
-              <%=image_tag(@cdn_url+"book@3x.png", class: "category-icon")%>
-              <p class="category-title mb-0">육아교육</p>
+            <a class="d-block h-100" href="/side_cate/5" data-remote="true" onclick="sidebar_cate_change(this);">
+              <%=image_tag(@cdn_url+"health@3x.png", class: "category-icon")%>
+              <p class="category-title mb-0">보건/복지</p>
+            </a>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
+            <a class="d-block h-100" href="/side_cate/6" data-remote="true" onclick="sidebar_cate_change(this);">
+              <%=image_tag(@cdn_url+"army@3x.png", class: "category-icon")%>
+              <p class="category-title mb-0">통일/국방</p>
             </a>
           </div>
         </div>
@@ -95,7 +95,7 @@
       <a href="/" class="sidebar-menu">HOME</a>
       <a href="/home/brand" class="sidebar-menu">BRAND</a>
       <a href="/home/mypage" class="sidebar-menu">MY PAGE</a>
-      <a href="" class="sidebar-menu">BILL DATA FOR PROFESSION </a>
+      <!-- <a href="" class="sidebar-menu">BILL DATA FOR PROFESSION </a> -->
     </div>
     <div class="sidebar-sns" lang="en">
       <a href="https://www.facebook.com/tojung.me/" class="sidebar-menu">FACEBOOK</a>
@@ -108,3 +108,7 @@
 <div class="overlay"></div>
 
 <!-- //Header -->
+<script type="text/javascript">
+
+
+</script>

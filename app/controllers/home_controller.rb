@@ -24,6 +24,10 @@ class HomeController < ApplicationController
       elsif @num == '8'
         @products = @products
       end
+      respond_to do |format|
+        format.js
+        format.html
+      end
     end
   end
 
@@ -55,14 +59,30 @@ class HomeController < ApplicationController
       @products_categorized = @products
     elsif @num == '8'
       @products_categorized = @products
-      respond_to do |format|
-        format.js { render locals: { products_categorized: @products_categorized } }
-      end
     end
   end
 
   def sidebar_categorize
-    redirect_to root_path(sidebar: params[:id])
+    @cdn_url = 'https://d1eq7v76s8dt2n.cloudfront.net/'
+    @products = Product.where(visible: [true, 1])
+    @num = params[:id]
+    if @num == '1'
+      @products_categorized = @products.where(category: '인권/성평등')
+    elsif @num == '2'
+      @products_categorized = @products.where(category: '동물')
+    elsif @num == '3'
+      @products_categorized = @products.where(category: '육아/교육')
+    elsif @num == '4'
+      @products_categorized = @products.where(category: '안전/환경')
+    elsif @num == '5'
+      @products_categorized = @products.where(category: '보건/복지')
+    elsif @num == '6'
+      @products_categorized = @products.where(category: '외교/통일/국방')
+    elsif @num == '7'
+      @products_categorized = @products
+    elsif @num == '8'
+      @products_categorized = @products
+    end
   end
 
   # GET '/about' about 페이지
