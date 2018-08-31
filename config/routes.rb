@@ -17,15 +17,16 @@ Rails.application.routes.draw do
   get 'home/brand'
   get 'categorize/:category_id' => 'home#categorize'
   get 'side_cate/:id' => 'home#sidebar_categorize'
+  get 'home/search' => 'home#search', as: 'search'
 
   get 'home/policy'
   get 'home/privacy'
   get 'home/mypage'
-  
+
   resources :userupdaters
   get 'additional_info' => 'userupdaters#additional'
   post 'additional_update' => 'userupdaters#additional_update'
-  
+
   resources :mainimage
 
   resources :product, param: :product_id

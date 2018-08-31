@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :require_more_data, :check_admin, :set_cdn_url
   before_action :image_read_or_set, :products_read, :set_cdn_url, only: [:index]
   before_action :authenticate_user!, only: %i[mypage]
-  before_action :set_cdn_url, only: %i[index policy privacy brand mypage]
+  before_action :set_cdn_url, only: %i[index policy privacy brand mypage search]
   # GET '/' 메인 페이지
   def index
     if params.key?(:sidebar)
@@ -24,6 +24,14 @@ class HomeController < ApplicationController
       elsif @num == '8'
         @products = @products
       end
+    end
+  end
+
+  def search
+    if params[:term] == ''
+      @result = false
+    elsif params[:term]
+      @result = Product.where('name LIKE ? OR subname LIKE ? OR video_text LIKE ? OR assos LIKE ? OR bill_name LIKE ?', "%#{params[:term]}%",  "%#{params[:term]}%",  "%#{params[:term]}%",  "%#{params[:term]}%",  "%#{params[:term]}%").order('id')
     end
   end
 
@@ -83,10 +91,10 @@ class HomeController < ApplicationController
       @mainimage0 = $redis.get('mainimage0')
       @mainimage1 = $redis.get('mainimage1')
       @mainimage2 = $redis.get('mainimage2')
-      
+
       @mainimage3 = $redis.get('mainimage3')
       @mainimage4 = $redis.get('mainimage4')
-      
+
       @md_link0 = $redis.get('md_link0')
       @md_link1 = $redis.get('md_link1')
     end
@@ -97,7 +105,7 @@ class HomeController < ApplicationController
 
         @md_link_0 = Mainimage.last.md_link0
         @md_link_1 = Mainimage.last.md_link1
-    end 
+    end
   end
 
   # noinspection RubyResolve

@@ -53,6 +53,7 @@
   </head>
 
   <body>
+    <!-- Notice , Alert -->
     <% if notice %>
       <div id="notice_wrapper">
         <p class="notice px-0 py-0 mb-0"><%= notice %></p>
@@ -62,11 +63,8 @@
         <p class="alert px-0 py-0 mb-0"><%= alert %></p>
       </div>
     <% end %>
-    <!-- 회원 가입/회원정보 수정 및 로그인/로그아웃 링크 -->
-    <!-- <div>
-      <%= render 'devise/menu/registration_items' %><br>
-      <%= render 'devise/menu/login_items' %><br>
-    </div> -->
+    <!-- // Notice , Alert -->
+
     <%=render 'layouts/header'%>
 
     <div class="wrapper">
@@ -84,13 +82,6 @@
           $('#notice_wrapper').addClass('fadeout');
         }, 2000);
       });
-
-      $(window).bind("pageshow", function(event) {
-    if (event.originalEvent.persisted) {
-            document.location.reload();
-        }
-    });
-
     </script>
     <!-- Channel Plugin Scripts -->
 <script>
