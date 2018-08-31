@@ -1,18 +1,18 @@
 
 
 <section class="maker_profile font-14 py-5 text-center font-grey">
-  <img src="<%= @maker_response.maker.image0 %>" class="px-2 pb-4 maker-img">
+  <img src="<%= @maker_response.maker.image0 %>" class="mx-2 mb-4 maker-img">
   <% if @maker_response.response_type == "무응답" %>
   <p class="mb-3 font-grey">
-    <%= @maker_response.maker.name %> 의원에게 답변을 촉구합니다.
+    <%= @maker_response.maker.name %> 의원님에게 답변을 촉구합니다.
   </p>
   <% elsif @maker_response.response_text == nil %>
   <p class="mb-3 font-grey">
-    <%= @maker_response.maker.name%>의원이 '<%= @maker_response.response_type %>'응답했습니다.
+    <%= @maker_response.maker.name%>의원님이 '<%= @maker_response.response_type %>'응답했습니다.
   </p>
   <% else %>
   <p class="mb-0 font-grey">
-    <%= @maker_response.maker.name%>의원이 '<%= @maker_response.response_type %>'응답했습니다.
+    <%= @maker_response.maker.name%>의원님이 '<%= @maker_response.response_type %>'응답했습니다.
   </p>
   <p class="mb-3 font-grey">
    답변에 궁금한 점이 있다면,추가 이메일을 보내세요!
