@@ -73,7 +73,6 @@
           <div class="dropdown-share">
             <%= form_tag '/product_like' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <%= submit_tag '찜하기', class: 'share-button heart'%>
               <button class="share-button heart"><i class="far fa-heart"></i> 찜하기</button>
             <% end %>
           </div>
