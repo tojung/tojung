@@ -11,11 +11,11 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require turbolinks
 //= require_self
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 $(document).on('turbolinks:load', function () {
   $('.loaded').show();
   $('.loading-indicator').hide();
