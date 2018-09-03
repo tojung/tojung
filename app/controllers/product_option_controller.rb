@@ -1,8 +1,8 @@
 class ProductOptionController < ApplicationController
-  before_action :redirect_root_except_admin
+  before_action :redirect_root_except_admin, except: %i[show detail]
+  # before_action :authenticate_user!
   before_action :find_product, only: %i[new create]
-  before_action :find_product_option, only: %i[edit update detail]
-
+  before_action :find_product_option, only: %i[edit update detail show]
   # GET '/product_option/new?product_id='
   def new; end
 
