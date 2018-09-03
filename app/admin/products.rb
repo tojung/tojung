@@ -133,6 +133,8 @@ ActiveAdmin.register Product do
                              agree_hash: SecureRandom.base64(50),
                              disagree_hash: SecureRandom.base64(50))
       end
+      Rails.cache.clear
+
     end
     def update
       super
@@ -147,6 +149,8 @@ ActiveAdmin.register Product do
                                disagree_hash: SecureRandom.base64(50))
         end
       end
+
+      Rails.cache.clear
     end
   end
 end
