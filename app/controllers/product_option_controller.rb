@@ -8,6 +8,9 @@ class ProductOptionController < ApplicationController
 
   # GET '/product_options/:product_option_id/edit'
   def edit; end
+  
+  def show
+  end
 
   # GET '/product_options/:product_option_id/detail'
   def detail; end
