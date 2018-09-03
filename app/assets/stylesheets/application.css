@@ -564,3 +564,13 @@ button{
     transform: rotate(360deg);
   }
 }
+.loading-background {
+background-color: #FEFCFB;
+border-radius: 6px;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+position: fixed;
+content: " ";
+}
