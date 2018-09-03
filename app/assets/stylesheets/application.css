@@ -555,7 +555,7 @@ button{
   border-radius: 50%;
   border: 3px solid #a51832; 
   border-top-color: #a51832;
-  border-bottom: 3px solid #a51832; 
+  border-bottom: 3px solid #e0ced1; 
   animation: spin 1.5s linear infinite;
 }
 
