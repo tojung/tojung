@@ -542,3 +542,25 @@ button{
    padding: 16px 20px;
    color: #434343;
 }
+
+.loading-indicator:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 60px;
+  width: 60px;
+  background: rgba(0,0,0,.0);
+  border-radius: 50%;
+  border: 3px solid #a51832; 
+  border-top-color: #a51832;
+  border-bottom: 3px solid #a51832; 
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

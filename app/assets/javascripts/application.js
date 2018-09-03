@@ -11,12 +11,23 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require_self
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
-
+//= require turbolinks
+$(document).on('turbolinks:load', function () {
+  $('.loaded').show();
+  $('.loading-indicator').hide();
+});
+$(document).on('turbolinks:request-start', function () {
+  $('.loaded').hide();
+  $('.loading-indicator').show();
+});
+$(document).on('turbolinks:request-end', function () {
+  $('.loaded').show();
+  $('.loading-indicator').hide();
+});
 function sidebar_click(){
 $(document).ready(function () {
   $('#dismiss, #dismiss-button, .overlay, #exit-button').on('click', function () {
@@ -47,3 +58,4 @@ $(window).bind("pageshow", function(event) {
         alert("dddd");
     }
 });
+

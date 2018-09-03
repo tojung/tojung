@@ -41,6 +41,7 @@
   </head>
 
   <body>
+      
     <% if notice %>
       <div id="notice_wrapper">
         <p class="notice px-0 py-0 mb-0"><%= notice %></p>
@@ -57,15 +58,18 @@
     </div> -->
     <%=render 'layouts/header'%>
 
-    <div class="wrapper">
+    <div class="wrapper loaded">
       <%= yield %>
     </div>
-
     <%=render 'layouts/footer'%>
-
+    
+    <div class='loading-indicator'>
+    </div>
+    
     <!-- Slick Slider -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+
     <script>
       $(document).ready(function(){
         setTimeout(function(){
