@@ -56,10 +56,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   config.cache_store = :redis_store, {
-    expires_in: 1.hour,
-    namespace: 'cache',
-    redis: { host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 1 }
-  }
+    host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 1, :namespace => "cache", :expires_in => 90.minutes}
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :sidekiq
