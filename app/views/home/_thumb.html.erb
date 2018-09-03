@@ -2,7 +2,8 @@
 <!-- Product Thumbnail -->
 <div class="scrolling-wrapper center" id="all">
   <!-- Product card -->
-    <%=render :partial => "home/card", :locals => {:products => @products}%>
+    <%#=render :partial => "home/card", :locals => {:products => @products}%>
+    <%=render 'card', collection: @products, cached: true %>
   <!-- Product Card -->
 </div>
 <!-- //Product Thumbnail -->
