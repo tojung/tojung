@@ -20,11 +20,11 @@ $(document).on('turbolinks:load', function () {
   $('.loaded').show();
   $('.loading-indicator').hide();
 });
-$(document).on('turbolinks:request-start', function () {
+i$(document).on('turbolinks:request-start', function () {
   $('.loaded').hide();
   $('.loading-indicator').show();
 });
-$(document).on('turbolinks:request-end', function () {
+$i(document).on('turbolinks:request-end', function () {
   $('.loaded').show();
   $('.loading-indicator').hide();
 });
