@@ -15,13 +15,14 @@
     <% end %>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://tojung.me/<%= request.fullpath %>"/>
-        <meta property="fb:app_id" content="1014670008686658" />
+    <meta property="fb:app_id" content="1014670008686658" />
     <meta name="turbolinks-cache-control" content="no-cache">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" async="async" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- Slick Slider -->
@@ -38,10 +39,21 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'application/favicon' %>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114503665-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114503665-1');
+    </script>
+
   </head>
 
   <body>
-      
+    <!-- Notice , Alert -->
     <% if notice %>
       <div id="notice_wrapper">
         <p class="notice px-0 py-0 mb-0"><%= notice %></p>
@@ -51,11 +63,8 @@
         <p class="alert px-0 py-0 mb-0"><%= alert %></p>
       </div>
     <% end %>
-    <!-- 회원 가입/회원정보 수정 및 로그인/로그아웃 링크 -->
-    <!-- <div>
-      <%= render 'devise/menu/registration_items' %><br>
-      <%= render 'devise/menu/login_items' %><br>
-    </div> -->
+    <!-- // Notice , Alert -->
+
     <%=render 'layouts/header'%>
 
     <div class="wrapper loaded">
@@ -77,13 +86,6 @@
           $('#notice_wrapper').addClass('fadeout');
         }, 2000);
       });
-
-      $(window).bind("pageshow", function(event) {
-    if (event.originalEvent.persisted) {
-            document.location.reload();
-        }
-    });
-
     </script>
   </body>
 </html>

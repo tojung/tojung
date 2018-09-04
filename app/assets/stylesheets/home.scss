@@ -158,6 +158,10 @@
   padding: 14px 0;
 }
 
+.card-body2{
+  padding: 14px 0;
+}
+
 .card-title{
   font-size: 16px;
 }
@@ -272,13 +276,25 @@ span.or{
 }
 
 .mypage-edit{
-  width: 220px;
+  width: 100px;
   height: 26px;
   border-radius: 2px;
   border: solid 1px #979797;
   background-color: white;
 }
 
+
+.custom-file-label{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-img-edit{
+  width: 150px;
+  height: 150px;
+  border-radius: 300px;
+
+}
 .mypage-edit:hover{
   border: solid 1px #979797;
 }
@@ -334,5 +350,5 @@ span.or{
 
 .links-bar{
   border-right: 1px solid #434343;
-  padding: 0 10px;
+  padding: 0 15px;
 }

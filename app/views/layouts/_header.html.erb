@@ -3,7 +3,7 @@
   <nav class="navbar navbar-light height-inherit">
     <h4 class="brand"><a class="navbar-brand" href="/"><%=image_tag("logo.png", class: "logo")%></a></h4>
     <div class="nav-right">
-      <a class="navbar-brand mr-1" href="#"><%=image_tag(@cdn_url+"search.png", class: "icon_search")%></a>
+      <a class="navbar-brand mr-1" href="/home/search"><%=image_tag(@cdn_url+"search.png", class: "icon_search")%></a>
       <button class="button-none bg-base" type="button" id="sidebarCollapse" onclick="sidebar_click();">
           <%=image_tag(@cdn_url+"bars.svg", class: "icon_bars bg-base")%>
       </button>
@@ -17,7 +17,7 @@
     <pre class="sign-status bg-white text-right mb-2">
 <%if user_signed_in?%>
 <a class="font-grey" href="/users/sign_out">로그아웃</a>
-<a class="font-grey" href="/users/edit">회원정보수정
+<a class="font-grey" href="/userupdaters/<%= current_user.id %>/edit">회원정보수정
 <%else%>
 현재 로그아웃 상태입니다.
 로그인을 하시면 더 많은 정보를 볼 수 있습니다.
@@ -60,22 +60,14 @@
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
             <a class="d-block h-100" href="/side_cate/3">
-              <%=image_tag(@cdn_url+"army@3x.png", class: "category-icon")%>
-              <p class="category-title mb-0">통일/국방</p>
+              <%=image_tag(@cdn_url+"book@3x.png", class: "category-icon")%>
+              <p class="category-title mb-0">육아/교육</p>
             </a>
           </div>
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
             <a class="d-block h-100" href="/side_cate/4">
-              <%=image_tag(@cdn_url+"health@3x.png", class: "category-icon")%>
-              <p class="category-title mb-0">보건/복지</p>
-            </a>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="sidebar-category bg-white text-center">
-            <a class="d-block h-100" href="/side_cate/5">
               <%=image_tag(@cdn_url+"environment@3x.png", class: "category-icon")%>
               <p class="category-title mb-0">안전/환경</p>
             </a>
@@ -83,9 +75,17 @@
         </div>
         <div class="col-3">
           <div class="sidebar-category bg-white text-center">
+            <a class="d-block h-100" href="/side_cate/5">
+              <%=image_tag(@cdn_url+"health@3x.png", class: "category-icon")%>
+              <p class="category-title mb-0">보건/복지</p>
+            </a>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="sidebar-category bg-white text-center">
             <a class="d-block h-100" href="/side_cate/6">
-              <%=image_tag(@cdn_url+"book@3x.png", class: "category-icon")%>
-              <p class="category-title mb-0">육아교육</p>
+              <%=image_tag(@cdn_url+"army@3x.png", class: "category-icon")%>
+              <p class="category-title mb-0">통일/국방</p>
             </a>
           </div>
         </div>
@@ -95,7 +95,7 @@
       <a href="/" class="sidebar-menu">HOME</a>
       <a href="/home/brand" class="sidebar-menu">BRAND</a>
       <a href="/home/mypage" class="sidebar-menu">MY PAGE</a>
-      <a href="" class="sidebar-menu">BILL DATA FOR PROFESSION </a>
+      <!-- <a href="" class="sidebar-menu">BILL DATA FOR PROFESSION </a> -->
     </div>
     <div class="sidebar-sns" lang="en">
       <a href="https://www.facebook.com/tojung.me/" class="sidebar-menu">FACEBOOK</a>
@@ -108,3 +108,7 @@
 <div class="overlay"></div>
 
 <!-- //Header -->
+<script type="text/javascript">
+
+
+</script>

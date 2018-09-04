@@ -4,27 +4,30 @@
   <a class="d-block buy-button pay-link font-14 ml-4 text-white" id="packageBarCollapse" onclick="packagebar_click();">
     내 인생으로 배송받기
   </a>
+
+  <div id="HeartMobileBox">
   <% if @like == nil %>
   <%= form_tag '/product_like', class: "ml-5 text-white" do %>
     <%= hidden_field_tag 'product_id', @product.id%>
-    <button class="heart-mobile"><%=image_tag(@cdn_url+"heart.svg")%></button>
+    <button class="heart-mobile"><%=image_tag("heart-white.svg", class: "heart-img-mobile")%></button>
   <% end %>
   <% elsif @like.empty? %>
-  <%= form_tag '/product_like', class: "ml-5 text-white" do %>
+  <%= form_tag '/product_like', class: "ml-5 text-white", remote: true do %>
     <%= hidden_field_tag 'product_id', @product.id%>
-    <button class="heart-mobile"><%=image_tag(@cdn_url+"heart.svg")%></button>
+    <button class="heart-mobile"><%=image_tag("heart-white.svg", class: "heart-img-mobile")%></button>
   <% end %>
   <% elsif @like[0].status == true  %>
-  <%= form_tag "/product_like/#{ @like[0].id }", class: "ml-5 text-white", method: 'put' do %>
+  <%= form_tag "/product_like/#{ @like[0].id }", class: "ml-5 text-white", remote: true, method: 'put' do %>
     <%= hidden_field_tag 'product_id', @product.id%>
-    <button class="heart-mobile"><%=image_tag("heart-red.svg")%></button>
+    <button class="heart-mobile" id="HeartMobile"><%=image_tag("heart-red.svg", class: "heart-img-mobile")%></button>
   <% end %>
   <% elsif @like[0].status == false %>
-  <%= form_tag "/product_like/#{ @like[0].id }", class: "ml-5 text-white", method: 'put' do %>
+  <%= form_tag "/product_like/#{ @like[0].id }", class: "ml-5 text-white", remote: true, method: 'put' do %>
     <%= hidden_field_tag 'product_id', @product.id%>
-    <button class="heart-mobile"><%=image_tag(@cdn_url+"heart.svg")%></button>
+    <button class="heart-mobile" id="HeartMobile"><%=image_tag("heart-white.svg", class: "heart-img-mobile")%></button>
   <% end %>
   <%end%>
+  </div>
   <!-- <a href="/" class="d-block ml-5 text-white">
     <%=image_tag(@cdn_url+"heart.svg")%>
   </a> -->
@@ -81,12 +84,5 @@
     });
   }
 
-  // 깜빡깜빡
-  // 결제하기로 넘어가기
-  // $(document).ready(function(){
-  //   if ($('.pay-link').hasClass("font-weight-bold")){
-  //       var pid = $('.border-red')[0].id;
-  //     $('.pay-link').attr("href","/product_order/new?product_id=<%#= @product.id %>&package_id="+pid);
-  //   }
   // });
 </script>

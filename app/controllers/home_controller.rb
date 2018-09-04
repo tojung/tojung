@@ -2,28 +2,25 @@ class HomeController < ApplicationController
   before_action :require_more_data, :check_admin, :set_cdn_url
   before_action :image_read_or_set, :products_read, :set_cdn_url, only: [:index]
   before_action :authenticate_user!, only: %i[mypage]
-  before_action :set_cdn_url, only: %i[index policy privacy brand mypage]
+  before_action :set_cdn_url, only: %i[index policy privacy brand mypage search]
   # GET '/' 메인 페이지
   def index
     if params.key?(:sidebar)
       @num = params[:sidebar]
-      if @num == '1'
-        @products = @products.where(category: '인권/성평등')
-      elsif @num == '2'
-        @products = @products.where(category: '동물')
-      elsif @num == '3'
-        @products = @products.where(category: '육아/교육')
-      elsif @num == '4'
-        @products = @products.where(category: '안전/환경')
-      elsif @num == '5'
-        @products = @products.where(category: '보건/복지')
-      elsif @num == '6'
-        @products = @products.where(category: '외교/통일/국방')
-      elsif @num == '7'
+      @category_list = {'1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW'}
+      if (@num == '7' || @num == '8')
         @products = @products
-      elsif @num == '8'
-        @products = @products
+      else
+        @products = @products.where(category: @category_list[@num])
       end
+    end
+  end
+
+  def search
+    if params[:term] == ''
+      @result = false
+    elsif params[:term]
+      @result = Product.where('name LIKE ? OR subname LIKE ? OR video_text LIKE ? OR assos LIKE ? OR bill_name LIKE ?', "%#{params[:term]}%",  "%#{params[:term]}%",  "%#{params[:term]}%",  "%#{params[:term]}%",  "%#{params[:term]}%").order('id')
     end
   end
 
@@ -31,25 +28,11 @@ class HomeController < ApplicationController
     @cdn_url = 'https://d1eq7v76s8dt2n.cloudfront.net/'
     @products = Product.where(visible: [true, 1])
     @num = params[:category_id]
-    if @num == '1'
-      @products_categorized = @products.where(category: '인권/성평등')
-    elsif @num == '2'
-      @products_categorized = @products.where(category: '동물')
-    elsif @num == '3'
-      @products_categorized = @products.where(category: '육아/교육')
-    elsif @num == '4'
-      @products_categorized = @products.where(category: '안전/환경')
-    elsif @num == '5'
-      @products_categorized = @products.where(category: '보건/복지')
-    elsif @num == '6'
-      @products_categorized = @products.where(category: '외교/통일/국방')
-    elsif @num == '7'
+    @category_list = {'1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW'}
+    if (@num == '7' || @num == '8')
       @products_categorized = @products
-    elsif @num == '8'
-      @products_categorized = @products
-      respond_to do |format|
-        format.js { render locals: { products_categorized: @products_categorized } }
-      end
+    else
+      @products_categorized = @products.where(category: @category_list[@num])
     end
   end
 
@@ -83,10 +66,10 @@ class HomeController < ApplicationController
       @mainimage0 = $redis.get('mainimage0')
       @mainimage1 = $redis.get('mainimage1')
       @mainimage2 = $redis.get('mainimage2')
-      
+
       @mainimage3 = $redis.get('mainimage3')
       @mainimage4 = $redis.get('mainimage4')
-      
+
       @md_link0 = $redis.get('md_link0')
       @md_link1 = $redis.get('md_link1')
     end
@@ -97,7 +80,7 @@ class HomeController < ApplicationController
 
         @md_link_0 = Mainimage.last.md_link0
         @md_link_1 = Mainimage.last.md_link1
-    end 
+    end
   end
 
   # noinspection RubyResolve

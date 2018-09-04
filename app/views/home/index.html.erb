@@ -34,7 +34,7 @@
 <!-- //Cover -->
 <div class="wrapper mt-0 loaded">
 <!-- Category -->
-<ul class="category-list d-flex flex-wrap justify-content-center mb-0">
+<ul class="category-list d-flex flex-wrap justify-content-center mb-0" id="categoryList">
   <a href="/categorize/7" data-remote="true" class="category-keyword cate-red" onclick="cate_change(this);">HOT</a>
   <a href="/categorize/8" data-remote="true" class="category-keyword" onclick="cate_change(this);">NEW</a>
   <a href="/categorize/1" data-remote="true" class="category-keyword" onclick="cate_change(this);">인권/성평등</a>
@@ -45,8 +45,9 @@
   <a href="/categorize/6" data-remote="true" class="category-keyword" onclick="cate_change(this);">외교/통일/국방</a>
 </ul>
 <!-- // Category -->
+<!-- Category Tag -->
 <div class="pro-tag text-white"><p id="category-tag">HOT</p></div>
-
+<!-- Category tag -->
 <%=render 'thumb', cached: true%>
 <!-- MD's Contents -->
 <section class="contents loaded">
@@ -75,4 +76,22 @@
   $(document).ready(function(){
     $('.cover').unwrap();
   });
+
+  <%if @num%>
+    $(document).ready(function () {
+      $('.category-keyword').filter('.cate-red').removeClass("cate-red");
+        for(let i=0;i<$('.category-keyword').length;i++){
+          if($('.category-keyword')[i].innerHTML === '<%=@category_list[@num]%>'){
+            var target = $('.category-keyword')[i];
+            var keyword = '<%=@category_list[@num]%>';
+            $(target).addClass("cate-red");
+            $('#category-tag').html(keyword);
+          }
+      }
+      // Scroll To category list
+      $('html, body').animate({
+         scrollTop: $('#categoryList').offset().top-100
+      }, 'slow');
+    });
+  <%end%>
 </script>

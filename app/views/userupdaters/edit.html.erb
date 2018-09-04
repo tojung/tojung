@@ -1,6 +1,6 @@
 <section class="sign_up mb-5 text-center">
-<h2 class="font-18 my-4">회원 정보 수정</h2>
-<img src="<%= current_user.image0 %>" style="width: 20%; height: 20%;">
+<h2 class="font-18 my-4">개인 정보 수정</h2>
+
 
 <%= form_tag "/userupdaters/#{ current_user.id }", method: "put", multipart: true do |_f|%>
   <div class="field mb-3">
@@ -32,7 +32,8 @@
   </div>
 
   <div class="field mt-3 mb-3">
-    <h4 class="font-14 mt-2">프로필 이미지</h4>
+    <h4 class="font-18 mt-2 mb-3">프로필 이미지</h4>
+    <img src="<%= current_user.image0 %>" class="profile-img-edit mb-3" id="profileImg">
     <div class="custom-file h-100">
       <input type="file" class="custom-file-input" id="inputGroupFile02" onchange="fileName(this);" name="image0">
       <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><%= current_user.image0.path %></label>
@@ -43,8 +44,8 @@
   </div>
 
   <div class="actions mb-3">
-    <%= submit_tag '수정 완료'%>
-  </div>    
+    <%= submit_tag '수정 완료', class: "btn-login text-white font-14"%>
+  </div>
 
 <% end %>
    
@@ -123,10 +124,15 @@
   function fileUpload(){
     $('#inputGroupFile02').click();
   }
-
   function fileName(item){
     var x = item.files[0].name;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $('#profileImg').attr('src',e.target.result);
+    }
+    reader.readAsDataURL(item.files[0]);
     $('.custom-file-label').html(x);
+
   }
 
 </script>

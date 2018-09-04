@@ -49,19 +49,6 @@ $(document).ready(function () {
 });
 }
 
-window.onpageshow = function(event) {
-    if (event.persisted) {
-        window.location.reload();
-    }
-};
-
-
-$(window).bind("pageshow", function(event) {
-    if (event.originalEvent.persisted) {
-        alert("dddd");
-    }
-});
-
 ;window.channelPluginSettings = {
     "pluginKey": "c41b6775-e43d-4cae-888e-8616e0c23cfe" //please fill with your plugin key
   };
@@ -101,4 +88,3 @@ $(window).bind("pageshow", function(event) {
       window.addEventListener('load', l, false);
     }
   })();
-

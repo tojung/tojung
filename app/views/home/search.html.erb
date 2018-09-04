@@ -1,0 +1,39 @@
+<%= form_tag(search_path, method: :get, class: "px-3 py-3") do %>
+  <div class="search-box mx-auto">
+    <%= button_to 'Search', class: "search-btn ml-2 mt-1" do %>
+    <i class="fas fa-search"></i>
+    <%end%>
+    <%= text_field_tag :term, params[:search], placeholder: "검색", class: "search-form my-auto" %>
+  </div>
+<% end %>
+
+<% if @result.nil?%>
+<% elsif @result.blank? %>
+  <h4 class="font-16 font-lg-24 px-3 py-3">"<%= params[:term]%>"(으)로 검색하신 결과를 찾을 수 없습니다.</h4>
+<%else%>
+<h4 class="font-16 font-lg-24 px-3 py-3">"<%=params[:term]%>"(으)로 검색하신 결과입니다.</h4>
+
+<div class="container">
+  <div class="row">
+    <%@result.each do |product|%>
+    <div class="card result-card col-12 col-md-6 col-lg-4">
+      <a href="/product/<%=product.id%>" class="d-block h-100 mx-auto">
+        <%=image_tag(@cdn_url + product.image0.path, class: "pro-thumbimg") if product.image0.path != nil%>
+        <div class="card-body visible-lg-only font-14">
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title text-black font-weight-bold mb-0 font-18"><%=product.name%></h5>
+            <!-- 이부분 000명으로 수정 -->
+            <span class="font-red font-weight-bold font-18"></span>
+          </div>
+          <p class="card-text mb-2 font-14"><%=product.subname%></p>
+          <div class="d-flex font-14 justify-content-between">
+            <!-- <span class="funding-money"><% product.funded_money%></span> -->
+            <span class="funding-days"><% -1*(( Time.now - product.end_date) / 1.days).to_i %></span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <%end%>
+  </div>
+</div>
+<%end%>

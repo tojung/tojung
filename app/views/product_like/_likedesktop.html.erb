@@ -1,0 +1,6 @@
+<form action="/product_like/<%=@like[0].id%>" accept-charset="UTF-8" data-remote="true" method="post">
+  <input name="utf8" type="hidden" value="✓">
+  <input type="hidden" name="_method" value="put">
+  <input type="hidden" name="product_id" id="product_id" value="<%=@product.id%>">
+  <button class="share-button heart" id="Heart"><%=image_tag("heart-red.svg", class: "heart-img")%> 찜 취소하기</button>
+</form>

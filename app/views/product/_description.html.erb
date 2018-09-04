@@ -3,7 +3,7 @@
   <div class="youtubeWrap mb-4">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtb_url %>?controls=2" frameborder="0" allowfullscreen></iframe>
   </div>
-  <p class="text-center video-text mb-4"><%= @product.video_text.gsub("\r\n", "<br />").html_safe %></p>
+  <p class="text-center video-text mb-4 px-1"><%= @product.video_text.gsub("\r\n", "<br />").html_safe %></p>
   <a href="<%=  @product.bill_url %>" class="d-block text-right font-grey font-14 pr-3 mb-4">>법안 원문 보러가기</a>
   <div class="share text-center mb-4">
       <iframe src="  https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Ftojung.me/product/<%= @product.id %>&layout=button_count&size=large&mobile_iframe=true&appId=1014670008686658&width=104&height=28" width="186" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
@@ -26,7 +26,7 @@
           <div class="pro-card">
             <%#=image_tag("email.png", class: "w-100")%>
             <img src="<%= @cdn_url + product_option.image0.path if product_option.image0.path != nil%>" class="desc-pro-img">
-            <div class="card-body py-4 text-center">
+            <div class="card-body2 py-4 text-center">
               <h4 class="pro-num mb-2"><%= product_option.name %></h4>
               <p class="font-grey font-12 mb-4"><% product_option.packages.each do |package| %>  <%= package.name %> <% end %>패키지에 포함</p>
               <pre class="font-14 font-weight-bold mb-2"> <%= product_option.content.gsub("\r\n", "<br />").html_safe %> </pre>
@@ -57,7 +57,7 @@
       </div>
     </section> -->
 
-    <section class="usage mb-5 mx-4">
+    <!-- <section class="usage mb-5 mx-4">
       <h4 class="font-18 font-weight-bold mb-5">법안 광고 캠페인은 어디에?</h4>
       <p class="text-center font-weight-bold">광고 펀딩 기간 내</p>
       <table class="table font-14 mb-4">
@@ -80,7 +80,7 @@
       <p class="text-center font-14 mb-1">법안 페이스북 광고</p>
       <p class="text-center font-14 mb-1">서버 유지비</p>
       <p class="text-center font-14 mb-1">후속 컨텐츠 발행비</p>
-    </section>
+    </section> -->
 
     <section class="refund mb-5 mx-4 font-14">
       <h4 class="font-18 font-weight-bold mb-4">환불 및 교환 규정</h4>

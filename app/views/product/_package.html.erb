@@ -6,10 +6,10 @@
       <% @product.packages.each do |package|%>
        <div class="card bg-white">
           <%=image_tag(@cdn_url + package.image0.path , class: "package-img d-block mx-auto", id: package.id) if package.image0.path != nil%>
-        <div class="card-body text-center py-1 font-14">
-          <p class="font-red mb-1"><%= package.price %>원</p>
+        <div class="card-body2 text-center py-1 font-14">
+          <p class="font-red mb-1 funding-money"><%= package.price %>원</p>
           <h5 class="text-black font-weight-bold mb-1 font-14" lang="en"><%= package.name %></h5>
-          <pre class="font-12 mb-2"><%= package.content.gsub("\r\n", "<br />").html_safe %></pre>
+          <pre class="font-12 mb-2 package-content"><%= package.content.gsub("\r\n", "<br />").html_safe %></pre>
         </div>
       </div>
       <% end %>
@@ -65,6 +65,8 @@
         }
         var pid = $('.border-red')[0].id;
         $('.pay-link').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
+
+        // 패키지 버튼 깜빡깜빡
         var count = 0;
         var refresh = setInterval(function(){
           ++count;
@@ -80,5 +82,16 @@
   function doBlink(){
     $('.pay-link').toggleClass("hidden0");
   }
+
+  $(document).ready(function(){
+      money = $('.funding-money').html();
+      if (money !== "0원"){
+        money = money.substring(0,money.length-1)
+        money = Number(money);
+        money = money.toLocaleString();
+        money = money+"원";
+        $('.funding-money').html(money);
+      }
+  });
 </script>
 <% end %>

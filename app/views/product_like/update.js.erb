@@ -1,0 +1,7 @@
+<%if @product_like == true%>
+$('#Heart').html('<%=image_tag("heart-red.svg", class: "heart-img")%> 찜 취소하기');
+$('#HeartMobile').html('<%=image_tag("heart-red.svg", class: "heart-img-mobile")%>');
+<%else%>
+$('#Heart').html('<%=image_tag("heart.svg", class: "heart-img")%> 찜하기');
+$('#HeartMobile').html('<%=image_tag("heart-white.svg", class: "heart-img-mobile")%>');
+<%end%>
