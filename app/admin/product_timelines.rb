@@ -23,4 +23,15 @@ permit_params :name, :image0, :issued_at, :product_id
 
     actions
   end
+  controller do
+    def create
+      super
+      Rails.cache.clear
+    end
+
+    def update
+      super
+      Rails.cache.clear
+    end
+  end
 end

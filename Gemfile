@@ -69,3 +69,4 @@ gem 'redis-rails'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'activeadmin'
+

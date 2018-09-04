@@ -578,4 +578,37 @@ button{
 .result-card{
   border: none;
   background-color: inherit;
+.loading-indicator:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 60px;
+  width: 60px;
+  background: rgba(0,0,0,.0);
+  border-radius: 50%;
+  border: 3px solid #a51832; 
+  border-top-color: #a51832;
+  border-bottom: 3px solid #e0ced1; 
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+       transform: translate(-50%,-50%) rotate(0deg);
+    }
+  to {
+    transform: translate(-50%,-50%) rotate(360deg);
+  }
+}
+.loading-background {
+background-color: #FEFCFB;
+border-radius: 6px;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+position: fixed;
+content: " ";
 }

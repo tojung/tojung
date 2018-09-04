@@ -19,7 +19,7 @@
     <meta name="turbolinks-cache-control" content="no-cache">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" async="async" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
@@ -67,15 +67,19 @@
 
     <%=render 'layouts/header'%>
 
-    <div class="wrapper">
+    <div class="wrapper loaded">
       <%= yield %>
     </div>
-
     <%=render 'layouts/footer'%>
-
+    
+    <div class='loading-background'>
+      <div class='loading-indicator'>
+      </div>
+    </div>
     <!-- Slick Slider -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script> 
     <script>
       $(document).ready(function(){
         setTimeout(function(){
@@ -83,48 +87,5 @@
         }, 2000);
       });
     </script>
-    <!-- Channel Plugin Scripts -->
-<script>
-  ;window.channelPluginSettings = {
-    "pluginKey": "c41b6775-e43d-4cae-888e-8616e0c23cfe" //please fill with your plugin key
-  };
-  (function() {
-    var w = window;
-    if (w.ChannelIO) {
-      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-    }
-    var d = window.document;
-    var ch = function() {
-      ch.c(arguments);
-    };
-    ch.q = [];
-    ch.c = function(args) {
-      ch.q.push(args);
-    };
-    w.ChannelIO = ch;
-    function l() {
-      if (w.ChannelIOInitialized) {
-        return;
-      }
-      w.ChannelIOInitialized = true;
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.async = true;
-      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-      s.charset = 'UTF-8';
-      var x = document.getElementsByTagName('script')[0];
-      x.parentNode.insertBefore(s, x);
-    }
-    if (document.readyState === 'complete') {
-      l();
-    } else if (window.attachEvent) {
-      window.attachEvent('onload', l);
-    } else {
-      window.addEventListener('DOMContentLoaded', l, false);
-      window.addEventListener('load', l, false);
-    }
-  })();
-</script>
-<!-- End Channel Plugin -->
   </body>
 </html>

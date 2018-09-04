@@ -1,5 +1,5 @@
 <!-- Cover -->
-<section class="cover">
+<section class="cover loaded">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
     <ol class="carousel-indicators mb-1">
       <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
@@ -32,7 +32,7 @@
   </div>
 </section>
 <!-- //Cover -->
-<div class="wrapper mt-0">
+<div class="wrapper mt-0 loaded">
 <!-- Category -->
 <ul class="category-list d-flex flex-wrap justify-content-center mb-0" id="categoryList">
   <a href="/categorize/7" data-remote="true" class="category-keyword cate-red" onclick="cate_change(this);">HOT</a>
@@ -50,7 +50,7 @@
 <!-- Category tag -->
 <%=render 'thumb', cached: true%>
 <!-- MD's Contents -->
-<section class="contents">
+<section class="contents loaded">
   <h4 class="d-inline-block content-heading font-18" lang="en">MD's CONTENTS</h4>
   <%=image_tag(@cdn_url+"shape.png", class: "shape")%>
   <div class="container-fluid">
