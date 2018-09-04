@@ -1,7 +1,7 @@
 <% cache @product do %>
 <nav id="shareBar" class="bg-white visible-xs-flex">
   <section class="share w-100">
-    <a id="kakao-link-btn" href="javascript:;">
+    <a id="kakao-link-btn" href="javascript:createlink();">
     <%=image_tag("kakao.svg", class: "kakao_icon d-block mx-auto mb-3") %>
     </a>
     <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
@@ -17,11 +17,16 @@
 <script type='text/javascript'>
     //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    try{
-      Kakao.init('d88e4ac3d481a3491b72e73fcb0ae1fc');
 
-        Kakao.Link.createDefaultButton({
-            container: '#kakao-link-btn',
+    try{
+    Kakao.init('d88e4ac3d481a3491b72e73fcb0ae1fc');
+    }catch (e) {
+        console.log('kakao init ok')
+    }
+
+function createlink(){
+          Kakao.Link.sendDefault({
+            // container: '#kakao-link-btn',
             objectType: 'feed',
             content: {
                 title: "투정, <%= @product.name.gsub("'", "") %>",
@@ -54,11 +59,8 @@
                 //}
             ]
         });
-    }catch (e) {
-        console.log('kakao init ok')
+        // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
     }
-    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-
     //]]>
 </script>
 <% end %>
