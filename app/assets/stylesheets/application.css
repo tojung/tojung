@@ -393,8 +393,8 @@ button{
  /* Footer */
 
  .footer{
-   padding: 60px 40px;
-   background-color: #F9F9F9;
+   padding: 60px 40px 0 40px;
+   background-color: rgb(249,249,249, 0.75);
    margin-bottom: 60px;
  }
  .footer p{
@@ -402,7 +402,6 @@ button{
    line-height: 20px;
  }
  .menus{
-   margin-top: 10px;
    line-height: 20px;
    color: black;
  }
@@ -588,9 +587,9 @@ button{
   width: 60px;
   background: rgba(0,0,0,.0);
   border-radius: 50%;
-  border: 3px solid #a51832; 
+  border: 3px solid #a51832;
   border-top-color: #a51832;
-  border-bottom: 3px solid #e0ced1; 
+  border-bottom: 3px solid #e0ced1;
   animation: spin 1.5s linear infinite;
 }
 
