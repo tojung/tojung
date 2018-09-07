@@ -16,6 +16,7 @@
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
+
 $(document).on('turbolinks:load', function () {
   $('.loaded').show();
   $('.loading-background').hide();
@@ -49,9 +50,9 @@ $(document).ready(function () {
 });
 }
 
-;window.channelPluginSettings = {
+window.channelPluginSettings = {
     "pluginKey": "c41b6775-e43d-4cae-888e-8616e0c23cfe" //please fill with your plugin key
-  };
+};
   (function() {
     var w = window;
     if (w.ChannelIO) {
@@ -87,4 +88,4 @@ $(document).ready(function () {
       window.addEventListener('DOMContentLoaded', l, false);
       window.addEventListener('load', l, false);
     }
-  })();
+  })()
