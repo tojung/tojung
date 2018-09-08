@@ -10,13 +10,15 @@ function onInstall(event) {
         console.log(response.type); // "opaque"
     });
     <% [0, 1, 2, 3,4, 5].each do |i|%>
-    fetch('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', {
-        mode: 'no-cors'
-    }).then(function(response) {
-        console.log(response.type);
-        console.log(<%= i %>)
-        // "opaque"
-    });
+    <% if $redis.get('mainimage'+ i.to_s) != nil %>
+      fetch('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', {
+          mode: 'no-cors'
+      }).then(function(response) {
+          console.log(response.type);
+          console.log(<%= i %>)
+          // "opaque"
+      });
+    <% end %>
    <% end %>
     <% Product.all.each do |product|%>
       <% if product.image0 != nil and product.image0.path != nil %>
