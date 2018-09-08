@@ -7,7 +7,6 @@ function onInstall(event) {
     fetch('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', {
         mode: 'no-cors'
     }).then(function(response) {
-
         caches.open(CACHE_NAME)
             .then(function(cache) {
                 cache.put('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', response.clone());
@@ -46,7 +45,6 @@ function onInstall(event) {
       }).then(function(response) {
           caches.open(CACHE_NAME)
               .then(function(cache) {
-                  console.log('mainimage')
                   var responseToCache = response.clone();
                   //responseToCache.url = '<#%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>'
                   //responseToCache.status = 200
@@ -63,7 +61,6 @@ function onInstall(event) {
 
             caches.open(CACHE_NAME)
                 .then(function(cache) {
-                    console.log('product')
                     cache.put('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>', response.clone());
                 });            // "opaque"
         });
@@ -74,7 +71,6 @@ function onInstall(event) {
         fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product_option.image0.path.force_encoding('ASCII-8BIT')) %>', {
             mode: 'no-cors'
         }).then(function(response) {
-
             caches.open(CACHE_NAME)
                 .then(function(cache) {
                     cache.put('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product_option.image0.path.force_encoding('ASCII-8BIT')) %>', response.clone());
@@ -85,7 +81,7 @@ function onInstall(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
         return cache.addAll([
-        '/offline.html',
+          '/offline.html',
           'https://s3.ap-northeast-2.amazonaws.com/static.channel.io/emoji/v3/emojis.min.json',
           'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css',
           'https://fonts.googleapis.com/css?family=Noto+Sans:400,700',
@@ -122,7 +118,8 @@ function onActivate(event) {
 function onFetch(event) {
   event.respondWith(
     // try to return untouched request from network first
-          caches.match(event.request)
+
+    caches.match(event.request)
               .then(function (response) {
                   if(response){
                       return response
@@ -134,12 +131,14 @@ function onFetch(event) {
                           if(!response || response.status == 0) {
                               return response;
                           }
-
                           var responseToCache = response.clone();
 
                           caches.open(CACHE_NAME)
-                              .then(function(cache) {
-                                  cache.put(event.request, responseToCache);
+                              .then(function(cache){
+                                  console.log(event.request.url)
+                                  if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
+                                      cache.put(event.request, responseToCache);
+                                  }
                               });
 
                           return response;
