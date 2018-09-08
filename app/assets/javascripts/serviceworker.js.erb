@@ -10,7 +10,7 @@ function onInstall(event) {
 
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                cache.put(event.request, response.clone());
+                cache.put('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', response.clone());
             });
     });
     fetch('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', {
@@ -19,7 +19,7 @@ function onInstall(event) {
 
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                cache.put(event.request, response.clone());
+                cache.put('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', response.clone());
             });
     });
     fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', {
@@ -28,7 +28,7 @@ function onInstall(event) {
 
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                cache.put(event.request, response.clone());
+                cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', response.clone());
             });
     });
     fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', {
@@ -36,7 +36,7 @@ function onInstall(event) {
     }).then(function(response) {
         caches.open(CACHE_NAME)
             .then(function(cache) {
-                cache.put(event.request, response.clone());
+                cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', response.clone());
             });
     });
     <% [0, 1, 2, 3,4, 5].each do |i|%>
@@ -47,7 +47,10 @@ function onInstall(event) {
           caches.open(CACHE_NAME)
               .then(function(cache) {
                   console.log('mainimage')
-                  cache.put(event.request, response.clone());
+                  var responseToCache = response.clone();
+                  //responseToCache.url = '<#%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>'
+                  //responseToCache.status = 200
+                  cache.put('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', responseToCache);
               });          // "opaque"
       });
     <% end %>
@@ -60,7 +63,8 @@ function onInstall(event) {
 
             caches.open(CACHE_NAME)
                 .then(function(cache) {
-                    cache.put(event.request, response.clone());
+                    console.log('product')
+                    cache.put('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>', response.clone());
                 });            // "opaque"
         });
       <% end %>
@@ -73,7 +77,7 @@ function onInstall(event) {
 
             caches.open(CACHE_NAME)
                 .then(function(cache) {
-                    cache.put(event.request, response.clone());
+                    cache.put('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product_option.image0.path.force_encoding('ASCII-8BIT')) %>', response.clone());
                 });            // "opaque"
         });
       <% end %>
