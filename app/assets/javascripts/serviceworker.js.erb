@@ -1,4 +1,5 @@
 <%# encoding: utf-8 %>
+
 var CACHE_VERSION = 'v1';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
@@ -20,11 +21,11 @@ function onInstall(event) {
    <% end %>
     <% Product.all.each do |product|%>
       <% if product.image0 != nil %>
-        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= escape_javascript(product.image0.path).force_encoding("utf-8") %>', {
+        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>', {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= escape_javascript(product.image0.path).force_encoding("utf-8") %>')
+            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>')
             // "opaque"
         });
       <% end %>
