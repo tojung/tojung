@@ -34,7 +34,6 @@ function onInstall(event) {
     fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', {
         mode: 'no-cors'
     }).then(function(response) {
-
         caches.open(CACHE_NAME)
             .then(function(cache) {
                 cache.put(event.request, response.clone());
@@ -45,9 +44,9 @@ function onInstall(event) {
       fetch('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', {
           mode: 'no-cors'
       }).then(function(response) {
-
           caches.open(CACHE_NAME)
               .then(function(cache) {
+                  console.log('mainimage')
                   cache.put(event.request, response.clone());
               });          // "opaque"
       });
