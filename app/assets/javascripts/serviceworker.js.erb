@@ -15,7 +15,6 @@ function onInstall(event) {
           mode: 'no-cors'
       }).then(function(response) {
           console.log(response.type);
-          console.log(<%= i %>)
           // "opaque"
       });
     <% end %>
@@ -26,7 +25,6 @@ function onInstall(event) {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>')
             // "opaque"
         });
       <% end %>
@@ -37,7 +35,6 @@ function onInstall(event) {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product_option.image0.path.force_encoding('ASCII-8BIT')) %>')
             // "opaque"
         });
       <% end %>
