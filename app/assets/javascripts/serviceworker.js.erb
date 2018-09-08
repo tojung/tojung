@@ -20,11 +20,11 @@ function onInstall(event) {
    <% end %>
     <% Product.all.each do |product|%>
       <% if product.image0 != nil %>
-        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>', {
+        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= escape_javascript(product.image0.path).force_encoding("utf-8") %>', {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>')
+            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= escape_javascript(product.image0.path).force_encoding("utf-8") %>')
             // "opaque"
         });
       <% end %>
