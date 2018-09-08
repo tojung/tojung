@@ -13,6 +13,33 @@ function onInstall(event) {
                 cache.put(event.request, response.clone());
             });
     });
+    fetch('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', {
+        mode: 'no-cors'
+    }).then(function(response) {
+
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                cache.put(event.request, response.clone());
+            });
+    });
+    fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', {
+        mode: 'no-cors'
+    }).then(function(response) {
+
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                cache.put(event.request, response.clone());
+            });
+    });
+    fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', {
+        mode: 'no-cors'
+    }).then(function(response) {
+
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                cache.put(event.request, response.clone());
+            });
+    });
     <% [0, 1, 2, 3,4, 5].each do |i|%>
     <% if $redis.get('mainimage'+ i.to_s) != nil %>
       fetch('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', {
@@ -101,7 +128,7 @@ function onFetch(event) {
                   return fetch(fetchRequest).then(
                       function (response) {
                           // Check if we received a valid response
-                          if(!response || response.status == 0 || response.type == 'opaque') {
+                          if(!response || response.status == 0) {
                               return response;
                           }
 
