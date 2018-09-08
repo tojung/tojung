@@ -3,13 +3,36 @@ var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
   console.log('[Serviceworker]', "Installing!", event);
+    fetch('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', {
+        mode: 'no-cors'
+    }).then(function(response) {
+        console.log(response.type); // "opaque"
+    });
+    <% [0, 1, 2, 3,4, 5].each do |i|%>
+    fetch('<%= $redis.get('mainimage'+i.to_s) %>', {
+        mode: 'no-cors'
+    }).then(function(response) {
+        console.log(response.type);
+        console.log(<%= i %>)
+        // "opaque"
+    });
+   <% end %>
+    <% Product.all.each do |product|%>
+      <% if product.image0 != nil %>
+        fetch('<%= product.image0 %>', {
+            mode: 'no-cors'
+        }).then(function(response) {
+            console.log(response.type);
+            console.log('<%= product.name %>')
+            // "opaque"
+        });
+      <% end %>
+    <% end %>
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
-      return cache.addAll([
+        return cache.addAll([
         '/offline.html',
-         'https://d1eq7v76s8dt2n.cloudfront.net/uploads/mainimage/image0/15/tu-tu-322210-unsplash.jpg',
           'https://s3.ap-northeast-2.amazonaws.com/static.channel.io/emoji/v3/emojis.min.json',
-          'https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js',
           'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css',
           'https://fonts.googleapis.com/css?family=Noto+Sans:400,700',
           'https://fonts.googleapis.com/earlyaccess/notosanskr.css',
