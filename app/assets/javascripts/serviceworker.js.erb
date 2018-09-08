@@ -10,7 +10,7 @@ function onInstall(event) {
         console.log(response.type); // "opaque"
     });
     <% [0, 1, 2, 3,4, 5].each do |i|%>
-    fetch('<%= $redis.get('mainimage'+i.to_s) %>', {
+    fetch('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', {
         mode: 'no-cors'
     }).then(function(response) {
         console.log(response.type);
