@@ -7,8 +7,7 @@ function onInstall(event) {
     fetch('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', {
         mode: 'no-cors'
     }).then(function(response) {
-        console.log(response.type); // "opaque"
-        console.log("cache put!!")
+
         caches.open(CACHE_NAME)
             .then(function(cache) {
                 cache.put(event.request, response.clone());
@@ -19,8 +18,7 @@ function onInstall(event) {
       fetch('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', {
           mode: 'no-cors'
       }).then(function(response) {
-          console.log(response.type);
-          console.log("cache put!")
+
           caches.open(CACHE_NAME)
               .then(function(cache) {
                   cache.put(event.request, response.clone());
@@ -33,8 +31,7 @@ function onInstall(event) {
         fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>', {
             mode: 'no-cors'
         }).then(function(response) {
-            console.log(response.type);
-            console.log("cache put@")
+
             caches.open(CACHE_NAME)
                 .then(function(cache) {
                     cache.put(event.request, response.clone());
@@ -47,8 +44,7 @@ function onInstall(event) {
         fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product_option.image0.path.force_encoding('ASCII-8BIT')) %>', {
             mode: 'no-cors'
         }).then(function(response) {
-            console.log(response.type);
-            console.log("cache put2")
+
             caches.open(CACHE_NAME)
                 .then(function(cache) {
                     cache.put(event.request, response.clone());
@@ -99,9 +95,6 @@ function onFetch(event) {
           caches.match(event.request)
               .then(function (response) {
                   if(response){
-                      console.log("ok response")
-                      console.log(response)
-                      console.log(event.request)
                       return response
                   }
                   var fetchRequest = event.request.clone();
@@ -109,14 +102,9 @@ function onFetch(event) {
                       function (response) {
                           // Check if we received a valid response
                           if(!response || response.status == 0 || response.type == 'opaque') {
-                           //   console.log('red')
-                           //   console.log(response)
-                              console.log('fuck!')
-                              console.log(response)
                               return response;
                           }
-                          console.log('red!')
-                          console.log(response)
+
                           var responseToCache = response.clone();
 
                           caches.open(CACHE_NAME)
