@@ -1,3 +1,4 @@
+<%# encoding: utf-8 %>
 var CACHE_VERSION = 'v1';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
@@ -23,6 +24,7 @@ function onInstall(event) {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
+            console.log('<%= product.image0 %>')
             // "opaque"
         });
       <% end %>
