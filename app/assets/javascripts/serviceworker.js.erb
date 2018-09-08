@@ -8,8 +8,11 @@ function onInstall(event) {
         mode: 'no-cors'
     }).then(function(response) {
         console.log(response.type); // "opaque"
-        console.log("cache put")
-        cache.put(event.request, response.clone())
+        console.log("cache put!!")
+        caches.open(CACHE_NAME)
+            .then(function(cache) {
+                cache.put(event.request, response.clone());
+            });
     });
     <% [0, 1, 2, 3,4, 5].each do |i|%>
     <% if $redis.get('mainimage'+ i.to_s) != nil %>
@@ -17,9 +20,11 @@ function onInstall(event) {
           mode: 'no-cors'
       }).then(function(response) {
           console.log(response.type);
-          console.log("cache put")
-          cache.put(event.request, response.clone())
-          // "opaque"
+          console.log("cache put!")
+          caches.open(CACHE_NAME)
+              .then(function(cache) {
+                  cache.put(event.request, response.clone());
+              });          // "opaque"
       });
     <% end %>
    <% end %>
@@ -29,9 +34,11 @@ function onInstall(event) {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log("cache put")
-            cache.put(event.request, response.clone())
-            // "opaque"
+            console.log("cache put@")
+            caches.open(CACHE_NAME)
+                .then(function(cache) {
+                    cache.put(event.request, response.clone());
+                });            // "opaque"
         });
       <% end %>
     <% end %>
@@ -41,9 +48,11 @@ function onInstall(event) {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log("cache put")
-            cache.put(event.request, response.clone())
-            // "opaque"
+            console.log("cache put2")
+            caches.open(CACHE_NAME)
+                .then(function(cache) {
+                    cache.put(event.request, response.clone());
+                });            // "opaque"
         });
       <% end %>
     <% end %>
