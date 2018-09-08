@@ -22,6 +22,11 @@ $(document).on('turbolinks:load', function () {
   $('.loading-background').hide();
   $('.loading-indicator').hide();
 });
+$(document).on('turbolinks:visit', function () {
+    $('.loaded').show();
+    $('.loading-background').hide();
+    $('.loading-indicator').hide();
+});
 $(document).on('turbolinks:request-start', function () {
   $('.loaded').hide();
   $('.loading-background').show();
