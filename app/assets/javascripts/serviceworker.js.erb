@@ -8,6 +8,8 @@ function onInstall(event) {
         mode: 'no-cors'
     }).then(function(response) {
         console.log(response.type); // "opaque"
+        console.log("cache put")
+        cache.put(event.request, response.clone())
     });
     <% [0, 1, 2, 3,4, 5].each do |i|%>
     <% if $redis.get('mainimage'+ i.to_s) != nil %>
@@ -15,6 +17,8 @@ function onInstall(event) {
           mode: 'no-cors'
       }).then(function(response) {
           console.log(response.type);
+          console.log("cache put")
+          cache.put(event.request, response.clone())
           // "opaque"
       });
     <% end %>
@@ -25,6 +29,8 @@ function onInstall(event) {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
+            console.log("cache put")
+            cache.put(event.request, response.clone())
             // "opaque"
         });
       <% end %>
@@ -35,6 +41,8 @@ function onInstall(event) {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
+            console.log("cache put")
+            cache.put(event.request, response.clone())
             // "opaque"
         });
       <% end %>
@@ -90,11 +98,13 @@ function onFetch(event) {
                   return fetch(fetchRequest).then(
                       function (response) {
                           // Check if we received a valid response
-                          //if(!response || response.status !== 200 || response.type !== 'basic') {
+                          if(!response || response.status == 0 || response.type == 'opaque') {
                            //   console.log('red')
                            //   console.log(response)
-                           //   return response;
-                          //}
+                              console.log('fuck!')
+                              console.log(response)
+                              return response;
+                          }
                           console.log('red!')
                           console.log(response)
                           var responseToCache = response.clone();
