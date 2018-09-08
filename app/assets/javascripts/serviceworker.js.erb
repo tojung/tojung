@@ -101,6 +101,7 @@ function onFetch(event) {
                   if(response){
                       console.log("ok response")
                       console.log(response)
+                      console.log(event.request)
                       return response
                   }
                   var fetchRequest = event.request.clone();
