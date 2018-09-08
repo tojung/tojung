@@ -10,6 +10,7 @@ https://code.jquery.com/jquery-3.3.1.slim.min.js
 https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js
 https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js
 https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js
+https://s3.ap-northeast-2.amazonaws.com/static.channel.io/emoji/v3/emojis.min.json
 
 NETWORK:
 *

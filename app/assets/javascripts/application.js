@@ -93,4 +93,4 @@ window.channelPluginSettings = {
       window.addEventListener('DOMContentLoaded', l, false);
       window.addEventListener('load', l, false);
     }
-  })()
+  })()//= require serviceworker-companion
