@@ -1,8 +1,7 @@
-<%# encoding: utf-8 %>
-
+<% require 'uri' %>
 var CACHE_VERSION = 'v1';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
-
+console.log('<%= Product.first.name %>')
 function onInstall(event) {
   console.log('[Serviceworker]', "Installing!", event);
     fetch('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', {
@@ -20,12 +19,12 @@ function onInstall(event) {
     });
    <% end %>
     <% Product.all.each do |product|%>
-      <% if product.image0 != nil %>
-        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>', {
+      <% if product.image0 != nil and product.image0.path != nil %>
+        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>', {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>')
+            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>')
             // "opaque"
         });
       <% end %>
