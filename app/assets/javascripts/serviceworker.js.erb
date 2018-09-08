@@ -20,11 +20,11 @@ function onInstall(event) {
    <% end %>
     <% Product.all.each do |product|%>
       <% if product.image0 != nil %>
-        fetch('<%= product.image0 %>', {
+        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>', {
             mode: 'no-cors'
         }).then(function(response) {
             console.log(response.type);
-            console.log('<%= product.image0 %>')
+            console.log('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= product.image0.path %>')
             // "opaque"
         });
       <% end %>
