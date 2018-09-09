@@ -247,6 +247,8 @@
     }
     function pay_new_test() {
         $(document).ready(function () {
+            var IMP = window.IMP;
+            IMP.init('imp03714372');
             IMP.request_pay({
                 pg: 'danal',
                 pay_method: 'card',
