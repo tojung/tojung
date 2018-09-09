@@ -116,7 +116,8 @@ function onActivate(event) {
 
 // Borrowed from https://github.com/TalAter/UpUp
 function onFetch(event) {
-    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') ){
+    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') ){
+        console.log(event.request.url)
         return
     }
   event.respondWith(

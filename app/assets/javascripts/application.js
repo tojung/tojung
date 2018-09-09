@@ -18,9 +18,6 @@
 //= require jquery_ujs
 //= require serviceworker-companion
 
-var IMP = window.IMP;
-IMP.init('imp03714372');
-
 function sidebar_click(){
 $(document).ready(function () {
   $('#dismiss, #dismiss-button, .overlay, #exit-button').on('click', function () {
@@ -40,6 +37,10 @@ $(document).ready(function () {
 }
 function pay_new_test() {
     $(document).ready(function () {
+        var IMP = window.IMP;
+        IMP.init('imp03714372');
+        console.log('pay new start')
+        console.log($('input[name=total_price]').val())
         IMP.request_pay({
             pg: 'danal',
             pay_method: 'card',
@@ -47,12 +48,12 @@ function pay_new_test() {
             name: '주문명_' + new Date().getTime(),
             amount: $('input[name=total_price]').val(),
             buyer_email: $('input[name=email]').val(),
-            buyer_name: $('input[name=user_name]').val(),
+            buyer_name: $('input[name=name]').val(),
             buyer_tel: $('input[name=phone_num]').val(),
             buyer_addr: $('input[name=address_text]').val(),
-            buyer_postcode: $('input[name=address_num]').val(),
-            digital: 'true',
+            buyer_postcode: $('input[name=address_num]').val()
         }, function (rsp) {
+            console.log(rsp)
             if (rsp.success) {
                 var msg = '결제가 완료되었습니다.';
                 msg += '고유ID : ' + rsp.imp_uid;

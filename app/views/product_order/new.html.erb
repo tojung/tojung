@@ -148,7 +148,7 @@
     <%= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4' %>
   </div>
 <% end %>
-
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 <script>
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
@@ -207,7 +207,7 @@
     // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
     function card_payment() {
         var payment_method =  document.getElementById('payment_method_description');
-        payment_method.innerHTML = "무통장입금을 선택하였습니다.<br><button type='button' onclick='pay_new_test()'>결제창 버튼</button>";
+        payment_method.innerHTML = "신용카드를 선택하였습니다.<br><button type='button' onclick='pay_new_test()'>결제창 버튼</button>";
     }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
