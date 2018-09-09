@@ -152,7 +152,8 @@
 <script>
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
-
+    var IMP = window.IMP;
+    IMP.init('imp03714372');
     function closeDaumPostcode() {
         // iframe을 넣은 element를 안보이게 한다.
         element_layer.style.display = 'none';
@@ -247,8 +248,7 @@
     }
     function pay_new_test() {
         $(document).ready(function () {
-            var IMP = window.IMP;
-            IMP.init('imp03714372');
+
             IMP.request_pay({
                 pg: 'danal',
                 pay_method: 'card',
