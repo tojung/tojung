@@ -116,6 +116,9 @@ function onActivate(event) {
 
 // Borrowed from https://github.com/TalAter/UpUp
 function onFetch(event) {
+    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') ){
+        return
+    }
   event.respondWith(
     // try to return untouched request from network first
 
@@ -135,7 +138,7 @@ function onFetch(event) {
 
                           caches.open(CACHE_NAME)
                               .then(function(cache){
-                                  console.log(event.request.url)
+                                  // console.log(event.request.url)
                                   if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
                                       cache.put(event.request, responseToCache);
                                   }
