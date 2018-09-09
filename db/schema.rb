@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180824052052) do
+ActiveRecord::Schema.define(version: 20180909010952) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -114,6 +114,21 @@ ActiveRecord::Schema.define(version: 20180824052052) do
     t.integer "product_option_id", null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string "imp_uid"
+    t.string "pg_provider"
+    t.integer "amount"
+    t.string "name"
+    t.string "pay_method"
+    t.boolean "permission"
+    t.boolean "validation"
+    t.string "status"
+    t.string "receipt_url"
+    t.string "merchant_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_deliveries", force: :cascade do |t|
     t.integer "product_order_id"
     t.integer "product_id"
@@ -204,8 +219,8 @@ ActiveRecord::Schema.define(version: 20180824052052) do
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname"
-    t.datetime "start_date", default: "2018-08-08 06:16:42", null: false
-    t.datetime "end_date", default: "2018-09-07 06:16:42", null: false
+    t.datetime "start_date", default: "2018-08-16 20:46:42", null: false
+    t.datetime "end_date", default: "2018-09-15 20:46:42", null: false
     t.text "youtb_url"
     t.text "video_text"
     t.text "bill_url"

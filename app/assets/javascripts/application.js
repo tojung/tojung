@@ -18,6 +18,9 @@
 //= require jquery_ujs
 //= require serviceworker-companion
 
+var IMP = window.IMP;
+IMP.init('imp03714372');
+
 function sidebar_click(){
 $(document).ready(function () {
   $('#dismiss, #dismiss-button, .overlay, #exit-button').on('click', function () {

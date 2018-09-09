@@ -138,7 +138,7 @@
     <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
     <div class="d-flex flex-wrap justify-content-around">
       <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
-      <button type="button" class="pay-button mb-3" onclick="extra_payment();">신용카드</button>
+      <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
       <button type="button" class="pay-button mb-3" onclick="extra_payment();">휴대폰</button>
       <button type="button" class="pay-button mb-3" onclick="extra_payment();">TOSS</button>
     </div>
@@ -205,6 +205,10 @@
     // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
     // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
     // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+    function card_payment() {
+        var payment_method =  document.getElementById('payment_method_description');
+        payment_method.innerHTML = "무통장입금을 선택하였습니다.<br><button type='button' onclick='pay_new_test()'>결제창 버튼</button>";
+    }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
         var height = 400; //우편번호서비스가 들어갈 element의 height
@@ -240,5 +244,33 @@
         total_price.value = product_price;
         <% end %>
         console.log("changed");
+    }
+    function pay_new_test() {
+        $(document).ready(function () {
+            IMP.request_pay({
+                pg: 'danal',
+                pay_method: 'card',
+                merchant_uid: 'merchant_' + new Date().getTime(),
+                name: '주문명_' + new Date().getTime(),
+                amount: $('input[name=total_price]').val(),
+                buyer_email: $('input[name=email]').val(),
+                buyer_name: $('input[name=user_name]').val(),
+                buyer_tel: $('input[name=phone_num]').val(),
+                buyer_addr: $('input[name=address_text]').val(),
+                buyer_postcode: $('input[name=address_num]').val(),
+                digital: 'true',
+            }, function (rsp) {
+                if (rsp.success) {
+                    var msg = '결제가 완료되었습니다.';
+                    msg += '고유ID : ' + rsp.imp_uid;
+                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                } else {
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                }
+            })
+        });
     }
 </script>

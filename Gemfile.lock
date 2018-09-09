@@ -128,8 +128,12 @@ GEM
     hkdf (0.3.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    iamport (0.3.0)
+      httparty
     inherited_resources (1.9.0)
       actionpack (>= 4.2, < 5.3)
       has_scope (~> 0.6)
@@ -353,6 +357,8 @@ DEPENDENCIES
   devise-async
   devise-i18n
   fog-aws
+  httparty
+  iamport
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
