@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="/manifest.appcache">
+<html>
   <head>
     <title>내 삶을 바꾸는 입법안 쇼핑몰, 투정</title>
     <meta charset="utf-8">
@@ -50,7 +50,8 @@
       gtag('config', 'UA-114503665-1');
     </script>
 
-  </head>
+  <link rel="manifest" href="/manifest.json" />
+<meta name="apple-mobile-web-app-capable" content="yes"></head>
 
   <body>
     <!-- Notice , Alert -->
@@ -71,11 +72,7 @@
       <%= yield %>
     </div>
     <%=render 'layouts/footer'%>
-    
-    <div class='loading-background'>
-      <div class='loading-indicator'>
-      </div>
-    </div>
+
     <!-- Slick Slider -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
