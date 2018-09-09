@@ -152,8 +152,7 @@
 <script>
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
-    var IMP = window.IMP;
-    IMP.init('imp03714372');
+
     function closeDaumPostcode() {
         // iframe을 넣은 element를 안보이게 한다.
         element_layer.style.display = 'none';
@@ -246,33 +245,5 @@
         <% end %>
         console.log("changed");
     }
-    function pay_new_test() {
-        $(document).ready(function () {
 
-            IMP.request_pay({
-                pg: 'danal',
-                pay_method: 'card',
-                merchant_uid: 'merchant_' + new Date().getTime(),
-                name: '주문명_' + new Date().getTime(),
-                amount: $('input[name=total_price]').val(),
-                buyer_email: $('input[name=email]').val(),
-                buyer_name: $('input[name=user_name]').val(),
-                buyer_tel: $('input[name=phone_num]').val(),
-                buyer_addr: $('input[name=address_text]').val(),
-                buyer_postcode: $('input[name=address_num]').val(),
-                digital: 'true',
-            }, function (rsp) {
-                if (rsp.success) {
-                    var msg = '결제가 완료되었습니다.';
-                    msg += '고유ID : ' + rsp.imp_uid;
-                    msg += '상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '결제 금액 : ' + rsp.paid_amount;
-                    msg += '카드 승인번호 : ' + rsp.apply_num;
-                } else {
-                    var msg = '결제에 실패하였습니다.';
-                    msg += '에러내용 : ' + rsp.error_msg;
-                }
-            })
-        });
-    }
 </script>
