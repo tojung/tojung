@@ -16,22 +16,8 @@
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
+//= require serviceworker-companion
 
-$(document).on('turbolinks:load', function () {
-  $('.loaded').show();
-  $('.loading-background').hide();
-  $('.loading-indicator').hide();
-});
-$(document).on('turbolinks:request-start', function () {
-  $('.loaded').hide();
-  $('.loading-background').show();
-  $('.loading-indicator').show();
-});
-$(document).on('turbolinks:request-end', function () {
-  $('.loaded').show();
-  $('.loading-background').hide();
-  $('.loading-indicator').hide();
-});
 function sidebar_click(){
 $(document).ready(function () {
   $('#dismiss, #dismiss-button, .overlay, #exit-button').on('click', function () {

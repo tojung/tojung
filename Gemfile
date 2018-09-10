@@ -69,4 +69,6 @@ gem 'redis-rails'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'activeadmin'
-
+gem 'serviceworker-rails'
+gem 'rack-cors', require: 'rack/cors'
+gem 'webpush'
