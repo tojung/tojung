@@ -25,6 +25,37 @@
     <p class="font-14 font-weight-bold order-money text-right mb-2"><%= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>
       <span class="order-money-won">원</span></p>
     <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>
+    <div class="d-flex justify-content-around mt-3" id="phoneCase">
+      <div class="dropdown">
+        <button class="btn btn-white dropdown-toggle font-12" type="button" id="phoneCaseType" onchange="getCases(this);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          케이스 종류 선택
+        </button>
+        <div class="dropdown-menu font-12" aria-labelledby="dropdownMenuButton">
+          <li class="dropdown-item" onclick="phoneCaseDropdown(this);">젤리 케이스</li>
+          <li class="dropdown-item" onclick="phoneCaseDropdown(this);">하드 케이스</li>
+        </div>
+      </div>
+      <div class="dropdown off" id="jellyCase">
+        <button class="btn btn-white dropdown-toggle font-12" type="button" id="phoneCaseDevice1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          케이스 기종 선택
+        </button>
+        <div class="dropdown-menu font-12 scrollable-menu" aria-labelledby="dropdownMenuButton">
+          <%@jellycases.each do |jellycase|%>
+          <li class="dropdown-item" onclick="phoneCaseDropdown2(this);"><%=jellycase%></li>
+          <%end%>
+        </div>
+      </div>
+      <div class="dropdown off" id="hardCase">
+        <button class="btn btn-white dropdown-toggle font-12" type="button" id="phoneCaseDevice2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          케이스 기종 선택
+        </button>
+        <div class="dropdown-menu font-12 scrollable-menu" aria-labelledby="dropdownMenuButton">
+          <%@hardcases.each do |hardcase|%>
+          <li class="dropdown-item" id="hardCase" onclick="phoneCaseDropdown2(this);"><%=hardcase%></li>
+          <%end%>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- 주문 정보 -->
@@ -77,6 +108,8 @@
     </div>
   </div>
   <!-- //주문정보 -->
+
+
 
   <!-- 국회 청원  -->
   <div class="bg-white mb-3 px-3 py-3">
@@ -241,4 +274,24 @@
         <% end %>
         console.log("changed");
     }
+
+   function phoneCaseDropdown(item){
+     var type = $(item).html();
+     $('#phoneCaseType').html(type);
+     if (type == '젤리 케이스'){
+       $('#hardCase').filter('.on').removeClass('on').addClass('off');
+       $('#jellyCase').removeClass('off').addClass('on');
+     }
+     else if (type == '하드 케이스'){
+       $('#jellyCase').filter('.on').removeClass('on').addClass('off');
+       $('#hardCase').removeClass('off').addClass('on');
+     }
+   }
+
+   function phoneCaseDropdown2(item){
+     var device = $(item).html();
+     $('#phoneCaseDevice1').html(device);
+     $('#phoneCaseDevice2').html(device);
+   }
+
 </script>

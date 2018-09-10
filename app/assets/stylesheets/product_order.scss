@@ -193,3 +193,30 @@ input[type=number]::-webkit-outer-spin-button {
 .border-bottom-none{
   border-bottom: none !important;
 }
+
+#phoneCase > .dropdown > .dropdown-menu{
+  min-width: inherit;
+  width: 100%;
+}
+
+.scrollable-menu{
+  height: auto;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+#jellyCase.on{
+  display: block;
+}
+
+#jellyCase.off{
+  display: none;
+}
+
+#hardCase.on{
+  display: block;
+}
+
+#hardCase.off{
+  display: none;
+}
