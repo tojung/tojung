@@ -8,11 +8,11 @@ class HomeController < ApplicationController
     if params.key?(:sidebar)
       @num = params[:sidebar]
       @category_list = {'1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW'}
-      @products = if @num == '7' || @num == '8'
-                    @products
-                  else
-                    @products.where(category: @category_list[@num])
-                  end
+      if (@num == '7' || @num == '8')
+        @products = @products
+      else
+        @products = @products.where(category: @category_list[@num])
+      end
     end
   end
 
@@ -29,11 +29,11 @@ class HomeController < ApplicationController
     @products = Product.where(visible: [true, 1])
     @num = params[:category_id]
     @category_list = {'1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW'}
-    @products_categorized = if @num == '7' || @num == '8'
-                              @products
-                            else
-                              @products.where(category: @category_list[@num])
-                            end
+    if (@num == '7' || @num == '8')
+      @products_categorized = @products
+    else
+      @products_categorized = @products.where(category: @category_list[@num])
+    end
   end
 
   def sidebar_categorize
@@ -75,7 +75,7 @@ class HomeController < ApplicationController
     end
 
     if @mainimage3 == nil
-      @mainimage3 = Mainimage.last.image3
+        @mainimage3 = Mainimage.last.image3
         @mainimage4 = Mainimage.last.image4
 
         @md_link_0 = Mainimage.last.md_link0

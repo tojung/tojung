@@ -15,14 +15,14 @@
       <button id="dismiss-button" class="button-none bg-white" type="button"><%=image_tag(@cdn_url+"exit.svg", class: "bg-white", id: "exit-button")%></button>
     </div>
     <pre class="sign-status bg-white text-right mb-2">
-<%if user_signed_in? %>
+<%if user_signed_in?%>
 <a class="font-grey" href="/users/sign_out">로그아웃</a>
 <a class="font-grey" href="/userupdaters/<%= current_user.id %>/edit">회원정보수정
 <%else%>
 현재 로그아웃 상태입니다.
 로그인을 하시면 더 많은 정보를 볼 수 있습니다.
 <a class="font-grey" href="/users/sign_in">로그인 / 회원가입</a>
-<%end %></pre>
+<%end%></pre>
     <div class="container-fluid sidebar_cate">
       <div class="row">
         <div class="col-3">
