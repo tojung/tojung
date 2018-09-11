@@ -1,6 +1,6 @@
 ActiveAdmin.register Package do
   menu label: '패키지'
-  permit_params :product_id, :name, :content, :price, :image0, :remain_count, :product_option_ids, :phone
+  permit_params :product_id, :name, :content, :price, :image0, :remain_count, :product_option_ids, :phone, :delivery_price
 
   scope :all, default: true
   Product.all.each do |product|
@@ -72,6 +72,7 @@ ActiveAdmin.register Package do
     input 'price', label: '가격'
     input 'image0', label: '패키지 메인 이미지'
     input 'phone', label: '휴대폰 케이스 포함 여부. ex) y 또는 n 또는 빈칸'
+    input 'delivery_price', label: '배송비'
     actions
   end
 
