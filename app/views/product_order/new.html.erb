@@ -1,12 +1,7 @@
 <%= form_tag '/product_order' do %>
   <button class="btn btn-light order-btn mb-3">주문하기</button>
-    <% if @package.price != 0 %>
-    <%= hidden_field_tag 'delivery_price', '3000' %>
-    <%= hidden_field_tag 'total_price', @package.price + 3000 %>
-  <% else %>
-    <%= hidden_field_tag 'delivery_price', '0' %>
-    <%= hidden_field_tag 'total_price', @package.price %>
-  <% end %>
+    <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
+    <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>
 
     <%= hidden_field_tag 'payment_method', '무통장입금' %>
     <%= hidden_field_tag 'product_id', @product.id %>
@@ -22,11 +17,19 @@
         <!-- css 적용 필요 -->
       </div>
     </div>
+
     <p class="font-14 font-weight-bold order-money text-right mb-2"><%= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>
       <span class="order-money-won">원</span></p>
     <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>
   </div>
-
+  <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
+    <!-- css 적용 필요-->
+    <select name="phone">
+      <option value="휴대폰 기종을 선택해주세요">휴대폰 기종을 선택해주세요</option>
+      <option value="아이폰6">아이폰6</option>
+      <option value="기종 목록 정리좀">기종 목록 정리좀</option>
+    </select>
+  <% end %>
   <!-- 주문 정보 -->
 <div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
   <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">주문 고객 정보</h4>
@@ -112,7 +115,7 @@
       <div class="order-card">
         <% if @package.price != 0%>
         <p class="mb-0">배송비</p>
-        <p class="font-weight-bold mb-0">3,000원</p>
+        <p class="font-weight-bold mb-0"><%= @package.delivery_price %>원</p>
           <% else %>
           <p class="mb-0">배송비</p>
           <p class="font-weight-bold mb-0">0원</p>
@@ -120,8 +123,8 @@
       </div>
     </div>
     <% if @package.price != 0 %>
-    <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price + 3000 %>원</span></p>
-      <% else %>
+      <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price + @package.delivery_price %>원</span></p>
+    <% else %>
       <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price %>원</span></p>
   <% end%>
       <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %>일에 일괄 배송 시작됩니다.
@@ -237,8 +240,8 @@
         var total_price = document.getElementById('total_price');
         product_price_description.innerText = product_price;
         <% if @package.price != 0 %>
-          product_price_description2.innerText = product_price + 3000;
-          total_price.value = product_price + 3000;
+          product_price_description2.innerText = product_price + <%= @package.delivery_price %>;
+          total_price.value = product_price + <%= @package.delivery_price %>;
         <% else %>
         product_price_description2.innerText = product_price;
         total_price.value = product_price;

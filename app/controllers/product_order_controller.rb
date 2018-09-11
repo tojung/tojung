@@ -33,7 +33,7 @@ class ProductOrderController < ApplicationController
   end
 
   def product_order_params
-    params.permit(:name, :user_id, :product_id, :package_id)
+    params.permit(:name, :user_id, :product_id, :package_id, :status, :phone)
   end
 
   def product_order_detail_params
