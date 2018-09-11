@@ -1,12 +1,13 @@
-<%= form_tag '/product_order' do %>
+<%= form_tag '/product_order',data: { disable_with: false } do %>
   <button class="btn btn-light order-btn mb-3">주문하기</button>
     <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
     <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>
 
-    <%= hidden_field_tag 'payment_method', '무통장입금' %>
+    <%= hidden_field_tag 'payment_method', '' %>
     <%= hidden_field_tag 'product_id', @product.id %>
     <%= hidden_field_tag 'package_id', @package.id %>
     <%= hidden_field_tag 'user_id', current_user.id %>
+
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
     <div class="package-selected d-flex">
       <%=image_tag(@product.image0, class: "order-img")%>
@@ -28,6 +29,12 @@
       <option value="휴대폰 기종을 선택해주세요">휴대폰 기종을 선택해주세요</option>
       <option value="아이폰6">아이폰6</option>
       <option value="기종 목록 정리좀">기종 목록 정리좀</option>
+    </select>
+
+    <select name="case_type" onchange="fuckin_hard_case(this)">
+      <option value="케이스 타입을 선택해주세요">케이스 타입을 선택해주세요</option>
+      <option value="젤리케이스">젤리케이스</option>
+      <option value="하드케이스">하드케이스(+3000)</option>
     </select>
   <% end %>
   <!-- 주문 정보 -->
@@ -148,7 +155,7 @@
     <div id="payment_method_description">
     </div>
 <!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
-    <%= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4' %>
+    <%= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
   </div>
 <% end %>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
@@ -210,7 +217,8 @@
     // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
     function card_payment() {
         var payment_method =  document.getElementById('payment_method_description');
-        payment_method.innerHTML = "신용카드를 선택하였습니다.<br><button type='button' onclick='pay_new_test()'>결제창 버튼</button>";
+        $('input[name=payment_method]').attr('value', '카드결제');
+        payment_method.innerHTML = "신용카드를 선택하였습니다.<br>";
     }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
@@ -227,26 +235,77 @@
     }
     function normal_payment(){
         var payment_method =  document.getElementById('payment_method_description');
+        var pay_method = $('input[name=payment_method]').attr('value', '무통장입금')
         payment_method.innerText = '무통장입금을 선택하였습니다.';
     }
     function extra_payment(){
         var payment_method =  document.getElementById('payment_method_description');
+        var pay_method = $('input[name=payment_method]').attr('value', '제공안함');
         payment_method.innerText = '해당 옵션은 현재 제공하지않습니다.';
     }
     function change_product_price() {
-        var product_price = parseInt(document.getElementsByName('product_price')[0].value);
-        var product_price_description = document.getElementById('product_price_description');
-        var product_price_description2 = document.getElementById('product_price_description2');
-        var total_price = document.getElementById('total_price');
-        product_price_description.innerText = product_price;
+        var product_price = parseInt(document.getElementsByName('product_price')[0].value); // input
+        var product_price_description = document.getElementById('product_price_description'); // 설명
+        var product_price_description2 = document.getElementById('product_price_description2'); //설명
+        var total_price = document.getElementById('total_price'); // hidden
+        product_price_description.innerText = product_price+'원';
         <% if @package.price != 0 %>
           product_price_description2.innerText = product_price + <%= @package.delivery_price %>;
           total_price.value = product_price + <%= @package.delivery_price %>;
         <% else %>
-        product_price_description2.innerText = product_price;
-        total_price.value = product_price;
+          product_price_description2.innerText = product_price;
+          total_price.value = product_price;
+          var payment_method = $('input[name=payment_method]')
+          if (payment_method.attr('value') === '해당없음'){
+              payment_method.attr('value', '')
+          }
         <% end %>
         console.log("changed");
     }
-
+    function fuckin_hard_case(select_this) {
+        console.log('fuckin hard case');
+        if(select_this.value === '하드케이스'){
+            var m=parseInt(<%= @package.price %>);
+            $('input[name=product_price]').attr('min', m+3000);
+            if ($('input[name=product_price]').attr('value') < m + 3000 || parseInt($('input[name=product_price]').val()) < m + 3000){
+                $('input[name=product_price]').attr('value', m + 3000);
+                $('input[name=product_price]').val(m+3000)
+                $('#product_price_description').text(m + 3000 + '원');
+                var p = $('input[name=total_price]');
+                p.attr('value', parseInt(p.attr('value')) + 3000)
+                var product_price_description2 = document.getElementById('product_price_description2');
+                product_price_description2.innerText = parseInt(p.attr('value'))
+            }
+        }else{
+            var m=parseInt(<%= @package.price %>);
+            $('input[name=product_price]').attr('value', m);
+            $('input[name=product_price]').val(m);
+            $('#product_price_description').text(m + '원');
+            var p = $('input[name=total_price]');
+            p.attr('value',  m + <%= @package.delivery_price %>);
+            var product_price_description2 = document.getElementById('product_price_description2');
+            product_price_description2.innerText = parseInt(p.attr('value'));
+        }
+    }
+    $(function() {
+        $("form").on("submit", function (event) {
+            event.preventDefault();
+            $('input[name=commit]').removeAttr('data-disable-with');
+            let payment_method = $('input[name=payment_method]').attr('value');
+            if (payment_method === '카드결제') {
+                pay_new_test();
+                $('input[name=commit]').removeAttr('disabled')
+            } else if (payment_method === '제공안함') {
+                alert('제공하지않는 결제방법을 선택하셨습니다.');
+                $('input[name=commit]').removeAttr('disabled')
+            } else if (payment_method === '무통장입금') {
+                $('form').submit();
+                $('input[name=commit]').removeAttr('disabled')
+            } else if (payment_method === '해당없음') {
+                $('form').submit();
+            } else {
+                alert('결제방법을 선택해주세요');
+            }
+        })
+    });
 </script>

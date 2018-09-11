@@ -116,11 +116,7 @@ function onActivate(event) {
 
 // Borrowed from https://github.com/TalAter/UpUp
 function onFetch(event) {
-    console.log('fetch!')
-    console.log(event.request.url)
-    console.log(event.request.method)
     if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
-        console.log(event.request.url)
         return
     }
 
@@ -145,7 +141,6 @@ function onFetch(event) {
                               .then(function(cache){
                                   // console.log(event.request.url)
                                   if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
-                                      console.log('ok' + event.request.url)
                                       cache.put(event.request, responseToCache);
                                   }
                               });

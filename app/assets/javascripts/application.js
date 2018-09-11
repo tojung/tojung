@@ -53,18 +53,21 @@ function pay_new_test() {
             buyer_addr: $('input[name=address_text]').val(),
             buyer_postcode: $('input[name=address_num]').val()
         }, function (rsp) {
-            console.log(rsp)
+            console.log(rsp);
             if (rsp.success) {
                 var msg = '결제가 완료되었습니다.';
                 msg += '고유ID : ' + rsp.imp_uid;
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
-                console.log(msg)
+                console.log(msg);
+                $("form").submit()
             } else {
                 var msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
-                console.log(msg)
+                console.log(msg);
+                alert('결제에 실패하였습니다. ');
+                alert(msg);
             }
         })
     });
