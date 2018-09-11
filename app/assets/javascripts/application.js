@@ -35,6 +35,38 @@ $(document).ready(function () {
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
 });
 }
+function pay_new_test() {
+    $(document).ready(function () {
+        var IMP = window.IMP;
+        IMP.init('imp03714372');
+        console.log('pay new start')
+        console.log($('input[name=total_price]').val())
+        IMP.request_pay({
+            pg: 'danal',
+            pay_method: 'card',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: '주문명_' + new Date().getTime(),
+            amount: $('input[name=total_price]').val(),
+            buyer_email: $('input[name=email]').val(),
+            buyer_name: $('input[name=name]').val(),
+            buyer_tel: $('input[name=phone_num]').val(),
+            buyer_addr: $('input[name=address_text]').val(),
+            buyer_postcode: $('input[name=address_num]').val()
+        }, function (rsp) {
+            console.log(rsp)
+            if (rsp.success) {
+                var msg = '결제가 완료되었습니다.';
+                msg += '고유ID : ' + rsp.imp_uid;
+                msg += '상점 거래ID : ' + rsp.merchant_uid;
+                msg += '결제 금액 : ' + rsp.paid_amount;
+                msg += '카드 승인번호 : ' + rsp.apply_num;
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+            }
+        })
+    });
+}
 
 window.channelPluginSettings = {
     "pluginKey": "c41b6775-e43d-4cae-888e-8616e0c23cfe" //please fill with your plugin key

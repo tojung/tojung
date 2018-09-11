@@ -138,7 +138,7 @@
     <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
     <div class="d-flex flex-wrap justify-content-around">
       <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
-      <button type="button" class="pay-button mb-3" onclick="extra_payment();">신용카드</button>
+      <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
       <button type="button" class="pay-button mb-3" onclick="extra_payment();">휴대폰</button>
       <button type="button" class="pay-button mb-3" onclick="extra_payment();">TOSS</button>
     </div>
@@ -148,7 +148,7 @@
     <%= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4' %>
   </div>
 <% end %>
-
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 <script>
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
@@ -205,6 +205,10 @@
     // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
     // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
     // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+    function card_payment() {
+        var payment_method =  document.getElementById('payment_method_description');
+        payment_method.innerHTML = "신용카드를 선택하였습니다.<br><button type='button' onclick='pay_new_test()'>결제창 버튼</button>";
+    }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
         var height = 400; //우편번호서비스가 들어갈 element의 height
@@ -241,4 +245,5 @@
         <% end %>
         console.log("changed");
     }
+
 </script>
