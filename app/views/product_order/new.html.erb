@@ -7,6 +7,7 @@
     <%= hidden_field_tag 'product_id', @product.id %>
     <%= hidden_field_tag 'package_id', @package.id %>
     <%= hidden_field_tag 'user_id', current_user.id %>
+    <%= hidden_field_tag 'status', '결제완료' %>
 
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
     <div class="package-selected d-flex">
@@ -155,9 +156,10 @@
     <div id="payment_method_description">
     </div>
 <!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
-    <%= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
+    <%#= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
   </div>
 <% end %>
+<button type="button" class="btn-pay-finish text-center my-4" onclick="fuckin_submit()">내 인생으로 배송받기</button>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 <script>
     // 우편번호 찾기 화면을 넣을 element
@@ -287,25 +289,26 @@
             product_price_description2.innerText = parseInt(p.attr('value'));
         }
     }
-    $(function() {
-        $("form").on("submit", function (event) {
-            event.preventDefault();
+    function fuckin_submit(){
             $('input[name=commit]').removeAttr('data-disable-with');
             let payment_method = $('input[name=payment_method]').attr('value');
             if (payment_method === '카드결제') {
                 pay_new_test();
-                $('input[name=commit]').removeAttr('disabled')
+                // $('input[name=commit]').removeAttr('disabled')
+                // $('form').submit()
             } else if (payment_method === '제공안함') {
                 alert('제공하지않는 결제방법을 선택하셨습니다.');
                 $('input[name=commit]').removeAttr('disabled')
             } else if (payment_method === '무통장입금') {
+                console.log('무통장입금');
+                // return true
+                $('input[name=status]').attr('value', '결제대기중');
                 $('form').submit();
-                $('input[name=commit]').removeAttr('disabled')
-            } else if (payment_method === '해당없음') {
+                //$('input[name=commit]').removeAttr('disabled')
+            }else if (payment_method === '해당없음') {
                 $('form').submit();
             } else {
                 alert('결제방법을 선택해주세요');
             }
-        })
-    });
+    }
 </script>

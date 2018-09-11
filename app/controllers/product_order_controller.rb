@@ -12,6 +12,7 @@ class ProductOrderController < ApplicationController
                                     params[:send_email_content],
                                     current_user.email, current_user.id)
     @payment_method = params[:payment_method]
+    @status = params[:status]
   end
 
   private
