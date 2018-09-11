@@ -116,10 +116,14 @@ function onActivate(event) {
 
 // Borrowed from https://github.com/TalAter/UpUp
 function onFetch(event) {
+    console.log('fetch!')
+    console.log(event.request.url)
+    console.log(event.request.method)
     if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
         console.log(event.request.url)
         return
     }
+
   event.respondWith(
     // try to return untouched request from network first
 
