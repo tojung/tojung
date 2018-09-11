@@ -12,6 +12,7 @@ class ProductOrderController < ApplicationController
                                     params[:send_email_content],
                                     current_user.email, current_user.id)
     @payment_method = params[:payment_method]
+    @status = params[:status]
   end
 
   private
@@ -33,7 +34,8 @@ class ProductOrderController < ApplicationController
   end
 
   def product_order_params
-    params.permit(:name, :user_id, :product_id, :package_id)
+    params.permit(:name, :user_id, :product_id, :package_id, :status, :phone,
+                  :case_type)
   end
 
   def product_order_detail_params

@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180909010952) do
+ActiveRecord::Schema.define(version: 20180911174400) do
+
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -106,6 +107,8 @@ ActiveRecord::Schema.define(version: 20180909010952) do
     t.text "image0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.integer "delivery_price"
     t.index ["product_id"], name: "index_packages_on_product_id"
   end
 
@@ -199,6 +202,8 @@ ActiveRecord::Schema.define(version: 20180909010952) do
     t.datetime "updated_at", null: false
     t.integer "product_delivery_id"
     t.integer "product_order_detail_id"
+    t.string "phone"
+    t.string "case_type"
     t.index ["package_id"], name: "index_product_orders_on_package_id"
     t.index ["product_delivery_id"], name: "index_product_orders_on_product_delivery_id"
     t.index ["product_id"], name: "index_product_orders_on_product_id"
@@ -240,6 +245,7 @@ ActiveRecord::Schema.define(version: 20180909010952) do
     t.integer "bill_id"
     t.text "bill_name"
     t.datetime "goods_dilivery_date"
+    t.text "design_purpose"
   end
 
   create_table "sendlogs", force: :cascade do |t|
