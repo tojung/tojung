@@ -146,7 +146,7 @@ function onFetch(event) {
                                   // console.log(event.request.url)
                                   if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
                                       console.log('ok' + event.request.url)
-                                      cache.put(event.request.url, responseToCache);
+                                      cache.put(event.request, responseToCache);
                                   }
                               });
 
