@@ -99,6 +99,7 @@ function pay_new_test() {
             //     alert(msg);
             // }
         });
+
     });
 }
 

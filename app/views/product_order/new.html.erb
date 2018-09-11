@@ -160,6 +160,7 @@
   </div>
 <% end %>
 <button type="button" class="btn-pay-finish text-center my-4" onclick="fuckin_submit()">내 인생으로 배송받기</button>
+
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 <script>
     // 우편번호 찾기 화면을 넣을 element
@@ -221,6 +222,7 @@
         var payment_method =  document.getElementById('payment_method_description');
         $('input[name=payment_method]').attr('value', '카드결제');
         payment_method.innerHTML = "신용카드를 선택하였습니다.<br>";
+
     }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
@@ -311,4 +313,5 @@
                 alert('결제방법을 선택해주세요');
             }
     }
+
 </script>
