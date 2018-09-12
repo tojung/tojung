@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180911174400) do
-
+ActiveRecord::Schema.define(version: 20180912140256) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -204,6 +203,7 @@ ActiveRecord::Schema.define(version: 20180911174400) do
     t.integer "product_order_detail_id"
     t.string "phone"
     t.string "case_type"
+    t.string "imp_uid"
     t.index ["package_id"], name: "index_product_orders_on_package_id"
     t.index ["product_delivery_id"], name: "index_product_orders_on_product_delivery_id"
     t.index ["product_id"], name: "index_product_orders_on_product_id"

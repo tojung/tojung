@@ -1,4 +1,4 @@
-<% if @status == '결제완료' %>
+<% if @status == '결제완료' or @payment_method == '무통장입금'%>
 <div class="order-complete">
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
     <div class="package-selected d-flex">

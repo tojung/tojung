@@ -1,8 +1,9 @@
 class ProductOrderController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :init_package, only: %i[new create]
   before_action :init_product, only: %i[new create]
-  before_action :check_user, :check_price, only: %i[create]
+  before_action :user_infos
+  before_action :check_price, only: %i[create]
   def new; end
 
   def create
@@ -10,16 +11,27 @@ class ProductOrderController < ApplicationController
                                     product_order_detail_params,
                                     product_delivery_params,
                                     params[:send_email_content],
-                                    current_user.email, current_user.id)
+                                    @user_email, @user_id)
+    puts "*"*30
     @payment_method = params[:payment_method]
     @status = params[:status]
   end
 
   private
 
-  def check_user
-    redirect_root if params[:user_id].to_i != current_user.id
+  def user_infos
+    if current_user != nil
+      @user_email = current_user.email
+      @user_id = current_user.id
+    else
+      @user_email = User.first.email
+      @user_id = User.first.id
+    end
   end
+
+  #def check_user
+  #  redirect_root if params[:user_id].to_i != current_user.id
+  #end
 
   def check_price
     redirect_root if params[:product_price].to_i < Package.find(params[:package_id]).price
@@ -35,7 +47,7 @@ class ProductOrderController < ApplicationController
 
   def product_order_params
     params.permit(:name, :user_id, :product_id, :package_id, :status, :phone,
-                  :case_type)
+                  :case_type, :imp_uid)
   end
 
   def product_order_detail_params
