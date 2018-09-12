@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180824052052) do
+ActiveRecord::Schema.define(version: 20180911174400) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -106,12 +106,29 @@ ActiveRecord::Schema.define(version: 20180824052052) do
     t.text "image0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.integer "delivery_price"
     t.index ["product_id"], name: "index_packages_on_product_id"
   end
 
   create_table "packages_product_options", id: false, force: :cascade do |t|
     t.integer "package_id", null: false
     t.integer "product_option_id", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "imp_uid"
+    t.string "pg_provider"
+    t.integer "amount"
+    t.string "name"
+    t.string "pay_method"
+    t.boolean "permission"
+    t.boolean "validation"
+    t.string "status"
+    t.string "receipt_url"
+    t.string "merchant_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "product_deliveries", force: :cascade do |t|
@@ -184,6 +201,8 @@ ActiveRecord::Schema.define(version: 20180824052052) do
     t.datetime "updated_at", null: false
     t.integer "product_delivery_id"
     t.integer "product_order_detail_id"
+    t.string "phone"
+    t.string "case_type"
     t.index ["package_id"], name: "index_product_orders_on_package_id"
     t.index ["product_delivery_id"], name: "index_product_orders_on_product_delivery_id"
     t.index ["product_id"], name: "index_product_orders_on_product_id"
@@ -225,6 +244,7 @@ ActiveRecord::Schema.define(version: 20180824052052) do
     t.integer "bill_id"
     t.text "bill_name"
     t.datetime "goods_dilivery_date"
+    t.text "design_purpose"
   end
 
   create_table "sendlogs", force: :cascade do |t|

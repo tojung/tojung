@@ -90,7 +90,10 @@ function onInstall(event) {
           'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
           'https://code.jquery.com/jquery-3.3.1.slim.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
-          'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js'
+          'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css',
+          'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js',
+          'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/i18n/defaults-ko_KR.min.js'
     ]);
     })
   );
@@ -116,9 +119,11 @@ function onActivate(event) {
 
 // Borrowed from https://github.com/TalAter/UpUp
 function onFetch(event) {
-    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') ){
+    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
+
         return
     }
+
   event.respondWith(
     // try to return untouched request from network first
 
@@ -140,7 +145,8 @@ function onFetch(event) {
                               .then(function(cache){
                                   // console.log(event.request.url)
                                   if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
-                                      cache.put(event.request, responseToCache);
+                                      console.log('ok' + event.request.url)
+                                      cache.put(event.request.url, responseToCache);
                                   }
                               });
 

@@ -220,3 +220,16 @@ input[type=number]::-webkit-outer-spin-button {
 #hardCase.off{
   display: none;
 }
+
+.select-phone{
+  border-radius: 4px;
+  height: 28px;
+  border: solid 1px #c4c4c4;
+  font-size: 12px;
+  padding: 2px 12px;
+}
+
+select:focus{
+  outline: 0;
+box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}

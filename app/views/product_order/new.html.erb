@@ -1,17 +1,14 @@
-<%= form_tag '/product_order' do %>
+<%= form_tag '/product_order',data: { disable_with: false } do %>
   <button class="btn btn-light order-btn mb-3">주문하기</button>
-    <% if @package.price != 0 %>
-    <%= hidden_field_tag 'delivery_price', '3000' %>
-    <%= hidden_field_tag 'total_price', @package.price + 3000 %>
-  <% else %>
-    <%= hidden_field_tag 'delivery_price', '0' %>
-    <%= hidden_field_tag 'total_price', @package.price %>
-  <% end %>
+    <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
+    <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>
 
-    <%= hidden_field_tag 'payment_method', '무통장입금' %>
+    <%= hidden_field_tag 'payment_method', '' %>
     <%= hidden_field_tag 'product_id', @product.id %>
     <%= hidden_field_tag 'package_id', @package.id %>
     <%= hidden_field_tag 'user_id', current_user.id %>
+    <%= hidden_field_tag 'status', '결제완료' %>
+
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
     <div class="package-selected d-flex">
       <%=image_tag(@product.image0, class: "order-img")%>
@@ -22,42 +19,38 @@
         <!-- css 적용 필요 -->
       </div>
     </div>
+
     <p class="font-14 font-weight-bold order-money text-right mb-2"><%= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>
       <span class="order-money-won">원</span></p>
     <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>
+    <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
     <div class="d-flex justify-content-around mt-3" id="phoneCase">
-      <div class="dropdown">
-        <button class="btn btn-white dropdown-toggle font-12" type="button" id="phoneCaseType" onchange="getCases(this);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          케이스 종류 선택
-        </button>
-        <div class="dropdown-menu font-12" aria-labelledby="dropdownMenuButton">
-          <li class="dropdown-item" onclick="phoneCaseDropdown(this);">젤리 케이스</li>
-          <li class="dropdown-item" onclick="phoneCaseDropdown(this);">하드 케이스</li>
-        </div>
-      </div>
-      <div class="dropdown off" id="jellyCase">
-        <button class="btn btn-white dropdown-toggle font-12" type="button" id="phoneCaseDevice1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          케이스 기종 선택
-        </button>
-        <div class="dropdown-menu font-12 scrollable-menu" aria-labelledby="dropdownMenuButton">
-          <%@jellycases.each do |jellycase|%>
-          <li class="dropdown-item" onclick="phoneCaseDropdown2(this);"><%=jellycase%></li>
-          <%end%>
-        </div>
-      </div>
-      <div class="dropdown off" id="hardCase">
-        <button class="btn btn-white dropdown-toggle font-12" type="button" id="phoneCaseDevice2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          케이스 기종 선택
-        </button>
-        <div class="dropdown-menu font-12 scrollable-menu" aria-labelledby="dropdownMenuButton">
-          <%@hardcases.each do |hardcase|%>
-          <li class="dropdown-item" id="hardCase" onclick="phoneCaseDropdown2(this);"><%=hardcase%></li>
-          <%end%>
-        </div>
-      </div>
-    </div>
-  </div>
+      <select name="case_type" class="select-phone" id="caseType" onchange="fuckin_hard_case(this)">
+        <option selected>케이스 종류 선택</option>
+        <option value="젤리케이스">젤리 케이스</option>
+        <option value="하드케이스">하드 케이스(+3000원)</option>
+      </select>
+      <select name="phone" class="select-phone off" id="jellyCase">
+        <option selected>휴대폰 기종 선택</option>
+        <%@jellycases.each do |jellycase|%>
+        <option value="<%=jellycase%>"><%=jellycase%></option>
+        <%end%>
+      </select>
+      <select name="phone" class="select-phone off" id="hardCase">
+        <option selected>휴대폰 기종 선택</option>
+        <%@hardcases.each do |hardcase|%>
+        <option value="<%=hardcase%>"><%=hardcase%></option>
+        <%end%>
+      </select>
 
+    </div>
+    <%end%>
+  </div>
+  <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
+    <!-- css 적용 필요-->
+
+
+  <% end %>
   <!-- 주문 정보 -->
 <div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
   <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">주문 고객 정보</h4>
@@ -145,7 +138,7 @@
       <div class="order-card">
         <% if @package.price != 0%>
         <p class="mb-0">배송비</p>
-        <p class="font-weight-bold mb-0">3,000원</p>
+        <p class="font-weight-bold mb-0"><%= @package.delivery_price %>원</p>
           <% else %>
           <p class="mb-0">배송비</p>
           <p class="font-weight-bold mb-0">0원</p>
@@ -153,8 +146,8 @@
       </div>
     </div>
     <% if @package.price != 0 %>
-    <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price + 3000 %>원</span></p>
-      <% else %>
+      <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price + @package.delivery_price %>원</span></p>
+    <% else %>
       <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold" id="product_price_description2"><%= @package.price %>원</span></p>
   <% end%>
       <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %>일에 일괄 배송 시작됩니다.
@@ -171,17 +164,19 @@
     <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
     <div class="d-flex flex-wrap justify-content-around">
       <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
-      <button type="button" class="pay-button mb-3" onclick="extra_payment();">신용카드</button>
+      <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
       <button type="button" class="pay-button mb-3" onclick="extra_payment();">휴대폰</button>
       <button type="button" class="pay-button mb-3" onclick="extra_payment();">TOSS</button>
     </div>
     <div id="payment_method_description">
     </div>
 <!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
-    <%= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4' %>
+    <%#= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
   </div>
 <% end %>
+<button type="button" class="btn-pay-finish text-center my-4" onclick="fuckin_submit()">내 인생으로 배송받기</button>
 
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 <script>
     // 우편번호 찾기 화면을 넣을 element
     var element_layer = document.getElementById('layer');
@@ -238,6 +233,12 @@
     // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
     // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
     // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+    function card_payment() {
+        var payment_method =  document.getElementById('payment_method_description');
+        $('input[name=payment_method]').attr('value', '카드결제');
+        payment_method.innerHTML = "신용카드를 선택하였습니다.<br>";
+
+    }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
         var height = 400; //우편번호서비스가 들어갈 element의 height
@@ -253,45 +254,93 @@
     }
     function normal_payment(){
         var payment_method =  document.getElementById('payment_method_description');
+        var pay_method = $('input[name=payment_method]').attr('value', '무통장입금')
         payment_method.innerText = '무통장입금을 선택하였습니다.';
     }
     function extra_payment(){
         var payment_method =  document.getElementById('payment_method_description');
+        var pay_method = $('input[name=payment_method]').attr('value', '제공안함');
         payment_method.innerText = '해당 옵션은 현재 제공하지않습니다.';
     }
     function change_product_price() {
-        var product_price = parseInt(document.getElementsByName('product_price')[0].value);
-        var product_price_description = document.getElementById('product_price_description');
-        var product_price_description2 = document.getElementById('product_price_description2');
-        var total_price = document.getElementById('total_price');
-        product_price_description.innerText = product_price;
+        var product_price = parseInt(document.getElementsByName('product_price')[0].value); // input
+        var product_price_description = document.getElementById('product_price_description'); // 설명
+        var product_price_description2 = document.getElementById('product_price_description2'); //설명
+        var total_price = document.getElementById('total_price'); // hidden
+        product_price_description.innerText = product_price+'원';
         <% if @package.price != 0 %>
-          product_price_description2.innerText = product_price + 3000;
-          total_price.value = product_price + 3000;
+          product_price_description2.innerText = product_price + <%= @package.delivery_price %>;
+          total_price.value = product_price + <%= @package.delivery_price %>;
         <% else %>
-        product_price_description2.innerText = product_price;
-        total_price.value = product_price;
+          product_price_description2.innerText = product_price;
+          total_price.value = product_price;
+          var payment_method = $('input[name=payment_method]')
+          if (payment_method.attr('value') === '해당없음'){
+              payment_method.attr('value', '')
+          }
         <% end %>
         console.log("changed");
     }
 
-   function phoneCaseDropdown(item){
-     var type = $(item).html();
-     $('#phoneCaseType').html(type);
-     if (type == '젤리 케이스'){
-       $('#hardCase').filter('.on').removeClass('on').addClass('off');
-       $('#jellyCase').removeClass('off').addClass('on');
-     }
-     else if (type == '하드 케이스'){
-       $('#jellyCase').filter('.on').removeClass('on').addClass('off');
-       $('#hardCase').removeClass('off').addClass('on');
-     }
-   }
+    function fuckin_hard_case(select_this) {
+        var type = $('#caseType option:selected').val();
+        if (type == '젤리케이스'){
+          $('#hardCase').filter('.on').removeClass('on').addClass('off');
+          $('#jellyCase').removeClass('off').addClass('on');
+        }
+        else if (type == '하드케이스'){
+          $('#jellyCase').filter('.on').removeClass('on').addClass('off');
+          $('#hardCase').removeClass('off').addClass('on');
+        }
+        console.log('fuckin hard case');
+        if(select_this.value === '하드케이스'){
+            var m=parseInt(<%= @package.price %>);
+            $('input[name=product_price]').attr('min', m+3000);
+            if ($('input[name=product_price]').attr('value') < m + 3000 || parseInt($('input[name=product_price]').val()) < m + 3000){
+                $('input[name=product_price]').attr('value', m + 3000);
+                $('input[name=product_price]').val(m+3000)
+                $('#product_price_description').text(m + 3000 + '원');
+                var p = $('input[name=total_price]');
+                p.attr('value', parseInt(p.attr('value')) + 3000)
+                var product_price_description2 = document.getElementById('product_price_description2');
+                product_price_description2.innerText = parseInt(p.attr('value'))
+            }
+        }else{
+            var m=parseInt(<%= @package.price %>);
+            $('input[name=product_price]').attr('value', m);
+            $('input[name=product_price]').val(m);
+            $('#product_price_description').text(m + '원');
+            var p = $('input[name=total_price]');
+            p.attr('value',  m + <%= @package.delivery_price %>);
+            var product_price_description2 = document.getElementById('product_price_description2');
+            product_price_description2.innerText = parseInt(p.attr('value'));
+        }
+    }
+    function fuckin_submit(){
+            $('input[name=commit]').removeAttr('data-disable-with');
+            let payment_method = $('input[name=payment_method]').attr('value');
+            if (payment_method === '카드결제') {
+                pay_new_test();
+                // $('input[name=commit]').removeAttr('disabled')
+                // $('form').submit()
+            } else if (payment_method === '제공안함') {
+                alert('제공하지않는 결제방법을 선택하셨습니다.');
+                $('input[name=commit]').removeAttr('disabled')
+            } else if (payment_method === '무통장입금') {
+                console.log('무통장입금');
+                // return true
+                $('input[name=status]').attr('value', '결제대기중');
+                $('form').submit();
+                //$('input[name=commit]').removeAttr('disabled')
+            }else if (payment_method === '해당없음') {
+                $('form').submit();
+            } else {
+                alert('결제방법을 선택해주세요');
+            }
+    }
 
-   function phoneCaseDropdown2(item){
-     var device = $(item).html();
-     $('#phoneCaseDevice1').html(device);
-     $('#phoneCaseDevice2').html(device);
-   }
+
+</script>
+<script>
 
 </script>

@@ -1,3 +1,4 @@
+<% if @status == '결제완료' %>
 <div class="order-complete">
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
     <div class="package-selected d-flex">
@@ -37,3 +38,6 @@
     <a class="d-block font-14 text-right mt-1 mb-5">> 확인하러가기</a>
   </section>
 </div>
+<% else %>
+  결제 실패 하였습니다
+<% end %>

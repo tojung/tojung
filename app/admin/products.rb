@@ -18,7 +18,7 @@ ActiveAdmin.register Product do
                 :visible,
                 :bill_id,
                 :bill_name,
-                :status, :goods_dilivery_date
+                :status, :goods_dilivery_date, :design_purpose
   show do
     panel '법안상품' do
       table_for product i18n: Product do
@@ -111,7 +111,9 @@ ActiveAdmin.register Product do
     inputs 'Images' do
       input 'image0', label: '상품 메인 이미지'
       input 'image1', label: '패키지 정리 이미지'
+      input 'design_purpose', label: '디자인 의도 이미지'
     end
+
     input 'goods_dilivery_date', as: :datepicker,
           datepicker_options: {
               min_date: '2018-08-08',
@@ -134,7 +136,6 @@ ActiveAdmin.register Product do
                              disagree_hash: SecureRandom.base64(50))
       end
       Rails.cache.clear
-
     end
     def update
       super
