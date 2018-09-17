@@ -29,7 +29,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -76,12 +75,16 @@
       <%= yield %>
     </div>
     <%=render 'layouts/footer'%>
-
+    <!-- <div class='loading-background'>
+      <div class='loading-indicator'>
+      </div>
+    </div> -->
     <!-- Slick Slider -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script> 
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <script>
+    // Notice, Alert
       $(document).ready(function(){
         setTimeout(function(){
           $('#notice_wrapper').addClass('fadeout');

@@ -48,6 +48,7 @@
   }
   .cover_text{
     font-size: 24px;
+    left: 100px;
   }
   .text-1{
     height: 150px;
@@ -222,6 +223,14 @@ span.or{
 // Bottom bar
 .bottom-bar .text-dark:hover, .bottom-bar .text-dark:active, .bottom-bar .text-dark:focus{
   font-weight: bold;
+}
+
+.icon-box{
+  width: 40px;
+}
+
+.first-icon{
+  margin-left: 1px;
 }
 
 // Brand.html
