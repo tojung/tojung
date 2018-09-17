@@ -1,16 +1,21 @@
-<h2><%= t('.forgot_your_password') %></h2>
+<section class="sign_in text-center py-4">
+<h2 class="text-center font-18 text-black my-4">비밀번호 찾기</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="field mb-3">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "이메일" %>
   </div>
 
   <div class="actions">
-    <%= f.submit t('.send_me_reset_password_instructions') %>
+    <%= f.submit "이메일로 비밀번호 재설정", class: "btn-login text-white font-14", style: "width: 230px;" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+  <div class="d-flex pl-2 links justify-content-around font-12 my-3">
+    <%= link_to "로그인하기", new_session_path(resource_name), class: "links-bar", style: "padding-right: 30px;"  %>
+    <%= link_to "회원가입하기", new_registration_path(resource_name)%>
+  </div>
+
+</section>
