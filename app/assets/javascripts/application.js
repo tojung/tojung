@@ -81,12 +81,14 @@ function pay_new_test() {
 
                         $('input[name=payment_method]').attr('value', '카드결제완료');
                         $('input[name=status]').attr('value', '결제완료');
+                        $('input[name=imp_uid]').attr('value', rsp.imp_uid);
                         my_form.submit();
                         // window.location.href = '/product_order'
                     } else {
                         console.log('fail');
                         $('input[name=payment_method]').attr('value','카드결제실패');
                         $('input[name=status]').attr('value', '결제실패');
+                        $('input[name=imp_uid]').attr('value', rsp.imp_uid);
                         my_form.submit();
                         //[3] 아직 제대로 결제가 되지 않았습니다.
                         //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.

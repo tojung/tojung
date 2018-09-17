@@ -25,6 +25,9 @@ class ProductOrder < ApplicationRecord
     product = Product.find(product_order.product.id)
     product.funded_count += 1 if product.funded_count != nil
     product.save
+    if user_id == 1
+      return
+    end
     product.maker_responses.each do |maker_res|
       content = "안녕하세요, #{maker_res.maker.name}의원님!
 #{maker_res.product.assos}에 계류중인
