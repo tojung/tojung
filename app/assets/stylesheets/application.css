@@ -394,7 +394,7 @@ button{
 
  .footer{
    padding: 60px 40px 0 40px;
-   background-color: rgb(249,249,249, 0.75);
+   background-color: rgba(249,249,249, 0.75);
    margin-bottom: 60px;
  }
  .footer p{
