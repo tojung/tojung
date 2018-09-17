@@ -24,20 +24,33 @@
     <p class="font-14 font-weight-bold order-money text-right mb-2"><%= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>
       <span class="order-money-won">원</span></p>
     <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>
+    <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
+    <div class="d-flex justify-content-around mt-3" id="phoneCase">
+      <select name="case_type" class="select-phone" id="caseType" onchange="fuckin_hard_case(this)">
+        <option selected>케이스 종류 선택</option>
+        <option value="젤리케이스">젤리 케이스</option>
+        <option value="하드케이스">하드 케이스(+3000원)</option>
+      </select>
+      <select name="phone" class="select-phone off" id="jellyCase">
+        <option selected>휴대폰 기종 선택</option>
+        <%@jellycases.each do |jellycase|%>
+        <option value="<%=jellycase%>"><%=jellycase%></option>
+        <%end%>
+      </select>
+      <select name="phone" class="select-phone off" id="hardCase">
+        <option selected>휴대폰 기종 선택</option>
+        <%@hardcases.each do |hardcase|%>
+        <option value="<%=hardcase%>"><%=hardcase%></option>
+        <%end%>
+      </select>
+
+    </div>
+    <%end%>
   </div>
   <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
     <!-- css 적용 필요-->
-    <select name="phone">
-      <option value="휴대폰 기종을 선택해주세요">휴대폰 기종을 선택해주세요</option>
-      <option value="아이폰6">아이폰6</option>
-      <option value="기종 목록 정리좀">기종 목록 정리좀</option>
-    </select>
 
-    <select name="case_type" onchange="fuckin_hard_case(this)">
-      <option value="케이스 타입을 선택해주세요">케이스 타입을 선택해주세요</option>
-      <option value="젤리케이스">젤리케이스</option>
-      <option value="하드케이스">하드케이스(+3000)</option>
-    </select>
+
   <% end %>
   <!-- 주문 정보 -->
 <div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
@@ -113,6 +126,8 @@
     </div>
   </div>
   <!-- //주문정보 -->
+
+
 
   <!-- 국회 청원  -->
   <div class="bg-white mb-3 px-3 py-3">
@@ -291,7 +306,17 @@
         <% end %>
         console.log("changed");
     }
+
     function fuckin_hard_case(select_this) {
+        var type = $('#caseType option:selected').val();
+        if (type == '젤리케이스'){
+          $('#hardCase').filter('.on').removeClass('on').addClass('off');
+          $('#jellyCase').removeClass('off').addClass('on');
+        }
+        else if (type == '하드케이스'){
+          $('#jellyCase').filter('.on').removeClass('on').addClass('off');
+          $('#hardCase').removeClass('off').addClass('on');
+        }
         console.log('fuckin hard case');
         if(select_this.value === '하드케이스'){
             var m=parseInt(<%= @package.price %>);
@@ -338,5 +363,9 @@
                 alert('결제방법을 선택해주세요');
             }
     }
+
+
+</script>
+<script>
 
 </script>

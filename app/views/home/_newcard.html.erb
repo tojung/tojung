@@ -3,7 +3,7 @@
 <%end%>
 <div class="scrolling-wrapper center" id="all">
   <% @products_categorized.each do |product|%>
-    <div class="card slick-slide slick-current slick-center" style="" data-slick-index="0" aria-hidden="true" tabindex="0">
+    <div class="card">
       <a href="/product/<%=product.id%>" class="d-block h-100">
         <%=image_tag(@cdn_url + product.image0.path, class: "pro-thumbimg") if product.image0.path != nil%>
         <div class="card-body">
