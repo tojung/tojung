@@ -261,7 +261,7 @@
     function card_payment() {
         var payment_method =  document.getElementById('payment_method_description');
         $('input[name=payment_method]').attr('value', '카드결제');
-        payment_method.innerHTML = "신용카드를 선택하였습니다.<br> 현재는 신용카드 결제기능을 선택할수없습니다.<br>추후에 이용해주시길바랍니다.";
+        payment_method.innerHTML = "신용카드를 선택하였습니다.<br> 현재는 신용카드 결제기능은 테스트키 모드입니다. PG정책상 결제가 완료되더라도 24시간 이내에 환불되며, 주문이 취소됩니다.<br>";
 
     }
     function initLayerPosition(){
