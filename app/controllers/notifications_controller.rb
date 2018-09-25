@@ -3,8 +3,6 @@ class NotificationsController < ApplicationController
     def push
     puts '%%%%'*100
     puts request.remote_ip
-    puts request.env['HTTP_X_REAL_IP']
-    puts request.env ['X_FORWARDED_FOR']
     if Notification.where(ip: request.remote_ip).count != 0
      jsonbody = JSON.parse request.body.read()
         render json: jsonbody
