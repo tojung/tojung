@@ -4,7 +4,7 @@ task :noti => :environment do
 puts "Go"
 notif = Notification.last
 Webpush.payload_send(
-    message: { title: 'Hello', content: "World" }.to_json,
+    message: { title: '제목!!', content: "내용ㅃ" }.to_json,
            endpoint: notif.endpoint,
            p256dh: notif.p256h,
            auth: notif.auth,
