@@ -1,7 +1,11 @@
 class NotificationsController < ApplicationController
     skip_before_action :verify_authenticity_token
     def push
-    if Notification.where(ip: request.env['REMOTE_ADDR']).count != 0
+    puts '%%%%'*100
+    puts request.remote_ip
+    puts request.env['HTTP_X_REAL_IP']
+    puts request.env ['X_FORWARDED_FOR']
+    if Notification.where(ip: request.remote_ip).count != 0
      jsonbody = JSON.parse request.body.read()
         render json: jsonbody
         return
@@ -11,7 +15,7 @@ class NotificationsController < ApplicationController
     p256dh = jsonbody["subscription"]["keys"]["p256dh"]
     auth = jsonbody["subscription"]["keys"]["auth"]
     @notification = Notification.new(endpoint: endpoint, p256h: p256dh, auth: auth)
-    @notification.ip = request.env['REMOTE_ADDR']
+    @notification.ip = request.remote_ip
     @notification.save()
 
     render json: jsonbody
