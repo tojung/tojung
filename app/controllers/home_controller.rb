@@ -5,6 +5,8 @@ class HomeController < ApplicationController
   before_action :set_cdn_url, only: %i[index policy privacy brand mypage search]
   # GET '/' 메인 페이지
   def index
+    puts '$'*100
+    puts request.env['REMOTE_ADDR']
     if params.key?(:sidebar)
       @num = params[:sidebar]
       @category_list = {'1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW'}

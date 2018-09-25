@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180925010538) do
+ActiveRecord::Schema.define(version: 20180925021810) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20180925010538) do
     t.string "endpoint"
     t.string "p256h"
     t.string "auth"
+    t.text "ip"
   end
 
   create_table "packages", force: :cascade do |t|

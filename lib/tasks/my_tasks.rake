@@ -1,7 +1,10 @@
+
+namespace :my_tasks do
+task :noti => :environment do
 puts "Go"
 notif = Notification.last
 Webpush.payload_send(
-           message: "Hello World!!",
+    message: { title: 'Hello', content: "World" }.to_json,
            endpoint: notif.endpoint,
            p256dh: notif.p256h,
            auth: notif.auth,
@@ -12,3 +15,9 @@ Webpush.payload_send(
                private_key: ENV['VAPID_PRIVATE_KEY']
            }
        )
+end
+
+task :te do
+  puts Product.last
+end
+end
