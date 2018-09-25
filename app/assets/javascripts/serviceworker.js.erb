@@ -157,3 +157,42 @@ function onFetch(event) {
 self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
+
+self.addEventListener('push', function (event) {
+    var jsonbody = JSON.parse(event.data && event.data.text());
+
+    var title = jsonbody.title || "New Blog Post";
+    var body = jsonbody.content || "Come to wenghan.me";
+    var dir = 'ltr';
+    var tag = "push-simple-demo-tag";
+    var data = jsonbody.link || "/blogs";
+    var icon = "/images/icons/icon-96x96.png";
+    var renotify = true;
+    var actions = [{ action: 'confirm', title: 'Visit', icon: '/images/icons/icon-96x96.png' }];
+
+    event.waitUntil(self.registration.showNotification(title, { body: body, icon: icon, dir: dir, tag: tag, renotify: renotify, data: data, actions: actions }));
+});
+
+self.addEventListener('notificationclick', function (event) {
+    var notification = event.notification;
+    var action = event.action;
+    var link = notification.data;
+    console.log(event);
+    if (action === 'confirm') {
+        console.log('Confirm was chosen');
+        notification.close();
+    } else {
+        console.log(action);
+        notification.close();
+    }
+
+    event.waitUntil(clients.matchAll({
+        type: "window"
+    }).then(function (clientList) {
+        for (var i = 0; i < clientList.length; i++) {
+            var client = clientList[i];
+            if (client.url == link && 'focus' in client) return client.focus();
+        }
+        if (clients.openWindow) return clients.openWindow(link);
+    }));
+});
