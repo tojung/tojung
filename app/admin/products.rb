@@ -115,10 +115,10 @@ ActiveAdmin.register Product do
     end
 
     input 'goods_dilivery_date', as: :datepicker,
-          datepicker_options: {
-              min_date: '2018-08-08',
-              max_date: '+9D'
-          }, label: '굿즈배송일'
+                                 datepicker_options: {
+                                   min_date: '2018-08-08',
+                                   max_date: '+9D'
+                                 }, label: '굿즈배송일'
     input 'visible', label: '공개 여부'
     actions
   end
@@ -137,6 +137,7 @@ ActiveAdmin.register Product do
       end
       Rails.cache.clear
     end
+
     def update
       super
       if @product.maker_responses.empty?
@@ -148,6 +149,24 @@ ActiveAdmin.register Product do
                                send_count: 0,
                                agree_hash: SecureRandom.base64(50),
                                disagree_hash: SecureRandom.base64(50))
+        end
+        notif = Notification.all
+        notif.each do |noti|
+          begin
+          Webpush.payload_send(
+            message: { title: '제목!!', content: '내용ㅃ' }.to_json,
+            endpoint: noti.endpoint,
+            p256dh: noti.p256h,
+            auth: noti.auth,
+            ttl: 24 * 60 * 60,
+            vapid: {
+              subject: 'mailto:geniuslim27@gmail.com',
+              public_key: ENV['VAPID_PUBLIC_KEY'],
+              private_key: ENV['VAPID_PRIVATE_KEY']
+            }
+          )
+          rescue
+          end
         end
       end
 

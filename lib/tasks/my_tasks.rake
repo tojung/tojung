@@ -10,7 +10,7 @@ namespace :my_tasks do
         auth: noti.auth,
         ttl: 24 * 60 * 60,
         vapid: {
-          subject: 'mailto:jlwhoo7@gmail.com',
+          subject: 'mailto:geniuslim27@gmail.com',
           public_key: ENV['VAPID_PUBLIC_KEY'],
           private_key: ENV['VAPID_PRIVATE_KEY']
         }
