@@ -14,4 +14,4 @@ Disallow: /disagree
 Disallow: /home/privacy
 Disallow: /home/policy
 
-Sitemap: https://2jung.com/sitemap.xml
+Sitemap: https://tojung.me/sitemap.xml

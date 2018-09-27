@@ -17,7 +17,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require serviceworker-companion
-
+//= require vapid.js.erb
 function sidebar_click(){
 $(document).ready(function () {
   $('#dismiss, #dismiss-button, .overlay, #exit-button').on('click', function () {

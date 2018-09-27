@@ -1,0 +1,2 @@
+<% @key = Base64.urlsafe_decode64(ENV['VAPID_PUBLIC_KEY']).bytes %>
+window.vapidPublicKey = new Uint8Array(<%= @key %>)

@@ -56,6 +56,8 @@ Rails.application.routes.draw do
 
   resources :product_like, param: :product_like_id
   resources :payment
+  post '/push' => 'notifications#push'
+  post '/message' => 'notifications#message'
   # authenticate(:user, lambda do |u|
   #   u.admin
   # end) do
