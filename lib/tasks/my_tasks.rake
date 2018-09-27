@@ -16,9 +16,9 @@ namespace :my_tasks do
           private_key: ENV['VAPID_PRIVATE_KEY']
         }
       )
-      end
      rescue
      end
+    end
   end
   task :te do
     puts Product.last
