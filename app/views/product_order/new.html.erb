@@ -190,7 +190,7 @@
     <div class="d-flex flex-wrap justify-content-around">
       <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
       <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
-      <button type="button" class="pay-button mb-3" onclick="extra_payment();">휴대폰</button>
+      <button type="button" class="pay-button mb-3" onclick="phone_payment();">휴대폰</button>
       <button type="button" class="pay-button mb-3" onclick="extra_payment();">TOSS</button>
     </div>
     <div id="payment_method_description">
@@ -261,8 +261,13 @@
     function card_payment() {
         var payment_method =  document.getElementById('payment_method_description');
         $('input[name=payment_method]').attr('value', '카드결제');
-        payment_method.innerHTML = "신용카드를 선택하였습니다.<br> 현재는 신용카드 결제기능은 테스트키 모드입니다. PG정책상 결제가 완료되더라도 24시간 이내에 환불되며, 주문이 취소됩니다.<br>";
+        payment_method.innerHTML = "신용카드를 선택하였습니다.<br> 현재는 신용카드 결제기능은 테스트키 모드입니다. PG정책상 결제가 완료되더라도 24시간 이내에 취소 및 환불이되며, 주문이 취소됩니다.<br>";
 
+    }
+    function phone_payment(){
+        var payment_method =  document.getElementById('payment_method_description');
+        $('input[name=payment_method]').attr('value', '폰결제');
+        payment_method.innerHTML = "휴대폰 결제를 선택하였습니다.<br> 현재는 휴대폰 결제 결제기능은 테스트키 모드입니다. PG정책상 결제가 완료되더라도 24시간 이내에 환불되며, 주문이 취소됩니다.<br>";
     }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
@@ -348,6 +353,8 @@
                 pay_new_test();
                 // $('input[name=commit]').removeAttr('disabled')
                 // $('form').submit()
+            }else if(payment_method == '폰결제'){
+                pay_phone();
             } else if (payment_method === '제공안함') {
                 alert('제공하지않는 결제방법을 선택하셨습니다.');
                 $('input[name=commit]').removeAttr('disabled')
