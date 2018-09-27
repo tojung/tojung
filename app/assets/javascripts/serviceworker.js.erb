@@ -166,7 +166,7 @@ self.addEventListener('push', function (event) {
     var body = jsonbody.content || "Come to wenghan.me";
     var dir = 'ltr';
     var tag = "push-simple-demo-tag";
-    var data = jsonbody.link || "/blogs";
+    var data = jsonbody.link || "/";
     var icon = "<%= asset_path 'logo.png' %>";
     var renotify = true;
     var actions = [{ action: 'confirm', title: 'Visit', icon: icon }];

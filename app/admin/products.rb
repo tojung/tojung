@@ -135,6 +135,28 @@ ActiveAdmin.register Product do
                              agree_hash: SecureRandom.base64(50),
                              disagree_hash: SecureRandom.base64(50))
       end
+      return if @product.visible == 0
+      notif = Notification.all
+      notif.each do |noti|
+        begin
+          title = @product.name + ' 법안 상품이 추가되었습니다.'
+          Webpush.payload_send(
+            message: { title: title, content: '구경하러 가기', link: 'https://tojung.me/product/'+@product.id.to_s }.to_json,
+            endpoint: noti.endpoint,
+            p256dh: noti.p256h,
+            auth: noti.auth,
+            ttl: 24 * 60 * 60,
+            vapid: {
+              subject: 'mailto:geniuslim27@gmail.com',
+              public_key: ENV['VAPID_PUBLIC_KEY'],
+              private_key: ENV['VAPID_PRIVATE_KEY']
+            }
+          )
+          puts 'succ' * 1000
+        rescue StandardError
+          puts '?!' * 1000
+        end
+      end
       Rails.cache.clear
     end
 
@@ -150,11 +172,18 @@ ActiveAdmin.register Product do
                                agree_hash: SecureRandom.base64(50),
                                disagree_hash: SecureRandom.base64(50))
         end
-        notif = Notification.all
-        notif.each do |noti|
-          begin
+
+      end
+
+      if @product.visible == 0
+        return
+      end
+      notif = Notification.all
+      notif.each do |noti|
+        begin
+          title = @product.name + ' 법안 상품이 수정되었습니다.'
           Webpush.payload_send(
-            message: { title: @product.title + ' 법안 상품이 수정되었습니다.', content: '구경하러 가기'}.to_json,
+            message: { title: title, content: '구경하러 가기', link: 'https://tojung.me/product/'+@product.id.to_s }.to_json,
             endpoint: noti.endpoint,
             p256dh: noti.p256h,
             auth: noti.auth,
@@ -165,11 +194,11 @@ ActiveAdmin.register Product do
               private_key: ENV['VAPID_PRIVATE_KEY']
             }
           )
-          rescue
-          end
+          puts 'succ' * 1000
+        rescue StandardError
+          puts '?!' * 1000
         end
       end
-
       Rails.cache.clear
     end
   end
