@@ -1,4 +1,6 @@
-<h1> 비회원 주문입니다. </h1>
+<% if current_user == nil %>
+    <h1> 비회원 주문입니다. </h1>
+  <% end %>
 <%= form_tag '/product_order',data: { disable_with: false } do %>
   <button type="button" class="btn btn-light order-btn mb-3"  onclick="fuckin_submit()">주문하기</button>
     <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
