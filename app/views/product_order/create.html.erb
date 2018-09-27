@@ -13,7 +13,11 @@
     <p class="font-14 font-weight-bold order-money border-bottom-none text-right mb-2"><%= params[:total_price] %>
       <span class="order-money-won">원</span></p>
   </div>
-
+  <% if @payment_method == '무통장입금' %>
+    <h2> 입금해아할 계좌: 038-143868-01-014 </h2>
+    <h3> IBK 기업은행 </h3>
+    <h3> 주식회사 투정 </h3>
+  <% end %>
   <section class="complete-message-wrapper px-3 py-3">
     <div class="complete-message d-flex align-items-center">
       <h4 class="complete-number ml-2 mr-4 mb-0">1</h4>

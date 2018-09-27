@@ -148,7 +148,7 @@ function pay_phone(){
                     alert(msg);
 
                     $('input[name=payment_method]').attr('value', '폰결제완료');
-                    $('input[name=status]').attr('value', '폰결제완료');
+                    $('input[name=status]').attr('value', '결제완료');
                     $('input[name=imp_uid]').attr('value', rsp.imp_uid);
                     my_form.submit();
                     // window.location.href = '/product_order'
