@@ -23,9 +23,11 @@
       </div>
     </div>
 
-    <p class="font-14 font-weight-bold order-money text-right mb-2"><%= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>
+    <p class="font-14 font-weight-bold order-money text-right mb-2">
+      <%= @package.price %>
+      <%#= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>
       <span class="order-money-won">원</span></p>
-    <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>
+<!--    <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>-->
     <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
     <div class="d-flex justify-content-around mt-3" id="phoneCase">
       <select name="case_type" class="select-phone" id="caseType" onchange="fuckin_hard_case(this)">
