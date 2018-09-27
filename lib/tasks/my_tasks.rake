@@ -3,6 +3,7 @@ namespace :my_tasks do
     puts 'Go'
     notif = Notification.all
     notif.each do |noti|
+      begin
       Webpush.payload_send(
         message: { title: '제목!!', content: '내용ㅃ' }.to_json,
         endpoint: noti.endpoint,
@@ -15,7 +16,9 @@ namespace :my_tasks do
           private_key: ENV['VAPID_PRIVATE_KEY']
         }
       )
-    end
+      end
+     rescue
+     end
   end
   task :te do
     puts Product.last

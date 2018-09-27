@@ -154,7 +154,7 @@ ActiveAdmin.register Product do
         notif.each do |noti|
           begin
           Webpush.payload_send(
-            message: { title: '제목!!', content: '내용ㅃ' }.to_json,
+            message: { title: @product.title + ' 법안 상품이 수정되었습니다.', content: '구경하러 가기'}.to_json,
             endpoint: noti.endpoint,
             p256dh: noti.p256h,
             auth: noti.auth,
