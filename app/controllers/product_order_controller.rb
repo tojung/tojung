@@ -37,9 +37,9 @@ class ProductOrderController < ApplicationController
   #  redirect_root if params[:user_id].to_i != current_user.id
   #end
 
-  def check_price
-    redirect_root if params[:product_price].to_i < Package.find(params[:package_id]).price
-  end
+  # def check_price
+  #   redirect_root if params[:product_price].to_i < Package.find(params[:package_id]).price
+  # end
 
   def init_package
     @package = Package.find(params[:package_id])
