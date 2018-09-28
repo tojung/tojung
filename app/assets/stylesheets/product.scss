@@ -61,6 +61,10 @@
   margin: 0 1%;
 }
 
+.package-box2{
+  border: 1px solid #666;
+}
+
 .share-button{
   width: 100%;
   height: 40px;
@@ -311,6 +315,18 @@ li:hover{
 .package-img{
   width: 80px;
   height: 80px;
+}
+
+.package-item.hide, .package-price.hide{
+  display: none;
+}
+
+.package-item.show, .package-price.show{
+  display: block;
+}
+
+#packageContainer.border{
+  border: 1px solid #666;
 }
 
 // Share bar
