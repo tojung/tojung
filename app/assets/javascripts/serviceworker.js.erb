@@ -116,11 +116,13 @@ function onActivate(event) {
 
 // Borrowed from https://github.com/TalAter/UpUp
 function onFetch(event) {
-    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
-
-        return
-    }
-
+//    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
+//        return
+//    }
+  if(event.request.method != 'GET'){
+      console.log("Not GET");
+      return;
+  }
   event.respondWith(
     // try to return untouched request from network first
 
@@ -141,10 +143,11 @@ function onFetch(event) {
                           caches.open(CACHE_NAME)
                               .then(function(cache){
                                   // console.log(event.request.url)
-                                  if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
-                                      console.log('ok' + event.request.url)
-                                      cache.put(event.request.url, responseToCache);
-                                  }
+                                  cache.put(event.request.url, responseToCache);
+//                                  if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
+//                                      console.log('ok' + event.request.url)
+//                                      cache.put(event.request.url, responseToCache);
+//                                  }
                               });
 
                           return response;
@@ -152,11 +155,40 @@ function onFetch(event) {
                   )
               })
   )
+    event.waitUntil(
+        update(event.request)
+            .then(refresh)
+    )
 }
 
 self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
+
+function update(request) {
+    return caches.open(CACHE_NAME).then(function (cache) {
+        return fetch(request).then(function (response) {
+            return cache.put(request, response.clone()).then(function () {
+                return response;
+            });
+        });
+    });
+}
+
+function refresh(response) {
+    return self.clients.matchAll().then(function (clients) {
+        clients.forEach(function (client) {
+
+            var message = {
+                type: 'refresh',
+                url: response.url,
+                eTag: response.headers.get('ETag')
+            };
+
+            client.postMessage(JSON.stringify(message));
+        });
+    });
+}
 
 self.addEventListener('push', function (event) {
     console.log(event)
