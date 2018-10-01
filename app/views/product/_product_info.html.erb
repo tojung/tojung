@@ -32,7 +32,6 @@
     <div class="dropdown my-3 w-100" id="myDropdown">
       <button type="button" id="packageButton" class="d-flex justify-content-between btn btn-white text-left dropdown-toggle d-flex justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="package-info my-auto" id="package-default">
-
             <span>패키지 선택하기</span>
           </div>
           <span class="glyphicon glyphicon-chevron-down"></span>
@@ -42,10 +41,12 @@
         <% @product.packages.each do |package|%>
         <li class="d-flex package-box" onclick="packageDropdown(this);">
           <%=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3 hide", id: package.id) if package.image0.path != nil%>
-            <div class="package-info my-auto w-100 d-flex">
-              <p class="mb-0 font-weight-bold mr-3"><%= package.name %></p>
-              <p class="mb-0"><%= package.content.gsub("\r\n", "<br />").html_safe %></p>
-              <p class="mb-0 font-red font-weight-bold package-price hide"><%= package.price %>원</p>
+            <div class="package-info my-auto w-100 d-flex justify-content-between">
+              <div class="package-info-1 d-flex">
+                <p class="mb-0 font-weight-bold mr-3 package-name"><%= package.name %></p>
+                <p class="mb-0 mr-3"><%= package.content.gsub("\r\n", "<br />").html_safe %></p>
+              </div>
+              <p class="mb-0 font-red font-weight-bold package-price"><%= package.price %>원</p>
             </div>
         </li>
         <% end %>
@@ -115,8 +116,8 @@
       $('#packageContainer').html(x);
       $('#packageContainer').addClass('package-box2 my-3');
       $('#packageContainer > .package-info').removeClass('d-flex');
+      $('#packageContainer > .package-info > .package-info-1 > .package-name').unwrap();
       $('#packageContainer > .package-item').removeClass('hide').addClass('show');
-      $('#packageContainer > .package-info > .package-price').removeClass('hide').addClass('show');
       var pid = $("#packageButton").children()[0].id;
       $('#pay-link-lg').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
     });
@@ -125,7 +126,8 @@
   // '패키지를 선택하세요' alert
   function packageSelected(){
     $(document).ready(function(){
-      if($('#packageButton').height() == 24){
+      var ment = $('#packageButton > .package-info > span').html();
+      if( ment == "패키지 선택하기"){
         alert('패키지를 선택해주세요');
       }
     });
