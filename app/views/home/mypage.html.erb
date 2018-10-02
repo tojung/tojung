@@ -3,7 +3,12 @@
   <section class="profile d-flex px-3 py-3">
     <!-- Desktop -->
     <div class="profile-img-box">
-      <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
+        <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
+
+       <!-- 디폴트 이미지 필요 -->
+        <%=image_tag("logo.png", class: "profile-img visible-lg") if current_user.image0 == nil%>
+
+         <%#=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
     </div>
     <!-- // Desktop -->
     <div class="mylog font-12 font-lg-14 my-auto justify-content-around">
@@ -20,15 +25,15 @@
       <!-- // Desktop -->
       <div class="d-flex my-md-3">
         <div class="mylog-box mx-2 ml-md-3 mr-md-4 text-center">
-          <p class="mb-0 font-weight-bold font-18 visible-xs"><%= current_user.product_orders.count %></p>
+          <p class="mb-0 font-weight-bold font-18 visible-xs"> <%= @ordered_product_count %>  </p>
           <p class="text-grey mb-2 font-weight-bold">인생법안
-            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
+            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= @ordered_product_count %></span>
           </p>
         </div>
         <div class="mylog-box mx-2 mr-md-4 text-center">
-          <p class="mb-0 font-weight-bold font-18 visible-xs"><%= current_user.product_likes.count %></p>
+          <p class="mb-0 font-weight-bold font-18 visible-xs"> <%= current_user.product_likes.where(status: true).count %>  </p>
           <p class="text-grey mb-2 font-weight-bold">관심법안
-            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= current_user.product_orders.count %></span>
+            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= current_user.product_likes.where(status: true).count %></span>
           </p>
         </div>
         <div class="mylog-box mx-2 text-center">

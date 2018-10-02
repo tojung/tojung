@@ -5,8 +5,9 @@
   <button type="button" class="btn btn-light order-btn mb-3"  onclick="fuckin_submit()">주문하기</button>
     <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
     <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>
+    <%= hidden_field_tag 'payment_method', '해당없음' if @package.price == 0%>
+     <%= hidden_field_tag 'payment_method', '' if @package.price != 0 %>
 
-    <%= hidden_field_tag 'payment_method', '' %>
     <%= hidden_field_tag 'product_id', @product.id %>
     <%= hidden_field_tag 'package_id', @package.id %>
     <%= hidden_field_tag 'user_id', @user_id %>
@@ -188,9 +189,9 @@
     </label>
   </div>
   <!-- // 주문 금액 -->
-
+ <% if @package.price != 0 %>
   <!-- 결제 -->
-  <div class="bg-white font-14 font-weight-bold px-3 py-3">
+    <div class="bg-white font-14 font-weight-bold px-3 py-3">
     <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
     <div class="d-flex flex-wrap justify-content-around">
       <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
@@ -200,6 +201,7 @@
     </div>
     <div id="payment_method_description">
     </div>
+    <% end %>
 <!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
     <%#= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
   </div>
