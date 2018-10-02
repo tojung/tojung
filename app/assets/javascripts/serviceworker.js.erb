@@ -119,8 +119,8 @@ function onFetch(event) {
 //    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
 //        return
 //    }
-  if(event.request.method != 'GET' || event.request.url.includes('product_order') || event.url.includes('mypage')){
-      console.log("Not GET");
+  if(event.request.method != 'GET' || event.request.url.includes('product_order') || event.request.url.includes('mypage') || event.request.url.includes('users') ){
+      console.log("Not cached item");
       return;
   }
   event.respondWith(
