@@ -61,11 +61,9 @@ class HomeController < ApplicationController
     @ordered_product_count = 0
     uproducts = []
     current_user.product_orders.each do |product_order|
-      uproducts.append(product_order.product.id) if uproducts.include? product_order.product.id
+      uproducts.append(product_order.product.id) unless uproducts.include? product_order.product.id
     end
     @ordered_product_count = uproducts.length
-
-
   end
 
   def image_read_or_set
