@@ -91,7 +91,7 @@
           <!-- 찜 추가 -->
             <%= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
+              <button class="share-button heart" id="Heart" onclick=""><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
             <% end %>
           <%end%>
         </div>

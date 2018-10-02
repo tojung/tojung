@@ -69,7 +69,7 @@
             </a>
           </div>
         <% end %>
-      <% current_user.product_likes.each do |product_like|%>
+      <% current_user.product_likes.where(status: true).each do |product_like|%>
 
         <div class="my-product-card col-4 text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_like.product.image0 %>);">
           <a href="/product/<%= product_like.product.id %>" class="d-block h-100">
