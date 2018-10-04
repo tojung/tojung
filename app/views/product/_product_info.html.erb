@@ -2,13 +2,13 @@
   <h4 class="font-18 font-weight-bold"><%= @product.name %></h4>
   <p class="font-14"><%= @product.subname %></p>
   <!-- <div class="d-flex font-16 font-weight-bold justify-content-between">
-    <span class="funding-money"><%= @product.funded_money %>원</span>
-    <span class="font-red"><%= @product.funded_count %>명</span>
-    <% if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
+    <span class="funding-money"><%#= @product.funded_money %>원</span>
+    <span class="font-red"><%#= @product.funded_count %>명</span>
+    <%# if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
       <span>상시펀딩중</span>
-      <% else %>
-      <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
-  <% end %>
+      <%# else %>
+      <span>광고 펀딩 <%#= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
+  <%# end %>
   </div> -->
 </div>
 
@@ -20,13 +20,13 @@
       <p class="font-18"><%= @product.subname %></p>
     </div>
     <!-- <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">
-      <span class="funding-money"><%= @product.funded_money %>원</span>
-      <span class="font-red"><%= @product.funded_count %> 명</span>
-      <% if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
+      <span class="funding-money"><%#= @product.funded_money %>원</span>
+      <span class="font-red"><%#= @product.funded_count %> 명</span>
+      <%# if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
         <span>상시펀딩중</span>
-      <% else %>
-        <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
-      <% end %>
+      <%# else %>
+        <span>광고 펀딩 <%#= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
+      <%# end %>
     </div> -->
 
     <div class="dropdown my-3 w-100" id="myDropdown">
@@ -62,7 +62,7 @@
           <button class="share-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공유하기</button>
           <ul class="dropdown-menu" id="shareDropdown">
             <li class="d-block">
-              <a id="kakao-link-btn" href="javascript:;">
+              <a id="kakao-link-btn" href="javascript:createlink();">
               <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
               </a>
             </li>
@@ -96,7 +96,7 @@
           <!-- 찜 추가 -->
             <%= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
+              <button class="share-button heart" id="Heart" onclick=""><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
             <% end %>
           <%end%>
         </div>

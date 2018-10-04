@@ -5,11 +5,13 @@
   <button type="button" class="btn btn-light order-btn mb-3"  onclick="fuckin_submit()">주문하기</button>
     <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
     <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>
+    <%= hidden_field_tag 'payment_method', '해당없음' if @package.price == 0%>
+     <%= hidden_field_tag 'payment_method', '' if @package.price != 0 %>
 
-    <%= hidden_field_tag 'payment_method', '' %>
     <%= hidden_field_tag 'product_id', @product.id %>
     <%= hidden_field_tag 'package_id', @package.id %>
     <%= hidden_field_tag 'user_id', @user_id %>
+    <%= hidden_field_tag 'product_price', @package.price %>
     <%= hidden_field_tag 'status', '결제완료' %>
     <%= hidden_field_tag 'imp_uid', ''%>
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
@@ -91,14 +93,15 @@
       <% end %>
       </div>
     </div>
-    <div class="form-group row py-2 mb-0 mx-0">
+    <% if @package.price != 0 %>
+     <div class="form-group row py-2 mb-0 mx-0">
       <label for="sample2_postcode" class="col-4 px-0 col-form-label">우편번호</label>
       <div class="col-8 px-0">
-        <% if current_user != nil %>
-        <input class="form-control px-0" type="text" id="sample2_postcode" value="<%= current_user.address_num %>" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
-        <% else %>
+         <% if current_user != nil %>
+         <input class="form-control px-0" type="text" id="sample2_postcode" value="<%= current_user.address_num%>" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
+          <% else %>
           <input class="form-control px-0" type="text" id="sample2_postcode" value="" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% end %>
+          <% end %>
           <input type="button" class="bg-white btn-post" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
       </div>
       <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
@@ -117,7 +120,7 @@
       <% end %>
           </div>
     </div>
-    <div class="form-group row py-2 mb-0 mx-0">
+      <div class="form-group row py-2 mb-0 mx-0">
       <label for="extra_address" class="col-4 px-0 col-form-label">상세주소</label>
       <div class="col-8 px-0">
         <% if current_user != nil %>
@@ -127,6 +130,15 @@
       <% end %>
           </div>
     </div>
+    <% else %>
+     <%= hidden_field_tag 'address_num', '-1' %>
+     <%= hidden_field_tag 'address_text', '-1' %>
+    <%= hidden_field_tag 'address_text2', '-1' %>
+    <% end %>
+
+
+
+
   </div>
   <!-- //주문정보 -->
 
@@ -186,9 +198,9 @@
     </label>
   </div>
   <!-- // 주문 금액 -->
-
+ <% if @package.price != 0 %>
   <!-- 결제 -->
-  <div class="bg-white font-14 font-weight-bold px-3 py-3">
+    <div class="bg-white font-14 font-weight-bold px-3 py-3">
     <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
     <div class="d-flex flex-wrap justify-content-around">
       <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
@@ -198,6 +210,7 @@
     </div>
     <div id="payment_method_description">
     </div>
+    <% end %>
 <!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
     <%#= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
   </div>

@@ -1,23 +1,16 @@
-<% icon_sizes = Rails.configuration.serviceworker.icon_sizes %>
 {
-  "name": "My Progressive Rails App",
-  "short_name": "Progressive",
-  "start_url": "/",
+  "name": "Tojung",
+  "short_name": "Tojung",
+  "start_url": "/?utm_source=homescreen",
   "icons": [
-  <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
     {
-      "src": "<%= image_path "serviceworker-rails/heart-#{dim}.png" %>",
-      "sizes": "<%= dim %>",
+      "src": "<%= (asset_path 'logo-144.png')[1..-1] %>",
+      "sizes": "144x144",
       "type": "image/png"
-    }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
-  <% end %>
+    }
   ],
   "theme_color": "#000000",
   "background_color": "#FFFFFF",
   "display": "fullscreen",
   "orientation": "portrait"
-},
-{
-  "name": "sign_in",
-  "short_url": "/users/sign_in"
 }
