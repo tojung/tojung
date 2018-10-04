@@ -3,7 +3,11 @@
   <section class="profile d-flex px-3 py-3">
     <!-- Desktop -->
     <div class="profile-img-box">
-      <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
+      <% if current_user.image0 == nil %>
+      <%=image_tag("default.png", class: "profile-img visible-lg")%>
+      <%else%>
+      <%=image_tag(current_user.image0, class: "profile-img visible-lg")%>
+      <%end%>
     </div>
     <!-- // Desktop -->
     <div class="mylog font-12 font-lg-14 my-auto justify-content-around">
@@ -46,15 +50,20 @@
       </div>
 
     </div>
-    <%=image_tag(current_user.image0, class: "profile-img visible-xs") if current_user.image0 != nil%>
+    <%if current_user.image0 == nil%>
+    <%=image_tag("default.png", class:"profile-img")%>
+    <%else%>
+    <%=image_tag(current_user.image0, class: "profile-img visible-xs") %>
+    <%end%>
+
   </section>
   <hr>
   <div class="container">
     <div class="row" id="my-product-row">
       <% current_user.product_orders.each do |product_order| %>
           <div class="my-product-card text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_order.package.image0 %>);">
-            <a href="/product/<%= product_order.product.id %>" class="d-block h-100 w-100">
-            <div class="my-product-card-body py-3 d-flex flex-column justify-content-center text-white h-100">
+            <a href="/product/<%= product_order.product.id%>" class="d-block h-100 w-100">
+            <div class="my-product-card-body py-lg-3 d-flex flex-column justify-content-center text-white h-100">
               <h4 class="font-14 font-weight-bold"><%= product_order.product.name %></h4>
               <pre class="font-14 text-white text-center mb-0">
 <%= product_order.package.name %>
@@ -65,7 +74,6 @@
           </div>
         <% end %>
       <% current_user.product_likes.each do |product_like|%>
-
         <div class="my-product-card col-4 text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_like.product.image0 %>);">
           <a href="/product/<%= product_like.product.id %>" class="d-block h-100">
           <%=image_tag("layer.png", class:"layer-img w-100")%>
