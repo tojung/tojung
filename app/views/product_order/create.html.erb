@@ -42,6 +42,21 @@
     <a class="d-block font-14 text-right mt-1 mb-5">> 확인하러가기</a>
   </section>
 </div>
-<% else %>
+  <% elsif params[:payment_method] == "토스" %>
+    토스 결제 진행중
+    <script>
+      $.ajax({
+          url: '/toss',
+          method: 'POST',
+          data: {
+              'product_order_id': '<%= @product_order_id %>'
+          }
+      }).then(function (res) {
+          console.log(res);
+          alert(res.checkoutPage)
+          location.href= res.checkoutPage
+      })
+    </script>
+  <% else %>
   결제 실패 하였습니다
 <% end %>
