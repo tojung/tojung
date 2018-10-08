@@ -21,7 +21,7 @@ class PaymentController < ApplicationController
 
     p JSON.parse(response.body)
 
-    if JSON.parse(response.body)["payStatus"] == "PAY_APPROVED" or JSON.parse(response.body)["payStatus"] == "PAY_COMPLETE"
+    if JSON.parse(response.body)["payStatus"] == "PAY_COMPLETE"
       product_order = ProductOrder.find(tosslog.product_order_id)
       product_order.status = "결제완료"
       product_order.save
@@ -54,7 +54,7 @@ class PaymentController < ApplicationController
         "expiredTime" => expiredTime,
         "retUrl" => "https://tojung.me/toss/complete?orderNo=#{ orderNo }",
         "escrow" => false,
-        "autoExecute" => false
+        "autoExecute" => true
     }
 
     http = Net::HTTP.new(uri.host, uri.port)
