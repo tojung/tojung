@@ -6,7 +6,7 @@
         <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
 
        <!-- 디폴트 이미지 필요 -->
-        <%=image_tag("logo.png", class: "profile-img visible-lg") if current_user.image0 == nil%>
+        <%=image_tag("default.png", class: "profile-img visible-lg") if current_user.image0 == nil%>
 
          <%#=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
     </div>
@@ -52,14 +52,17 @@
 
     </div>
     <%=image_tag(current_user.image0, class: "profile-img visible-xs") if current_user.image0 != nil%>
+
+   <!-- 디폴트 이미지 필요 -->
+    <%=image_tag("default.png", class: "profile-img visible-xs") if current_user.image0 == nil%>
   </section>
   <hr>
   <div class="container">
     <div class="row" id="my-product-row">
       <% current_user.product_orders.each do |product_order| %>
           <div class="my-product-card text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_order.package.image0 %>);">
-            <a href="/product/<%= product_order.product.id %>" class="d-block h-100 w-100">
-            <div class="my-product-card-body py-3 d-flex flex-column justify-content-center text-white h-100">
+            <a href="/product/<%= product_order.product.id%>" class="d-block h-100 w-100">
+            <div class="my-product-card-body py-lg-3 d-flex flex-column justify-content-center text-white h-100">
               <h4 class="font-14 font-weight-bold"><%= product_order.product.name %></h4>
               <pre class="font-14 text-white text-center mb-0">
 <%= product_order.package.name %>

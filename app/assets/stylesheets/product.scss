@@ -9,9 +9,9 @@
   margin: auto 0;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .pro-img{
-    width: 100vw;
+    width: 100%;
     height: auto;
   }
 
@@ -61,6 +61,10 @@
   margin: 0 1%;
 }
 
+.package-box2{
+  border: 1px solid #666;
+}
+
 .share-button{
   width: 100%;
   height: 40px;
@@ -107,7 +111,7 @@ li:hover{
 
 .dropdown-toggle::after{
   margin: auto 0;
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .share-button.dropdown-toggle::after{
@@ -123,7 +127,11 @@ li:hover{
 }
 
 .package-box:hover{
-  border: 3px solid #d12a2d;
+  background-color: #ededed;
+}
+
+.package-box > .package-info > .package-price:hover{
+  color: white !important;
 }
 
 
@@ -194,7 +202,7 @@ li:hover{
   width: 175px;
   height: 175px;
 }
-@media screen and (min-width: 770px){
+@media screen and (min-width: 768px){
   .desc-pro-img{
     width: 242.5px;
     height: 242.5px;
@@ -311,6 +319,18 @@ li:hover{
 .package-img{
   width: 80px;
   height: 80px;
+}
+
+.package-item.hide, .package-price.hide{
+  display: none;
+}
+
+.package-item.show, .package-price.show{
+  display: block;
+}
+
+#packageContainer.border{
+  border: 1px solid #666;
 }
 
 // Share bar

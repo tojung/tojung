@@ -200,7 +200,7 @@ button{
    }
  }
 
- @media screen and (max-width: 576px){
+ @media screen and (max-width: 768px){
 
    .visible-xs{
      display: block !important;
