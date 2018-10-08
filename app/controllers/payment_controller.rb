@@ -52,7 +52,7 @@ class PaymentController < ApplicationController
         "productDesc" => "테스트 결제",
         "apiKey" => "sk_test_apikey1234567890",
         "expiredTime" => expiredTime,
-        "retUrl" => "http://127.0.0.1:3000/toss/complete?orderNo=#{ orderNo }",
+        "retUrl" => "https://tojung.me/toss/complete?orderNo=#{ orderNo }",
         "escrow" => false,
         "autoExecute" => false
     }
