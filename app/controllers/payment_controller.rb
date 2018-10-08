@@ -53,7 +53,7 @@ class PaymentController < ApplicationController
         "apiKey" => ENV["TOSS_KEY"],
         "expiredTime" => expiredTime,
         "retUrl" => "https://tojung.me/toss/complete?orderNo=#{ orderNo }",
-        "escrow" => true,
+        "escrow" => false,
         "autoExecute" => false
     }
 
