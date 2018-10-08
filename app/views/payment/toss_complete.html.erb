@@ -1,27 +1,22 @@
-<% if @status == '결제완료' or @payment_method == '무통장입금'%>
+<% if @is_pay_complete %>
 <div class="order-complete">
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
     <div class="package-selected d-flex">
-      <%=image_tag(@product.image0, class: "order-img")%>
+      <%=image_tag(@product_order.product.image0, class: "order-img")%>
       <div class="package-info pl-3">
-        <h4 class="font-14 font-weight-bold"><%= @product.name %></h4>
-        <p class="font-grey font-14 mb-0"><%= @package.name %></p>
-        <p class="font-grey font-14 package-info"><%= @package.content %></p>
+        <h4 class="font-14 font-weight-bold"><%= @product_order.product.name %></h4>
+        <p class="font-grey font-14 mb-0"><%= @product_order.package.name %></p>
+        <p class="font-grey font-14 package-info"><%= @product_order.package.content %></p>
         <!-- css 적용 필요 -->
       </div>
     </div>
-    <p class="font-14 font-weight-bold order-money border-bottom-none text-right mb-2"><%= params[:total_price] %>
+    <p class="font-14 font-weight-bold order-money border-bottom-none text-right mb-2"><%= @product_order.product_order_detail.total_price %>
       <span class="order-money-won">원</span></p>
   </div>
-  <% if @payment_method == '무통장입금' %>
-    <h2> 입금해아할 계좌: 038-143868-01-014 </h2>
-    <h3> IBK 기업은행 </h3>
-    <h3> 주식회사 투정 </h3>
-  <% end %>
   <section class="complete-message-wrapper px-3 py-3">
     <div class="complete-message d-flex align-items-center">
       <h4 class="complete-number ml-2 mr-4 mb-0">1</h4>
-      <p class="mb-0 font-14"><%= @product.bill_name %>의 심사 진행 소식을 계속 듣고 싶다면? 카카오톡 플러스친구로 추가해주세요.</p>
+      <p class="mb-0 font-14"><%= @product_order.product.bill_name %>의 심사 진행 소식을 계속 듣고 싶다면? 카카오톡 플러스친구로 추가해주세요.</p>
     </div>
     <a class="d-block font-14 text-right mt-1 mb-5">> 추가하러가기</a>
     <div class="complete-message d-flex align-items-center mb-5">
@@ -37,26 +32,11 @@
     </div>
     <div class="complete-message d-flex align-items-center">
       <h4 class="complete-number ml-2 mr-4 mb-0">3</h4>
-      <p class="mb-0 font-14">국회 청원이 총 <%= @product.maker_responses.count %>명의 의원에게 성공적으로 보내졌습니다. 의원들의 답변 현황이 궁금하다면 ?</p>
+      <p class="mb-0 font-14">국회 청원이 총 <%= @product_order.product.maker_responses.count %>명의 의원에게 성공적으로 보내졌습니다. 의원들의 답변 현황이 궁금하다면 ?</p>
     </div>
     <a class="d-block font-14 text-right mt-1 mb-5">> 확인하러가기</a>
   </section>
 </div>
-  <% elsif params[:payment_method] == "토스" %>
-    토스 결제 진행중
-    <script>
-      $.ajax({
-          url: '/toss',
-          method: 'POST',
-          data: {
-              'product_order_id': '<%= @product_order_id %>'
-          }
-      }).then(function (res) {
-          console.log(res);
-          // alert(res.checkoutPage)
-          location.href= res.checkoutPage
-      })
-    </script>
-  <% else %>
-  결제 실패 하였습니다
+<% else %>
+ 토스 결제 실패 하였습니다.
 <% end %>
