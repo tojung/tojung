@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orderno: MyText
+  amount: 1
+  productdesc: MyText
+  paytoken: MyText
+  status: 1
+  product_order_id: 1
+
+two:
+  orderno: MyText
+  amount: 1
+  productdesc: MyText
+  paytoken: MyText
+  status: 1
+  product_order_id: 1

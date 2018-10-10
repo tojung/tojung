@@ -11,7 +11,8 @@ class ProductOrderController < ApplicationController
   end
 
   def create
-    ProductOrder.create_order_infos(product_order_params,
+    user_infos
+    @product_order_id = ProductOrder.create_order_infos(product_order_params,
                                     product_order_detail_params,
                                     product_delivery_params,
                                     params[:send_email_content],
@@ -28,7 +29,7 @@ class ProductOrderController < ApplicationController
       @user_email = current_user.email
       @user_id = current_user.id
     else
-      @user_email = User.first.email
+      @user_email = params[:email]
       @user_id = User.first.id
     end
   end

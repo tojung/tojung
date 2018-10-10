@@ -1,0 +1,2 @@
+class Tosslog < ApplicationRecord
+end

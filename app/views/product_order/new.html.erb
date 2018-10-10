@@ -206,7 +206,7 @@
       <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
       <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
       <button type="button" class="pay-button mb-3" onclick="phone_payment();">휴대폰</button>
-      <button type="button" class="pay-button mb-3" onclick="extra_payment();">TOSS</button>
+      <button type="button" class="pay-button mb-3" onclick="toss_payment();">TOSS</button>
     </div>
     <div id="payment_method_description">
     </div>
@@ -298,11 +298,19 @@
         element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
         element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
     }
+
     function normal_payment(){
         var payment_method =  document.getElementById('payment_method_description');
         var pay_method = $('input[name=payment_method]').attr('value', '무통장입금')
         payment_method.innerHTML = '무통장입금을 선택하였습니다. <br> 기업은행 038-143868-01-014 로 24시간 안에 입금해주시면 입금 확인 후 문자드립니다.';
     }
+
+    function toss_payment() {
+        var payment_method =  document.getElementById('payment_method_description');
+        var pay_method = $('input[name=payment_method]').attr('value', '토스')
+        payment_method.innerText = '토스결제를 선택하였습니다. 현재 테스트 모드 입니다.';
+    }
+
     function extra_payment(){
         var payment_method =  document.getElementById('payment_method_description');
         var pay_method = $('input[name=payment_method]').attr('value', '제공안함');
@@ -380,7 +388,12 @@
                 $('input[name=status]').attr('value', '결제대기중');
                 $('form').submit();
                 //$('input[name=commit]').removeAttr('disabled')
-            }else if (payment_method === '해당없음') {
+            }else if(payment_method === '토스'){
+                console.log('토스');
+                $('input[name=status]').attr('value', '결제진행중');
+                $('form').submit();
+            }
+            else if (payment_method === '해당없음') {
                 $('form').submit();
             } else {
                 alert('결제방법을 선택해주세요');
