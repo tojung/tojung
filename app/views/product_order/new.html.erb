@@ -1,5 +1,5 @@
 <% if current_user == nil %>
-    <h1> 비회원 주문입니다. </h1>
+    <h4 class="font-18 font-weight-bold py-2 mb-0 non-user">*비회원 주문</h4>
   <% end %>
 <%= form_tag '/product_order',data: { disable_with: false } do %>
   <button type="button" class="btn btn-light order-btn mb-3"  onclick="fuckin_submit()">주문하기</button>
@@ -61,7 +61,7 @@
 <div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
   <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">주문 고객 정보</h4>
     <div class="form-group row py-2 mb-0 mx-0">
-      <label for="user_name" class="col-4 px-0 col-form-label">주문 고객명</label>
+      <label for="user_name" class="col-4 px-0 col-form-label"><span class="font-red">*</span>주문 고객명</label>
       <div class="col-8 px-0">
 <!--        <input type="text" class="form-control px-0" id="user_name" placeholder="이름을 입력해 주세요.">-->
         <% if current_user != nil %>
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="form-group row py-2 mb-0 mx-0">
-      <label for="phone_num" class="col-4 px-0 col-form-label">휴대폰 번호</label>
+      <label for="phone_num" class="col-4 px-0 col-form-label"><span class="font-red">*</span>휴대폰 번호</label>
       <div class="col-8 px-0">
 <!--        <input type="tel" class="form-control px-0" id="phone_num" placeholder="휴대폰 번호를 (-) 빼고 입력해주세요">-->
         <% if current_user != nil %>
@@ -83,7 +83,7 @@
           </div>
     </div>
     <div class="form-group row py-2 mb-0 mx-0">
-      <label for="user_email" class="col-4 px-0 col-form-label">이메일 주소</label>
+      <label for="user_email" class="col-4 px-0 col-form-label"><span class="font-red">*</span>이메일 주소</label>
       <div class="col-8 px-0">
 <!--        <input type="email" class="form-control px-0" id="user_email" placeholder="이메일 주소를 입력해 주세요.">-->
         <% if current_user != nil %>
@@ -95,7 +95,7 @@
     </div>
     <% if @package.price != 0 %>
      <div class="form-group row py-2 mb-0 mx-0">
-      <label for="sample2_postcode" class="col-4 px-0 col-form-label">우편번호</label>
+      <label for="sample2_postcode" class="col-4 px-0 col-form-label"><span class="font-red">*</span>우편번호</label>
       <div class="col-8 px-0">
          <% if current_user != nil %>
          <input class="form-control px-0" type="text" id="sample2_postcode" value="<%= current_user.address_num%>" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
@@ -111,7 +111,7 @@
     </div>
 
     <div class="form-group row py-2 mb-0 mx-0">
-      <label for="sample2_address" class="col-4 px-0 col-form-label">주소</label>
+      <label for="sample2_address" class="col-4 px-0 col-form-label"><span class="font-red">*</span>주소</label>
       <div class="col-8 px-0">
         <% if current_user != nil %>
         <input type="text" id="sample2_address" value="<%= current_user.address_text %>" class="form-control px-0" placeholder="주소" name="address_text" onkeydown="if (event.keyCode == 13) { return false;}" required>
@@ -121,7 +121,7 @@
           </div>
     </div>
       <div class="form-group row py-2 mb-0 mx-0">
-      <label for="extra_address" class="col-4 px-0 col-form-label">상세주소</label>
+      <label for="extra_address" class="col-4 px-0 col-form-label"><span class="font-red">*</span>상세주소</label>
       <div class="col-8 px-0">
         <% if current_user != nil %>
       <input type="text" class="form-control px-0" name="address_text2" value="<%= current_user.address_extra %>" placeholder="상세 주소" onkeydown="if (event.keyCode == 13) { return false;}" required>

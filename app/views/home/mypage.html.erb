@@ -23,7 +23,7 @@
         <% end %>
       </div>
       <!-- // Desktop -->
-      <div class="d-flex my-md-3">
+      <div class="d-flex my-md-3" id="mypage-mylogbox">
         <div class="mylog-box mx-2 ml-md-3 mr-md-4 text-center">
           <p class="mb-0 font-weight-bold font-18 visible-xs"> <%= @ordered_product_count %>  </p>
           <p class="text-grey mb-2 font-weight-bold">인생법안
@@ -44,9 +44,9 @@
         </div>
       </div>
       <div class="d-flex justify-content-between">
-        <a href="/userupdaters/<%= current_user.id%>/edit" class="d-inline-block text-center mypage-edit font-14 visible-xs">개인정보 수정</a>
+        <a href="/userupdaters/<%= current_user.id%>/edit" class="mx-1 d-inline-block text-center mypage-edit font-14 visible-xs">개인정보 수정</a>
         <% if current_user.provider == nil || current_user.provider == "" %>
-           <a href="/users/edit" class="d-inline-block text-center mypage-edit font-14 visible-xs"> 비밀번호 수정 </a>
+           <a href="/users/edit" class="mx-1 d-inline-block text-center mypage-edit font-14 visible-xs"> 비밀번호 수정 </a>
         <% end %>
       </div>
 
@@ -60,14 +60,16 @@
   <div class="container">
     <div class="row" id="my-product-row">
       <% current_user.product_orders.each do |product_order| %>
-          <div class="my-product-card text-center col-4 col-md-3 px-0 mx-md-3 my-md-3" style="background-image: url(<%= product_order.package.image0 %>);">
+          <div class="my-product-card text-center col-4 col-md-3 px-0 mx-md-3 my-md-3">
             <a href="/product/<%= product_order.product.id%>" class="d-block h-100 w-100">
-            <div class="my-product-card-body py-lg-3 d-flex flex-column justify-content-center text-white h-100">
-              <h4 class="font-14 font-weight-bold"><%= product_order.product.name %></h4>
-              <pre class="font-14 text-white text-center mb-0">
+            <div class="my-product-card-body text-white h-100t"  style="background-image: url(<%= product_order.package.image0 %>);">
+              <div class="my-product-card-text-wrapper py-lg-3 d-flex flex-column justify-content-center h-100">
+                <h4 class="font-12 font-weight-bold"><%= product_order.product.name %></h4>
+                <pre class="font-12 text-white text-center mb-0">
 <%= product_order.package.name %>
 <%= product_order.product_order_detail.total_price %>원 후원
 <%= product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %> 배송예정</pre>
+              </div>
             </div>
             </a>
           </div>
@@ -100,14 +102,14 @@
   </section>
 
 </div>
-
+<%=render '/home/bottom_bar'%>
 <script type="text/javascript">
   $(document).ready(function(){
     let wid = $('.my-product-card').width();
-    $('.my-product-card').css({'height':(wid)+'px'});
+    $('.my-product-card-body').css({'height':(wid)+'px'});
   });
   $(window).resize(function(){
     let wid = $('.my-product-card').width();
-    $('.my-product-card').css({'height':(wid)+'px'});
+    $('.my-product-card-body').css({'height':(wid)+'px'});
   })
 </script>
