@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  #validates :email, presence: true
+  #validates :created_at, presence: true
+  #validates :updated_at, presence: true
+
   mount_uploader :image0, ImageUploader
   has_many :product_orders
   has_many :product_likes
@@ -29,5 +33,4 @@ class User < ApplicationRecord
                     address_extra.nil?
     true
   end
-
 end
