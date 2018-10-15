@@ -289,9 +289,7 @@ span.or{
   height: 26px;
   border-radius: 2px;
   border: solid 1px #979797;
-  background-color: white;
 }
-
 
 .custom-file-label{
   overflow: hidden;
@@ -307,27 +305,40 @@ span.or{
 .mypage-edit:hover{
   border: solid 1px #979797;
 }
+
+@media (max-width: 768px){
+  #mypage-mylogbox{
+    justify-content: space-between !important;
+  }
+}
+
 @media (min-width: 768px){
+
   .mylog-box p{
     font-weight: normal !important ;
   }
+
   .mypage-edit{
     width: 100px;
     border-radius: 3px;
   }
 }
 .my-product-card{
+  margin-bottom: 3px;
+}
+.my-product-card-body{
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-right: 3px;
 }
 
-.my-product-card-body{
+.my-product-card-text-wrapper{
   opacity: 0;
   transition: all 1s;
 }
 
-.my-product-card-body:hover{
+.my-product-card-text-wrapper:hover{
   opacity: 1;
   background-color: rgba(67, 67, 67, 0.6);
 }
@@ -343,12 +354,13 @@ span.or{
 }
 
 @media (min-width: 768px){
-  .my-product-card{
-    height: 230px;
-  }
   #my-product-row{
     justify-content: center;
   }
+}
+
+#my-product-row{
+  margin-right: -19px;
 }
 
 .links-bar{

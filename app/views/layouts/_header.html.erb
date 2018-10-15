@@ -1,10 +1,10 @@
 <!-- Header -->
 <header class="header fixed-top loaded">
-  <nav class="navbar navbar-light height-inherit px-3">
+  <nav class="navbar navbar-light height-inherit">
     <h4 class="brand"><a class="navbar-brand" href="/"><%=image_tag("logo.png", class: "logo")%></a></h4>
     <div class="nav-right">
       <a class="navbar-brand mr-1" href="/home/search"><%=image_tag(@cdn_url+"search.png", class: "icon_search")%></a>
-      <button class="button-none bg-base" type="button" id="sidebarCollapse" onclick="sidebar_click();">
+      <button class="button-none bg-base pr-0" type="button" id="sidebarCollapse" onclick="sidebar_click();">
           <%=image_tag(@cdn_url+"bars.svg", class: "icon_bars bg-base")%>
       </button>
     </div>
