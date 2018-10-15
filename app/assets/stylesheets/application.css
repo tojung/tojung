@@ -225,6 +225,10 @@ button{
    height: 62px;
  }
 
+ .header > .navbar{
+   padding: 8px 12px !important;
+ }
+
  .logo{
    width: 90px;
    height: 28px;
