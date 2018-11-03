@@ -192,6 +192,27 @@ li:hover{
   margin-top: 0px;
 }
 // description
+.carousel-indicators.cardnews{
+  bottom: 20px;
+}
+
+.carousel-indicators.cardnews li{
+  width: 12px;
+  height: 12px;
+  border-radius: 20px;
+  background-color: #AAB2BD;
+}
+@media screen and (min-width: 768px){
+  .cardnews-img{
+    width: 404px !important;
+    height: 520px !important;
+    display: block;
+    margin: 0 auto;
+  }
+}
+.carousel-indicators.cardnews .active{
+  background-color: #333333;
+}
 
 .desc-pro-img{
   width: 186px;
@@ -440,4 +461,106 @@ li:hover{
 
 .design-purpose{
   width: 100%;
+}
+
+
+// 베도
+.ready-image{
+  height: 90vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding-bottom: 32px;
+}
+
+.image-text{
+  width: 50%;
+}
+
+.ready-container{
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.ready-subject{
+  width: 80px;
+  background-color: #333333;
+  line-height: 2;
+}
+
+.ready-title{
+  line-height: 1.4;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+.ready-container{
+  background-color: #f9f9f9;
+  margin-top: -32px;
+  border-radius: 15px;
+}
+
+.ready-ment{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.problems > li{
+  list-style-type: none;
+}
+
+.ready-img{
+  display: block;
+  width: 320px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+
+.solution{
+  display: -webkit-box;
+  overflow:hidden;
+  vertical-align:top;
+  text-overflow: ellipsis;
+  word-break:break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:4;
+}
+
+.solution.open{
+  -webkit-line-clamp: initial;
+}
+
+.font-32{
+  font-size: 32px;
+}
+
+.law-link{
+  width: 150px;
+  text-align: center;
+}
+
+.banner-line2{
+  height: 2px;
+  background-color: #434343;
+}
+
+.form-control.ready-form{
+  box-shadow: none;
+  background-color: #f9f9f9;
+  padding-bottom: 66px;
+}
+
+.input-group{
+  height: 100px;
+}
+
+.form-control.ready-form[placeholder]{
+  color: black;
+}
+.btn-outline-secondary{
+  background-color: #333333;
+  width: 80px;
+  font-size: 14px;
 }
