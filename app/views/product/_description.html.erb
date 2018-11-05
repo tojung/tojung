@@ -1,10 +1,21 @@
 <% cache @product do %>
 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+  <div class="caro-cards mb-4">
+    <div class="caro-card">
+      <%=image_tag("caro1.jpg", class: "w-100 cardnews-img")%>
+    </div>
+    <div class="caro-card">
+      <%=image_tag("caro2.jpg", class: "w-100 cardnews-img")%>
+    </div>
+    <div class="caro-card">
+      <%=image_tag("caro3.jpg", class: "w-100 cardnews-img")%>
+    </div>
+  </div>
   <div class="youtubeWrap mb-4">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtb_url %>?controls=2" frameborder="0" allowfullscreen></iframe>
   </div>
   <p class="video-text mb-4 px-3"><%= @product.video_text.gsub("\r\n", "<br />").html_safe %></p>
-  <a href="<%=  @product.bill_url %>" class="d-block text-right font-grey font-14 pr-3 mb-4">>법안 원문 보러가기</a>
+  <a href="<%=  @product.bill_url %>" class="d-block text-center font-weight-bold font-black font-16 pro-link px-3 py-2 mx-5 my-4">법안 원문 보러가기</a>
   <div class="share text-center mb-4">
     <center>
       <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ftojung.me/product/<%= @product.id %>&width=450&layout=button_count&action=like&size=small&show_faces=true&share=true&height=80&appId=1014670008686658" width="140" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
@@ -103,3 +114,17 @@
 
 </div>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    $('.caro-cards').slick({
+      arrows: false,
+      dots: true,
+      dotsClass: 'd-flex cards-dot justify-content-center pl-0',
+      infinite: true,
+      speed: 300,
+      fade: true,
+      cssEase: 'linear'
+    });
+  });
+</script>

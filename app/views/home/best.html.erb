@@ -1,0 +1,121 @@
+<!-- 메인 이미지 -->
+<section class="ready-image text-white d-flex flex-column justify-content-end px-4" style="background-image: url(<%=asset_path('dummy.jpg')%>);">
+  <div class="image-text">
+    <p class="ready-subject text-center">범죄</p>
+    <pre class="ready-title mb-2">
+DNA확보된
+성범죄에 대한
+공소시효 폐지</pre>
+    <p class="ready-maker">서영교 의원</p>
+  </div>
+</section>
+<!-- // 메인 이미지 -->
+<!-- 콘텐츠 -->
+<div class="ready-container py-3">
+  <!-- 문제 -->
+  <section class="ready-content py-3">
+    <hr class="mb-4 banner-line ml-0">
+    <pre class="ready-ment">
+이런 문제가 일어나고 있습니다.</pre>
+    <hr class="mt-4 banner-line ml-0">
+    <ul class="problems mt-4 mb-5 pl-1">
+      <li class="problem">- 가정폭력을 당한 피해자의 신고율 1%</li>
+      <li class="problem">- 가정폭력 가해자 기소율 2%</li>
+      <li class="problem">- 가정폭력 가해자 구속율 1%</li>
+      <li class="problem"><a href="#">- https://bitly.kr/MZP</a></li>
+      <li class="problem"><a href="#">- https://bitly.kr/MZP</a></li>
+    </ul>
+    <%=image_tag("dummy.jpg", class: "ready-img mb-4")%>
+  </section>
+  <!-- //문제 -->
+
+  <!-- 솔루션 -->
+  <section class="ready-content pb-5">
+    <hr class="mb-4 banner-line ml-0">
+    <pre class="ready-ment">
+이렇게 좋은 솔루션이
+국회에서 관심받지
+못하고 있습니다.</pre>
+    <hr class="mt-4 banner-line ml-0">
+    <p class="solution">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <button class="btn pro-link w-100 font-weight-bold" onclick="expand();">펼쳐 보기</button>
+  </section>
+  <!-- // 솔루션 -->
+
+  <!-- 심사 과정 -->
+  <section class="ready-content pb-4">
+    <hr class="mb-4 banner-line ml-0">
+    <pre class="ready-ment">
+심사는
+이렇게 지연되고 있습니다.</pre>
+    <hr class="mt-4 banner-line ml-0">
+    <div class="ready-lawinfo px-2">
+      <div class="d-flex justify-content-between">
+        <div class="box">
+          <h4 class="text-center font-32 font-weight-bold">304</h4>
+          <p>계류기간</p>
+        </div>
+        <div class="box">
+          <h4 class="text-center font-32 font-weight-bold">304</h4>
+          <p>계류기간</p>
+        </div>
+        <div class="box">
+          <h4 class="text-center font-32 font-weight-bold">304</h4>
+          <p>계류기간</p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-2 mb-4">
+        <a href="#" class="pro-link mr-1 font-weight-bold law-link">법안 검토보고서</a>
+        <a href="#" class="pro-link ml-1 font-weight-bold law-link">법안 심사회의록</a>
+      </div>
+      <p class="mt-3 text-center font-weight-bold">심사 담당 법제사법위원회 국회의원</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-2 px-0"><p>박진영</p></div>
+          <div class="col-2 px-0"><p>박진영</p></div>
+          <div class="col-2 px-0"><p>박진영</p></div>
+          <div class="col-2 px-0"><p>박진영</p></div>
+          <div class="col-2 px-0"><p>박진영</p></div>
+          <div class="col-2 px-0"><p>박진영</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- //심사과정 -->
+  <!-- 좋아요 -->
+  <section class="ready-content" id="last">
+    <hr class="mb-3 banner-line2 ml-0">
+    <div class="made-by">
+      <p class="mb-1 text-right">Editor | Yein of Tojung</p>
+      <p class="text-right">Designer | SUNOO</p>
+    </div>
+    <p>좋아요</p>
+    <pre class="font-16 font-weight-bold">
+청원에 참여해보세요.
+많은 관심을 얻은 '베도'법안은
+NEXT 캠페인으로 선정됩니다.</pre>
+    <hr class="mt-3 banner-line2 ml-0">
+  </section>
+  <!-- //좋아요 -->
+  <!-- 댓글 -->
+  <section>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control ready-form" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary text-white" type="button" id="button-addon2">등록</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+<!-- //콘텐츠 -->
+
+<script>
+  function expand(){
+    $(document).ready(function(){
+      $('.solution').toggleClass('open');
+    });
+  }
+</script>
