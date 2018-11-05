@@ -1,21 +1,14 @@
 <% cache @product do %>
 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-  <div id="carouselExampleIndicators" class="carousel slide mb-4" data-ride="carousel">
-    <ol class="carousel-indicators cardnews">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item mx-auto active">
-        <%=image_tag("caro1.jpg", class: "w-100 cardnews-img")%>
-      </div>
-      <div class="carousel-item mx-auto">
-        <%=image_tag("caro2.jpg", class: "w-100 cardnews-img")%>
-      </div>
-      <div class="carousel-item mx-auto">
-        <%=image_tag("caro3.jpg", class: "w-100 cardnews-img")%>
-      </div>
+  <div class="caro-cards mb-4">
+    <div class="caro-card">
+      <%=image_tag("caro1.jpg", class: "w-100 cardnews-img")%>
+    </div>
+    <div class="caro-card">
+      <%=image_tag("caro2.jpg", class: "w-100 cardnews-img")%>
+    </div>
+    <div class="caro-card">
+      <%=image_tag("caro3.jpg", class: "w-100 cardnews-img")%>
     </div>
   </div>
   <div class="youtubeWrap mb-4">
@@ -121,3 +114,17 @@
 
 </div>
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    $('.caro-cards').slick({
+      arrows: false,
+      dots: true,
+      dotsClass: 'd-flex cards-dot justify-content-center pl-0',
+      infinite: true,
+      speed: 300,
+      fade: true,
+      cssEase: 'linear'
+    });
+  });
+</script>

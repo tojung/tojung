@@ -564,3 +564,36 @@ li:hover{
   width: 80px;
   font-size: 14px;
 }
+
+.caro-card:focus{
+  outline: none;
+}
+
+.cards-dot{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+}
+.cards-dot > li{
+  width: 12px;
+  height: 12px;
+  border-radius: 20px;
+  background-color: #AAB2BD;
+  color: transparent;
+  list-style-type: none;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.cards-dot > li.slick-active{
+  background-color: #333333;
+}
+
+.cards-dot > li > button{
+  display: none;
+}
+
+.caro-cards > .slick-list > .slick-track{
+  margin-top: 0;
+}
