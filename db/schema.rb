@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008181242) do
+ActiveRecord::Schema.define(version: 20181105110248) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(version: 20181008181242) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "best_bills", force: :cascade do |t|
+    t.string "category"
+    t.text "title"
+    t.text "content"
+    t.string "footchair_name"
+    t.text "problems_content"
+    t.text "image_0"
+    t.integer "delay_time"
+    t.integer "sangjung_time"
+    t.integer "conference_time"
+    t.text "review_doc"
+    t.text "conference_doc"
+    t.text "assos"
+    t.text "editor_name"
+    t.text "designer_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "image1"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -231,8 +251,8 @@ ActiveRecord::Schema.define(version: 20181008181242) do
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname"
-    t.datetime "start_date", default: "2018-08-08 06:16:42", null: false
-    t.datetime "end_date", default: "2018-09-07 06:16:42", null: false
+    t.datetime "start_date", default: "2018-08-16 20:46:42", null: false
+    t.datetime "end_date", default: "2018-09-15 20:46:42", null: false
     t.text "youtb_url"
     t.text "video_text"
     t.text "bill_url"

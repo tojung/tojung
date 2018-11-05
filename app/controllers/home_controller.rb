@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   before_action :image_read_or_set, :products_read, :set_cdn_url, only: [:index]
   before_action :authenticate_user!, only: %i[mypage]
   before_action :set_cdn_url, only: %i[index policy privacy brand mypage search best]
+
   # GET '/' 메인 페이지
   def index
     puts '$' * 100
@@ -51,10 +52,17 @@ class HomeController < ApplicationController
 
   def brand; end
 
-  def best; end
-
   def mypage
     cal_uproduct_count
+  end
+
+  # GET '/best/:id'
+  def best
+    puts '*' * 1000
+    puts '@@@@@' * 100
+    puts params[:id]
+    @bill = BestBill.find(params[:id])
+    @footchairs = Maker.where(assos: @bill.assos)
   end
 
   private

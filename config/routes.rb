@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/about'
   get 'home/brand'
-  get 'home/best'
   get 'categorize/:category_id' => 'home#categorize'
   get 'side_cate/:id' => 'home#sidebar_categorize'
   get 'home/search' => 'home#search', as: 'search'
@@ -62,6 +61,8 @@ Rails.application.routes.draw do
 
   post '/push' => 'notifications#push'
   post '/message' => 'notifications#message'
+
+  get '/best/:id' => 'home#best'
   # authenticate(:user, lambda do |u|
   #   u.admin
   # end) do

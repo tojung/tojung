@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: MyString
+  title: MyText
+  content: MyText
+  footchair_name: MyString
+  problems_content: MyText
+  image_0: MyText
+  delay_time: 1
+  sangjung_time: 1
+  conference_time: 1
+  review_doc: MyText
+  conference_doc: MyText
+  assos: MyText
+  editor_name: MyText
+  designer_name: MyText
+
+two:
+  category: MyString
+  title: MyText
+  content: MyText
+  footchair_name: MyString
+  problems_content: MyText
+  image_0: MyText
+  delay_time: 1
+  sangjung_time: 1
+  conference_time: 1
+  review_doc: MyText
+  conference_doc: MyText
+  assos: MyText
+  editor_name: MyText
+  designer_name: MyText
