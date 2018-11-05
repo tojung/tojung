@@ -2,6 +2,7 @@ class ProductController < ApplicationController
   before_action :redirect_root_except_admin, except: %i[show]
   before_action :read_product_infos, :check_admin, :is_liked, only: %i[detail_ready show]
   before_action :find_product, only: %i[update edit]
+  before_action :find_product_caro, only: %i[show]
   # GET '/product/new'
   def new; end
 
@@ -30,6 +31,12 @@ class ProductController < ApplicationController
   def detail_ready; end
 
   private
+
+  def find_product_caro
+    @product_caros = ProductCaroImage
+                         .where(product_id: params[:product_id])
+                         .order(:num)
+  end
 
   def is_liked
     if !user_signed_in?

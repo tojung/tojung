@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181105110248) do
+ActiveRecord::Schema.define(version: 20181105163308) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -154,6 +154,14 @@ ActiveRecord::Schema.define(version: 20181105110248) do
     t.string "status"
     t.string "receipt_url"
     t.string "merchant_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "product_caro_images", force: :cascade do |t|
+    t.integer "product_id"
+    t.text "image"
+    t.integer "num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

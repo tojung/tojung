@@ -1,16 +1,22 @@
 <% cache @product do %>
 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
   <div class="caro-cards mb-4">
-    <div class="caro-card">
-      <%=image_tag("caro1.jpg", class: "w-100 cardnews-img")%>
-    </div>
-    <div class="caro-card">
-      <%=image_tag("caro2.jpg", class: "w-100 cardnews-img")%>
-    </div>
-    <div class="caro-card">
-      <%=image_tag("caro3.jpg", class: "w-100 cardnews-img")%>
-    </div>
+<!--    <div class="caro-card">-->
+      <%#=image_tag("caro1.jpg", class: "w-100 cardnews-img")%>
+<!--    </div>-->
+<!--    <div class="caro-card">-->
+      <%#=image_tag("caro2.jpg", class: "w-100 cardnews-img")%>
+<!--    </div>-->
+<!--    <div class="caro-card">-->
+      <%#=image_tag("caro3.jpg", class: "w-100 cardnews-img")%>
+<!--    </div>-->
+    <% @product_caros.each do |product_caro| %>
+      <div class="caro-card">
+        <%=image_tag(product_caro.image, class: "w-100 cardnews-img")%>
+      </div>
+    <% end %>
   </div>
+
   <div class="youtubeWrap mb-4">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @product.youtb_url %>?controls=2" frameborder="0" allowfullscreen></iframe>
   </div>
