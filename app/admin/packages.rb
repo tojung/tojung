@@ -1,6 +1,6 @@
 ActiveAdmin.register Package do
   menu label: '패키지'
-  permit_params :product_id, :name, :content, :price, :image0, :remain_count, :product_option_ids, :phone, :delivery_price
+  permit_params :product_id, :name, :content, :price, :image0, :remain_count, :product_option_ids, :phone, :delivery_price, :hard_only
 
   scope :all, default: true
   Product.all.each do |product|
