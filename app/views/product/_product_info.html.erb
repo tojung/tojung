@@ -1,15 +1,15 @@
 <div class="pro-info-xs visible-xs">
   <h4 class="font-18 font-weight-bold"><%= @product.name %></h4>
   <p class="font-14"><%= @product.subname %></p>
-  <!-- <div class="d-flex font-16 font-weight-bold justify-content-between">
-    <span class="funding-money"><%#= @product.funded_money %>원</span>
-    <span class="font-red"><%#= @product.funded_count %>명</span>
-    <%# if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
+   <div class="d-flex font-16 font-weight-bold justify-content-between">
+    <span class="funding-money"><%= @product.funded_money %>원</span>
+    <span class="font-red"><%= @product.funded_count %>명</span>
+    <% if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
       <span>상시펀딩중</span>
-      <%# else %>
-      <span>광고 펀딩 <%#= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
-  <%# end %>
-  </div> -->
+      <% else %>
+      <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
+  <% end %>
+  </div>
 </div>
 
 <div class="d-flex visible-lg py-3 pro-info-wrapper justify-content-center">
@@ -19,15 +19,15 @@
       <h4 class="font-24 font-weight-bold"><%= @product.name %></h4>
       <p class="font-18"><%= @product.subname %></p>
     </div>
-    <!-- <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">
-      <span class="funding-money"><%#= @product.funded_money %>원</span>
-      <span class="font-red"><%#= @product.funded_count %> 명</span>
-      <%# if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
+     <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">
+      <span class="funding-money"><%= @product.funded_money %>원</span>
+      <span class="font-red"><%= @product.funded_count %> 명</span>
+      <% if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
         <span>상시펀딩중</span>
-      <%# else %>
-        <span>광고 펀딩 <%#= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
-      <%# end %>
-    </div> -->
+      <% else %>
+        <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
+      <% end %>
+    </div>
 
     <div class="dropdown my-3 w-100" id="myDropdown">
       <button type="button" id="packageButton" class="d-flex justify-content-between btn btn-white text-left dropdown-toggle d-flex justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

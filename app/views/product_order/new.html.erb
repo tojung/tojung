@@ -203,7 +203,7 @@
     <div class="bg-white font-14 font-weight-bold px-3 py-3">
     <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
     <div class="d-flex flex-wrap justify-content-around">
-      <button type="button" class="pay-button mb-3" onclick="normal_payment();">무통장 입금</button>
+      <button type="button" class="pay-button mb-3" onclick="normal_payment();">실시간 계좌이체</button>
       <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
       <button type="button" class="pay-button mb-3" onclick="phone_payment();">휴대폰</button>
       <button type="button" class="pay-button mb-3" onclick="toss_payment();">TOSS</button>
@@ -277,13 +277,13 @@
     function card_payment() {
         var payment_method =  document.getElementById('payment_method_description');
         $('input[name=payment_method]').attr('value', '카드결제');
-        payment_method.innerHTML = "신용카드를 선택하였습니다.<br> 현재는 신용카드 결제기능은 테스트키 모드입니다. PG정책상 결제가 완료되더라도 24시간 이내에 취소 및 환불이되며, 주문이 취소됩니다.<br>";
+        payment_method.innerHTML = "신용카드를 선택하였습니다.<br> 현재 이용 불가한 결제 방법입니다.";
 
     }
     function phone_payment(){
         var payment_method =  document.getElementById('payment_method_description');
         $('input[name=payment_method]').attr('value', '폰결제');
-        payment_method.innerHTML = "휴대폰 결제를 선택하였습니다.<br> 현재는 휴대폰 결제 결제기능은 테스트키 모드입니다. PG정책상 결제가 완료되더라도 24시간 이내에 환불되며, 주문이 취소됩니다.<br>";
+        payment_method.innerHTML = "휴대폰 결제를 선택하였습니다.";
     }
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
@@ -301,14 +301,14 @@
 
     function normal_payment(){
         var payment_method =  document.getElementById('payment_method_description');
-        var pay_method = $('input[name=payment_method]').attr('value', '무통장입금')
-        payment_method.innerHTML = '무통장입금을 선택하였습니다. <br> 기업은행 038-143868-01-014 로 24시간 안에 입금해주시면 입금 확인 후 문자드립니다.';
+        var pay_method = $('input[name=payment_method]').attr('value', '계좌이체');
+        payment_method.innerHTML = '계좌이체를 선택하였습니다. 현재 이용불가한 결제방법입니다.';
     }
 
     function toss_payment() {
         var payment_method =  document.getElementById('payment_method_description');
         var pay_method = $('input[name=payment_method]').attr('value', '토스')
-        payment_method.innerText = '토스결제를 선택하였습니다. 현재 테스트 모드 입니다.';
+        payment_method.innerText = '토스결제를 선택하였습니다. ';
     }
 
     function extra_payment(){
@@ -382,11 +382,12 @@
             } else if (payment_method === '제공안함') {
                 alert('제공하지않는 결제방법을 선택하셨습니다.');
                 $('input[name=commit]').removeAttr('disabled')
-            } else if (payment_method === '무통장입금') {
-                console.log('무통장입금');
+            } else if (payment_method === '계좌이체') {
+                console.log('계좌이체');
                 // return true
-                $('input[name=status]').attr('value', '결제대기중');
-                $('form').submit();
+                // $('input[name=status]').attr('value', '결제대기중');
+                pay_trans();
+                // $('form').submit();
                 //$('input[name=commit]').removeAttr('disabled')
             }else if(payment_method === '토스'){
                 console.log('토스');
