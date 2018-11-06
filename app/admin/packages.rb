@@ -73,6 +73,7 @@ ActiveAdmin.register Package do
     input 'image0', label: '패키지 메인 이미지'
     input 'phone', label: '휴대폰 케이스 포함 여부. ex) y 또는 n 또는 빈칸'
     input 'delivery_price', label: '배송비'
+    input 'hard_only', label: '하드케이스만 판매 유무'
     actions
   end
 
