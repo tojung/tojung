@@ -29,34 +29,40 @@
       <%= @package.price %>
       <%#= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>원</p>
 <!--    <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>-->
-    <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
+    <% if @package.phone != nil && @package.phone != "" && @package.phone != "n" && @package.hard_only != true%>
+      <input type="hidden" name="phone" value="">
     <div class="d-flex justify-content-around mt-3" id="phoneCase">
       <select name="case_type" class="select-phone" id="caseType" onchange="fuckin_hard_case(this)">
         <option selected>케이스 종류 선택</option>
         <option value="젤리케이스">젤리 케이스</option>
         <option value="하드케이스">하드 케이스(+3000원)</option>
       </select>
-      <select name="phone" class="select-phone off" id="jellyCase">
+      <select class="select-phone off" id="jellyCase" onchange="select_change(this)">
         <option selected>휴대폰 기종 선택</option>
         <%@jellycases.each do |jellycase|%>
         <option value="<%=jellycase%>"><%=jellycase%></option>
         <%end%>
       </select>
-      <select name="phone" class="select-phone off" id="hardCase">
+      <select class="select-phone off" id="hardCase" onchange="select_change(this)">
         <option selected>휴대폰 기종 선택</option>
         <%@hardcases.each do |hardcase|%>
         <option value="<%=hardcase%>"><%=hardcase%></option>
         <%end%>
       </select>
-
     </div>
-    <%end%>
+    <% elsif @package.hard_only == true %>
+      <div class="d-flex justify-content-around mt-3" id="phoneCase">
+        <input type="hidden" name="case_type" value="하드케이스">
+        <select name="phone" class="select-phone" id="hardCase" id="hardCase">
+          <option selected>휴대폰 기종 선택</option>
+          <%@hardcases.each do |hardcase|%>
+            <option value="<%=hardcase%>"><%=hardcase%></option>
+          <%end%>
+        </select>
+      </div>
+    <% end %>
   </div>
-  <% if @package.phone != nil && @package.phone != "" && @package.phone != "n"%>
-    <!-- css 적용 필요-->
 
-
-  <% end %>
   <!-- 주문 정보 -->
 <div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
   <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">주문 고객 정보</h4>
@@ -417,4 +423,8 @@
         }
       }
     });
+    function select_change(select_this) {
+        // alert(select_this.value);
+        $('input[name="phone"]').val(select_this.value)
+    }
 </script>
