@@ -38,46 +38,7 @@ function onInstall(event) {
                 cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', response.clone());
             });
     });
-    <% [0, 1, 2, 3,4, 5].each do |i|%>
-    <% if $redis.get('mainimage'+ i.to_s) != nil %>
-      fetch('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', {
-          mode: 'no-cors'
-      }).then(function(response) {
-          caches.open(CACHE_NAME)
-              .then(function(cache) {
-                  var responseToCache = response.clone();
-                  //responseToCache.url = '<#%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>'
-                  //responseToCache.status = 200
-                  cache.put('<%= URI::encode($redis.get('mainimage'+i.to_s).force_encoding('ASCII-8BIT')) %>', responseToCache);
-              });          // "opaque"
-      });
-    <% end %>
-   <% end %>
-    <% Product.all.each do |product|%>
-      <% if product.image0 != nil and product.image0.path != nil %>
-        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>', {
-            mode: 'no-cors'
-        }).then(function(response) {
 
-            caches.open(CACHE_NAME)
-                .then(function(cache) {
-                    cache.put('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product.image0.path.force_encoding('ASCII-8BIT')) %>', response.clone());
-                });            // "opaque"
-        });
-      <% end %>
-    <% end %>
-    <% ProductOption.all.each do |product_option|%>
-      <% if product_option.image0 != nil and product_option.image0.path != nil %>
-        fetch('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product_option.image0.path.force_encoding('ASCII-8BIT')) %>', {
-            mode: 'no-cors'
-        }).then(function(response) {
-            caches.open(CACHE_NAME)
-                .then(function(cache) {
-                    cache.put('https://d1eq7v76s8dt2n.cloudfront.net/'+ '<%= URI::encode(product_option.image0.path.force_encoding('ASCII-8BIT')) %>', response.clone());
-                });            // "opaque"
-        });
-      <% end %>
-    <% end %>
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
         return cache.addAll([
