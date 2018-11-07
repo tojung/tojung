@@ -20,13 +20,26 @@ class PaymentController < ApplicationController
     response = http.request(request)
 
     p JSON.parse(response.body)
-
+    @is_wrong = false
     if JSON.parse(response.body)["payStatus"] == "PAY_COMPLETE"
       product_order = ProductOrder.find(tosslog.product_order_id)
       product_order.status = "결제완료"
       product_order.save
       @is_pay_complete = true
       @product_order = product_order
+
+      total_price = product_order.package.price + product_order.package.delivery_price
+      total_price += 3000 if !product_order.package.hard_only && (product_order.package.phone == 'y') && (product_order.case_type == '하드케이스')
+
+      if JSON.parse(response.body)["amount"] != total_price
+        product_order.status = "토스비정상결제/조작"
+        product_order.save
+        @is_pay_complete = false
+        @is_wrong = true
+        product_order_detail = product_order.product_order_detail
+        product_order_detail.payment_method = "토스비정상결제/조작"
+        product_order_detail.save
+      end
     else
       product_order = ProductOrder.find(tosslog.product_order_id)
       product_order.status = "결제살패"
@@ -52,7 +65,7 @@ class PaymentController < ApplicationController
         "productDesc" => "#{ product_order.package.name  }",
         "apiKey" => ENV["TOSS_KEY"],
         "expiredTime" => expiredTime,
-        "retUrl" => "https://tojung.me/toss/complete?orderNo=#{ orderNo }",
+        "retUrl" => "http://127.0.0.1:3000/toss/complete?orderNo=#{ orderNo }",
         "escrow" => false,
         "autoExecute" => true
     }
@@ -70,7 +83,6 @@ class PaymentController < ApplicationController
                    status: JSON.parse(response.body)["status"],
                    product_order_id: product_order.id
                    )
-
     p JSON.parse(response.body)
 
     render json: JSON.parse(response.body)

@@ -24,6 +24,7 @@ class ProductOrder < ApplicationRecord
 
     product = Product.find(product_order.product.id)
     product.funded_count += 1 unless product.funded_count.nil?
+    product.funded_money += product_order.package.price + product_order.package.delivery_price
     product.save
     # return product_order.id if user_id == 1
     product.maker_responses.each do |maker_res|
