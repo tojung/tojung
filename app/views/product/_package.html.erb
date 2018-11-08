@@ -7,7 +7,7 @@
        <div class="card bg-white">
           <%=image_tag(@cdn_url + package.image0.path , class: "package-img d-block mx-auto", id: package.id) if package.image0.path != nil%>
         <div class="card-body2 text-center py-1 font-14">
-          <p class="font-red mb-1 funding-money"><%= package.price %>원</p>
+          <p class="font-red mb-1 product-money"><%= package.price %>원</p>
           <h5 class="text-black font-weight-bold mb-1 font-14" lang="en"><%= package.name %></h5>
           <pre class="font-12 mb-2 package-content"><%= package.content.gsub("\r\n", "<br />").html_safe %></pre>
         </div>
@@ -84,14 +84,18 @@
   }
 
   $(document).ready(function(){
-      money = $('.funding-money').html();
+    for(var i=0;i<$('.product-money').length;i++){
+      money2 = $('.product-money')[i];
+      money= $(money2).html();
       if (money !== "0원"){
         money = money.substring(0,money.length-1)
         money = Number(money);
         money = money.toLocaleString();
         money = money+"원";
-        $('.funding-money').html(money);
+        $(money2).html(money);
       }
+    }
   });
+
 </script>
 <% end %>
