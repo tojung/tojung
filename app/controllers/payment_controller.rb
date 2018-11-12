@@ -65,7 +65,7 @@ class PaymentController < ApplicationController
         "productDesc" => "#{ product_order.package.name  }",
         "apiKey" => ENV["TOSS_KEY"],
         "expiredTime" => expiredTime,
-        "retUrl" => "http://127.0.0.1:3000/toss/complete?orderNo=#{ orderNo }",
+        "retUrl" => "https://tojung.me/toss/complete?orderNo=#{ orderNo }",
         "escrow" => false,
         "autoExecute" => true
     }
