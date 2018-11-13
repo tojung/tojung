@@ -2,15 +2,6 @@
 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
   <% if @product_caros.count != 0 %>
     <div class="caro-cards mb-4">
-  <!--    <div class="caro-card">-->
-        <%#=image_tag("caro1.jpg", class: "w-100 cardnews-img")%>
-  <!--    </div>-->
-  <!--    <div class="caro-card">-->
-        <%#=image_tag("caro2.jpg", class: "w-100 cardnews-img")%>
-  <!--    </div>-->
-  <!--    <div class="caro-card">-->
-        <%#=image_tag("caro3.jpg", class: "w-100 cardnews-img")%>
-  <!--    </div>-->
       <% @product_caros.each do |product_caro| %>
         <div class="caro-card">
           <%=image_tag(product_caro.image, class: "w-100 cardnews-img")%>

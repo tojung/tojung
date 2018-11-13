@@ -92,7 +92,7 @@ class PaymentController < ApplicationController
     imp_uid = params['imp_uid']
     parsed_imp = Iamport.payment(imp_uid).parsed_response['response']
     # imp = parsed_imp.reject{ |key, value| !Payment.attribute_names.include?(key)}
-    puts parsed_imp['status']
+    # puts parsed_imp['status']
     if parsed_imp['status'] == 'paid'
       payment = Payment.new()
       payment.imp_uid = parsed_imp['imp_uid']
