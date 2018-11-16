@@ -1,5 +1,5 @@
 <% require 'uri' %>
-var CACHE_VERSION = 'v13';
+var CACHE_VERSION = 'v15';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
@@ -97,18 +97,9 @@ function onInstall(event) {
   );
   event.waitUntil(
       caches.keys().then(function(cacheNames) {
-          return Promise.all(
-              cacheNames.filter(function(cacheName) {
-                  // Return true if you want to remove this cache,
-                  // but remember that caches are shared across
-                  // the whole origin
-                  return cacheName.indexOf(CACHE_VERSION) !== 0;
-              }).map(function(cacheName) {
-                  console.log(cacheName);
-                  console.log("delete");
-                  return caches.delete(cacheName);
-              })
-          );
+          cacheNames.forEach(function(cacheName) {
+              caches.delete(cacheName);
+          });
       })
   )
 }
@@ -141,10 +132,13 @@ function onFetch(event) {
           event.request.url.includes('admin') ||
           event.request.url.includes('create') ||
           event.request.url.includes('toss') ||
-          event.request.url.includes('iamport')
+          event.request.url.includes('iamport') ||
+          event.request.url.includes('collect')
       ){
           return;
       }
+
+//      console.log(event;
       event.respondWith(
         // try to return untouched request from network first
 
@@ -160,6 +154,7 @@ function onFetch(event) {
                               if(!response || response.status == 0) {
                                   return response;
                               }
+                              // console.log(response.clone())
                               var responseToCache = response.clone();
 
                               caches.open(CACHE_NAME)
