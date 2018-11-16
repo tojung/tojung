@@ -102,7 +102,7 @@ $(document).ready(function(){
     money = $(money).html();
     if (money !== "0원"){
         // not working well
-      money = money.substring(0,money.length-1)
+      money = money.substring(0,money.length)
       money = Number(money);
       money = money.toLocaleString();
       money = money+"원";
