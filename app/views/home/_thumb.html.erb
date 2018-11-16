@@ -97,11 +97,14 @@ $(document).ready(function(){
   for (let i=0; i<$('.funding-money').length; i++){
     putMoney = $('.funding-money')[i];
     money = $('.funding-money')[i];
+    console.log(putMoney);
+    console.log(money);
     money = $(money).html();
     if (money !== "0원"){
-      money = money.substring(0,money.length-1)
-      money = Number(money);
-      money = money.toLocaleString();
+        // not working well
+      //money = money.substring(0,money.length-1)
+      //money = Number(money);
+      //money = money.toLocaleString();
       money = money+"원";
       $(putMoney).html(money);
     }
