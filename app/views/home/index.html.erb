@@ -9,7 +9,9 @@
     <div class="carousel-inner">
       <div class="carousel-item">
         <a href="/home/brand">
-          <%= image_tag(@mainimage0, class: "d-block cover_img")%>
+          <video playsinline autoplay loop muted class="d-block cover_img">
+            <source src="<%=asset_path('main1.webm')%>" type="video/webm ">
+          </video>
           <pre class="cover_text text-1">
 법안 배송받기를 클릭하면
 국회에 심사촉구청원이
@@ -18,7 +20,9 @@
       </div>
       <div class="carousel-item active">
         <a href="/home/brand">
-          <%= image_tag(@mainimage1, class: "d-block cover_img")%>
+          <video playsinline autoplay loop muted class="d-block cover_img">
+            <source src="<%=asset_path('main2.webm')%>" type="video/webm ">
+          </video>
           <pre class="cover_text text-2">
 내 삶을 바꾸는
 법안쇼핑몰</pre>
@@ -26,7 +30,9 @@
       </div>
       <div class="carousel-item">
         <a href="/home/brand">
-          <%=image_tag(@mainimage2, class: "d-block cover_img ml-0")%>
+          <video playsinline autoplay loop muted class="d-block cover_img ml-0">
+            <source src="<%=asset_path('main3.webm')%>" type="video/webm ">
+          </video>
           <pre class="cover_text text-3">
 참여를 인증하는
 예쁜 굿즈를 받고,
@@ -81,6 +87,9 @@
 <script>
   $(document).ready(function(){
     $('.cover').unwrap();
+    $('.cover_img').get(0).play();
+    $('.cover_img').get(1).play();
+    $('.cover_img').get(2).play();
   });
 
   <%if @num%>
