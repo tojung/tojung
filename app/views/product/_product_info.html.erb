@@ -142,15 +142,14 @@
 
   });
 
-  // 원화 콤마
-  // $(document).ready(function(){
-  //     money = $('.funding-money').html();
-  //     if (money !== "0원"){
-  //       money = money.substring(0,money.length-1)
-  //       money = Number(money);
-  //       money = money.toLocaleString();
-  //       money = money+"원";
-  //       $('.funding-money').html(money);
-  //     }
-  // });
+  $(document).ready(function(){
+      money = $('.funding-money').html();
+      if (money !== "0원"){
+        money = money.substring(0,money.length-1)
+        money = Number(money);
+        money = money.toLocaleString();
+        money = money+"원";
+        $('.funding-money').html(money);
+      }
+  });
 </script>

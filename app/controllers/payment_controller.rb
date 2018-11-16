@@ -65,7 +65,7 @@ class PaymentController < ApplicationController
         "productDesc" => "#{ product_order.package.name  }",
         "apiKey" => ENV["TOSS_KEY"],
         "expiredTime" => expiredTime,
-        "retUrl" => "http://127.0.0.1:3000/toss/complete?orderNo=#{ orderNo }",
+        "retUrl" => "https://tojung.me/toss/complete?orderNo=#{ orderNo }",
         "escrow" => false,
         "autoExecute" => true
     }
@@ -92,7 +92,7 @@ class PaymentController < ApplicationController
     imp_uid = params['imp_uid']
     parsed_imp = Iamport.payment(imp_uid).parsed_response['response']
     # imp = parsed_imp.reject{ |key, value| !Payment.attribute_names.include?(key)}
-    puts parsed_imp['status']
+    # puts parsed_imp['status']
     if parsed_imp['status'] == 'paid'
       payment = Payment.new()
       payment.imp_uid = parsed_imp['imp_uid']
