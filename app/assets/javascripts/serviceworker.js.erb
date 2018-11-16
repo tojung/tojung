@@ -4,69 +4,11 @@ var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
   console.log('[Serviceworker]', "Installing!", event);
-    try{
-        fetch('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', {
-            mode: 'no-cors'
-        }).then(function(response) {
-            caches.open(CACHE_NAME)
-                .then(function(cache) {
-                    cache.put('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', response.clone());
-                });
-        });
-    }catch (e) {
-        console.log(e);
-        console.log("install err");
-    }
-
-    try{
-        fetch('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', {
-            mode: 'no-cors'
-        }).then(function(response) {
-
-            caches.open(CACHE_NAME)
-                .then(function(cache) {
-                    cache.put('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', response.clone());
-                });
-        });
-    }catch (e) {
-        console.log(e);
-        console.log("install err");
-    }
-
-    try {
-        fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', {
-            mode: 'no-cors'
-        }).then(function(response) {
-
-            caches.open(CACHE_NAME)
-                .then(function(cache) {
-                    cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', response.clone());
-                });
-        });
-    }catch (e) {
-        console.log(e);
-        console.log("install err");
-    }
-    try {
-        fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', {
-            mode: 'no-cors'
-        }).then(function(response) {
-            caches.open(CACHE_NAME)
-                .then(function(cache) {
-                    cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', response.clone());
-                });
-        });
-    }catch (e) {
-        console.log(e);
-        console.log("install err");
-    }
 
     <% begin  %>
       <% Product.all.each do |product| %>
             try {
-                fetch('/product/<%= product.id %>', {
-                    mode: 'no-cors'
-                }).then(function(response) {
+                fetch('/product/<%= product.id %>').then(function(response) {
                     caches.open(CACHE_NAME)
                         .then(function(cache) {
                             cache.put('/product/<%= product.id %>', response.clone());
