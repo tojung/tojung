@@ -1,43 +1,61 @@
 <% require 'uri' %>
-var CACHE_VERSION = 'v2';
+var CACHE_VERSION = 'v3';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
   console.log('[Serviceworker]', "Installing!", event);
-    fetch('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', {
-        mode: 'no-cors'
-    }).then(function(response) {
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                cache.put('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', response.clone());
-            });
-    });
-    fetch('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', {
-        mode: 'no-cors'
-    }).then(function(response) {
+    try{
+        fetch('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', {
+            mode: 'no-cors'
+        }).then(function(response) {
+            caches.open(CACHE_NAME)
+                .then(function(cache) {
+                    cache.put('https://t1.daumcdn.net/postcode/api/core/180619/1529384927473/180619.js', response.clone());
+                });
+        });
+    }catch (e) {
+        console.log(e);
+    }
 
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                cache.put('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', response.clone());
-            });
-    });
-    fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', {
-        mode: 'no-cors'
-    }).then(function(response) {
+    try{
+        fetch('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', {
+            mode: 'no-cors'
+        }).then(function(response) {
 
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', response.clone());
-            });
-    });
-    fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', {
-        mode: 'no-cors'
-    }).then(function(response) {
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', response.clone());
-            });
-    });
+            caches.open(CACHE_NAME)
+                .then(function(cache) {
+                    cache.put('https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js', response.clone());
+                });
+        });
+    }catch (e) {
+        console.log(e);
+    }
+
+    try {
+        fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', {
+            mode: 'no-cors'
+        }).then(function(response) {
+
+            caches.open(CACHE_NAME)
+                .then(function(cache) {
+                    cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', response.clone());
+                });
+        });
+    }catch (e) {
+        console.log(e);
+    }
+    try {
+        fetch('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', {
+            mode: 'no-cors'
+        }).then(function(response) {
+            caches.open(CACHE_NAME)
+                .then(function(cache) {
+                    cache.put('https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', response.clone());
+                });
+        });
+    }catch (e) {
+        console.log(e);
+    }
 
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
@@ -52,19 +70,23 @@ function onInstall(event) {
           'https://code.jquery.com/jquery-3.3.1.slim.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
           'https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js'
-    ]);
+      ]);
     })
   );
 }
 function clearCaches() {
-    return caches.keys().then(function(keys) {
-        return Promise.all(keys.filter(function(key) {
-                return key.indexOf(version) !== 0;
-            }).map(function(key) {
-                return caches.delete(key);
-            })
-        );
-    })
+    try{
+      return caches.keys().then(function(keys) {
+          return Promise.all(keys.filter(function(key) {
+                  return key.indexOf(version) !== 0;
+              }).map(function(key) {
+                  return caches.delete(key);
+              })
+          );
+      })
+    }catch (e) {
+        console.log(e);
+    }
 }
 function onActivate(event) {
   console.log('[Serviceworker]', "Activating!", event);
@@ -89,53 +111,52 @@ function onFetch(event) {
 //    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
 //        return
 //    }
-  if(event.request.method != 'GET' ||
-      event.request.url.includes('product_order') ||
-      event.request.url.includes('mypage') ||
-      event.request.url.includes('users') ||
-      event.request.url.includes('admin') ||
-      event.request.url.includes('create') ||
-      event.request.url.includes('toss')
-  ){
-      console.log("Not cached item");
-      return;
-  }
-  event.respondWith(
-    // try to return untouched request from network first
+    try{
+      if(event.request.method != 'GET' ||
+          event.request.url.includes('product_order') ||
+          event.request.url.includes('mypage') ||
+          event.request.url.includes('users') ||
+          event.request.url.includes('admin') ||
+          event.request.url.includes('create') ||
+          event.request.url.includes('toss')){
+          console.log("Not cached item");
+          return;
+      }
+      event.respondWith(
+        // try to return untouched request from network first
 
-    caches.match(event.request)
-              .then(function (response) {
-                  if(response){
-                      return response
-                  }
-                  var fetchRequest = event.request.clone();
-                  return fetch(fetchRequest).then(
-                      function (response) {
-                          // Check if we received a valid response
-                          if(!response || response.status == 0) {
+        caches.match(event.request)
+                  .then(function (response) {
+                      if(response){
+                          return response
+                      }
+                      var fetchRequest = event.request.clone();
+                      return fetch(fetchRequest).then(
+                          function (response) {
+                              // Check if we received a valid response
+                              if(!response || response.status == 0) {
+                                  return response;
+                              }
+                              var responseToCache = response.clone();
+
+                              caches.open(CACHE_NAME)
+                                  .then(function(cache){
+                                      cache.put(event.request.url, responseToCache);
+                                  });
+
                               return response;
                           }
-                          var responseToCache = response.clone();
+                      )
+                  })
+      )
+        event.waitUntil(
+            update(event.request)
+                .then(refresh)
+        )
 
-                          caches.open(CACHE_NAME)
-                              .then(function(cache){
-                                  // console.log(event.request.url)
-                                  cache.put(event.request.url, responseToCache);
-//                                  if(!event.request.url.includes('http://127.0.0.1:3000/') && !event.request.url.includes('https://tojung.me/')){
-//                                      console.log('ok' + event.request.url)
-//                                      cache.put(event.request.url, responseToCache);
-//                                  }
-                              });
-
-                          return response;
-                      }
-                  )
-              })
-  )
-    event.waitUntil(
-        update(event.request)
-            .then(refresh)
-    )
+    }catch (e) {
+        console.log(e);
+    }
 }
 
 self.addEventListener('install', onInstall);
