@@ -1,5 +1,5 @@
 <% require 'uri' %>
-var CACHE_VERSION = 'v11';
+var CACHE_VERSION = 'v13';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
@@ -60,6 +60,25 @@ function onInstall(event) {
         console.log(e);
         console.log("install err");
     }
+
+    <% begin  %>
+      <% Product.all.each do |product| %>
+            try {
+                fetch('/product/<%= product.id %>', {
+                    mode: 'no-cors'
+                }).then(function(response) {
+                    caches.open(CACHE_NAME)
+                        .then(function(cache) {
+                            cache.put('/product/<%= product.id %>', response.clone());
+                        });
+                });
+            }catch (e) {
+                console.log(e);
+                console.log("install err");
+            }
+      <% end %>
+    <% rescue %>
+    <% end %>
 
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
@@ -166,9 +185,6 @@ function onFetch(event) {
         caches.keys().then(function(cacheNames) {
             return Promise.all(
                 cacheNames.filter(function(cacheName) {
-                    // Return true if you want to remove this cache,
-                    // but remember that caches are shared across
-                    // the whole origin
                     return cacheName.indexOf(CACHE_VERSION) !== 0;
                 }).map(function(cacheName) {
                     console.log(cacheName);
