@@ -1,5 +1,5 @@
 <% require 'uri' %>
-var CACHE_VERSION = 'v1';
+var CACHE_VERSION = 'v2';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
@@ -56,23 +56,32 @@ function onInstall(event) {
     })
   );
 }
-
+function clearCaches() {
+    return caches.keys().then(function(keys) {
+        return Promise.all(keys.filter(function(key) {
+                return key.indexOf(version) !== 0;
+            }).map(function(key) {
+                return caches.delete(key);
+            })
+        );
+    })
+}
 function onActivate(event) {
   console.log('[Serviceworker]', "Activating!", event);
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.filter(function(cacheName) {
-          // Return true if you want to remove this cache,
-          // but remember that caches are shared across
-          // the whole origin
-          return cacheName.indexOf(CACHE_VERSION) !== 0;
-        }).map(function(cacheName) {
-          return caches.delete(cacheName);
+    event.waitUntil(
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(
+                cacheNames.filter(function(cacheName) {
+                    // Return true if you want to remove this cache,
+                    // but remember that caches are shared across
+                    // the whole origin
+                    return cacheName.indexOf(CACHE_VERSION) !== 0;
+                }).map(function(cacheName) {
+                    return caches.delete(cacheName);
+                })
+            );
         })
-      );
-    })
-  );
+    );
 }
 
 // Borrowed from https://github.com/TalAter/UpUp
@@ -80,7 +89,14 @@ function onFetch(event) {
 //    if(event.request.url.includes('http://127.0.0.1') || event.request.url.includes('https://tojung.me') || event.request.url.includes('service.iamport.kr') || event.request.url.includes('channel')){
 //        return
 //    }
-  if(event.request.method != 'GET' || event.request.url.includes('product_order') || event.request.url.includes('mypage') || event.request.url.includes('users') ){
+  if(event.request.method != 'GET' ||
+      event.request.url.includes('product_order') ||
+      event.request.url.includes('mypage') ||
+      event.request.url.includes('users') ||
+      event.request.url.includes('admin') ||
+      event.request.url.includes('create') ||
+      event.request.url.includes('toss')
+  ){
       console.log("Not cached item");
       return;
   }
@@ -135,7 +151,6 @@ function update(request) {
         });
     });
 }
-
 function refresh(response) {
     return self.clients.matchAll().then(function (clients) {
         clients.forEach(function (client) {
