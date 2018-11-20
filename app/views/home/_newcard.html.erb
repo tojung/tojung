@@ -1,20 +1,20 @@
 <%if @products_categorized.empty?%>
   <h4 class="text-center" id="empty-ment">상품이 준비중입니다.</h4>
 <%end%>
-<div class="scrolling-wrapper center" id="all">
+<div class="scrolling-wrapper center visible-xs" id="all">
   <% @products_categorized.each do |product|%>
-    <div class="card">
+    <div class="card border-0 mb-md-3 mx-md-1">
       <a href="/product/<%=product.id%>" class="d-block h-100">
-        <%=image_tag(@cdn_url + product.image0.path, class: "pro-thumbimg") if product.image0.path != nil%>
-        <div class="card-body">
-          <div class="d-flex justify-content-between mb-1">
-            <h5 class="card-title text-black font-weight-bold mb-0"><%=product.name%></h5>
+          <%=image_tag(@cdn_url+product.image0.path,  class: "pro-thumbimg", alt: 'image') if product.image0.path != nil%>
+        <div class="card-body visible-lg-only font-14">
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title text-black font-weight-bold mb-0 font-18"><%=product.name%></h5>
             <!-- 이부분 000명으로 수정 -->
-            <span class="font-red font-weight-bold"></span>
+            <span class="font-red font-weight-bold font-18"><%= product.funded_count %>명</span>
           </div>
-          <p class="card-text mb-2"><%=product.subname%></p>
-          <div class="d-flex font-12 justify-content-between">
-            <span class="funding-money"><% product.funded_money%></span>
+          <p class="card-text mb-2 font-14"><%=product.subname%></p>
+          <div class="d-flex font-14 justify-content-between">
+            <span class="funding-money"><%= product.funded_money%></span>
             <span class="funding-days"><% -1*(( Time.now - product.end_date) / 1.days).to_i %></span>
           </div>
         </div>
@@ -22,6 +22,8 @@
     </div>
   <%end%>
 </div>
+
+
 
 <script>
 $(document).ready(function () {

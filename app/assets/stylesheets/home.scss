@@ -162,6 +162,7 @@ video {
 
 .card-body{
   padding: 14px 0;
+  background-color: #f9f9f9;
 }
 
 .card-body2{
@@ -170,11 +171,25 @@ video {
 
 .card-title{
   font-size: 16px;
+  width: 250px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  white-space: normal;
 }
 
 .card-text{
   color: #7f7f7f;
   font-size: 12px;
+  width: 306px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  white-space: normal;
 }
 
 #all{
