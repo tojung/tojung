@@ -1,6 +1,6 @@
 <% cache @products do %>
 <% @products.each do |product|%>
-<div class="card">
+<div class="card border-0 mb-md-3 mx-md-1">
   <a href="/product/<%=product.id%>" class="d-block h-100">
       <%=image_tag(@cdn_url+product.image0.path,  class: "pro-thumbimg", alt: 'image') if product.image0.path != nil%>
     <div class="card-body visible-lg-only font-14">
