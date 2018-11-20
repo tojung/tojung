@@ -11,4 +11,7 @@ ko:
                             invalid: "를 잘못 입력하셨습니다."
                         password_confirmation:
                             confirmation: "을 새 비밀번호와 다르게 입력하셨습니다."
+                        confirmation_token:
+                            blank: "."
+
 
