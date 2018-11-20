@@ -29,6 +29,16 @@ class ProductOrderController < ApplicationController
     end
 
     @status = @product_order.status
+    begin
+      u = User.create(email: params[:email], address_num: params[:address_num],
+                address_text: params[:address_text],
+                address_extra: params[:address_text2],
+                name: params[:name], phone_number: params[:phone_num], password: params[:password])
+      p = ProductOrder.find(@product_order_id)
+      p.user_id = u.id
+      p.save
+    rescue
+    end
  end
 
   private

@@ -196,12 +196,17 @@
     <% else %>
       <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold comma-money" id="product_price_description2"><%= @package.price %>원</span></p>
   <% end%>
-      <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %>일에 일괄 배송 시작됩니다.
+    <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %>일에 일괄 배송 시작됩니다.
       <input type="checkbox" class="checkbox"><span class="checkmark"></span>
     </label>
     <label class="checklabel ml-2">개인정보 수집 및 이용에 동의합니다.
       <input type="checkbox" class="checkbox"><span class="checkmark"></span>
     </label>
+    <label class="checklabel ml-2">회원가입이 자동으로 진행됩니다.
+      <input type="checkbox" class="checkbox"><span class="checkmark"></span>
+    </label>
+    비밀번호 설정: <input type="password" name="password" placeholder="비밀번호를 설정해주세요." autocomplete="off"> <br>
+
   </div>
   <!-- // 주문 금액 -->
  <% if @package.price != 0 %>
