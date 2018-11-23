@@ -6,11 +6,9 @@ class HomeController < ApplicationController
 
   # GET '/' 메인 페이지
   def index
-    puts '$' * 100
-    puts request.env['REMOTE_ADDR']
     if params.key?(:sidebar)
       @num = params[:sidebar]
-      @category_list = { '1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW' }
+      category_list
       @products = if @num == '7' || @num == '8'
                     @products
                   else
@@ -20,18 +18,30 @@ class HomeController < ApplicationController
   end
 
   def search
-    if params[:term] == ''
+    terms = params[:term]
+    terms_cover_per = "%#{terms}%"
+    if terms == '' || !terms
       @result = false
-    elsif params[:term]
-      @result = Product.where('name LIKE ? OR subname LIKE ? OR video_text LIKE ? OR assos LIKE ? OR bill_name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%").order('id')
+      return
     end
+
+    @result = Product.where('name LIKE ? OR
+                             subname LIKE ? OR
+                             video_text LIKE ? OR
+                             assos LIKE ? OR
+                             bill_name LIKE ?
+              ', terms_cover_per,
+                            terms_cover_per,
+                            terms_cover_per,
+                            terms_cover_per,
+                            terms_cover_per)
   end
 
   def categorize
     @cdn_url = 'https://d1eq7v76s8dt2n.cloudfront.net/'
     @products = Product.where(visible: [true, 1])
     @num = params[:category_id]
-    @category_list = { '1' => '인권/성평등', '2' => '동물', '3' => '육아/교육', '4' => '안전/환경', '5' => '보건/복지', '6' => '외교/통일/국방', '7' => 'HOT', '8' => 'NEW' }
+    category_list
     @products_categorized = if @num == '7' || @num == '8'
                               @products
                             else
@@ -58,14 +68,22 @@ class HomeController < ApplicationController
 
   # GET '/best/:id'
   def best
-    puts '*' * 1000
-    puts '@@@@@' * 100
-    puts params[:id]
     @bill = BestBill.find(params[:id])
     @footchairs = Maker.where(assos: @bill.assos)
   end
 
   private
+
+  def category_list
+    @category_list = { '1' => '인권/성평등',
+                       '2' => '동물',
+                       '3' => '육아/교육',
+                       '4' => '안전/환경',
+                       '5' => '보건/복지',
+                       '6' => '외교/통일/국방',
+                       '7' => 'HOT',
+                       '8' => 'NEW' }
+  end
 
   def cal_uproduct_count
     @ordered_product_count = 0
@@ -89,7 +107,6 @@ class HomeController < ApplicationController
       @mainimage0 = $redis.get('mainimage0')
       @mainimage1 = $redis.get('mainimage1')
       @mainimage2 = $redis.get('mainimage2')
-
       @mainimage3 = $redis.get('mainimage3')
       @mainimage4 = $redis.get('mainimage4')
 
@@ -106,14 +123,7 @@ class HomeController < ApplicationController
     end
   end
 
-  # noinspection RubyResolve
   def products_read
-    # Redis 적용 예정
     @products = Product.where(visible: [true, 1])
-    # noinspection RubyResolve
-    if user_signed_in? && current_user.admin
-      @products_unvisible = Product.where(visible: [false, 0])
-    end
-    @products_unvisible = Product.where(visible: [false, 0]) if admin?
   end
 end
