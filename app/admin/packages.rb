@@ -50,13 +50,6 @@ ActiveAdmin.register Package do
 
   form title: '패키지 추가/수정 하기' do |_f|
     input 'product', label: '법안 상품'
-    # package.product.nil? ?
-    #     Product.all.each do |product|
-    #       panel(product.name) do
-    #         input 'product_option_ids', label: '제품', as: :check_boxes, collection: ProductOption.where(product_id: product.id)
-    #       end
-    #     end :
-    #     input 'product_option_ids', label: '제품', as: :check_boxes, collection: package.product.product_options
     if package.product.nil?
       Product.all.each do |product|
         panel(product.name) do

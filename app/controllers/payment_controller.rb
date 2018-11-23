@@ -2,8 +2,8 @@ require 'net/http'
 require 'json'
 
 class PaymentController < ApplicationController
-  def new
-  end
+  # def new
+  # end
 
   def toss_complete
     tosslog = Tosslog.find_by_orderno(params[:orderNo])
@@ -47,8 +47,8 @@ class PaymentController < ApplicationController
 
       @is_pay_complete = false
     end
-
   end
+
   def toss
 
     product_order = ProductOrder.find(params[:product_order_id])
