@@ -74,3 +74,5 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'webpush'
 gem 'httparty'
 gem 'iamport'
+
+gem 'active_elastic_job'
