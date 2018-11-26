@@ -57,7 +57,8 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   config.cache_store = :redis_store, {
-    host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 0, :namespace => "cache", :expires_in => 90.minutes}
+    host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 0, namespace: 'cache', expires_in: 90.minutes
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   config.active_job.queue_adapter = :async
@@ -78,10 +79,14 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: ENV['MAILGUN_KEY'],
-    domain: '2jung.com'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: 'smtp.mailgun.org',
+    port: 587,
+    domain: '2jung.com',
+    user_name: 'postmaster@2jung.com',
+    password: ENV["MAILGUN_TOJUNG_PASSWORD"]
   }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
