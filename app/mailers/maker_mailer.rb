@@ -7,6 +7,7 @@ class MakerMailer < ApplicationMailer
     to = to_email
     to.sub! "\n", ""
     mail(to: to,
-         subject: title)
+         subject: title,
+         cc: ENV["CC_MAIL"])
   end
 end
