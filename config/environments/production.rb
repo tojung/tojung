@@ -90,7 +90,6 @@ Rails.application.configure do
     password: ENV['MAILGUN_TOJUNG_PASSWORD'],
     authentication: 'login'
   }
-  }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')

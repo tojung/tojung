@@ -42,8 +42,9 @@ class ProductOrder < ApplicationRecord
                               maker_res.agree_hash,
                               maker_res.disagree_hash).deliver_later
       rescue => error
-          puts "##"*20
+          puts "%#%"*20
           puts error
+          puts error.full_message
       end
       maker_res.send_count += 1
       maker_res.save
