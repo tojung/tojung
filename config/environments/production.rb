@@ -60,7 +60,7 @@ Rails.application.configure do
     host: 'tojungv2.llaur8.ng.0001.apn2.cache.amazonaws.com', port: 6379, db: 0, :namespace => "cache", :expires_in => 90.minutes}
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :async
+  config.active_job.queue_adapter = :async
   # config.active_job.queue_name_prefix = "t_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
