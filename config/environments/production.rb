@@ -86,7 +86,7 @@ Rails.application.configure do
     enable_starttls_auto: true,
     port: 587,
     domain: 'tojung.me',
-    user_name: 'postmaster@tojung.me',
+    user_name: 'postmaster2@tojung.me',
     password: ENV['MAILGUN_TOJUNG_PASSWORD'],
     authentication: 'login'
   }
