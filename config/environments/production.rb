@@ -87,7 +87,7 @@ Rails.application.configure do
     port: 587,
     domain: 'tojung.me',
     user_name: 'postmaster2@tojung.me',
-    password: ENV['MAILGUN_TOJUNG_PASSWORD'],
+    password: ENV['MAILGUN_TOJUNG_PASSWORD']
   }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'

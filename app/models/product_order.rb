@@ -41,8 +41,9 @@ class ProductOrder < ApplicationRecord
                               content,
                               maker_res.agree_hash,
                               maker_res.disagree_hash).deliver_later
+        puts "mail success??"*5
       rescue => error
-          puts "%#%"*20
+          puts "@@"*20
           puts error
           puts error.full_message
       end
