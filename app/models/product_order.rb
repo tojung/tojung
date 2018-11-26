@@ -40,7 +40,7 @@ class ProductOrder < ApplicationRecord
                               "#{product.assos}에 계류중인 #{product.bill_id}의안인 '#{product.bill_name}'이 왜 통과되지않나요?",
                               content,
                               maker_res.agree_hash,
-                              maker_res.disagree_hash).deliver_later
+                              maker_res.disagree_hash).deliver_now
         puts "mail success??"*5
       rescue => error
           puts "@@"*20
