@@ -88,7 +88,6 @@ Rails.application.configure do
     domain: 'tojung.me',
     user_name: 'postmaster2@tojung.me',
     password: ENV['MAILGUN_TOJUNG_PASSWORD'],
-    authentication: 'login'
   }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
