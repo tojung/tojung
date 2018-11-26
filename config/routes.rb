@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   get '/best/:id' => 'home#best'
 
+  post '/mail' => 'mail#index'
   # authenticate(:user, lambda do |u|
   #   u.admin
   # end) do
