@@ -6,7 +6,11 @@ class MakerMailer < ApplicationMailer
     @disagree_hash = disagree_hash
     to = to_email
     to.sub! "\n", ""
-    mail(to: to,
+    from = from_email
+    from.sub! "\n", ""
+
+    mail(from: from,
+         to: to,
          subject: title,
          cc: ENV["CC_MAIL"])
   end
