@@ -13,5 +13,6 @@ class MakerJob < ApplicationJob
                             content,
                             agree_hash,
                             disagree_hash).deliver
+    Maker.create(name: "error!!")
   end
 end
