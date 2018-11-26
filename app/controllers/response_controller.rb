@@ -9,7 +9,7 @@ class ResponseController < ApplicationController
     end
     @maker_response.update(response_type: "찬성")
     begin
-      Responselog.create(title: "찬성", maker_response_id: @maker_response.id)
+      Responselog.create(title: "찬성", maker_response_id: @maker_response[0].id)
     rescue
     end
   end
