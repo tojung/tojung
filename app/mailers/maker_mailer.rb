@@ -10,6 +10,7 @@ class MakerMailer < ApplicationMailer
     # to = Mail::Address.new to_email
     # to.display_name = "tojung"
     to = to_email
+    to.sub! "\n", ""
     #to = "\"#{tojung}\" <#{to_email}>"
     mail(to: to,
          subject: title)
