@@ -29,7 +29,7 @@ class ProductOrder < ApplicationRecord
     # return product_order.id if user_id == 1
     product.maker_responses.each do |maker_res|
       begin
-          content = "https://tojung.me 사이트내에서 "+ user_email + "이 보낸 청원입니다.\n안녕하세요, #{maker_res.maker.name}의원님!
+          content = "안녕하세요, #{maker_res.maker.name}의원님!
 #{maker_res.product.assos}에 계류중인
 #{maker_res.product.bill_id}의안인
           '#{maker_res.product.bill_name}'이 왜 통과되지않는지 궁금합니다.의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.
