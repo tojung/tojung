@@ -8,8 +8,7 @@ class MakerMailer < ApplicationMailer
     to = %("#{tojung}" <#{to_email}>)
     from = from_email
     to = to_email
-    mail(from: from,
-         to: to,
+    mail(to: to,
          subject: title)
   end
 end
