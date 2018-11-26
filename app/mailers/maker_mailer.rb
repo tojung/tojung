@@ -3,9 +3,10 @@ class MakerMailer < ApplicationMailer
     @content = content
     @agree_hash = agree_hash
     @disagree_hash = disagree_hash
-    
-    mail(from: "tojung <"+ from_email + ">",
-         to: to_email,
+    from = %("#{tojung}" <#{from_email}>)
+    to = %("#{tojung}" <#{to_email}>)
+    mail(from: from,
+         to: to,
          subject: title)
   end
 end
