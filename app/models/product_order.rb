@@ -28,7 +28,8 @@ class ProductOrder < ApplicationRecord
     product.save
     # return product_order.id if user_id == 1
     product.maker_responses.each do |maker_res|
-      content = "안녕하세요, #{maker_res.maker.name}의원님!
+      begin
+          content = "안녕하세요, #{maker_res.maker.name}의원님!
 #{maker_res.product.assos}에 계류중인
 #{maker_res.product.bill_id}의안인
           '#{maker_res.product.bill_name}'이 왜 통과되지않는지 궁금합니다.의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.
@@ -39,6 +40,11 @@ class ProductOrder < ApplicationRecord
                               content,
                               maker_res.agree_hash,
                               maker_res.disagree_hash).deliver_later
+      rescue => error
+          puts "@@"*20
+          puts error
+          puts error.full_message
+      end
       maker_res.send_count += 1
       maker_res.save
       Sendlog.create(from_email: user_email,
