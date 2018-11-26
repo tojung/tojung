@@ -83,10 +83,13 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     authentication: :plain,
     address: 'smtp.mailgun.org',
+    enable_starttls_auto: true,
     port: 587,
-    domain: '2jung.com',
-    user_name: 'postmaster@2jung.com',
-    password: ENV["MAILGUN_TOJUNG_PASSWORD"]
+    domain: 'tojung.me',
+    user_name: 'postmaster@tojung.me',
+    password: ENV['MAILGUN_TOJUNG_PASSWORD'],
+    authentication: 'login'
+  }
   }
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
