@@ -1,0 +1,2 @@
+class Responselog < ApplicationRecord
+end
