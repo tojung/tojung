@@ -1,61 +1,12 @@
 <% cache @product do %>
 <nav id="shareBar" class="bg-white visible-xs-flex">
   <section class="share w-100">
-    <a id="kakao-link-btn" href="javascript:createlink();">
+    <a id="kakao-link-btn"
+       href='javascript:createlink("<%= @product.name.gsub("'", "") %>","<%= @product.subname %>","<%= @cdn_url + @product.image0.path  if @product.image0.path != nil%>","<%= request.base_url + request.original_fullpath %>");'>
     <%=image_tag("kakao.svg", class: "kakao_icon d-block mx-auto mb-3") %>
     </a>
     <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">
       <%=image_tag("fb.svg", class: "d-block mx-auto mb-3")%></a>
   </section>
 </nav>
-
-<script type='text/javascript'>
-    //<![CDATA[
-    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-
-    try{
-    Kakao.init('d88e4ac3d481a3491b72e73fcb0ae1fc');
-    }catch (e) {
-        console.log('kakao init ok')
-    }
-
-function createlink(){
-          Kakao.Link.sendDefault({
-            // container: '#kakao-link-btn',
-            objectType: 'feed',
-            content: {
-                title: "투정, <%= @product.name.gsub("'", "") %>",
-                description: '<%= @product.subname %>',
-                imageUrl: '<%= @cdn_url + @product.image0.path  if @product.image0.path != nil%>',
-                link: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com'
-                }
-            },
-            // social: {
-            //    likeCount: 286,
-            //    commentCount: 45,
-            //    sharedCount: 845
-            // },
-            buttons: [
-                {
-                    title: '웹으로 보기',
-                    link: {
-                        mobileWebUrl: '<%= request.base_url + request.original_fullpath %>',
-                        webUrl: '<%= request.base_url + request.original_fullpath %>'
-                    }
-                }
-                //{
-                 //   title: '앱으로 보기',
-                 //   link: {
-                  //      mobileWebUrl: '<%= request.base_url + request.original_fullpath %>',
-                  //      webUrl: '<%= request.base_url + request.original_fullpath %>'
-                  //  }
-                //}
-            ]
-        });
-        // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    }
-    //]]>
-</script>
 <% end %>

@@ -17,7 +17,7 @@
     <meta property="og:url" content="https://tojung.me/<%= request.fullpath %>"/>
     <meta property="fb:app_id" content="1014670008686658" />
     <meta name="turbolinks-cache-control" content="no-cache">
-
+    <%= tag :meta, name: :psj, action: action_name, controller: controller_name %>
     <link rel="manifest" href="/manifest.json" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
@@ -33,7 +33,7 @@
     <script defer src="https://service.iamport.kr/js/iamport.payment-1.1.1.js" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -53,7 +53,7 @@
 
 <meta name="apple-mobile-web-app-capable" content="yes"></head>
 
-  <body>
+  <%= content_tag :body, data: { action: action_name, controller: controller_name } do %>
     <!-- Notice , Alert -->
     <% if notice %>
       <div id="notice_wrapper">
@@ -82,6 +82,6 @@
         }, 2000);
       });
     </script>
-  </body>
+  <% end %>
 
 </html>
