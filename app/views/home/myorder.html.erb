@@ -93,6 +93,7 @@
             <td><p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
             <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p></td>
             <td><%=product_order.status%></td>  
+            <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
             <td><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</td>
             </tr>
             <%end%>
@@ -141,6 +142,7 @@
               <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p>
             </div>
             <div class="delivery-status d-flex align-items-center justify-content-end">
+            <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
               <p class="mb-0"><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</p>
             </div>
           </div>
