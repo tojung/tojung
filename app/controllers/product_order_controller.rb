@@ -31,6 +31,7 @@ class ProductOrderController < ApplicationController
     @product_order = @product_order_service.product_order
     @product_order_detail = @product_order_service.product_order_detail
     @product = @product_order_service.product
+    @product_order_id = @product_order.id
   end
 
   def validate_payment
