@@ -68,7 +68,8 @@
                 <pre class="font-12 text-white text-center mb-0">
 <%= product_order.package.name %>
 <%= product_order.product_order_detail.total_price %>원 후원
-<%= product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %> 배송예정</pre>
+<%= product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %> 배송예정
+<%=product_order.status%></pre>
               </div>
             </div>
             </a>
@@ -85,8 +86,8 @@
     </div>
 
   </div>
-
   <hr>
+
   <section class="news-wrapper font-14">
 <!--    <h4>새로운 소식</h4>-->
 <!--    <div class="news px-3 py-3">-->

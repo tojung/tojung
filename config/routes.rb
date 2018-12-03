@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'home/policy'
   get 'home/privacy'
   get 'home/mypage'
+  get 'home/myorder'
 
   resources :userupdaters
   get 'additional_info' => 'userupdaters#additional'
