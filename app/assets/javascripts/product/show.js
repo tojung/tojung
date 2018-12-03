@@ -125,8 +125,10 @@ function cardHeight() {
                 money = money.substring(0,money.length-1)
                 money = Number(money);
                 money = money.toLocaleString();
-                money = money+"원";
-                $('.funding-money').html(money);
+                if(money != NaN){
+                    money = money+"원";
+                   $('.funding-money').html(money);
+                }
             }
             // _bottom_bar
             $('.bottom-bar').unwrap();
@@ -210,8 +212,10 @@ function cardHeight() {
                     money = money.substring(0,money.length-1)
                     money = Number(money);
                     money = money.toLocaleString();
-                    money = money+"원";
-                    $(money2).html(money);
+                    if(money != NaN){
+                         money = money+"원";
+                        $(money2).html(money);
+                    }
                 }
             }
 

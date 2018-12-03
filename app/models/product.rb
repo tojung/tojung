@@ -7,4 +7,5 @@ class Product < ApplicationRecord
   has_many :maker_responses, dependent: :destroy
   has_many :product_likes, dependent: :destroy
   has_many :product_timelines, dependent: :destroy
+  has_many :product_orders
 end
