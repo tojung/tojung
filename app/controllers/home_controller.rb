@@ -124,6 +124,6 @@ class HomeController < ApplicationController
   end
 
   def products_read
-    @products = Product.where(visible: [true, 1])
+    @products = Product.where(visible: [true, 1]).order(funded_count: :desc)
   end
 end
