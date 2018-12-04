@@ -2,12 +2,10 @@
  <section class="profile d-flex px-3 py-3">
     <!-- Desktop -->
     <div class="profile-img-box">
-        <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
-
        <!-- 디폴트 이미지 필요 -->
         <%=image_tag("default.png", class: "profile-img visible-lg") if current_user.image0 == nil%>
 
-         <%#=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
+         <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
     </div>
     <!-- // Desktop -->
     <div class="mylog font-12 font-lg-14 my-auto justify-content-around">
@@ -87,12 +85,14 @@
             </td>
             <td><%= product_order.package.created_at.to_date%></td>
             <td>
-            <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
-            <p class="mb-0">(<%= product_order.product_order_detail.payment_method %>)</p>
-            </td>
-            <td><p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
-            <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p></td>
-            <td><%=product_order.status%></td>  
+              <% if product_order.product_order_detail != nil %>
+                <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
+                <p class="mb-0">(<%= product_order.product_order_detail.payment_method %>)</p>
+                </td>
+                <td><p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
+                <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p></td>
+              <% end %>
+            <td><%=product_order.status%></td>
             <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
             <td><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</td>
             </tr>
@@ -123,10 +123,12 @@
                   <p class="delivery-phone mb-0"><%=product_order.phone%>(<%=product_order.case_type%>)</p>
                   <%end%>
                 </div>
-                <div class="order-price-method">
-                  <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
-                  <p class="mb-0"><%= product_order.product_order_detail.payment_method %></p>
-                </div>
+                <% if product_order.product_order_detail != nil %>
+                  <div class="order-price-method">
+                      <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
+                      <p class="mb-0"><%= product_order.product_order_detail.payment_method %></p>
+                    </div>
+                  <% end %>
               </div>
               <div class="order-status">
                 <p class="mb-0"><%=product_order.status%></p>
@@ -137,10 +139,12 @@
             <div class="delivery-title d-flex align-items-center">
               <p class="mb-0 font-weight-bold">배송정보</p>
             </div>
-            <div class="delivery-info">
+            <% if product_order.product_order_detail != nil %>
+          <div class="delivery-info">
               <p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
               <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p>
             </div>
+              <% end %>
             <div class="delivery-status d-flex align-items-center justify-content-end">
             <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
               <p class="mb-0"><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</p>
