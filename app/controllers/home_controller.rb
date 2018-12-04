@@ -72,7 +72,9 @@ class HomeController < ApplicationController
     @footchairs = Maker.where(assos: @bill.assos)
   end
 
-  def myorder; end
+  def myorder
+    cal_uproduct_count
+  end
 
   private
 
