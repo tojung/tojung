@@ -36,6 +36,10 @@
       <p class="mb-0 font-14">국회 청원이 총 <%= @product.maker_responses.count %>명의 의원에게 성공적으로 보내졌습니다. 의원들의 답변 현황이 궁금하다면 ?</p>
     </div>
     <a class="d-block font-14 text-right mt-1 mb-5">> 확인하러가기</a>
+    <div class="complete-message d-flex align-items-center">
+      <h4 class="complete-number ml-2 mr-4 mb-0">4</h4>
+      <p class="mb-0 font-14">주문 정보는 오른쪽 상단에 있는 메뉴버튼을 클릭하고 MY ORDER에 들어가시면 확인하실 수 있습니다.</p>
+    </div>
   </section>
 </div>
   <% elsif params[:payment_method] == "토스" %>

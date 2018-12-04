@@ -1,0 +1,155 @@
+<div class="mypage">
+ <section class="profile d-flex px-3 py-3">
+    <!-- Desktop -->
+    <div class="profile-img-box">
+        <%=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
+
+       <!-- 디폴트 이미지 필요 -->
+        <%=image_tag("default.png", class: "profile-img visible-lg") if current_user.image0 == nil%>
+
+         <%#=image_tag(current_user.image0, class: "profile-img visible-lg") if current_user.image0 != nil%>
+    </div>
+    <!-- // Desktop -->
+    <div class="mylog font-12 font-lg-14 my-auto justify-content-around">
+      <!-- Desktop -->
+      <div class="user-email-box visible-lg my-3 d-flex">
+        <h4 class="font-30 user-email ml-3 mb-0">
+          <%=current_user.email%>
+        </h4>
+        <a href="/userupdaters/<%= current_user.id %>/edit" class="d-block text-center mypage-edit font-14 ml-3 mt-1">개인정보 수정</a>
+        <% if current_user.provider == nil || current_user.provider == "" %>
+           <a href="/users/edit" class="d-block text-center mypage-edit font-14 ml-3 mt-1"> 비밀번호 수정 </a>
+        <% end %>
+      </div>
+      <!-- // Desktop -->
+      <div class="d-flex my-md-3" id="mypage-mylogbox">
+        <div class="mylog-box mx-2 ml-md-3 mr-md-4 text-center">
+          <p class="mb-0 font-weight-bold font-18 visible-xs"> <%= @ordered_product_count %>  </p>
+          <p class="text-grey mb-2 font-weight-bold">인생법안
+            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= @ordered_product_count %></span>
+          </p>
+        </div>
+        <div class="mylog-box mx-2 mr-md-4 text-center">
+          <p class="mb-0 font-weight-bold font-18 visible-xs"> <%= current_user.product_likes.where(status: true).count %>  </p>
+          <p class="text-grey mb-2 font-weight-bold">관심법안
+            <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black"><%= current_user.product_likes.where(status: true).count %></span>
+          </p>
+        </div>
+        <div class="mylog-box mx-2 text-center">
+          <p class="mb-0 font-weight-bold font-18 visible-xs">0</p>
+          <p class="text-grey mb-2 font-weight-bold">새로운 소식
+          <span class="font-18 ml-md-1 font-weight-bold visible-lg font-black">0</span></p>
+
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <a href="/userupdaters/<%= current_user.id%>/edit" class="mx-1 d-inline-block text-center mypage-edit font-14 visible-xs">개인정보 수정</a>
+        <% if current_user.provider == nil || current_user.provider == "" %>
+           <a href="/users/edit" class="mx-1 d-inline-block text-center mypage-edit font-14 visible-xs"> 비밀번호 수정 </a>
+        <% end %>
+      </div>
+
+    </div>
+    <%=image_tag(current_user.image0, class: "profile-img visible-xs") if current_user.image0 != nil%>
+
+   <!-- 디폴트 이미지 필요 -->
+    <%=image_tag("default.png", class: "profile-img visible-xs") if current_user.image0 == nil%>
+  </section>
+  <!-- myorder desktop-->
+    <table class="visible-lg table mt-5 font-14 w-100 ml-0 order-table mb-0">
+        <thead>
+            <tr>
+            <th scope="col">상품정보(패키지)</th>
+            <th scope="col">주문일자</th>
+            <th scope="col">결제금액(결제방법)</th>
+            <th scope="col">배송지주소</th>
+            <th scope="col">주문상태</th>
+            <th scope="col">배송상태</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% current_user.product_orders.each do |product_order| %>
+            <tr class="text-center">
+            <td>
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="delivery-img mr-3">
+                <%=image_tag(product_order.package.image0, style: "width: 50px; height: 60px;") %>
+                </div>
+                <div class="delivery-product-info">
+                <p class="delivery-name mb-0"><%=product_order.product.name%></p>
+                <p class="delivery-package mb-0"><%=product_order.package.name%></p>
+                <%if product_order.phone !=nil%>
+                <p class="delivery-phone mb-0"><%=product_order.phone%></p>
+                <p class="delivery-phone mb-0"><%=product_order.case_type%></p>
+                <div>
+            </div>
+            <%end%>
+            </td>
+            <td><%= product_order.package.created_at.to_date%></td>
+            <td>
+            <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
+            <p class="mb-0">(<%= product_order.product_order_detail.payment_method %>)</p>
+            </td>
+            <td><p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
+            <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p></td>
+            <td><%=product_order.status%></td>  
+            <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
+            <td><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</td>
+            </tr>
+            <%end%>
+        </tbody>
+    </table>
+    <!-- // myorder desktop-->
+
+    <!-- myorder mobile-->
+    <section class="order-list-wrapper visible-xs font-12">
+      <ul class="order-list">
+      
+        <% current_user.product_orders.each do |product_order| %>
+        <li class="order-box bg-white">
+          <div class="order-box-num">
+            <p class="mb-2"><%= product_order.package.created_at.to_date%></p>
+          </div>
+          <div class="order-box-item">
+            <div class="order-box-img">
+              <%=image_tag(product_order.package.image0, style: "width: 70px; height: 84px;") %>
+            </div>
+            <div class="order-box-info-list">
+              <div class="box-info d-flex justify-content-between pb-3">
+                <div class="name-package">
+                  <p class="mb-0 font-weight-bold"><%=product_order.product.name%></p>
+                  <p class="mb-0 font-grey"><%=product_order.package.name%></p>
+                  <%if product_order.phone !=nil%>
+                  <p class="delivery-phone mb-0"><%=product_order.phone%>(<%=product_order.case_type%>)</p>
+                  <%end%>
+                </div>
+                <div class="order-price-method">
+                  <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
+                  <p class="mb-0"><%= product_order.product_order_detail.payment_method %></p>
+                </div>
+              </div>
+              <div class="order-status">
+                <p class="mb-0"><%=product_order.status%></p>
+              </div>
+            </div>
+          </div>
+          <div class="delivery-box d-flex">
+            <div class="delivery-title d-flex align-items-center">
+              <p class="mb-0 font-weight-bold">배송정보</p>
+            </div>
+            <div class="delivery-info">
+              <p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
+              <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p>
+            </div>
+            <div class="delivery-status d-flex align-items-center justify-content-end">
+            <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
+              <p class="mb-0"><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</p>
+            </div>
+          </div>
+        </li>
+        <%end%>
+      </ul>
+            
+    </section>
+    <!-- // myorder mobile-->
+</div>

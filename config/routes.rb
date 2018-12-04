@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'home/policy'
   get 'home/privacy'
   get 'home/mypage'
+  get 'home/myorder'
 
   get 'categorize/:category_id' => 'home#categorize'
   get 'side_cate/:id' => 'home#sidebar_categorize'
