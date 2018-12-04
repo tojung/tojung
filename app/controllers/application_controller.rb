@@ -48,6 +48,4 @@ def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
   devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
 end
-
-
 end

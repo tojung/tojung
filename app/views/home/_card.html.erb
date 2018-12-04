@@ -2,7 +2,7 @@
 <% @products.each do |product|%>
 <div class="card border-0 mb-md-3 mx-md-1">
   <a href="/product/<%=product.id%>" class="d-block h-100">
-      <%=image_tag(@cdn_url+product.image0.path,  class: "pro-thumbimg", alt: 'image') if product.image0.path != nil%>
+      <%=image_tag(@cdn_url+product.image0.path,  class: "pro-thumbimg", alt: 'image', size: "306") if product.image0.path != nil%>
     <div class="card-body visible-lg-only font-14">
       <div class="d-flex justify-content-between align-items-center">
         <h5 class="card-title text-black font-weight-bold mb-0 font-18"><%=product.name%></h5>

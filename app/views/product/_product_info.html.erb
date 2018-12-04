@@ -39,7 +39,7 @@
 
       <ul class="dropdown-menu w-100 py-0" aria-labelledby="packageButton">
         <% @product.packages.each do |package|%>
-        <li class="d-flex package-box" onclick="packageDropdown(this);">
+        <li class="d-flex package-box" onclick="packageDropdown(this, <%= @product.id %>);">
           <%=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3 hide", id: package.id) if package.image0.path != nil%>
             <div class="package-info my-auto w-100 d-flex justify-content-between">
               <div class="package-info-1 d-flex">
@@ -62,7 +62,8 @@
           <button class="share-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공유하기</button>
           <ul class="dropdown-menu" id="shareDropdown">
             <li class="d-block">
-              <a id="kakao-link-btn" href="javascript:createlink();">
+              <a id="kakao-link-btn" href='javascript:createlink("<%= @product.name.gsub("'", "") %>","<%= @product.subname %>","<%= @cdn_url + @product.image0.path  if @product.image0.path != nil%>",
+                                                       "<%= request.base_url + request.original_fullpath %>");'>
               <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
               </a>
             </li>
@@ -105,51 +106,3 @@
     </div>
   </div>
 </div>
-
-<script>
-
-  function packageDropdown(item){
-    $(document).ready(function () {
-
-      var x = $(item).html();
-      $('#packageButton').html(x);
-      $('#packageContainer').html(x);
-      $('#packageContainer').addClass('package-box2 my-3');
-      $('#packageContainer > .package-info').removeClass('d-flex');
-      $('#packageContainer > .package-info > .package-info-1 > .package-name').unwrap();
-      $('#packageContainer > .package-item').removeClass('hide').addClass('show');
-      var pid = $("#packageButton").children()[0].id;
-      $('#pay-link-lg').attr("href","/product_order/new?product_id=<%= @product.id %>&package_id="+pid);
-    });
-  }
-
-  // '패키지를 선택하세요' alert
-  function packageSelected(){
-    $(document).ready(function(){
-      var ment = $('#packageButton > .package-info > span').html();
-      if( ment == "패키지 선택하기"){
-        alert('패키지를 선택해주세요');
-      }
-    });
-  }
-
-  $(document).ready(function(){
-
-    // dropdown share width
-    var x = $('#dropdownShare').width();
-    $('#shareDropdown').width(x);
-
-
-  });
-
-  $(document).ready(function(){
-      money = $('.funding-money').html();
-      if (money !== "0원"){
-        money = money.substring(0,money.length-1)
-        money = Number(money);
-        money = money.toLocaleString();
-        money = money+"원";
-        $('.funding-money').html(money);
-      }
-  });
-</script>

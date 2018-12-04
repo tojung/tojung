@@ -1,3 +1,6 @@
+<% if @num %>
+  <p style="display: none" class="category_flag">true</p>
+<% end %>
 <!-- Cover -->
 <section class="cover loaded">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
@@ -9,7 +12,7 @@
     <div class="carousel-inner">
       <div class="carousel-item">
         <a href="/home/brand">
-          <video playsinline autoplay loop muted class="d-block cover_img" preload="none">
+          <video playsinline autoplay loop muted class="d-block cover_img" >
             <source src="<%= @mainimage0 %>" type="video/mp4">
           </video>
           <pre class="cover_text text-1">
@@ -20,7 +23,7 @@
       </div>
       <div class="carousel-item active">
         <a href="/home/brand">
-          <video playsinline autoplay loop muted class="d-block cover_img" preload="none">
+          <video playsinline autoplay loop muted class="d-block cover_img" preload="auto">
             <source src="<%= @mainimage1 %>" type="video/mp4">
           </video>
           <pre class="cover_text text-2">
@@ -30,7 +33,7 @@
       </div>
       <div class="carousel-item">
         <a href="/home/brand">
-          <video playsinline autoplay loop muted class="d-block cover_img ml-0" preload="none">
+          <video playsinline autoplay loop muted class="d-block cover_img ml-0">
             <source src="<%= @mainimage2 %>" type="video/mp4">
           </video>
           <pre class="cover_text text-3">
@@ -84,29 +87,28 @@
 
 <%=render 'bottom_bar'%>
 </div>
-<script defer>
-  $(document).ready(function(){
-    $('.cover').unwrap();
-    $('.cover_img').get(0).play();
-    $('.cover_img').get(1).play();
-    $('.cover_img').get(2).play();
-  });
 
-  <%if @num%>
-    $(document).ready(function () {
-      $('.category-keyword').filter('.cate-red').removeClass("cate-red");
-        for(let i=0;i<$('.category-keyword').length;i++){
-          if($('.category-keyword')[i].innerHTML === '<%=@category_list[@num]%>'){
-            var target = $('.category-keyword')[i];
-            var keyword = '<%=@category_list[@num]%>';
-            $(target).addClass("cate-red");
-            $('#category-tag').html(keyword);
-          }
-      }
-      // Scroll To category list
-      $('html, body').animate({
-         scrollTop: $('#categoryList').offset().top-100
-      }, 'slow');
-    });
-  <%end%>
-</script>
+<!--<script type="text/javascript">-->
+<!--  $(document).ready(function(){-->
+<!--    $('.cover').unwrap();-->
+<!--    $('.cover_img').get(0).play();-->
+<!--    $('.cover_img').get(1).play();-->
+<!--    $('.cover_img').get(2).play();-->
+
+  <%#if @num%>
+<!--      $('.category-keyword').filter('.cate-red').removeClass("cate-red");-->
+<!--        for(let i=0;i<$('.category-keyword').length;i++){-->
+<!--          if($('.category-keyword')[i].innerHTML === '<%#=@category_list[@num]%>'){-->
+<!--            var target = $('.category-keyword')[i];-->
+<!--            var keyword = '<#%=@category_list[@num]%>';-->
+<!--            $(target).addClass("cate-red");-->
+<!--            $('#category-tag').html(keyword);-->
+<!--          }-->
+<!--      }-->
+<!--      // Scroll To category list-->
+<!--      $('html, body').animate({-->
+<!--         scrollTop: $('#categoryList').offset().top-100-->
+<!--      }, 'slow');-->
+  <%#end%>
+<!--  });-->
+<!--</script>-->

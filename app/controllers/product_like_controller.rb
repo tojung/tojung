@@ -8,13 +8,12 @@ class ProductLikeController < ApplicationController
     @product = @product = Product.find(params[:product_id])
     respond_to do |format|
       format.js { render locals: { like: @like } }
-    end    # redirect_to "/product/#{params[:product_id]}"
+    end
   end
 
   def update
     product_like = ProductLike.find(params[:product_like_id])
     product_like.update(status: !product_like.status)
     @product_like = product_like.status
-    # redirect_to "/product/#{params[:product_id]}"
   end
 end
