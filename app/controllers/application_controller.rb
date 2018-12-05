@@ -1,25 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_cdn_url
+  before_action :set_cdn_url, :require_more_data
+
   protected
 
-  # noinspection RubyResolve
-  def check_admin
-    @is_admin = admin?
-  end
-
-  # noinspection RubyResolve
-  def redirect_root_except_admin
-    redirect_root if !user_signed_in? || !current_user.admin
+  def read_user_infos
+    if !current_user.nil?
+      @user_email = current_user.email
+      @user_id = current_user.id
+    else
+      @user_email = params[:email]
+      @user_id = User.first.id
+    end
   end
 
   def redirect_root
-    # noinspection RubyUnnecessaryReturnStatement
-    return redirect_to '/'
-  end
-
-  def redirect_root_except_visible
-    redirect_root_except_admin unless @product.visible
+    redirect_to '/'
   end
 
   def set_cdn_url
@@ -36,16 +32,8 @@ class ApplicationController < ActionController::Base
     user_signed_in? && current_user.admin?
   end
 
-  def redirect_ready_page
-    redirect_to "/product/ready/#{@product.id}"
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
   end
-
-  def not_found
-    raise ActionController::RoutingError.new('Not Found')
-  end
-
-def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
-  devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
-end
 end

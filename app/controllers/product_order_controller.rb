@@ -1,86 +1,36 @@
 class ProductOrderController < ApplicationController
-  before_action :init_package, only: %i[new create]
-  before_action :init_product, only: %i[new create]
   def new
-    user_infos
-    jelly_cases
-    hard_cases
+    read_product
+    read_package
+    read_user_infos
+    read_phone_case
   end
 
   def create
-    user_infos
+    read_product
+    read_package
+    read_user_infos
+    action_service = ProductOrderFullService.new(params: params,
+                                                 user_id: @user_id,
+                                                 user_email: @user_email)
+    action_service.call
 
-    @product_order_service = ProductOrderService.new(params)
-    @product_order_service.create
-
-    set_data
-    send_emails
-
-    valid = validate_payment
-    @product.funded_money += @product_order_detail.total_price if valid
-
-    @status = @product_order.status
-    create_user
- end
+    @status = action_service.status
+    @product_order_id = action_service.product_order_id
+  end
 
   private
 
-  def set_data
-    @payment_method = params[:payment_method]
-    @status = params[:status]
-    @product_order = @product_order_service.product_order
-    @product_order_detail = @product_order_service.product_order_detail
-    @product = @product_order_service.product
-    @product_order_id = @product_order.id
+  def read_package
+    @package = PackageService.new(params).package
   end
 
-  def validate_payment
-    return false if @status != '결제완료' || @product.package.price == 0
-    PaymentService.new(product_order: @product_order).validate
-  rescue StandardError
+  def read_product
+    @product = ProductService.new(params).product
   end
 
-  def user_infos
-    if !current_user.nil?
-      @user_email = current_user.email
-      @user_id = current_user.id
-    else
-      @user_email = params[:email]
-      @user_id = User.first.id
-    end
-  end
-
-  def init_package
-    @package = Package.find(params[:package_id])
-  end
-
-  def init_product
-    @product = Product.find(params[:product_id])
-  end
-
-  def jelly_cases
+  def read_phone_case
     @jellycases = StaticValueService.new.jelleycases
-  end
-
-  def hard_cases
     @hardcases = StaticValueService.new.hardcases
-  end
-
-  def create_user
-    u = User.create(email: params[:email], address_num: params[:address_num],
-                    address_text: params[:address_text],
-                    address_extra: params[:address_text2],
-                    name: params[:name], phone_number: params[:phone_num], password: params[:password])
-    p = ProductOrder.find(@product_order.id)
-    p.user_id = u.id
-    p.save
-  rescue StandardError
-  end
-
-  def send_emails
-    MakerResponseService.new(content: params[:send_email_content],
-                             user_email: @user_email,
-                             user_id: @user_id,
-                             product: @product).sends
   end
 end

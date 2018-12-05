@@ -2,7 +2,7 @@ class MakerController < ApplicationController
   # before_action :redirect_root_except_admin, only: %i[show]
   # GET '/maker/:maker_id?product_id='
   before_action :find_response_and_title_content, only: %i[show]
-  before_action :find_maker_response, :require_more_data, only: %i[send_mail]
+  before_action :find_maker_response, only: %i[send_mail]
   # GET '/maker/:maker_response_id'
   def show; end
 
