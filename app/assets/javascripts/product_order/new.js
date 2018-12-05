@@ -143,11 +143,32 @@ function fuckin_hard_case(select_this, package_price,delivery_price) {
         product_price_description2.innerText = parseInt(p.attr('value'));
     }
 }
+function validate_submit() {
+    if($('input[name=personal_info]').val() === 'false'){
+        alert("개인정보 수집 및 이용에 동의해주시기바랍니다.");
+        return false
+    }
+    if($('input[name=goods_delivery]').val() === 'false') {
+        alert("굿즈 배송일에 동의해주시기바랍니다.");
+        return false
+    }
+    if($('input[name=register]').val() === 'true' && $('input[name=password]').val() === '') {
+        alert("비밀번호를 입력해주세요.");
+        return false
+    }
+    if($('input[name=email]').val() === '' || $('input[name=email]').val().includes('@') === false){
+        alert('이메일을 정확히 입력해주세요.');
+        return false
+    }
+    return true
+}
 function fuckin_submit(){
     var element_layer = document.getElementById('layer');
-
     $('input[name=commit]').removeAttr('data-disable-with');
     let payment_method = $('input[name=payment_method]').attr('value');
+    if(validate_submit() === false){
+        return
+    }
     if (payment_method === '카드결제') {
         pay_new_test();
         // $('input[name=commit]').removeAttr('disabled')
@@ -188,7 +209,6 @@ function select_change(select_this) {
         }
 
         // alert("Welcome Index!");
-        console.log("Welcome Home Index!")
         $(document).ready(function(){
             for(i=0;i<$('.comma-money').length;i++){
                 var money = $('.comma-money')[i];
@@ -202,6 +222,28 @@ function select_change(select_this) {
                     $(putmoney).html(money);
                 }
             }
+
+            $("input[name=register]").on('click', function() {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                } else {
+                    $(this).attr('value', 'false');
+                }
+            });
+            $("input[name=personal_info]").on('click', function() {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                } else {
+                    $(this).attr('value', 'false');
+                }
+            });
+            $("input[name=goods_delivery]").on('click', function() {
+                if ($(this).is(':checked')) {
+                    $(this).attr('value', 'true');
+                } else {
+                    $(this).attr('value', 'false');
+                }
+            });
         });
     });
 }).call(this);

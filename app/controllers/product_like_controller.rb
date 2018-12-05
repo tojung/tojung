@@ -1,19 +1,18 @@
 class ProductLikeController < ApplicationController
   before_action :authenticate_user!
   def create
-    ProductLike.create(user_id: current_user.id,
-                           product_id: Product.find(params[:product_id]).id,
-                       status: true)
-    @like = ProductLike.where(user_id: current_user.id, product_id: params[:product_id])
-    @product = @product = Product.find(params[:product_id])
+    action_service = ProductLikeService.new(params)
+    action_service.create(user_id: current_user.id)
+    @like = action_service.likes(current_user: current_user)
+    @product = ProductService.new(params).product
+
     respond_to do |format|
       format.js { render locals: { like: @like } }
     end
   end
 
   def update
-    product_like = ProductLike.find(params[:product_like_id])
-    product_like.update(status: !product_like.status)
-    @product_like = product_like.status
+    action_service = ProductLikeService.new(params)
+    @product_like = action_service.update
   end
 end

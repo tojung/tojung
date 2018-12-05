@@ -1,6 +1,6 @@
-var x = '<%=escape_javascript(render :partial => "home/newcard", :locals => {:products_categorized => @products_categorized, :cdn_url => @cdn_url})%>';
+var x = '<%=escape_javascript(render :partial => "home/newcard", :locals => {:products_categorized => @products, :cdn_url => @cdn_url})%>';
 $('#empty-ment').remove();
 $('.scrolling-wrapper').replaceWith(x);
-var y = '<%=escape_javascript(render :partial => "home/newcarddesktop", :locals => {:products_categorized => @products_categorized, :cdn_url => @cdn_url})%>';
+var y = '<%=escape_javascript(render :partial => "home/newcarddesktop", :locals => {:products_categorized => @products, :cdn_url => @cdn_url})%>';
 $('.card-desktop').replaceWith(y);
 initHomeIndex();
