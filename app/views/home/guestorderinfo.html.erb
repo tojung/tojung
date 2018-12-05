@@ -1,0 +1,110 @@
+  <!-- myorder desktop-->
+    <table class="visible-lg table mt-5 font-14 w-100 ml-0 order-table mb-0">
+        <thead>
+            <tr>
+            <th scope="col">상품정보(패키지)</th>
+            <th scope="col">주문일자</th>
+            <th scope="col">결제금액(결제방법)</th>
+            <th scope="col">배송지주소</th>
+            <th scope="col">주문상태</th>
+            <th scope="col">배송상태</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% current_user.product_orders.each do |product_order| %>
+            <tr class="text-center">
+            <td>
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="delivery-img mr-3">
+                <%=image_tag(product_order.package.image0, style: "width: 50px; height: 60px;") %>
+                </div>
+                <div class="delivery-product-info">
+                <p class="delivery-name mb-0"><%=product_order.product.name%></p>
+                <p class="delivery-package mb-0"><%=product_order.package.name%></p>
+                <%if product_order.phone !=nil%>
+                <p class="delivery-phone mb-0"><%=product_order.phone%></p>
+                <p class="delivery-phone mb-0"><%=product_order.case_type%></p>
+                <div>
+            </div>
+            <%end%>
+            </td>
+            <td><%= product_order.package.created_at.to_date%></td>
+            <td>
+              <% if product_order.product_order_detail != nil %>
+                <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
+                <p class="mb-0">(<%= product_order.product_order_detail.payment_method %>)</p>
+                </td>
+                <td><p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
+                <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p></td>
+              <% end %>
+            <td><%=product_order.status%></td>
+            <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
+              <% if product_order.product.goods_dilivery_date > Time.now %>
+            <td><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</td>
+              <% elsif product_order.product_delivery != nil %>
+              <td><%= product_order.product_delivery.status %></td>
+              <%end %>
+                </tr>
+            <%end%>
+        </tbody>
+    </table>
+    <!-- // myorder desktop-->
+
+    <!-- myorder mobile-->
+    <section class="order-list-wrapper visible-xs font-12">
+      <ul class="order-list">
+      
+        <% current_user.product_orders.each do |product_order| %>
+        <li class="order-box bg-white">
+          <div class="order-box-num">
+            <p class="mb-2"><%= product_order.package.created_at.to_date%></p>
+          </div>
+          <div class="order-box-item">
+            <div class="order-box-img">
+              <%=image_tag(product_order.package.image0, style: "width: 70px; height: 84px;") %>
+            </div>
+            <div class="order-box-info-list">
+              <div class="box-info d-flex justify-content-between pb-3">
+                <div class="name-package">
+                  <p class="mb-0 font-weight-bold"><%=product_order.product.name%></p>
+                  <p class="mb-0 font-grey"><%=product_order.package.name%></p>
+                  <%if product_order.phone !=nil%>
+                  <p class="delivery-phone mb-0"><%=product_order.phone%>(<%=product_order.case_type%>)</p>
+                  <%end%>
+                </div>
+                <% if product_order.product_order_detail != nil %>
+                  <div class="order-price-method">
+                      <p class="mb-0"><%= product_order.product_order_detail.total_price %>원</p>
+                      <p class="mb-0"><%= product_order.product_order_detail.payment_method %></p>
+                    </div>
+                  <% end %>
+              </div>
+              <div class="order-status">
+                <p class="mb-0"><%=product_order.status%></p>
+              </div>
+            </div>
+          </div>
+          <div class="delivery-box d-flex">
+            <div class="delivery-title d-flex align-items-center">
+              <p class="mb-0 font-weight-bold">배송정보</p>
+            </div>
+            <% if product_order.product_order_detail != nil %>
+          <div class="delivery-info">
+              <p class="mb-0"><%=product_order.product_order_detail.address_text%></p>
+              <p class="mb-0"><%=product_order.product_order_detail.address_text2%></p>
+            </div>
+              <% end %>
+            <div class="delivery-status d-flex align-items-center justify-content-end">
+            <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
+              <% if product_order.product.goods_dilivery_date > Time.now %>
+                <p class="mb-0"><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</p>
+              <% elsif product_order.product_delivery != nil %>
+                 <p class="mb-0"><%= product_order.product_delivery.status %></p>
+              <%end %>
+            </div>
+          </div>
+        </li>
+        <%end%>
+      </ul>
+            
+    </section>
