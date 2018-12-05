@@ -1,0 +1,23 @@
+  <!-- 주문 정보 -->
+<div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
+  <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">비회원 주문 정보</h4>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="user_name" class="col-4 px-0 col-form-label"><span class="font-red">*</span>주문 고객명</label>
+      <div class="col-8 px-0">
+        <%= text_field_tag 'name', '', placeholder: '이름을 입력해 주세요.', class: 'form-control px-0', onkeydown: "if (event.keyCode == 13) { return false;}" %>
+      </div>
+    </div>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="phone_num" class="col-4 px-0 col-form-label"><span class="font-red">*</span>휴대폰 번호</label>
+      <div class="col-8 px-0">
+        <input class="form-control px-0" type="tel" name="phone_num" value="" placeholder="휴대폰 번호를 (-) 포함해서 입력해주세요" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onkeydown="if (event.keyCode == 13) { return false;}" required>
+    </div>
+    </div>
+    <div class="form-group row py-2 mb-0 mx-0">
+      <label for="user_email" class="col-4 px-0 col-form-label"><span class="font-red">*</span>이메일 주소</label>
+      <div class="col-8 px-0">
+        <input type="email" name="email" placeholder="이메일 주소를 입력해 주세요." value="" class="form-control px-0" onkeydown="if (event.keyCode == 13) { return false;}" required>
+      </div>
+    </div>
+</div>
+<button type="button" class="btn-pay-finish text-center my-4">비회원 주문 조회</button>

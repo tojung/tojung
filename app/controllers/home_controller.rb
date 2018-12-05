@@ -44,6 +44,11 @@ class HomeController < ApplicationController
     cal_uproduct_count
   end
 
+  def guestorder
+  end
+
+  def guestorderinfo
+  end
   private
 
   def read_category_list
