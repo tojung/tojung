@@ -43,5 +43,5 @@ Rails.application.routes.draw do
   get '/toss/complete' => 'payment#toss_complete'
 
   get '/best/:id' => 'home#best'
-
+  post '/push' => 'notifications#push'
 end

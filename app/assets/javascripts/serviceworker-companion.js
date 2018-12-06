@@ -45,6 +45,16 @@ navigator.serviceWorker.ready
                                             message: 'Hey!'
                                         };
                                         console.log(body);
+                                        fetch('/push', {
+                                            method: 'POST',
+                                            body: JSON.stringify(body)
+                                        })
+                                            .then((res) => {
+                                                console.log(res)
+                                            })
+                                            .catch((err) => {
+                                                console.log(err)
+                                            })
                                     })
                             })
                     }
