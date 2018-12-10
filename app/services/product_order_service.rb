@@ -16,6 +16,7 @@ class ProductOrderService
     create_product_delivery
     create_product_order_detail
     relate_models
+    increase_funded_count
     update_password # for guest
   end
 
@@ -28,6 +29,10 @@ class ProductOrderService
     @product.save
   end
 
+  def increase_funded_count
+    @product.funded_count += 1
+    @product.save
+  end
   private
 
   def update_password
