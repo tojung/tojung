@@ -21,23 +21,27 @@ function onInstall(event) {
       <% end %>
     <% rescue %>
     <% end %>
-
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(function prefill(cache) {
-        return cache.addAll([
-          'https://s3.ap-northeast-2.amazonaws.com/static.channel.io/emoji/v3/emojis.min.json',
-          'https://fonts.googleapis.com/css?family=Noto+Sans:400,700',
-          'https://fonts.googleapis.com/earlyaccess/notosanskr.css'
-      ]);
-    })
-  );
-  event.waitUntil(
-      caches.keys().then(function(cacheNames) {
-          cacheNames.forEach(function(cacheName) {
-              caches.delete(cacheName);
-          });
-      })
-  )
+    try {
+          event.waitUntil(
+            caches.open(CACHE_NAME).then(function prefill(cache) {
+                return cache.addAll([
+                  'https://s3.ap-northeast-2.amazonaws.com/static.channel.io/emoji/v3/emojis.min.json',
+                  'https://fonts.googleapis.com/css?family=Noto+Sans:400,700',
+                  'https://fonts.googleapis.com/earlyaccess/notosanskr.css'
+              ]);
+            })
+          );
+          event.waitUntil(
+              caches.keys().then(function(cacheNames) {
+                  cacheNames.forEach(function(cacheName) {
+                      caches.delete(cacheName);
+                  });
+              })
+          )
+    }catch (e) {
+        console.log(e);
+        console.log("install err catch");
+    }
 }
 
 function onActivate(event) {
@@ -86,22 +90,22 @@ function onFetch(event) {
                       }
                       var fetchRequest = event.request.clone();
                       return fetch(fetchRequest).then(
-                          function (response) {
-                              // Check if we received a valid response
-                              if(!response || response.status == 0) {
-                                  return response;
-                              }
-                              // console.log(response.clone())
-                              var responseToCache = response.clone();
+                        function (response) {
+                            // Check if we received a valid response
+                            if (!response || response.status == 0) {
+                                return response;
+                            }
+                            // console.log(response.clone())
+                            var responseToCache = response.clone();
 
-                              caches.open(CACHE_NAME)
-                                  .then(function(cache){
-                                      cache.put(event.request.url, responseToCache);
-                                  });
+                            caches.open(CACHE_NAME)
+                                .then(function (cache) {
+                                    cache.put(event.request.url, responseToCache);
+                                });
 
-                              return response;
-                          }
-                      )
+                            return response;
+                        }
+                    )
                   })
       )
         event.waitUntil(
@@ -109,23 +113,23 @@ function onFetch(event) {
                 .then(refresh)
         )
 
+      event.waitUntil(
+          caches.keys().then(function(cacheNames) {
+              return Promise.all(
+                  cacheNames.filter(function(cacheName) {
+                      return cacheName.indexOf(CACHE_VERSION) !== 0;
+                  }).map(function(cacheName) {
+                      console.log(cacheName);
+                      console.log("delete");
+                      return caches.delete(cacheName);
+                  })
+              );
+          })
+      )
     }catch (e) {
         console.log(e);
         console.log("fetch err");
     }
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.filter(function(cacheName) {
-                    return cacheName.indexOf(CACHE_VERSION) !== 0;
-                }).map(function(cacheName) {
-                    console.log(cacheName);
-                    console.log("delete");
-                    return caches.delete(cacheName);
-                })
-            );
-        })
-    )
 }
 
 self.addEventListener('install', onInstall);
