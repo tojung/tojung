@@ -2,6 +2,7 @@ class ProductOrderController < ApplicationController
   def new
     read_product
     read_package
+    check_package_stock
     read_user_infos
     read_phone_case
   end
@@ -20,6 +21,10 @@ class ProductOrderController < ApplicationController
   end
 
   private
+
+  def check_package_stock
+    redirect_to '/product/' + params[:product_id] if @package.remain_count.zero?
+  end
 
   def read_package
     @package = PackageService.new(params).package
