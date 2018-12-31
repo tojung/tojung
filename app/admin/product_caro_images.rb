@@ -17,10 +17,5 @@ ActiveAdmin.register ProductCaroImage do
     input 'num', label: '순서'
     actions
   end
-  controller do
-    def create
-      super
-      Rails.cache.clear
-    end
-  end
+
 end

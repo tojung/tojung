@@ -75,7 +75,7 @@ ActiveAdmin.register Package do
       super
       product_option_ids = @_params[:package][:product_option_ids]
       create_checked_options(@package.product_options, product_option_ids)
-      Rails.cache.clear
+      # Rails..clear
     end
 
     def update
@@ -83,7 +83,7 @@ ActiveAdmin.register Package do
       product_option_ids = @_params[:package][:product_option_ids]
       delete_uncheck_options(@package.product_options, product_option_ids)
       create_checked_options(@package.product_options, product_option_ids)
-      Rails.cache.clear
+      # Rails.cache.clear
     end
 
     private

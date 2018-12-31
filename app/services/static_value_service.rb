@@ -28,7 +28,7 @@ class StaticValueService
                        '8' => 'NEW' }
   end
 
-  def mail_title(maker_response: maker_response)
+  def mail_title(maker_response: )
     title = "#{maker_response.product.assos}에 계류중인
     #{maker_response.product.bill_id}의안인
     '#{maker_response.product.bill_name}'이 왜 통과되지않나요?"
@@ -36,7 +36,7 @@ class StaticValueService
     title
   end
 
-  def mail_content(maker_response: maker_response)
+  def mail_content(maker_response: )
     content = "안녕하세요, #{maker_response.maker.name}의원님!
 #{maker_response.product.assos}에 계류중인
     #{maker_response.product.bill_id}의안인

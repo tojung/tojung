@@ -1,4 +1,3 @@
-<% cache @products do %>
 <% @products.each do |product|%>
 <div class="card border-0 mb-md-3 mx-md-1">
   <a href="/product/<%=product.id%>" class="d-block h-100">
@@ -18,4 +17,3 @@
   </a>
 </div>
 <%end%>
-<% end %>

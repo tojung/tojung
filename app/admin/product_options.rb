@@ -24,15 +24,4 @@ ActiveAdmin.register ProductOption do
     column '판매량', :selled_count
     column '가격', :price
   end
-  controller do
-    def create
-      super
-      Rails.cache.clear
-    end
-
-    def update
-      super
-      Rails.cache.clear
-    end
-  end
 end

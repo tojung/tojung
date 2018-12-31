@@ -157,7 +157,7 @@ ActiveAdmin.register Product do
           puts '?!' * 1000
         end
       end
-      Rails.cache.clear
+      # Rails.cache.clear
     end
 
     def update
@@ -199,7 +199,7 @@ ActiveAdmin.register Product do
           puts '?!' * 1000
         end
       end
-      Rails.cache.clear
+      # Rails.cache.clear
     end
   end
 end

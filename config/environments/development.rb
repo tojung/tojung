@@ -15,11 +15,12 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
-    config.cache_store = :redis_store, {
-      expires_in: 1.hour,
-      namespace: 'cache',
-      redis: { host: 'localhost', port: 6379, db: 0 }
-    }
+    # config.cache_store = :redis_store, {
+    #   expires_in: 1.hour,
+    #   namespace: 'cache',
+    #   redis: { host: 'localhost', port: 6379, db: 0 }
+    # }
+    # config.cache_store = :null_store
 
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
@@ -27,7 +28,7 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
 
-    config.cache_store = :null_store
+    # config.cache_store = :null_store
   end
 
   # Don't care if the mailer can't send.
