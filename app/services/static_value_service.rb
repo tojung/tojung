@@ -28,7 +28,7 @@ class StaticValueService
                        '8' => 'NEW' }
   end
 
-  def mail_title(maker_response: )
+  def mail_title(maker_response:)
     title = "#{maker_response.product.assos}에 계류중인
     #{maker_response.product.bill_id}의안인
     '#{maker_response.product.bill_name}'이 왜 통과되지않나요?"

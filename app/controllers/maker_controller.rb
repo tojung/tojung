@@ -8,7 +8,7 @@ class MakerController < ApplicationController
   # POST '/maker/:maker_response_id/send_mail'
   def send_mail
     find_maker_response
-    send
+    _send_simple
     logging
     redirect_to "/product/#{@maker_response.product.id}"
   end
@@ -25,12 +25,12 @@ class MakerController < ApplicationController
   def find_response_and_title_content
     find_maker_response
     service = StaticValueService.new
-    @maker_response = MakerResponse.find(params[:maker_response_id])
+    # @maker_response = MakerResponse.find(params[:maker_response_id])
     @title = service.mail_title(maker_response: @maker_response)
     @content = service.mail_content(maker_response: @maker_response)
   end
 
-  def send
+  def _send_simple
     MakerMailer.simple_send(current_user.email,
                             @maker_response.maker.email,
                             params[:title],
