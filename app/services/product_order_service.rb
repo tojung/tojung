@@ -33,6 +33,12 @@ class ProductOrderService
     @product.funded_count += 1
     @product.save
   end
+
+  def read_product_order
+    raise 'product_order already exist. call .product_order method' unless @product_order.nil?
+    @product_order = ProductOrder.find(@params[:product_order_id])
+  end
+
   private
 
   def update_password

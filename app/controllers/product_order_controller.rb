@@ -23,7 +23,9 @@ class ProductOrderController < ApplicationController
   private
 
   def check_package_stock
-    redirect_to '/product/' + params[:product_id] if @package.remain_count.zero?
+    if @package.remain_count.zero?
+      redirect_to "/product/#{params[:product_id]}", flash: { notice: '해당 패키지는 품절되었습니다.' }
+    end
   end
 
   def read_package

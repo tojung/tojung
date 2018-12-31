@@ -3,6 +3,7 @@ class ProductLikeController < ApplicationController
   def create
     action_service = ProductLikeService.new(params)
     action_service.create(user_id: current_user.id)
+
     @like = action_service.likes(current_user: current_user)
     @product = ProductService.new(params).product
 

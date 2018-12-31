@@ -13,8 +13,9 @@ class HomeController < ApplicationController
   end
 
   def categorize
+    @products = ProductService.new(params).reads_by_category_id
     @num = params[:category_id]
-    products_all_condition ? read_products_all : read_products_by_category
+    # products_all_condition ? read_products_all : read_products_by_category
   end
 
   def sidebar_categorize
@@ -36,8 +37,12 @@ class HomeController < ApplicationController
 
   # GET '/best/:id'
   def best
-    @bill = BestBill.find(params[:id])
-    @footchairs = Maker.where(assos: @bill.assos)
+    action_service = BestBillService.new(params)
+    @bill = action_service.read_bill
+    @footchairs = action_service.reads_maker
+
+    raise 'bill is nil' if @bill.nil?
+    raise 'footchairs is nil' if @footchairs.nil?
   end
 
   def myorder
@@ -45,10 +50,6 @@ class HomeController < ApplicationController
   end
 
   private
-
-  def read_category_list
-    @category_list = StaticValueService.new.category_list
-  end
 
   def cal_uproduct_count
     @ordered_product_count = 0
@@ -60,26 +61,19 @@ class HomeController < ApplicationController
   end
 
   def read_images
-    mainimage = Mainimage.last
-    @mainimage0 = mainimage.image0
-    @mainimage1 = mainimage.image1
-    @mainimage2 = mainimage.image2
-    @mainimage3 = mainimage.image3
-    @mainimage4 = mainimage.image4
-    @md_link0 = mainimage.md_link0
-    @md_link1 = mainimage.md_link1
+    mainimages = MainimageService.new.read_last
+
+    @mainimage0 = mainimages[:image0]
+    @mainimage1 = mainimages[:image1]
+    @mainimage2 = mainimages[:image2]
+    @mainimage3 = mainimages[:image3]
+    @mainimage4 = mainimages[:image4]
+    @md_link0 = mainimages[:md_link0]
+    @md_link1 = mainimages[:md_link1]
   end
 
   def read_products_all
-    @products = Product.where(visible: [true, 1]).order(funded_count: :desc)
+    @products = ProductService.new(nil).read_all
   end
 
-  def products_all_condition
-    (params[:category_id] == '7') || (params[:category_id] == '8')
-  end
-
-  def read_products_by_category
-    read_category_list
-    @products = Product.where(category: @category_list[params[:category_id]])
-  end
 end

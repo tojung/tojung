@@ -1,6 +1,16 @@
 class ProductService
   def initialize(params)
+    return if params.nil?
     @product_id = params[:product_id]
+    @params = params
+  end
+
+  def read_all
+    read_all_sorted_desc_by_funded_count
+  end
+
+  def reads_by_category_id
+    products_all_condition ? read_all_sorted_desc_by_funded_count : read_products_by_category
   end
 
   def infos
@@ -19,7 +29,7 @@ class ProductService
     @product_orders = @product.product_orders
     funded_money = 0
     @product_orders.each do |product_order|
-      if product_order.status.include? "완료"
+      if product_order.status.include? '완료'
         funded_money += product_order.product_order_detail.total_price
       end
     end
@@ -49,5 +59,21 @@ class ProductService
     @product_caros = ProductCaroImage
                      .where(product_id: @product_id)
                      .order(:num)
+  end
+
+  private
+
+  def products_all_condition
+    raise 'category_id is not setting' if @params[:category_id].nil?
+    (@params[:category_id] == '7') || (@params[:category_id] == '8')
+  end
+
+  def read_products_by_category
+    category_list = StaticValueService.new.category_list
+    @products = Product.where(category: category_list[@params[:category_id]])
+  end
+
+  def read_all_sorted_desc_by_funded_count
+    @products = Product.where(visible: [true, 1]).order(funded_count: :desc)
   end
 end
