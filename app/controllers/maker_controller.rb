@@ -25,6 +25,7 @@ class MakerController < ApplicationController
   def find_response_and_title_content
     find_maker_response
     service = StaticValueService.new
+    @maker_response = MakerResponse.find(params[:maker_response_id])
     @title = service.mail_title(maker_response: @maker_response)
     @content = service.mail_content(maker_response: @maker_response)
   end
