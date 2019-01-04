@@ -1,7 +1,7 @@
 <% if current_user == nil %>
     <h4 class="font-18 font-weight-bold py-2 mb-0 non-user">*비회원 주문</h4>
   <% end %>
-<%= form_tag '/product_order',data: { disable_with: false } do %>
+<%= form_tag '/product_order', data: { disable_with: false } do %>
   <button type="button" class="btn btn-light order-btn mb-3"  onclick="fuckin_submit()">주문하기</button>
     <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
     <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>

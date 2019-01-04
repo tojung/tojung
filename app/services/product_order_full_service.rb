@@ -58,6 +58,6 @@ class ProductOrderFullService
     product_order = product_order_service.product_order
 
     return false if @status != '결제완료' || product_order.package.price.zero?
-    PaymentService.new(product_order: product_order).validate
+    PaymentValidateService.new(product_order: product_order).validate
   end
 end

@@ -1,4 +1,5 @@
 class ProductOrderController < ApplicationController
+  def index; end
   def new
     read_product
     read_package

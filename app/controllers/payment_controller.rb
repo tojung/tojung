@@ -2,6 +2,12 @@ require 'net/http'
 require 'json'
 
 class PaymentController < ApplicationController
+  def create
+    action_service = PaymentCreateService.new(params: params)
+    result = action_service.call
+    render json: { 'status': result }
+  end
+
   def toss_complete
     action_service = TossPaymentService.new(params: params)
     action_service.complete

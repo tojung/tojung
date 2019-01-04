@@ -1,4 +1,4 @@
-class PaymentService
+class PaymentValidateService
   attr_reader :product_order
   def initialize(product_order:)
     @product_order = product_order
