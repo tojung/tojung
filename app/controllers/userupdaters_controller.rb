@@ -1,5 +1,5 @@
 class UserupdatersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!, only: %i[ad]
 
   # GET /additional_info
   def additional
@@ -17,7 +17,7 @@ class UserupdatersController < ApplicationController
     if params[:id] != current_user.id.to_s
       redirect_to '/'
       nil
-  end
+    end
   end
 
   def update
