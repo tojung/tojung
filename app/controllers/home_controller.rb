@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   # noinspection RailsParamDefResolve
   before_action :authenticate_user!, only: %i[mypage myorder]
-  before_action :require_more_data
+  before_action :require_more_data, only: %i[home]
+
   # GET '/' 메인 페이지
   def index
     read_images
