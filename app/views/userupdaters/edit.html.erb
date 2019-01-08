@@ -8,7 +8,7 @@
   </div>
 
   <div class="field mb-3">
-    <% if current_user.address_num < 10000 || current_user.address_num == nil || current_user.address_num == "" %>
+    <% if current_user.address_num == nil || current_user.address_num == "" current_user.address_num < 10000 %>
         <input type="text" id="sample2_postcode" placeholder="우편번호" value="0<%= current_user.address_num %>" name="address_num" pattern="[0-9]{5}" required>
     <% else %>
 <input type="text" id="sample2_postcode" placeholder="우편번호" value="<%= current_user.address_num %>" name="address_num" pattern="[0-9]{5}" required>
@@ -36,8 +36,11 @@
     <img src="<%= current_user.image0 %>" class="profile-img-edit mb-3" id="profileImg">
     <div class="custom-file h-100">
       <input type="file" class="custom-file-input" id="inputGroupFile02" onchange="fileName(this);" name="image0">
-
-      <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><%= current_user.image0.path if current_user.image0 != nil %></label>
+      <% begin %>
+        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><%= current_user.image0.path if current_user.image0 != nil %></label>
+      <% rescue %>
+        <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"></label>
+       <% end %>
     </div>
   </div>
   <div class="field mb-3">
