@@ -150,3 +150,7 @@ function category_func(category_list_num) {
         });
     });
 }).call(this);
+
+function noticeHide(){
+    $('.main-notice').hide();
+}

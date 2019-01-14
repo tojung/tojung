@@ -464,3 +464,32 @@ span.or{
 .delivery-status{
   width: 22%;
 }
+
+.main-notice{
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(209, 42, 45, 0.81);
+  height: 64px;
+  width: 100vw;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.main-notice-content{
+  font-size: 16px;
+  padding-right: 40px;
+}
+
+@media (max-width: 768px){
+  .main-notice-content{
+    font-size: 12px;
+    padding-right: 20px;
+  }
+}
+
+.main-notice-exit{
+  cursor: pointer;
+}
