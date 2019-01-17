@@ -246,14 +246,22 @@ li:hover{
 }
 
 .table{
-  margin-left: 50px;
-  width: 80%;
+  width: 310px;
+  margin: 0 auto;
 }
 
 .table th, .table td{
   border: none;
   padding: 0.25rem;
   font-weight: normal;
+}
+
+.table th{
+  text-align: right;
+}
+
+.table td{
+  padding-left: 16px !important;
 }
 
 .banner-line{
