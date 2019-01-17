@@ -480,8 +480,35 @@ li:hover{
   padding-bottom: 32px;
 }
 
+.ready-image:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90vw;
+  margin: 62px auto 0 auto;
+  width: 1000px;
+  z-index: 1;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(136, 136, 136, 0.76) 47%, #000000);
+}
+
+@media screen and (max-width: 768px){
+  .ready-image:after{
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .ready-image:after{
+    width: auto;
+  }
+}
+
 .image-text{
   width: 50%;
+  z-index: 2;
 }
 
 .ready-container{
@@ -559,8 +586,22 @@ li:hover{
   padding-bottom: 66px;
 }
 
+.ready-bill-title-box{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.ready-bill-title{
+  width: 80%;
+  margin-top: -24px;
+}
+
 .input-group{
   height: 100px;
+}
+
+.comment-box{
+  border-top: 1px solid #ebebeb;
 }
 
 .form-control.ready-form[placeholder]{

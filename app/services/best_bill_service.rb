@@ -1,5 +1,5 @@
 class BestBillService
-  def initialize(params:)
+  def initialize(params: params)
     @params = params
   end
 
@@ -15,11 +15,11 @@ class BestBillService
 
   private
 
-  def _read_bill_by_id(bill_id:)
+  def _read_bill_by_id(bill_id)
     @bill = BestBill.find(bill_id)
   end
 
-  def _reads_maker_by_bill(bill:)
+  def _reads_maker_by_bill(bill)
     @makers = Maker.where(assos: bill.assos)
   end
 end
