@@ -216,6 +216,10 @@ button{
    .font-sm-10{
      font-size: 10px !important;
    }
+   
+   .font-sm-12{
+    font-size: 12px !important;
+   }
 
  }
  /* Header */
