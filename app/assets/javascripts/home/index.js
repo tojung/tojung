@@ -150,3 +150,19 @@ function category_func(category_list_num) {
         });
     });
 }).call(this);
+
+function noticeHide(){
+    $('.main-notice').hide();
+}
+
+function expand(){
+    $(document).ready(function(){
+        $('.solution').toggleClass('open');
+        if($('.solution').hasClass('open')){
+            $('#expandBtn').html("접기");
+        }
+        else{
+            $('#expandBtn').html("펼쳐 보기");
+        }
+    });
+}

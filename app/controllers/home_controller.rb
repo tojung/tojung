@@ -38,7 +38,7 @@ class HomeController < ApplicationController
 
   # GET '/best/:id'
   def best
-    action_service = BestBillService.new(params)
+    action_service = BestBillService.new(params: params)
     @bill = action_service.read_bill
     @footchairs = action_service.reads_maker
 

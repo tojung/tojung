@@ -104,6 +104,14 @@
    font-size: 24px !important;
  }
 
+ .font-36{
+   font-size: 36px !important;
+ }
+
+ .font-dark{
+   color: #434343 !important;
+ }
+
  a{
    text-decoration: none;
    color: black !important;
@@ -215,6 +223,10 @@ button{
 
    .font-sm-10{
      font-size: 10px !important;
+   }
+   
+   .font-sm-12{
+    font-size: 12px !important;
    }
 
  }
