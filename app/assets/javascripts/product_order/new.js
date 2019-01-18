@@ -119,7 +119,6 @@ function fuckin_hard_case(select_this, package_price,delivery_price) {
         $('#jellyCase').filter('.on').removeClass('on').addClass('off');
         $('#hardCase').removeClass('off').addClass('on');
     }
-    console.log('fuckin hard case');
     if(select_this.value === '하드케이스'){
         var m=parseInt(package_price);
         $('input[name=product_price]').attr('min', m+3000);
@@ -179,14 +178,12 @@ function fuckin_submit(){
         alert('제공하지않는 결제방법을 선택하셨습니다.');
         $('input[name=commit]').removeAttr('disabled')
     } else if (payment_method === '계좌이체') {
-        console.log('계좌이체');
         // return true
         // $('input[name=status]').attr('value', '결제대기중');
         pay_trans();
         // $('form').submit();
         //$('input[name=commit]').removeAttr('disabled')
     }else if(payment_method === '토스'){
-        console.log('토스');
         $('input[name=status]').attr('value', '결제진행중');
         $('form').submit();
     }

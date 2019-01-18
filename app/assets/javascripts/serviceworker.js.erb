@@ -3,7 +3,6 @@ var CACHE_VERSION = 'v16';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
-  console.log('[Serviceworker]', "Installing!", event);
 
     <% begin  %>
       <% Product.all.each do |product| %>
@@ -16,7 +15,6 @@ function onInstall(event) {
                 });
             }catch (e) {
                 console.log(e);
-                console.log("install err");
             }
       <% end %>
     <% rescue %>
@@ -52,8 +50,6 @@ function onActivate(event) {
                 cacheNames.filter(function(cacheName) {
                     return cacheName.indexOf(CACHE_VERSION) !== 0;
                 }).map(function(cacheName) {
-                    console.log(cacheName);
-                    console.log("delete");
                     return caches.delete(cacheName);
                 })
             );
@@ -63,7 +59,6 @@ function onActivate(event) {
 
 // Borrowed from https://github.com/TalAter/UpUp
 function onFetch(event) {
-    console.log("Fetch!");
     try{
       if(event.request.method != 'GET' ||
           event.request.url.includes('order') ||
@@ -119,8 +114,6 @@ function onFetch(event) {
                   cacheNames.filter(function(cacheName) {
                       return cacheName.indexOf(CACHE_VERSION) !== 0;
                   }).map(function(cacheName) {
-                      console.log(cacheName);
-                      console.log("delete");
                       return caches.delete(cacheName);
                   })
               );
@@ -128,7 +121,6 @@ function onFetch(event) {
       )
     }catch (e) {
         console.log(e);
-        console.log("fetch err");
     }
 }
 
@@ -161,7 +153,6 @@ function refresh(response) {
 }
 
 self.addEventListener('push', function (event) {
-    console.log(event)
     var jsonbody = JSON.parse(event.data && event.data.text());
 
     var title = jsonbody.title || "New Blog Post";
@@ -180,12 +171,9 @@ self.addEventListener('notificationclick', function (event) {
     var notification = event.notification;
     var action = event.action;
     var link = notification.data;
-    console.log(event);
     if (action === 'confirm') {
-        console.log('Confirm was chosen');
         notification.close();
     } else {
-        console.log(action);
         notification.close();
     }
 

@@ -101,7 +101,6 @@ function markCommas() {
         money = Number(money);
         money = money.toLocaleString();
         money = money + "원";
-        console.log(money);
         $(putMoney).html(money);
     }
 }
@@ -136,24 +135,32 @@ function category_func(category_list_num) {
             return;
         }
 
-        // alert("Welcome Index!");
-        console.log("Welcome Home Index!")
+        $('.main-notice').each(function(){
+            const notice_id = this.id // ex, notice-1
+            if(!notice_id) return
+            if(!is_notice_read(notice_id.replace("notice-", ""))){
+                let notice = $('#'+notice_id)
+                // notice를 읽지않은 경우 실행
+                notice.show("fast")
+                notice.css('display', 'flex')
+            }
+        });
+
         $(document).ready(function(){
             $('.cover').unwrap();
             $('.cover_img').get(0).play();
             $('.cover_img').get(1).play();
             $('.cover_img').get(2).play();
-//            if($('.category_flag')){
-//                console.log($('.category_flag').innerHTML)
-//            }
             initHomeIndex();
         });
     });
 }).call(this);
 
-function noticeHide(){
-    $('.main-notice').hide();
+function noticeHide(id){
+    $('#notice-'+id.toString()).hide();
+    SetCookie("notice-read"+id.toString(), "1", "300");
 }
+
 
 function expand(){
     $(document).ready(function(){
@@ -165,4 +172,43 @@ function expand(){
             $('#expandBtn').html("펼쳐 보기");
         }
     });
+}
+
+function GetCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return false;
+}
+
+function SetCookie (name, value, exdays) {
+    let d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function DeleteCookie (name) {
+    var exp = new Date();
+    exp.setTime (exp.getTime() - 1);
+    var cval = GetCookie (name);
+    document.cookie = name + "=" + cval + "; expires=" + exp.toGMTString();
+}
+
+function is_notice_read(id) {
+    // console.log("id" + id)
+    if (GetCookie('notice-read'+id.toString()) === '1') {
+        //show popup here
+        return true
+    }
+    return false
 }

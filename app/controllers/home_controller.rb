@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   # GET '/' 메인 페이지
   def index
+    read_notices
     read_images
     read_products_all
   end
@@ -75,6 +76,10 @@ class HomeController < ApplicationController
 
   def read_products_all
     @products = ProductService.new(nil).read_all
+  end
+
+  def read_notices
+    @notices = NoticeService.new.read_notices
   end
 
 end

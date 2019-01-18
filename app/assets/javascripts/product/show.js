@@ -71,10 +71,6 @@ function doBlink(){
 
 /* PRODUCT/_SHARE */
 function createlink(product_name, product_subname, image_url, web_url){
-    console.log(product_name)
-    console.log(product_subname)
-    console.log(image_url)
-    console.log(web_url)
     Kakao.Link.sendDefault({
         // container: '#kakao-link-btn',
         objectType: 'feed',
@@ -97,7 +93,6 @@ function createlink(product_name, product_subname, image_url, web_url){
             }
         ]
     });
-    console.log("SUCC");
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 }
 

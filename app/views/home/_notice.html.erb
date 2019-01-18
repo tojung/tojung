@@ -1,5 +1,6 @@
-<div class="main-notice">
-  <p class="main-notice-content mb-0">“쓰레기는 니나 먹어 멍!” 제품 배송이 일주일가량 지연되어
-    12/26에 배송 시작예정입니다. 기다려주셔서 감사합니다.</p>
-  <span class="main-notice-exit" onclick="noticeHide();">X</span>
-</div>
+<% @notices.each do |notice| %>
+  <div class="main-notice notice-hidden" id="notice-<%= notice.id %>">
+    <p class="main-notice-content mb-0"> <%= notice.name %> </p>
+    <span class="main-notice-exit" onclick="noticeHide(<%= notice.id %>);">X</span>
+  </div>
+<% end %>
