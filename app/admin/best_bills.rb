@@ -16,7 +16,7 @@ ActiveAdmin.register BestBill do
   form title: '베스트 법안 추가/수정 하기' do |_f|
     input 'category', label: '카테고리'
     input 'title', label: '페이지 제목'
-    input 'problems_content', label: '문제 상황'
+    input 'problems_content', label: '문제 상황 ( - 문제 (엔터) - 문제 (엔터) )'
     input 'main', label: '메인 법안 여부'
     input 'designer_name', label: '디자이너 이름'
     input 'editor_name', label: '에디터 이름'

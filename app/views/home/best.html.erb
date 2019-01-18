@@ -15,7 +15,9 @@
 이런 문제가 일어나고 있습니다.</pre>
     <hr class="mt-4 banner-line ml-0">
     <ul class="problems mt-4 mb-5 pl-1">
-      <%= @bill.problems_content.gsub("\r\n", "<br />").html_safe %>
+      <% @bill.problems_content.gsub("\r\n","<br>").split('<br>').each do |content| %>
+        <li class="problem"><%= content %></li>
+      <% end %>
     </ul>
   </section>
   <!-- //문제 -->
