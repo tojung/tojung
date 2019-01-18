@@ -13,6 +13,14 @@ class BestBillService
     _reads_maker_by_bill(@bill)
   end
 
+  def self.read_bills_except_main
+    BestBill.where('main IS NULL OR main = ?', false)
+  end
+
+  def self.read_main
+    BestBill.where(main: true).last
+  end
+
   private
 
   def _read_bill_by_id(bill_id)
@@ -21,5 +29,9 @@ class BestBillService
 
   def _reads_maker_by_bill(bill)
     @makers = Maker.where(assos: bill.assos)
+  end
+
+  def self.read_makers_by_assos(assos)
+    @makers = Maker.where(assos: assos)
   end
 end

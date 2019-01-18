@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     read_notices
     read_images
     read_products_all
+    read_bills
   end
 
   def search
@@ -24,6 +25,16 @@ class HomeController < ApplicationController
     redirect_to root_path(sidebar: params[:id])
   end
 
+  # GET '/best/:id'
+  def best
+    action_service = BestBillService.new(params: params)
+    @bill = action_service.read_bill
+    @raw_bill = RawBillService.find(id: @bill.bill_id)
+    @makers = BestBillService.read_makers_by_assos(@raw_bill.assos) unless @raw_bill.nil?
+
+    raise 'bill is nil' if @bill.nil?
+  end
+
   # GET '/about' about 페이지
   def about; end
 
@@ -35,16 +46,6 @@ class HomeController < ApplicationController
 
   def mypage
     cal_uproduct_count
-  end
-
-  # GET '/best/:id'
-  def best
-    action_service = BestBillService.new(params: params)
-    @bill = action_service.read_bill
-    @footchairs = action_service.reads_maker
-
-    raise 'bill is nil' if @bill.nil?
-    raise 'footchairs is nil' if @footchairs.nil?
   end
 
   def myorder
@@ -82,4 +83,8 @@ class HomeController < ApplicationController
     @notices = NoticeService.new.read_notices
   end
 
+  def read_bills
+    @bills = BestBillService.read_bills_except_main
+    @main_bill = BestBillService.read_main
+  end
 end
