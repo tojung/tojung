@@ -40,7 +40,7 @@
         <td><%=product_order.status%></td>
         <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
         <% if product_order.product.goods_dilivery_date > Time.now %>
-          <td><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</td>
+          <td><%=product_order.product.goods_dilivery_date_s %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</td>
         <% elsif product_order.product_delivery != nil %>
           <td><%= product_order.product_delivery.status %></td>
         <%end %>
@@ -97,7 +97,7 @@
           <div class="delivery-status d-flex align-items-center justify-content-end">
             <!-- 배송상태 수정 필요 배송예정일 지났을때 status로 보여주기-->
             <% if product_order.product.goods_dilivery_date > Time.now %>
-              <p class="mb-0"><%=product_order.product.goods_dilivery_date.month %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</p>
+              <p class="mb-0"><%=product_order.product.goods_dilivery_date_s %>/<%= product_order.product.goods_dilivery_date.day %>일 배송 예정</p>
             <% elsif product_order.product_delivery != nil %>
               <p class="mb-0"><%= product_order.product_delivery.status %></p>
             <%end %>

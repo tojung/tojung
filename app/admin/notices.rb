@@ -15,7 +15,7 @@ ActiveAdmin.register Notice do
     input 'name', label: '알림 내용'
     input 'end_time', as: :datepicker,
                       datepicker_options: {
-                        min_date: Time.now.to_s,
+                        min_date: '2018-11-11',
                         max_date: '+111D'
                       }, label: '종료일'
     actions
