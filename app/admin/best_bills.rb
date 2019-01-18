@@ -13,28 +13,25 @@ ActiveAdmin.register BestBill do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  form title: '법안 상품 추가/수정 하기' do |_f|
+  form title: '베스트 법안 추가/수정 하기' do |_f|
     input 'category', label: '카테고리'
     input 'title', label: '페이지 제목'
     input 'problems_content', label: '문제 상황'
     input 'main', label: '메인 법안 여부'
-    input 'designer_name', '디자이너 이름'
-    input 'editor_name', '에디터 이름'
-    input 'image_0', '메인 이미지'
+    input 'designer_name', label: '디자이너 이름'
+    input 'editor_name', label: '에디터 이름'
+    input 'image_0', label: '메인 이미지'
 
-    input 'bill_id', '의안번호'
-    input 'content', '법안 핵심 내용'
+    input 'bill_id', label: '의안번호'
+    input 'content', label: '법안 핵심 내용'
     input 'conference_time', label: '회의횟수'
 
     input 'conference_doc', label: '법안 심사회의록'
     input 'review_doc', label: '검토 보고서'
 
-    input 'sangjung_date', as: :datepicker,
-          datepicker_options: {
-              min_date: '2000-11-11',
-              max_date: '+9111D'
-          }, label: '법안 상정된 날짜'
+    input 'sangjung_time', label: '상정에 걸린기간'
 
     actions
   end
+
 end
