@@ -10,7 +10,7 @@ class BillCommentsController < ApplicationController
   def destroy
     BillCommentService.destroy(user: current_user, params: params)
 
-    redirect_to "/best/#{params[:best_bill_id]}"
+    redirect_to "/best/#{params[:best_bill_id]}#comment"
   end
 
   def update; end
