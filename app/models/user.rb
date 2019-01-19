@@ -8,6 +8,8 @@ class User < ApplicationRecord
   mount_uploader :image0, ImageUploader
   has_many :product_orders
   has_many :product_likes
+  has_many :bill_comments
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable,

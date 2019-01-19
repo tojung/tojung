@@ -31,7 +31,7 @@ class HomeController < ApplicationController
     @bill = action_service.read_bill
     @raw_bill = RawBillService.find(id: @bill.bill_id)
     @makers = BestBillService.read_makers_by_assos(@raw_bill.assos) unless @raw_bill.nil?
-
+    @comments = BillCommentService.comments(best_bill_id: params[:id])
     raise 'bill is nil' if @bill.nil?
   end
 

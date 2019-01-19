@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190118223737) do
+ActiveRecord::Schema.define(version: 20190118233612) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -67,44 +67,12 @@ ActiveRecord::Schema.define(version: 20190118223737) do
     t.datetime "sangjung_date"
   end
 
-  create_table "bills", force: :cascade do |t|
-    t.text "title"
-    t.text "serial"
-    t.text "summary"
-    t.text "category"
-    t.text "main_footchair"
-    t.text "status"
-    t.text "yes"
-    t.text "no"
-    t.text "url"
-    t.text "url2"
-    t.text "whocate"
-    t.text "proposeday"
-    t.text "referday"
-    t.text "period"
-    t.text "hwp"
-    t.text "pdf"
-    t.text "footchairs"
-    t.text "count"
-    t.text "simdate"
+  create_table "bill_comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "content"
+    t.integer "best_bill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "assos"
-    t.text "keyword"
-    t.text "keyword2"
-    t.text "keyword3"
-    t.text "newkey1"
-    t.text "newkey2"
-    t.text "newkey3"
-    t.text "newkey4"
-    t.text "newkey5"
-    t.text "newkey6"
-    t.text "category1"
-    t.text "categoy2"
-    t.text "category3"
-    t.text "category4"
-    t.text "category5"
-    t.index ["id"], name: "sqlite_autoindex_bills_1", unique: true
   end
 
   create_table "identities", force: :cascade do |t|

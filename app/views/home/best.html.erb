@@ -103,30 +103,49 @@ NEXT 캠페인으로 선정됩니다.</pre>
     <hr class="mt-3 banner-line2 ml-0">
   </section>
   <!-- //좋아요 -->
-
+  <%# form_tag '/bill_comments' do %>
+    <%#= hidden_field_tag 'user_id', current_user.id if !current_user.nil? %>
+    <%#= hidden_field_tag 'best_bill_id', params[:id] %>
   <!-- 댓글 -->
   <section class="mb-5">
-    <div class="input-group mb-4">
-      <input type="text" class="form-control ready-form" placeholder="로그인 후 글을 남기실 수 있습니다." aria-label="Recipient's username" aria-describedby="button-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary text-white" type="button" id="button-addon2">등록</button>
+    <%= form_tag '/bill_comments' do %>
+      <%= hidden_field_tag 'user_id', current_user.id if !current_user.nil? %>
+      <%= hidden_field_tag 'best_bill_id', params[:id] %>
+      <%= token_tag %>
+
+      <div class="input-group mb-4" id="comment">
+        <% if current_user.nil? %>
+          <input type="text" onclick="location.href='/users/sign_in'" class="form-control ready-form" placeholder="로그인 후 글을 남기실 수 있습니다." aria-label="Recipient's username" aria-describedby="button-addon2">
+        <% else %>
+          <input type="text" name="content" class="form-control ready-form" placeholder="글을 남기실 수 있습니다." aria-label="Recipient's username" aria-describedby="button-addon2">
+        <% end %>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary text-white" id="button-addon2">등록</button>
+        </div>
       </div>
-    </div>
+    <% end %>
     <!-- comment each do  -->
-    <div class="comment-box font-16 font-sm-12 px-2 py-3">
-      <div class="comment-info d-flex justify-content-between mb-2">
-        <div class="comment-info-1 d-flex">
-          <p class="mb-0 mr-3">2018.10.24</p>
-          <p class="mb-0">yeinkim</p>
+    <% @comments.each do |comment| %>
+      <div class="comment-box font-16 font-sm-12 px-2 py-3">
+        <div class="comment-info d-flex justify-content-between mb-2">
+          <div class="comment-info-1 d-flex">
+            <p class="mb-0 mr-3">2018.10.24</p>
+            <p class="mb-0"><%= comment.user.name %></p>
+          </div>
+          <% if !current_user.nil? && current_user.id == comment.user.id %>
+              <%= form_tag "/bill_comments/#{comment.id}", method: 'delete' do %>
+                <%= token_tag %>
+                <div class="comment-info-2">
+                  <button class="mb-0">삭제하기</button>
+                </div>
+              <% end %>
+          <% end %>
         </div>
-        <div class="comment-info-2">
-          <p class="mb-0">삭제하기</p>
+        <div class="comment-content">
+          <p class="mb-0"><%= comment.content %></p>
         </div>
       </div>
-      <div class="comment-content">
-        <p class="mb-0">와 이게 말이 되냐 진짜 어이없어서 말이 안나온다. 백만번 청원합니다.  다들 동참해주세요.</p>
-      </div>
-    </div>
+    <% end %>
     <!-- comment each do end-->
   </section>
 
