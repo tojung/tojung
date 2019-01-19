@@ -1,18 +1,19 @@
 /* PRODUCT/_PRODUCT_INFO */
 function packageDropdown(item, product_id){
     $(document).ready(function () {
-
         var x = $(item).html();
         $('#packageButton').html(x);
         $('#packageContainer').html(x);
         $('#packageContainer').addClass('package-box2 my-3');
         $('#packageContainer > .package-info').removeClass('d-flex');
+        $('#packageContainer > .package-info').addClass('my-3');
         $('#packageContainer > .package-info > .package-info-1 > .package-name').unwrap();
         $('#packageContainer > .package-item').removeClass('hide').addClass('show');
         var pid = $("#packageButton").children()[0].id;
         $('#pay-link-lg').attr("href","/product_order/new?product_id="+ product_id.toString() +"&package_id="+pid);
     });
 }
+
 
 // '패키지를 선택하세요' alert
 function packageSelected(){
