@@ -1,14 +1,127 @@
+<!--<div class="pro-info-xs visible-xs">-->
+<!--  <h4 class="font-18 font-weight-bold"><%#= @product.name %></h4>-->
+<!--  <p class="font-14"><%#= @product.subname %></p>-->
+<!--   <div class="d-flex font-16 font-weight-bold justify-content-between">-->
+<!--    <span class="funding-money"><%#= @product.funded_money %>원</span>-->
+<!--    <span class="font-red"><%#= @product.funded_count %>명</span>-->
+    <%# if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
+<!--      <span>상시펀딩중</span>-->
+      <%# else %>
+<!--      <span>광고 펀딩 <%#= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>-->
+  <%# end %>
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="d-flex visible-lg py-3 pro-info-wrapper justify-content-center">-->
+  <%#=  image_tag(@cdn_url + @product.image0.path, class: "pro-img visible-lg") %>
+<!--  <div class="pro-info">-->
+<!--    <div class="product-title">-->
+<!--      <h4 class="font-24 font-weight-bold"><%#= @product.name %></h4>-->
+<!--      <p class="font-18"><%#= @product.subname %></p>-->
+<!--    </div>-->
+<!--     <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">-->
+<!--      <span class="funding-money"><%#= @product.funded_money %>원</span>-->
+<!--      <span class="font-red"><%#= @product.funded_count %> 명</span>-->
+      <%# if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
+<!--        <span>상시펀딩중</span>-->
+      <%# else %>
+<!--        <span>광고 펀딩 <%#= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>-->
+      <%# end %>
+<!--    </div>-->
+
+<!--    <div class="dropdown my-3 w-100" id="myDropdown">-->
+<!--      <button type="button" id="packageButton" class="d-flex justify-content-between btn btn-white text-left dropdown-toggle d-flex justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          <div class="package-info" id="package-default">-->
+<!--            <span>패키지 선택하기</span>-->
+<!--          </div>-->
+<!--          <span class="glyphicon glyphicon-chevron-down"></span>-->
+<!--      </button>-->
+
+<!--      <ul class="dropdown-menu w-100 py-0" aria-labelledby="packageButton">-->
+        <%# @product.packages.each do |package|%>
+<!--          <%#if package.remain_count == 0%> <!-- 품절시 -->-->
+<!--          <li class="d-flex package-box bg-overlay" onclick="packageDropdown(this, <%#= @product.id %>);">-->
+<!--            <div class="soldout-text">품절</div>-->
+          <%#else%>
+<!--          <li class="d-flex package-box" onclick="packageDropdown(this, <%#= @product.id %>);">-->
+          <%#end%>
+            <%#=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3 hide", id: package.id) if package.image0.path != nil%>
+<!--              <div class="package-info m-6 z-1 w-100 d-flex justify-content-between">-->
+<!--                <div class="package-info-1 d-flex">-->
+<!--                  <p class="mb-0 font-weight-bold mr-3 package-name"><%#= package.name %></p>-->
+<!--                  <p class="mb-0 mr-3"><%#= package.content.gsub("\r\n", "<br />").html_safe %></p>-->
+<!--                </div>-->
+<!--                <p class="mb-0 font-red font-weight-bold package-price"><%#= package.price %>원</p>-->
+<!--              </div>-->
+<!--          </li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+    <%# @product.packages.each do |package|%>
+<!--    <li class="d-flex" id="packageContainer">-->
+<!--    </li>-->
+    <%# end %>
+<!--    <div class="buttons">-->
+<!--      <div class="d-flex">-->
+<!--        <div class="dropdown dropdown-share">-->
+<!--          <button class="share-button dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공유하기</button>-->
+<!--          <ul class="dropdown-menu" id="shareDropdown">-->
+<!--            <li class="d-block">-->
+<!--              <a id="kakao-link-btn" href='javascript:createlink("<%#= @product.name.gsub("'", "") %>","<%#= @product.subname %>","<%#= @cdn_url + @product.image0.path  if @product.image0.path != nil%>",-->
+<!--                                                       "<%#= request.base_url + request.original_fullpath %>");'>-->
+              <%#=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
+<!--              </a>-->
+<!--            </li>-->
+<!--            <li class="d-block">-->
+<!--              <a href="https://www.facebook.com/sharer/sharer.php?u=<%#= request.base_url + request.original_fullpath %>&amp;src=sdkpreparse">-->
+                <%#=image_tag("fb.svg", class: "sns-icon d-block mx-auto mb-3")%>
+<!--              </a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--        <div class="dropdown-share" id="dropdownShare">-->
+          <%# if @like == nil %>
+          <!-- 비 로그인  -->
+            <%#= form_tag '/product_like' do %>
+              <%#= hidden_field_tag 'product_id', @product.id%>
+<!--              <button class="share-button heart" id="Heart"><%#=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>-->
+            <%# end %>
+          <%# elsif @like.empty? %>
+          <!-- 찜 생성 -->
+            <%#= form_tag '/product_like', remote: true do %>
+              <%#= hidden_field_tag 'product_id', @product.id%>
+<!--              <button class="share-button heart" id="Heart"><%#=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>-->
+            <%# end %>
+          <%# elsif @like[0].status == true  %>
+          <!-- 찜 제거 -->
+            <%#= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
+              <%#= hidden_field_tag 'product_id', @product.id%>
+<!--              <button class="share-button heart" id="Heart"><%#=image_tag("heart-red.svg", class: "heart-img")%> 찜 취소하기</button>-->
+            <%# end %>
+          <%# elsif @like[0].status == false %>
+          <!-- 찜 추가 -->
+            <%#= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
+              <%#= hidden_field_tag 'product_id', @product.id%>
+<!--              <button class="share-button heart" id="Heart" onclick=""><%#=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>-->
+            <%# end %>
+          <%#end%>
+<!--        </div>-->
+<!--      </div>-->
+<!--      <a class="d-block buy-button-lg mt-3" id="pay-link-lg" onclick="packageSelected();">내 인생으로 배송받기</a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="pro-info-xs visible-xs">
   <h4 class="font-18 font-weight-bold"><%= @product.name %></h4>
   <p class="font-14"><%= @product.subname %></p>
-   <div class="d-flex font-16 font-weight-bold justify-content-between">
+  <div class="d-flex font-16 font-weight-bold justify-content-between">
     <span class="funding-money"><%= @product.funded_money %>원</span>
     <span class="font-red"><%= @product.funded_count %>명</span>
     <% if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
       <span>상시펀딩중</span>
-      <% else %>
+    <% else %>
       <span>광고 펀딩 <%= -1*(( Time.now - @product.end_date) / 1.days).to_i %>일 남음</span>
-  <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -19,7 +132,7 @@
       <h4 class="font-24 font-weight-bold"><%= @product.name %></h4>
       <p class="font-18"><%= @product.subname %></p>
     </div>
-     <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">
+    <div class="pro-money d-flex font-18 font-weight-bold justify-content-between">
       <span class="funding-money"><%= @product.funded_money %>원</span>
       <span class="font-red"><%= @product.funded_count %> 명</span>
       <% if -1*(( Time.now - @product.end_date) / 1.days).to_i < 0 %>
@@ -31,35 +144,30 @@
 
     <div class="dropdown my-3 w-100" id="myDropdown">
       <button type="button" id="packageButton" class="d-flex justify-content-between btn btn-white text-left dropdown-toggle d-flex justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div class="package-info" id="package-default">
-            <span>패키지 선택하기</span>
-          </div>
-          <span class="glyphicon glyphicon-chevron-down"></span>
+        <div class="package-info my-auto" id="package-default">
+          <span>패키지 선택하기</span>
+        </div>
+        <span class="glyphicon glyphicon-chevron-down"></span>
       </button>
 
       <ul class="dropdown-menu w-100 py-0" aria-labelledby="packageButton">
         <% @product.packages.each do |package|%>
-          <%if package.remain_count == 0%> <!-- 품절시 -->
-          <li class="d-flex package-box bg-overlay" onclick="packageDropdown(this, <%= @product.id %>);">
-            <div class="soldout-text">품절</div>
-          <%else%>
           <li class="d-flex package-box" onclick="packageDropdown(this, <%= @product.id %>);">
-          <%end%>
             <%=image_tag(@cdn_url + package.image0.path, class: "package-item mx-3 my-3 hide", id: package.id) if package.image0.path != nil%>
-              <div class="package-info m-6 z-1 w-100 d-flex justify-content-between">
-                <div class="package-info-1 d-flex">
-                  <p class="mb-0 font-weight-bold mr-3 package-name"><%= package.name %></p>
-                  <p class="mb-0 mr-3"><%= package.content.gsub("\r\n", "<br />").html_safe %></p>
-                </div>
-                <p class="mb-0 font-red font-weight-bold package-price"><%= package.price %>원</p>
+            <div class="package-info my-auto w-100 d-flex justify-content-between">
+              <div class="package-info-1 d-flex">
+                <p class="mb-0 font-weight-bold mr-3 package-name"><%= package.name %></p>
+                <p class="mb-0 mr-3"><%= package.content.gsub("\r\n", "<br />").html_safe %></p>
               </div>
+              <p class="mb-0 font-red font-weight-bold package-price"><%= package.price %>원</p>
+            </div>
           </li>
         <% end %>
       </ul>
     </div>
     <% @product.packages.each do |package|%>
-    <li class="d-flex" id="packageContainer">
-    </li>
+      <li class="d-flex" id="packageContainer">
+      </li>
     <% end %>
     <div class="buttons">
       <div class="d-flex">
@@ -69,7 +177,7 @@
             <li class="d-block">
               <a id="kakao-link-btn" href='javascript:createlink("<%= @product.name.gsub("'", "") %>","<%= @product.subname %>","<%= @cdn_url + @product.image0.path  if @product.image0.path != nil%>",
                                                        "<%= request.base_url + request.original_fullpath %>");'>
-              <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
+                <%=image_tag("kakao.svg", class: "sns-icon d-block mx-auto my-3") %>
               </a>
             </li>
             <li class="d-block">
@@ -81,25 +189,25 @@
         </div>
         <div class="dropdown-share" id="dropdownShare">
           <% if @like == nil %>
-          <!-- 비 로그인  -->
+            <!-- 비 로그인  -->
             <%= form_tag '/product_like' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
               <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
             <% end %>
           <% elsif @like.empty? %>
-          <!-- 찜 생성 -->
+            <!-- 찜 생성 -->
             <%= form_tag '/product_like', remote: true do %>
               <%= hidden_field_tag 'product_id', @product.id%>
               <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
             <% end %>
           <% elsif @like[0].status == true  %>
-          <!-- 찜 제거 -->
+            <!-- 찜 제거 -->
             <%= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
               <button class="share-button heart" id="Heart"><%=image_tag("heart-red.svg", class: "heart-img")%> 찜 취소하기</button>
             <% end %>
           <% elsif @like[0].status == false %>
-          <!-- 찜 추가 -->
+            <!-- 찜 추가 -->
             <%= form_tag "/product_like/#{ @like[0].id }", remote: true, method: 'put' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
               <button class="share-button heart" id="Heart" onclick=""><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
