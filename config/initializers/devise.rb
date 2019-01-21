@@ -20,7 +20,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'tojung@2jung.com'
+  config.mailer_sender = 'tojung@tojung.me'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -52,7 +52,7 @@ Devise.setup do |config|
   # The same considerations mentioned for authentication_keys also apply to request_keys.
   # config.request_keys = []
   
-  config.mailer_sender = 'tojung@2jung.com'
+  config.mailer_sender = 'tojung@tojung.me'
   config.omniauth :facebook, ENV["FB_APP_ID"], ENV["FB_APP_SECRET"]
   config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH_CLIENT_ID"], ENV["GOOGLE_OAUTH_SECRET"], {
 	scope: "email"
