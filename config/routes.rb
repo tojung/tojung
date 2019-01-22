@@ -52,4 +52,8 @@ Rails.application.routes.draw do
 
   get '/best/:id' => 'home#best'
   post '/push' => 'notifications#push'
+
+  get 'maker/send'
+  get 'home/send'
+  get 'home/maker_opinion'
 end
