@@ -1,0 +1,6 @@
+<% @notices.each do |notice| %>
+  <div class="main-notice notice-hidden" id="notice-<%= notice.id %>">
+    <p class="main-notice-content mb-0"> <%= notice.name %> </p>
+    <span class="main-notice-exit" onclick="noticeHide(<%= notice.id %>);">X</span>
+  </div>
+<% end %>

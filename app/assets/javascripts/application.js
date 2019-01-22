@@ -161,8 +161,6 @@ function pay_new_test() {
     $(document).ready(function () {
         var IMP = window.IMP;
         IMP.init('imp03714372');
-        console.log('pay new start');
-        console.log($('input[name=total_price]').val())
         let my_form = $('form');
         IMP.request_pay({
             pg: 'danal_tpay',
@@ -176,7 +174,6 @@ function pay_new_test() {
             buyer_addr: $('input[name=address_text]').val(),
             buyer_postcode: $('input[name=address_num]').val()
         }, function (rsp) {
-            console.log(rsp);
             // if (rsp.success) {
                 //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
                 jQuery.ajax({
@@ -190,7 +187,6 @@ function pay_new_test() {
                     }
                 }).done(function (data) {
                     //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-                    console.log(data);
                     // data.status === 'true'
                     if ( data.status === 'true' ) {
                         var msg = '결제가 완료되었습니다.';
@@ -207,7 +203,6 @@ function pay_new_test() {
                         my_form.submit();
                         // window.location.href = '/product_order'
                     } else {
-                        console.log(data);
                         alert("Fail!");
                         alert(data);
                         $('input[name=payment_method]').attr('value','카드결제실패');
@@ -227,8 +222,6 @@ function pay_trans() {
     $(document).ready(function () {
         var IMP = window.IMP;
         IMP.init('imp03714372');
-        console.log('pay new start');
-        console.log($('input[name=total_price]').val())
         let my_form = $('form');
         IMP.request_pay({
             pg: 'danal_tpay',
@@ -242,7 +235,6 @@ function pay_trans() {
             buyer_addr: $('input[name=address_text]').val(),
             buyer_postcode: $('input[name=address_num]').val()
         }, function (rsp) {
-            console.log(rsp);
             // if (rsp.success) {
             //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
             jQuery.ajax({
@@ -256,7 +248,6 @@ function pay_trans() {
                 }
             }).done(function (data) {
                 //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-                console.log(data);
                 // data.status === 'true'
                 if ( data.status === 'true' ) {
                     var msg = '결제가 완료되었습니다.';
@@ -272,7 +263,6 @@ function pay_trans() {
                     my_form.submit();
                     // window.location.href = '/product_order'
                 } else {
-                    console.log('fail');
                     $('input[name=payment_method]').attr('value','계좌이체결제실패');
                     $('input[name=status]').attr('value', '계좌이체결제실패');
                     $('input[name=imp_uid]').attr('value', rsp.imp_uid);
@@ -289,8 +279,6 @@ function pay_phone(){
     $(document).ready(function () {
         var IMP = window.IMP;
         IMP.init('imp03714372');
-        console.log('pay new start');
-        console.log($('input[name=total_price]').val())
         let my_form = $('form');
         IMP.request_pay({
             pg: 'danal',
@@ -304,7 +292,6 @@ function pay_phone(){
             buyer_addr: $('input[name=address_text]').val(),
             buyer_postcode: $('input[name=address_num]').val()
         }, function (rsp) {
-            console.log(rsp);
             // if (rsp.success) {
             //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
             jQuery.ajax({
@@ -318,7 +305,6 @@ function pay_phone(){
                 }
             }).done(function (data) {
                 //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-                console.log(data);
                 // data.status === 'true'
                 if ( data.status === 'true' ) {
                     var msg = '결제가 완료되었습니다.';
@@ -334,7 +320,6 @@ function pay_phone(){
                     my_form.submit();
                     // window.location.href = '/product_order'
                 } else {
-                    console.log('fail');
                     $('input[name=payment_method]').attr('value','폰결제실패');
                     $('input[name=status]').attr('value', '폰결제실패');
                     $('input[name=imp_uid]').attr('value', rsp.imp_uid);

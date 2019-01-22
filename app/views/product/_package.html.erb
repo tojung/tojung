@@ -8,7 +8,7 @@
           <div class="card bg-overlay rounded-0">
             <div class="soldout-text-mobile font-12">품절</div>
         <%else%>
-          <div class="card bg-white z-1">         
+          <div class="card bg-white z-1">
         <%end%>
             <%=image_tag(@cdn_url + package.image0.path , class: "package-img overlay-behind d-block mx-auto", id: package.id) if package.image0.path != nil%>
             <div class="card-body2 overlay-behind text-center py-1 font-14">

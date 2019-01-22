@@ -1,19 +1,19 @@
 <% if current_user == nil %>
-    <h4 class="font-18 font-weight-bold py-2 mb-0 non-user">*비회원 주문</h4>
-  <% end %>
+  <h4 class="font-18 font-weight-bold py-2 mb-0 non-user">*비회원 주문</h4>
+<% end %>
 <%= form_tag '/product_order', data: { disable_with: false } do %>
   <button type="button" class="btn btn-light order-btn mb-3"  onclick="fuckin_submit()">주문하기</button>
-    <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
-    <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>
-    <%= hidden_field_tag 'payment_method', '해당없음' if @package.price == 0%>
-     <%= hidden_field_tag 'payment_method', '' if @package.price != 0 %>
+  <%= hidden_field_tag 'delivery_price', @package.delivery_price %>
+  <%= hidden_field_tag 'total_price', @package.price + @package.delivery_price %>
+  <%= hidden_field_tag 'payment_method', '해당없음' if @package.price == 0%>
+  <%= hidden_field_tag 'payment_method', '' if @package.price != 0 %>
 
-    <%= hidden_field_tag 'product_id', @product.id %>
-    <%= hidden_field_tag 'package_id', @package.id %>
-    <%= hidden_field_tag 'user_id', @user_id %>
-    <%= hidden_field_tag 'product_price', @package.price %>
-    <%= hidden_field_tag 'status', '결제완료' %>
-    <%= hidden_field_tag 'imp_uid', ''%>
+  <%= hidden_field_tag 'product_id', @product.id %>
+  <%= hidden_field_tag 'package_id', @package.id %>
+  <%= hidden_field_tag 'user_id', @user_id %>
+  <%= hidden_field_tag 'product_price', @package.price %>
+  <%= hidden_field_tag 'status', '결제완료' %>
+  <%= hidden_field_tag 'imp_uid', ''%>
   <div class="package-selected-wrapper bg-white mb-3 mx-0 px-3 py-3">
     <div class="package-selected d-flex">
       <%=image_tag(@product.image0, class: "order-img")%>
@@ -28,28 +28,28 @@
     <p class="font-14 font-weight-bold  text-right mb-2 comma-money">
       <%= @package.price %>
       <%#= number_field_tag 'product_price', @package.price, min: @package.price, onchange: 'change_product_price();', onkeydown: "if (event.keyCode == 13) { return false;}"%>원</p>
-<!--    <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>-->
+    <!--    <p class="font-12 text-right mb-0">더 많은 후원을 하고 싶다면 금액을 수정해주세요. </p>-->
     <% if @package.phone != nil && @package.phone != "" && @package.phone != "n" && @package.hard_only != true%>
       <input type="hidden" name="phone" value="">
-    <div class="d-flex justify-content-around mt-3" id="phoneCase">
-      <select name="case_type" class="select-phone" id="caseType" onchange="fuckin_hard_case(this, <%= @package.price %>, <%= @package.delivery_price %>)">
-        <option selected>케이스 종류 선택</option>
-        <option value="젤리케이스">젤리 케이스</option>
-        <option value="하드케이스">하드 케이스(+3000원)</option>
-      </select>
-      <select class="select-phone off" id="jellyCase" onchange="select_change(this)">
-        <option selected>휴대폰 기종 선택</option>
-        <%@jellycases.each do |jellycase|%>
-        <option value="<%=jellycase%>"><%=jellycase%></option>
-        <%end%>
-      </select>
-      <select class="select-phone off" id="hardCase" onchange="select_change(this)">
-        <option selected>휴대폰 기종 선택</option>
-        <%@hardcases.each do |hardcase|%>
-        <option value="<%=hardcase%>"><%=hardcase%></option>
-        <%end%>
-      </select>
-    </div>
+      <div class="d-flex justify-content-around mt-3" id="phoneCase">
+        <select name="case_type" class="select-phone" id="caseType" onchange="fuckin_hard_case(this, <%= @package.price %>, <%= @package.delivery_price %>)">
+          <option selected>케이스 종류 선택</option>
+          <option value="젤리케이스">젤리 케이스</option>
+          <option value="하드케이스">하드 케이스(+3000원)</option>
+        </select>
+        <select class="select-phone off" id="jellyCase" onchange="select_change(this)">
+          <option selected>휴대폰 기종 선택</option>
+          <%@jellycases.each do |jellycase|%>
+            <option value="<%=jellycase%>"><%=jellycase%></option>
+          <%end%>
+        </select>
+        <select class="select-phone off" id="hardCase" onchange="select_change(this)">
+          <option selected>휴대폰 기종 선택</option>
+          <%@hardcases.each do |hardcase|%>
+            <option value="<%=hardcase%>"><%=hardcase%></option>
+          <%end%>
+        </select>
+      </div>
     <% elsif @package.hard_only == true %>
       <div class="d-flex justify-content-around mt-3" id="phoneCase">
         <input type="hidden" name="case_type" value="하드케이스">
@@ -64,91 +64,91 @@
   </div>
 
   <!-- 주문 정보 -->
-<div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
-  <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">주문 고객 정보</h4>
+  <div class="order-user-info font-14 mb-3 py-3 px-3 bg-white">
+    <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">주문 고객 정보</h4>
     <div class="form-group row py-2 mb-0 mx-0">
       <label for="user_name" class="col-4 px-0 col-form-label"><span class="font-red">*</span>주문 고객명</label>
       <div class="col-8 px-0">
-<!--        <input type="text" class="form-control px-0" id="user_name" placeholder="이름을 입력해 주세요.">-->
+        <!--        <input type="text" class="form-control px-0" id="user_name" placeholder="이름을 입력해 주세요.">-->
         <% if current_user != nil %>
-           <%= text_field_tag 'name', current_user.name, placeholder: '이름을 입력해 주세요.', class: 'form-control px-0', onkeydown: "if (event.keyCode == 13) { return false;}" %>
+          <%= text_field_tag 'name', current_user.name, placeholder: '이름을 입력해 주세요.', class: 'form-control px-0', onkeydown: "if (event.keyCode == 13) { return false;}" %>
         <% else %>
           <%= text_field_tag 'name', '', placeholder: '이름을 입력해 주세요.', class: 'form-control px-0', onkeydown: "if (event.keyCode == 13) { return false;}" %>
-      <% end %>
+        <% end %>
       </div>
     </div>
     <div class="form-group row py-2 mb-0 mx-0">
       <label for="phone_num" class="col-4 px-0 col-form-label"><span class="font-red">*</span>휴대폰 번호</label>
       <div class="col-8 px-0">
-<!--        <input type="tel" class="form-control px-0" id="phone_num" placeholder="휴대폰 번호를 (-) 빼고 입력해주세요">-->
+        <!--        <input type="tel" class="form-control px-0" id="phone_num" placeholder="휴대폰 번호를 (-) 빼고 입력해주세요">-->
         <% if current_user != nil %>
-        <input class="form-control px-0" type="tel" name="phone_num" value="<%= current_user.phone_number %>" placeholder="휴대폰 번호를 (-) 포함해서 입력해주세요" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% else %>
+          <input class="form-control px-0" type="tel" name="phone_num" value="<%= current_user.phone_number %>" placeholder="휴대폰 번호를 (-) 포함해서 입력해주세요" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onkeydown="if (event.keyCode == 13) { return false;}" required>
+        <% else %>
           <input class="form-control px-0" type="tel" name="phone_num" value="" placeholder="휴대폰 번호를 (-) 포함해서 입력해주세요" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% end %>
-          </div>
+        <% end %>
+      </div>
     </div>
     <div class="form-group row py-2 mb-0 mx-0">
       <label for="user_email" class="col-4 px-0 col-form-label"><span class="font-red">*</span>이메일 주소</label>
       <div class="col-8 px-0">
-<!--        <input type="email" class="form-control px-0" id="user_email" placeholder="이메일 주소를 입력해 주세요.">-->
+        <!--        <input type="email" class="form-control px-0" id="user_email" placeholder="이메일 주소를 입력해 주세요.">-->
         <% if current_user != nil %>
           <input type="email" name="email" placeholder="이메일 주소를 입력해 주세요." value="<%= current_user.email %>" class="form-control px-0" onkeydown="if (event.keyCode == 13) { return false;}" required>
         <% else  %>
           <input type="email" name="email" placeholder="이메일 주소를 입력해 주세요." value="" class="form-control px-0" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% end %>
+        <% end %>
       </div>
     </div>
     <% if @package.price != 0 %>
-     <div class="form-group row py-2 mb-0 mx-0">
-      <label for="sample2_postcode" class="col-4 px-0 col-form-label"><span class="font-red">*</span>우편번호</label>
-      <div class="col-8 px-0">
-         <% if current_user != nil %>
-         <input class="form-control px-0" type="text" id="sample2_postcode" value="<%= current_user.address_num%>" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
+      <div class="form-group row py-2 mb-0 mx-0">
+        <label for="sample2_postcode" class="col-4 px-0 col-form-label"><span class="font-red">*</span>우편번호</label>
+        <div class="col-8 px-0">
+          <% if current_user != nil %>
+            <input class="form-control px-0" type="text" id="sample2_postcode" value="<%= current_user.address_num%>" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
           <% else %>
-          <input class="form-control px-0" type="text" id="sample2_postcode" value="" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
+            <input class="form-control px-0" type="text" id="sample2_postcode" value="" placeholder="우편번호" name="address_num" onkeydown="if (event.keyCode == 13) { return false;}" required>
           <% end %>
           <input type="button" class="bg-white btn-post" onclick="sample2_execDaumPostcode()" value="우편번호 찾기"><br>
+        </div>
+        <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
+        <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+          <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+        </div>
       </div>
-      <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
-      <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-        <img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-      </div>
-    </div>
 
-    <div class="form-group row py-2 mb-0 mx-0">
-      <label for="sample2_address" class="col-4 px-0 col-form-label"><span class="font-red">*</span>주소</label>
-      <div class="col-8 px-0">
-        <% if current_user != nil %>
-        <input type="text" id="sample2_address" value="<%= current_user.address_text %>" class="form-control px-0" placeholder="주소" name="address_text" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% else %>
-          <input type="text" id="sample2_address" value="" class="form-control px-0" placeholder="주소" name="address_text" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% end %>
-          </div>
-    </div>
       <div class="form-group row py-2 mb-0 mx-0">
-      <label for="extra_address" class="col-4 px-0 col-form-label"><span class="font-red">*</span>상세주소</label>
-      <div class="col-8 px-0">
-        <% if current_user != nil %>
-      <input type="text" class="form-control px-0" name="address_text2" value="<%= current_user.address_extra %>" placeholder="상세 주소" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% else %>
-          <input type="text" class="form-control px-0" name="address_text2" value="" placeholder="상세 주소" onkeydown="if (event.keyCode == 13) { return false;}" required>
-      <% end %>
-          </div>
-    </div>
+        <label for="sample2_address" class="col-4 px-0 col-form-label"><span class="font-red">*</span>주소</label>
+        <div class="col-8 px-0">
+          <% if current_user != nil %>
+            <input type="text" id="sample2_address" value="<%= current_user.address_text %>" class="form-control px-0" placeholder="주소" name="address_text" onkeydown="if (event.keyCode == 13) { return false;}" required>
+          <% else %>
+            <input type="text" id="sample2_address" value="" class="form-control px-0" placeholder="주소" name="address_text" onkeydown="if (event.keyCode == 13) { return false;}" required>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group row py-2 mb-0 mx-0">
+        <label for="extra_address" class="col-4 px-0 col-form-label"><span class="font-red">*</span>상세주소</label>
+        <div class="col-8 px-0">
+          <% if current_user != nil %>
+            <input type="text" class="form-control px-0" name="address_text2" value="<%= current_user.address_extra %>" placeholder="상세 주소" onkeydown="if (event.keyCode == 13) { return false;}" required>
+          <% else %>
+            <input type="text" class="form-control px-0" name="address_text2" value="" placeholder="상세 주소" onkeydown="if (event.keyCode == 13) { return false;}" required>
+          <% end %>
+        </div>
+      </div>
     <% else %>
-     <%= hidden_field_tag 'address_num', '-1' %>
-     <%= hidden_field_tag 'address_text', '-1' %>
-    <%= hidden_field_tag 'address_text2', '-1' %>
+      <%= hidden_field_tag 'address_num', '-1' %>
+      <%= hidden_field_tag 'address_text', '-1' %>
+      <%= hidden_field_tag 'address_text2', '-1' %>
     <% end %>
 
     <%if current_user == nil%>
-    <div class="form-group row py-2 mb-0 mx-0">
-      <label for="password" class="col-4 px-0 col-form-label"><span class="font-red">*</span>비밀번호</label>
-      <div class="col-8 px-0">
-        <input class="form-control px-0" type="password" name="password" placeholder="비밀번호를 설정해주세요." autocomplete="new-password">
+      <div class="form-group row py-2 mb-0 mx-0">
+        <label for="password" class="col-4 px-0 col-form-label"><span class="font-red">*</span>비밀번호</label>
+        <div class="col-8 px-0">
+          <input class="form-control px-0" type="password" name="password" placeholder="비밀번호를 설정해주세요." autocomplete="new-password">
+        </div>
       </div>
-    </div>
     <%else%>
     <%end%>
 
@@ -168,11 +168,11 @@
   이 법안의 심사를 담당하고 있는 ‘<%= @product.assos %>’
   국회의원 <%= @product.maker_responses.count %>명에게
   청원 이메일이 자동으로 전달됩니다.</pre>
-<!--      <textarea name="" id="" cols="30" rows="10" placeholder="안녕하세요, 000 의원님!-->
-<!--여성가족 위원회에 계류되어있는 2006073 의안인 ‘데이트폭력법’이 왜 통과되지 않는지 궁금합니다.-->
-<!--000 의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.-->
-<!--이메일 청원합니다."></textarea>-->
-      <%= text_area_tag 'send_email_content', "안녕하세요, 의원님!
+    <!--      <textarea name="" id="" cols="30" rows="10" placeholder="안녕하세요, 000 의원님!-->
+    <!--여성가족 위원회에 계류되어있는 2006073 의안인 ‘데이트폭력법’이 왜 통과되지 않는지 궁금합니다.-->
+    <!--000 의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.-->
+    <!--이메일 청원합니다."></textarea>-->
+    <%= text_area_tag 'send_email_content', "안녕하세요, 의원님!
 #{@product.assos}에 계류되어있는 #{@product.bill_id} 의안인 '#{@product.bill_name}'이 왜 통과되지 않는지 궁금합니다.
 의원님은 이 입법안에 대해 어떤 의견을 가지고 계시나요? 이 입법을 꼭 빠르게 추진해주세요.
 이메일 청원합니다.", class: "form-control px-3 py-3 font-14", cols: 30, rows: 10, onkeydown: "if (event.keyCode == 13) { return false;}"%>
@@ -193,9 +193,9 @@
       </div>
       <div class="order-card">
         <% if @package.price != 0%>
-        <p class="mb-0">배송비</p>
-        <p class="font-weight-bold mb-0 comma-money"><%= @package.delivery_price %>원</p>
-          <% else %>
+          <p class="mb-0">배송비</p>
+          <p class="font-weight-bold mb-0 comma-money"><%= @package.delivery_price %>원</p>
+        <% else %>
           <p class="mb-0">배송비</p>
           <p class="font-weight-bold mb-0">0원</p>
         <% end %>
@@ -205,36 +205,37 @@
       <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold comma-money" id="product_price_description2"><%= @package.price + @package.delivery_price %>원</span></p>
     <% else %>
       <p class="font-18 text-right mr-3">최종 결제금액 <span class="font-weight-bold comma-money" id="product_price_description2"><%= @package.price %>원</span></p>
-  <% end%>
-    <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date.month)%>/<%=@product.goods_dilivery_date.day %>일에 일괄 배송 시작됩니다.
-      <input type="checkbox" class="checkbox" name="goods_delivery" value="false"><span class="checkmark"></span>
-    </label>
-    <label class="checklabel ml-2">개인정보 수집 및 이용에 동의합니다.
-      <input type="checkbox" class="checkbox" name="personal_info" value="false"><span class="checkmark"></span>
-    </label>
-    <label class="checklabel ml-2">회원가입이 자동으로 진행됩니다.
-      <input type="checkbox" class="checkbox" name="register" value="false"><span class="checkmark"></span>
-    </label>
+    <% end%>
+    <label class="checklabel ml-2">광고 후원 굿즈는 <%= (@product.goods_dilivery_date_s) %> 일에 일괄 배송 시작됩니다.
+        <input type="checkbox" class="checkbox" name="goods_delivery" value="false"><span class="checkmark"></span>
+        </label>
+        <label class="checklabel ml-2">개인정보 수집 및 이용에 동의합니다.
+          <input type="checkbox" class="checkbox" name="personal_info" value="false"><span class="checkmark"></span>
+        </label>
+        <label class="checklabel ml-2">회원가입이 자동으로 진행됩니다.
+          <input type="checkbox" class="checkbox" name="register" value="false"><span class="checkmark"></span>
+        </label>
 
-  </div>
-  <!-- // 주문 금액 -->
- <% if @package.price != 0 %>
-  <!-- 결제 -->
-    <div class="bg-white font-14 font-weight-bold px-3 py-3">
-    <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
-    <div class="d-flex flex-wrap justify-content-around">
-      <button type="button" class="pay-button mb-3" onclick="normal_payment();">실시간 계좌이체</button>
-      <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
-      <button type="button" class="pay-button mb-3" onclick="phone_payment();">휴대폰</button>
-      <button type="button" class="pay-button mb-3" onclick="toss_payment();">TOSS</button>
-    </div>
-    <div id="payment_method_description">
-    </div>
-    <% end %>
-<!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
-    <%#= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
-  </div>
-<% end %>
+        </div>
+        <!-- // 주문 금액 -->
+        <% if @package.price != 0 %>
+          <!-- 결제 -->
+            <div class="bg-white font-14 font-weight-bold px-3 py-3">
+              <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">결제수단</h4>
+              <div class="d-flex flex-wrap justify-content-around">
+                <button type="button" class="pay-button mb-3" onclick="normal_payment();">실시간 계좌이체</button>
+                <button type="button" class="pay-button mb-3" onclick="card_payment();">신용카드</button>
+                <button type="button" class="pay-button mb-3" onclick="phone_payment();">휴대폰</button>
+                <button type="button" class="pay-button mb-3" onclick="toss_payment();">TOSS</button>
+              </div>
+              <div id="payment_method_description">
+
+              </div>
+        <% end %>
+        <!--    <button class="btn-pay-finish text-center my-4">내 인생으로 배송받기</button>-->
+        <%#= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
+        </div>
+  <% end %>
 <button type="button" class="btn-pay-finish text-center my-4" onclick="fuckin_submit()">내 인생으로 배송받기</button>
 
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>

@@ -21,14 +21,12 @@ if (navigator.serviceWorker) {
 
 navigator.serviceWorker.ready
     .then((swReg) => {
-      console.log("When SW is ready");
        swReg.pushManager.getSubscription()
                 .then((subscription) => {
                     isSubscribed = !(subscription === null);
 
                     if (isSubscribed) {
                         console.log('User IS subscribed.');
-                        console.log(subscription)
                     } else {
                         console.log('User is NOT subscribed.');
                         return swReg.pushManager
@@ -44,16 +42,15 @@ navigator.serviceWorker.ready
                                             subscription: sub.toJSON(),
                                             message: 'Hey!'
                                         };
-                                        console.log(body);
                                         fetch('/push', {
                                             method: 'POST',
                                             body: JSON.stringify(body)
                                         })
                                             .then((res) => {
-                                                console.log(res)
+                                                return
                                             })
                                             .catch((err) => {
-                                                console.log(err)
+                                                return
                                             })
                                     })
                             })

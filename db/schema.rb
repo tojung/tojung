@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181205094525) do
+ActiveRecord::Schema.define(version: 20190118233612) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -61,6 +61,18 @@ ActiveRecord::Schema.define(version: 20181205094525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "image1"
+    t.boolean "main"
+    t.datetime "bill_start"
+    t.integer "bill_id"
+    t.datetime "sangjung_date"
+  end
+
+  create_table "bill_comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "content"
+    t.integer "best_bill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "identities", force: :cascade do |t|
@@ -112,6 +124,13 @@ ActiveRecord::Schema.define(version: 20181205094525) do
     t.text "image2"
     t.text "email"
     t.text "email2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.text "name"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -261,8 +280,8 @@ ActiveRecord::Schema.define(version: 20181205094525) do
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname"
-    t.datetime "start_date", default: "2018-08-08 06:16:42", null: false
-    t.datetime "end_date", default: "2018-09-07 06:16:42", null: false
+    t.datetime "start_date", default: "2018-08-16 20:46:42", null: false
+    t.datetime "end_date", default: "2018-09-15 20:46:42", null: false
     t.text "youtb_url"
     t.text "video_text"
     t.text "bill_url"
@@ -283,6 +302,7 @@ ActiveRecord::Schema.define(version: 20181205094525) do
     t.text "bill_name"
     t.datetime "goods_dilivery_date"
     t.text "design_purpose"
+    t.string "goods_dilivery_date_s"
   end
 
   create_table "responselogs", force: :cascade do |t|

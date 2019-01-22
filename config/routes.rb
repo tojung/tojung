@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'bill_comments/create'
+
+  get 'bill_comments/destroy'
+
+  get 'bill_comments/update'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, controllers: {
     omniauth_callbacks: 'user/omniauth_callbacks',
@@ -14,8 +20,10 @@ Rails.application.routes.draw do
   resources :product_like, param: :product_like_id
   resources :payment
   resources :product_order, param: :product_order_id
+  resources :bill_comments
 
   root 'home#index'
+
   get 'home/index'
   get 'home/about'
   get 'home/brand'

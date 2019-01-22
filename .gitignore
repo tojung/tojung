@@ -1,3 +1,4 @@
+shared/pids
 .DS_Store
 dump.rdb
 temp.rdb

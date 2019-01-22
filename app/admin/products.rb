@@ -18,7 +18,10 @@ ActiveAdmin.register Product do
                 :visible,
                 :bill_id,
                 :bill_name,
-                :status, :goods_dilivery_date, :design_purpose
+                :status,
+                :goods_dilivery_date_s,
+                :goods_dilivery_date
+                :design_purpose
   show do
     panel '법안상품' do
       table_for product i18n: Product do
@@ -87,13 +90,13 @@ ActiveAdmin.register Product do
 
       input 'start_date', as: :datepicker,
                           datepicker_options: {
-                            min_date: '2018-08-08',
-                            max_date: '+9D'
+                            min_date: '2018-11-11',
+                            max_date: '+91D'
                           }, label: '시작일'
       input 'end_date', as: :datepicker,
                         datepicker_options: {
-                          min_date: '2018-08-08',
-                          max_date: '+9D'
+                          min_date: '2018-11-11',
+                          max_date: '+91D'
                         }, label: '종료일'
 
       input 'goal_money', label: '펀딩 목표 금액'
@@ -114,11 +117,14 @@ ActiveAdmin.register Product do
       input 'design_purpose', label: '디자인 의도 이미지'
     end
 
+    input 'goods_dilivery_date_s', label: '굿즈배송일(텍스트)'
+
     input 'goods_dilivery_date', as: :datepicker,
-                                 datepicker_options: {
-                                   min_date: '2018-08-08',
-                                   max_date: '+9D'
-                                 }, label: '굿즈배송일'
+          datepicker_options: {
+              min_date: '2018-11-11',
+              max_date: '+91D'
+          }, label: '굿즈배송일(시간)'
+
     input 'visible', label: '공개 여부'
     actions
   end
@@ -141,7 +147,7 @@ ActiveAdmin.register Product do
         begin
           title = @product.name + ' 법안 상품이 추가되었습니다.'
           Webpush.payload_send(
-            message: { title: title, content: '구경하러 가기', link: 'https://tojung.me/product/'+@product.id.to_s }.to_json,
+            message: { title: title, content: '구경하러 가기', link: 'https://tojung.me/product/' + @product.id.to_s }.to_json,
             endpoint: noti.endpoint,
             p256dh: noti.p256h,
             auth: noti.auth,
@@ -175,15 +181,13 @@ ActiveAdmin.register Product do
 
       end
 
-      if @product.visible == 0
-        return
-      end
+      return if @product.visible == 0
       notif = Notification.all
       notif.each do |noti|
         begin
           title = @product.name + ' 법안 상품이 수정되었습니다.'
           Webpush.payload_send(
-            message: { title: title, content: '구경하러 가기', link: 'https://tojung.me/product/'+@product.id.to_s }.to_json,
+            message: { title: title, content: '구경하러 가기', link: 'https://tojung.me/product/' + @product.id.to_s }.to_json,
             endpoint: noti.endpoint,
             p256dh: noti.p256h,
             auth: noti.auth,

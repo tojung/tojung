@@ -61,15 +61,18 @@
      <section class="delivery mb-5 mx-4 font-14">
       <h4 class="font-18 font-weight-bold mb-4">배송 예정일</h4>
       <div class="delivery text pl-1">
-        <%if Time.now <= @product.goods_dilivery_date%> <!-- 광고 펀딩중-->
+        <%if Time.now <= @product.end_date %> <!-- 광고 펀딩중-->
           <p class="mb-0">현재 광고 펀딩중입니다.</p>
-          <p class="mb-0">지금 주문하시면 
-          <!-- data type 수정 필요--><span><%= @product.goods_dilivery_date.month %>/<%= @product.goods_dilivery_date.day %></span>
-          일 배송예정입니다.</p>
+          <p class="mb-0">지금 주문하시면
+          <!-- data type 수정 필요-->
+
+            <span><%= @product.goods_dilivery_date_s %></span>
+          일 배송예정입니다.
+          </p>
           <p>배송이 시작되면 문자로 알려드립니다.</p>
-        <%else%> <!-- 상시 펀딩 중-->
+        <% else %> <!-- 상시 펀딩 중-->
           <p class="mb-0">현재 상시 펀딩중입니다.</p>
-          <p>배송은 3~7일(영업일기준) 소요됩니다.</p> 
+          <p>배송은 3~7일(영업일기준) 소요됩니다.</p>
         <%end%>
       </div>
     </section>
