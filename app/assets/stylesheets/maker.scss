@@ -53,3 +53,49 @@ textarea.form-control::placeholder{
   height: 200px;
   border-radius: 300px;
 }
+
+.email-to-maker{
+  padding: 0 30px;
+}
+
+.email-user-title{
+  padding: 20px 0;
+}
+
+.email-user-content{
+  padding: 20px 0;
+}
+
+.email-distinct-line{
+  margin: 20px 0;
+  border-top: 1px solid #979797;
+}
+
+.email-tojung-btn-box{
+  padding: 20px 0;
+}
+
+.email-tojung-content{
+  padding: 20px 0;
+}
+
+.email-tojung-contact{
+  padding: 40px 0;
+}
+
+.btn-opinion{
+  width: 156px;
+  height: 48px;
+  border: 1px solid #434343;
+  background-color: white;
+  font-weight: bold;
+}
+
+.btn-opinion:hover{
+  background-color: #434343;
+  color: #ffffff;
+}
+
+.maker-opinion{
+  padding: 60px 30px;
+}
