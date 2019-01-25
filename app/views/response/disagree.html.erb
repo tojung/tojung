@@ -2,6 +2,15 @@
   <%= hidden_field_tag 'type', 'disagree'%>
   <%= hidden_field_tag 'mr_id', @maker_response[0].id %>
   <%= hidden_field_tag 'key', @key %>
-  <%= text_area_tag 'content', nil, placeholder: "반대를 선택하셨습니다. 세부 의견을 자유롭게 이야기해주세요.", :required => true %>
-  <%= submit_tag '제출하기' %>
+  <div class="maker-opinion">
+    <p class="font-14 font-weight-bold mb-5"><%= @maker_response[0].maker.name %> 의원님<!--maker-->은 <%= @maker_response[0].product.id %><!--법안 번호-->의안인  '<%= @maker_response[0].product.bill_name %>'<!--법안 제목--> 에 대한 시민청원에
+      <span class="font-red">“반대”<!--찬/반--></span> 입장을 밝혀주신 상태입니다.
+      아래의 빈 칸에 구체적인 반대<!--찬/반--> 의견도 말씀해주세요.</p>
+    <textarea name="content" class="form-control px-3 py-3 font-14" cols="30" rows="10"></textarea>
+    <button class="btn-opinion d-block mx-auto mt-3 mb-4">의견 전송하기</button>
+
+    <div class="tojung-btns d-flex justify-content-center">
+      <a class="btn-opinion mx-1 px-0" href="/">투정 홈페이지로 이동</a>
+    </div>
+  </div>
 <% end %>

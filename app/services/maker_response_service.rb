@@ -35,6 +35,7 @@ class MakerResponseService
   end
 
   def generate_message(maker_res)
+
     @message = "안녕하세요, #{maker_res.maker.name}의원님!
 #{maker_res.product.assos}에 계류중인
 #{maker_res.product.bill_id}의안인
@@ -48,6 +49,7 @@ class MakerResponseService
                             "#{@product.assos}에 계류중인 #{@product.bill_id}의안인 '#{@product.bill_name}'이 왜 통과되지않나요?",
                             @content,
                             maker_res.agree_hash,
-                            maker_res.disagree_hash).deliver_later
+                            maker_res.disagree_hash,
+                            maker_res).deliver_later
   end
 end

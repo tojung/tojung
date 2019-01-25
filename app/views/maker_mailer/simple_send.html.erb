@@ -1,16 +1,59 @@
+<div class="email-to-maker">
+  <section class="email-user">
+    <img src="" alt="">
 
-<%= @content %>
-<br>
-----------------------------------<br>
-이 이메일 청원은 '투정(tojung.me)'을 통해 발송되었습니다.
-<br><br>
-의원님, 이 입법안에 대한 어떤 의견을 가지고 계신가요? 아래의 링크를 눌러, 이메일 청원에 대한 의원님의 의견을 말씀해 주세요.
-<br><br>
-찬성하기 : <button><a href="https://tojung.me/agree?<%= { :key => @agree_hash }.to_query %>">찬성</a></button><br>
-반대하기 : <button><a href="https://tojung.me/disagree?<%= { :key => @disagree_hash }.to_query %>">반대</a></button><br>
-*각각의 링크를 클릭하면 투정플랫폼(tojung.me)에 자동 반영되며, 추가 의견에 대해 입력하실 수 있습니다.
-<br>
-'투정'은 국회의 입법과정이 많은 사람들의 관심 속에 공론화되고, 대한민국을 더 발전시킬 입법안들이 주목받는 세상을 꿈꿉니다.
-<br>
-바쁘신 와중에도, '투정'을 통해 국민들과의 소통에 응해주셔서 정말 감사합니다.
-<br>
+    <div class="email-user-title font-weight-bold font-20">
+      <!-- 미응답시 -->
+      <% if @maker_res.response_type == "무응답" %>
+        <p class="mb-0">시민들이 전현희<!--maker--> 의원님께 전하는 <%= @maker_res.product.funded_count %><!--count-->번째 청원입니다.</p>
+        <p class="mb-0">하단의 버튼을 눌러 법안에 대한 의원님의 의견을 전달해주세요.</p>
+      <% else %>
+        <!-- 응답시-->
+        <p class="mb-0"><%= @maker_res.maker.name %><!--maker--> 의원님은 <%= @maker_res.product.bill_id %>의안<!--법안 번호-->인  '<%= @maker_res.product.bill_name %><!--법안제목-->' 에 대한
+          시민청원에 “<%= @maker_res.response_type %>”<!-- 찬/반-->입장을 밝혀주신 상태입니다.</p>
+        <p class="mb-0">하단의 버튼을 눌러 구체적인 의견도 말씀해주세요.</p>
+      <% end %>
+    </div>
+
+    <div class="email-user-content font-14">
+      <p class="">
+        <%= @content %>
+      </p>
+      <p class="mb-0">이 법안을 꼭 필요로 하는 대한민국의 시민, admin@tojung.me 드림.</p>
+    </div>
+
+  </section>
+  <hr class="email-distinct-line">
+  <section class="email-tojung">
+    <div class="email-tojung-content font-14">
+      <p class="">이 이메일 청원은 ‘투정’ (<span class="font-red"> https://tojung.me </span>) 을 통해 전송되었습니다.
+        투정은 일반 시민들이 국회의 계류 입법안을 쉽고 재밌게 볼 수 있도록 도와주는 입법 청원 플랫폼입니다.</p>
+      <!--미응답시-->
+      <% if @maker_res.response_type == "무응답" %>
+      <p class="">아래 버튼을 눌러 청원자들에게 쉽고 간편하게 의원님의 입장을 전달할 수 있습니다.
+        버튼을 누르는 동시에 <span class="font-red">https://tojung.me/product/<%= @maker_res.product.id %></span>  링크의 ‘타임라인’ 탭에 의원님의 찬성/반대/중립 의견이 자동으로 등록됩니다. 버튼을 누른 후, 구체적인 추가 의견도 입력 가능합니다.</p>
+      <% else %>
+        <!--응답시-->
+      <p class="">의원님은 현재 '<span class="font-red"><%= @maker_res.response_type %><!--찬/반--></span>'을 응답하셨습니다.
+        <%= @maker_res.response_type %><!--찬/반--> 버튼을 다시 누르시면, 의원님의 구체적인 추가 의견도 입력이 가능합니다.
+        현재 <%= @maker_res.product.funded_count %><!--count-->명의 청원자분들께서 의원님의 추가 의견을 기다리고 있습니다.</p>
+      <p class="">만약 현재 밝히신 입장이 잘 못된 정보라면 아래의 버튼 클릭으로 정정하실 수 있습니다.
+        아래 버튼의 클릭을 통해 청원자들에게 쉽고 간편하게 의원님의 입장을 전달할 수 있습니다.
+        버튼을 누르는 동시에 <span class="font-red">https://tojung.me/product/<%= @maker_res.product.id %></span> 링크의 ‘타임라인’ 탭에 의원님의 의견이 자동으로 등록됩니다.</p>
+      <% end %>
+    </div>
+
+    <div class="email-tojung-btn-box font-14">
+      <p class="text-center">이 법안의 심사촉구 필요성에</p>
+      <div class="email-tojung-btns d-flex justify-content-center">
+        <button class="btn-opinion mx-2"><a href="https://tojung.me/agree?<%= { :key => @agree_hash }.to_query %>">찬성합니다.</a></button>
+        <button class="btn-opinion mx-2"><a href="https://tojung.me/disagree?<%= { :key => @disagree_hash }.to_query %>">반대합니다.</a></button>
+        <button class="btn-opinion mx-2">중립입장입니다.</button>
+      </div>
+    </div>
+    <div class="email-tojung-contact font-14">
+      <p class="mb-0">추가 문의사항이 있으시다면,</p>
+      <p class="mb-0">tojung22@gmail.com으로 연락주세요.</p>
+    </div>
+  </section>
+</div>

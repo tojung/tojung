@@ -36,7 +36,8 @@ class MakerController < ApplicationController
                             params[:title],
                             params[:content],
                             @maker_response.agree_hash,
-                            @maker_response.disagree_hash).deliver_now
+                            @maker_response.disagree_hash,
+                            @maker_response).deliver_now
     @maker_response.send_count += 1
     @maker_response.save
   end
