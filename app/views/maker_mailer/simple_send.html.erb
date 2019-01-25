@@ -5,7 +5,7 @@
     <div class="email-user-title font-weight-bold font-20">
       <!-- 미응답시 -->
       <% if @maker_res.response_type == "무응답" %>
-        <p class="mb-0">시민들이 전현희<!--maker--> 의원님께 전하는 <%= @maker_res.product.funded_count %><!--count-->번째 청원입니다.</p>
+        <p class="mb-0">시민들이 <%= @maker_res.maker.name %><!--maker--> 의원님께 전하는 <%= @maker_res.product.funded_count %><!--count-->번째 청원입니다.</p>
         <p class="mb-0">하단의 버튼을 눌러 법안에 대한 의원님의 의견을 전달해주세요.</p>
       <% else %>
         <!-- 응답시-->
