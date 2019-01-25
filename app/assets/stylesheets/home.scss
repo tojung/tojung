@@ -478,10 +478,6 @@ span.or{
   padding: 0 20px;
 }
 
-.notice-hidden{
-  display: none;
-}
-
 .main-notice-content{
   font-size: 16px;
   padding-right: 40px;
@@ -549,6 +545,14 @@ span.or{
 
 .md-title{
   margin-left: 32px;
-  margin-top: -16px;
+  margin-top: -24px;
   width: 216px;
+}
+
+.font-weight-500{
+  font-weight: 500;
+}
+
+.notice-hidden{
+  display: none;
 }

@@ -653,7 +653,13 @@ li:hover{
   z-index: 2;
 }
 
+.soldout-item{
+  cursor: default;
+}
+
 .soldout-text{
+  margin-left: -12px;
+  margin-top: -6px;
   display: flex;
   position: absolute;
   height: 36px;
@@ -662,6 +668,7 @@ li:hover{
   height: 36px;
   align-items: center;
   color: white;
+  cursor: default;
 }
 
 .soldout-overlay.on{
@@ -690,6 +697,10 @@ li:hover{
   height: 100%;
   align-items: center;
   color: white;
+}
+
+.package-box{
+  padding: 6px 12px;
 }
 
 .z-1{
