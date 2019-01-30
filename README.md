@@ -31,6 +31,7 @@ Frontend:
 
 ## Role
 
-- Dongjin Lim : Backend 개발 및 Progressive Web App 구현, 다음주소API, Iamport 결제 기능 연동 등 
-- Jinyoung Park : 반응형 웹 구현 및 html, css 퍼블리싱 및 페이지 인터랙션 구현
-- Yein Kim : Design
+- Dongjin Lim (CTO): Backend 개발 및 Progressive Web App 구현, 다음 주소API, 
+Iamport 결제 기능 연동, 법안 데이터 크롤링, elasticsearch를 통한 법안 데이터 관리 등
+- Jinyoung Park (COO): 반응형 웹 구현 및 html, css 퍼블리싱 및 페이지 인터랙션 구현 및 서비스 전반의 운영
+- Yein Kim (CEO): 프로젝트 리딩, 경영 및 Web Design
