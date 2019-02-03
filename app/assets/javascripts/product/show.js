@@ -116,6 +116,7 @@ function cardHeight() {
             // _product_info
             var x = $('#dropdownShare').width();
             $('#shareDropdown').width(x);
+
             money = $('.funding-money').html();
             if (money !== "0원"){
                 money = money.substring(0,money.length-1)
@@ -126,6 +127,7 @@ function cardHeight() {
                    $('.funding-money').html(money);
                 }
             }
+            
             // _bottom_bar
             $('.bottom-bar').unwrap();
             $('.overlay2').unwrap();
