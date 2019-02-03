@@ -7,6 +7,7 @@ CarrierWave.configure do |config|
     region:                'ap-northeast-2',
     endpoint:              'https://s3-ap-northeast-2.amazonaws.com' # 아시아-한국서버
   }
+  config.asset_host = 'https://d1eq7v76s8dt2n.cloudfront.net'
   config.fog_directory  = ENV['FOG_DIRECTORY']
   config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" } # optional, defaults to {}
 end
