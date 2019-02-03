@@ -21,7 +21,7 @@ class ProductSerializerService
         option['packageIds'] = @product.product_options.find(option['id']).packages.ids
       end
     end
-    res['maker_responses'] = @product.maker_responses.as_json(include: [:maker])
+    res['maker_responses'] = @product.maker_responses.as_json(include: [:maker], except: [:agree_hash, :disagree_hash])
     res['isEnd'] = @product.end_date <= Time.now
     res
   end
