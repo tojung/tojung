@@ -4,7 +4,7 @@ class ProductApiController < ApplicationController
   def show
     res = ProductSerializerService.new(params).product_more
     render json: {
-      "product": res
+      product: res
     }
   end
 
