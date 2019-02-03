@@ -4,6 +4,22 @@ class ProductService
     @product_id = params[:product_id]
     @params = params
   end
+  def as_json_include_relations
+    product
+    res = @product.as_json(include: %i[product_options packages product_caro_images product_likes])
+    res['isLike'] = true
+    if res['product_likes'] == [] || res['product_likes'][0]['status'] == false
+      res['isLike'] = false
+    end
+    if @product.product_options != []
+      res['product_options'].each do |option|
+        option['packageIds'] = @product.product_options.find(option['id']).packages.ids
+      end
+    end
+    res['maker_responses'] = @product.maker_responses.as_json(include: [:maker])
+    res['isEnd'] = @product.end_date <= Time.now
+    res
+  end
 
   def read_all
     read_all_sorted_desc_by_funded_count
@@ -22,18 +38,6 @@ class ProductService
       maker_responses: @product.maker_responses,
       product_caros: @product_caros
     }
-  end
-
-  def calculate_funded_money
-    product
-    @product_orders = @product.product_orders
-    funded_money = 0
-    @product_orders.each do |product_order|
-      if product_order.status.include? '완료'
-        funded_money += product_order.product_order_detail.total_price
-      end
-    end
-    funded_money
   end
 
   def product

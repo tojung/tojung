@@ -8,4 +8,5 @@ class Product < ApplicationRecord
   has_many :product_likes, dependent: :destroy
   has_many :product_timelines, dependent: :destroy
   has_many :product_orders
+  has_many :product_caro_images
 end

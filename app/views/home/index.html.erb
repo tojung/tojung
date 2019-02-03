@@ -15,7 +15,7 @@
     <div class="carousel-inner">
       <div class="carousel-item">
         <a href="/home/brand">
-          <video playsinline autoplay loop muted class="d-block cover_img" >
+          <video playsinline autoplay loop muted class="d-block cover_img">
             <source src="<%= @mainimage0 %>" type="video/mp4">
           </video>
           <pre class="cover_text text-1">
@@ -51,26 +51,26 @@
 </section>
 <!-- //Cover -->
 <div class="wrapper mt-0 loaded">
-<!-- Category -->
-<ul class="category-list d-flex flex-wrap justify-content-center mb-0" id="categoryList">
-  <a href="/categorize/7" data-remote="true" class="category-keyword cate-red" onclick="cate_change(this);">HOT</a>
-  <a href="/categorize/8" data-remote="true" class="category-keyword" onclick="cate_change(this);">NEW</a>
-  <a href="/categorize/1" data-remote="true" class="category-keyword" onclick="cate_change(this);">인권/성평등</a>
-  <a href="/categorize/2" data-remote="true" class="category-keyword" onclick="cate_change(this);">동물</a>
-  <a href="/categorize/3" data-remote="true" class="category-keyword" onclick="cate_change(this);">육아/교육</a>
-  <a href="/categorize/4" data-remote="true" class="category-keyword" onclick="cate_change(this);">안전/환경</a>
-  <a href="/categorize/5" data-remote="true" class="category-keyword" onclick="cate_change(this);">보건/복지</a>
-  <a href="/categorize/6" data-remote="true" class="category-keyword" onclick="cate_change(this);">외교/통일/국방</a>
-</ul>
-<!-- // Category -->
-<!-- Category Tag -->
-<div class="pro-tag text-white"><p id="category-tag">HOT</p></div>
-<!-- Category tag -->
-  <%= render 'thumb'%>
+  <!-- Category -->
+  <ul class="category-list d-flex flex-wrap justify-content-center mb-0" id="categoryList">
+    <a href="/categorize/7" data-remote="true" class="category-keyword cate-red" onclick="cate_change(this);">HOT</a>
+    <a href="/categorize/8" data-remote="true" class="category-keyword" onclick="cate_change(this);">NEW</a>
+    <a href="/categorize/1" data-remote="true" class="category-keyword" onclick="cate_change(this);">인권/성평등</a>
+    <a href="/categorize/2" data-remote="true" class="category-keyword" onclick="cate_change(this);">동물</a>
+    <a href="/categorize/3" data-remote="true" class="category-keyword" onclick="cate_change(this);">육아/교육</a>
+    <a href="/categorize/4" data-remote="true" class="category-keyword" onclick="cate_change(this);">안전/환경</a>
+    <a href="/categorize/5" data-remote="true" class="category-keyword" onclick="cate_change(this);">보건/복지</a>
+    <a href="/categorize/6" data-remote="true" class="category-keyword" onclick="cate_change(this);">외교/통일/국방</a>
+  </ul>
+  <!-- // Category -->
+  <!-- Category Tag -->
+  <div class="pro-tag text-white"><p id="category-tag">HOT</p></div>
+  <!-- Category tag -->
+  <%= render 'thumb' %>
 
   <%#= render 'md_contents' %> <!-- 베도 md contents partial.  -->
 
-  <%=  render 'md_contents_old' %> <!-- 기존 md contents -->
+  <%= render 'md_contents_old' %> <!-- 기존 md contents -->
 
-  <%=render 'bottom_bar'%>
+  <%= render 'bottom_bar' %>
 </div>

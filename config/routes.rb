@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   resources :userupdaters
   resources :product, param: :product_id
+  # resources :product_api, param: :product_id
+  get 'api/product/:product_id' => 'product_api#show'
+  get 'api/product' => 'product_api#index'
   resources :product_option, param: :product_option_id
   resources :maker, param: :maker_response_id
   resources :product_like, param: :product_like_id

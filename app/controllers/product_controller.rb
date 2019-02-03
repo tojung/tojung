@@ -2,7 +2,16 @@ class ProductController < ApplicationController
   def show
     set_data
     render :detail
+    # @product
+    # render json: {
+    #
+    # }
+    # render json: @product, :include => [:product_timelines,
+    #                                    :maker_responses=>{:include=>[:maker]},
+    #                                    :product_options,
+    #                                    :packages]
   end
+
 
   private
 

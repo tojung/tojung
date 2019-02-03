@@ -1,5 +1,9 @@
 {
   "name": "t",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.18.0",
+    "vue-axios": "^2.1.4",
+    "vuex": "^3.1.0"
+  }
 }

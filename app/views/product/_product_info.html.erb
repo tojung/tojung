@@ -1,5 +1,7 @@
 <div class="pro-info-xs visible-xs">
-  <h4 class="font-18 font-weight-bold"><%= @product.name %></h4>
+  <h4 class="font-18 font-weight-bold">
+    <%= @product.name %>
+  </h4>
   <p class="font-14"><%= @product.subname %></p>
   <div class="d-flex font-16 font-weight-bold justify-content-between">
     <span class="funding-money"><%= @product.funded_money %>원</span>
@@ -84,7 +86,9 @@
             <!-- 비 로그인  -->
             <%= form_tag '/product_like' do %>
               <%= hidden_field_tag 'product_id', @product.id%>
-              <button class="share-button heart" id="Heart"><%=image_tag("heart.svg", class: "heart-img")%> 찜하기</button>
+              <button class="share-button heart" id="Heart">
+                <%=image_tag("heart.svg", class: "heart-img")%> 찜하기
+              </button>
             <% end %>
           <% elsif @like.empty? %>
             <!-- 찜 생성 -->
