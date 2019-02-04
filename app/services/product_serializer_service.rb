@@ -16,13 +16,16 @@ class ProductSerializerService
     if res['product_likes'] == [] || res['product_likes'][0]['status'] == false
       res['isLike'] = false
     end
-    if @product.product_options != []
-      res['product_options'].each do |option|
-        option['packageIds'] = @product.product_options.find(option['id']).packages.ids
-        option['package_names'] = @product.product_options.find(option['id']).packages.map{|package| package.name}
+    res['product_options'].each do |option|
+      option['packageIds'] = @product.product_options.find(option['id']).packages.ids
+      option['package_names'] = @product.product_options.find(option['id']).packages.map(&:name)
+    end
+    res['product_timelines'].each do |timeline|
+      if timeline['issued_at']
+        timeline['issued_at'] = timeline['issued_at'].strftime('%Y.%m.%d')
       end
     end
-    res['maker_responses'] = @product.maker_responses.as_json(include: [:maker], except: [:agree_hash, :disagree_hash])
+    res['maker_responses'] = @product.maker_responses.as_json(include: [:maker], except: %i[agree_hash disagree_hash])
     res['isEnd'] = @product.end_date <= Time.now
     res
   end
