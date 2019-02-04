@@ -11,11 +11,12 @@ class ProductSerializerService
 
   def product_more
     _product
-    res = @product.as_json(include: %i[product_options packages product_caro_images product_likes product_timelines])
+    res = @product.as_json(include: %i[product_options packages product_caro_images product_timelines])
     res['isLike'] = true
-    if res['product_likes'] == [] || res['product_likes'][0]['status'] == false
-      res['isLike'] = false
-    end
+    # if res['product_likes'] == [] || res['product_likes'][0]['status'] == false
+    #   res['isLike'] = false
+    # end
+    # 구현 필요.
     res['product_options'].each do |option|
       option['packageIds'] = @product.product_options.find(option['id']).packages.ids
       option['package_names'] = @product.product_options.find(option['id']).packages.map(&:name)
@@ -25,7 +26,7 @@ class ProductSerializerService
         timeline['issued_at'] = timeline['issued_at'].strftime('%Y.%m.%d')
       end
     end
-    res['maker_responses'] = @product.maker_responses.as_json(include: [:maker], except: %i[agree_hash disagree_hash])
+    res['maker_responses'] = @product.maker_responses.as_json(include: [:maker], except: %i[agree_hash disagree_hash email])
     res['send_count'] = @product.maker_responses.sum(&:send_count)
     res['isEnd'] = @product.end_date <= Time.now
     res

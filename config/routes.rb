@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'product_option_api/show'
+
   get 'bill_comments/create'
 
   get 'bill_comments/destroy'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   # resources :product_api, param: :product_id
   get 'api/product/:product_id' => 'product_api#show'
   get 'api/product' => 'product_api#index'
+  get 'api/product_option/:product_option_id' => 'product_option_api#show'
   resources :product_option, param: :product_option_id
   resources :maker, param: :maker_response_id
   resources :product_like, param: :product_like_id
