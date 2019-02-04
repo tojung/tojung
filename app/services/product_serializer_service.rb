@@ -19,6 +19,7 @@ class ProductSerializerService
     if @product.product_options != []
       res['product_options'].each do |option|
         option['packageIds'] = @product.product_options.find(option['id']).packages.ids
+        option['package_names'] = @product.product_options.find(option['id']).packages.map{|package| package.name}
       end
     end
     res['maker_responses'] = @product.maker_responses.as_json(include: [:maker], except: [:agree_hash, :disagree_hash])
