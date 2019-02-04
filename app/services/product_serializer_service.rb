@@ -6,7 +6,7 @@ class ProductSerializerService
   end
 
   def products
-    Product.all.as_json
+    Product.where(visible: [true, 1]).order(funded_count: :desc).as_json
   end
 
   def product_more
