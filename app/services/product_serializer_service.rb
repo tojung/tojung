@@ -26,6 +26,7 @@ class ProductSerializerService
       end
     end
     res['maker_responses'] = @product.maker_responses.as_json(include: [:maker], except: %i[agree_hash disagree_hash])
+    res['send_count'] = @product.maker_responses.sum(&:send_count)
     res['isEnd'] = @product.end_date <= Time.now
     res
   end
