@@ -14,6 +14,7 @@ class ProductSearchService
                             term_cover_per,
                             term_cover_per,
                             term_cover_per)
+    @result = @result.where(visible: true)
   end
 
   private
