@@ -12,11 +12,7 @@ class ProductSerializerService
   def product_more
     _product
     res = @product.as_json(include: %i[product_options packages product_caro_images product_timelines])
-    res['isLike'] = true
-    # if res['product_likes'] == [] || res['product_likes'][0]['status'] == false
-    #   res['isLike'] = false
-    # end
-    # 구현 필요.
+
     res['product_options'].each do |option|
       option['packageIds'] = @product.product_options.find(option['id']).packages.ids
       option['package_names'] = @product.product_options.find(option['id']).packages.map(&:name)
