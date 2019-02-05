@@ -7,7 +7,8 @@ class ProductApiController < ApplicationController
     res['user_id'] = user_info[:user_id]
     res['is_product_like'] = false
     res['like_id'] = -1
-    product_like = current_user.product_likes.find_by_product_id(res['id'])
+
+    product_like = current_user.product_likes.find_by_product_id(res['id']) unless current_user.nil?
     res['is_product_like'] = product_like.status unless product_like.nil?
     res['like_id'] = product_like.id unless product_like.nil?
 
