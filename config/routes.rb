@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'api/product' => 'product_api#index'
   get 'api/product_option/:product_option_id' => 'product_option_api#show'
   get 'api/search/products' => 'search_api#products'
+  post 'api/product_like' => 'product_like_api#create'
+  put 'api/product_like/:product_id' => 'product_like_api#update'
 
   resources :product_option, param: :product_option_id
   resources :maker, param: :maker_response_id
