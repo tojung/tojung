@@ -2,7 +2,15 @@
 
 class User::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-
+  respond_to :json
+  def create
+    resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    render :status => 200,
+           :json => { :success => true,
+                      :info => "Logged in",
+                      :user => current_user
+           }
+  end
   # GET /resource/sign_in
   # def new
   #   super

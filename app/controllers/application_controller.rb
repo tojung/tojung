@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cdn_url
+  skip_before_action :verify_authenticity_token
+
   # before_action
   # , :require_more_data
 
