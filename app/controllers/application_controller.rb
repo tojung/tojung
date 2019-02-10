@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cdn_url
   skip_before_action :verify_authenticity_token
+  # acts_as_token_authentication_handler_for User
 
   # before_action
   # , :require_more_data
@@ -39,5 +40,19 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :address_num, :name, :address, :phone_number, :address_num, :address_text, :address_extra, :image0, :current_password) }
+  end
+
+  def custom_current_user
+    body = Devise.token_generator.digest(User.first.authentication_tokens,
+                                         :body,
+                                         request.headers['X-USER-TOKEN'])
+    token = AuthenticationToken.where(body: body)
+    return nil if token.empty?
+    return nil if token.last.created_at + token.last.expires_in < Time.now
+    token.last.user
+  end
+
+  def authenticate_user_json!
+    render json: { 'error' => 'auth error' } if custom_current_user.nil?
   end
 end

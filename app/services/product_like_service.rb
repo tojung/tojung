@@ -19,5 +19,6 @@ class ProductLikeService
     product_like = ProductLike.find(@product_like_id)
     product_like.update(status: !product_like.status)
     product_like.status
+    product_like
   end
 end

@@ -76,3 +76,7 @@ gem 'httparty'
 gem 'iamport'
 gem 'delayed_job'
 # gem 'bootstrap'
+# gem 'simple_token_authentication'
+
+# gem 'simple_token_authentication', '~> 1.0' # see semver.org
+gem 'tiddle'

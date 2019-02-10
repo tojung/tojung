@@ -1,19 +1,14 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  #validates :email, presence: true
-  #validates :created_at, presence: true
-  #validates :updated_at, presence: true
-
   mount_uploader :image0, ImageUploader
   has_many :product_orders
   has_many :product_likes
   has_many :bill_comments
+  has_many :authentication_tokens
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable,
-         :omniauthable, omniauth_providers: %i[facebook google_oauth2 kakao]
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable,
+  :confirmable, :omniauthable, omniauth_providers: %i[facebook google_oauth2 kakao]
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

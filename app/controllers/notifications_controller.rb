@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   def push
     jsonbody = JSON.parse request.body.read

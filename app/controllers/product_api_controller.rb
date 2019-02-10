@@ -5,13 +5,10 @@ class ProductApiController < ApplicationController
     res = ProductSerializerService.new(params)
                                   .product_more
     res['user_id'] = user_info[:user_id]
-    res['is_product_like'] = false
-    res['like_id'] = -1
-
-    product_like = current_user.product_likes.find_by_product_id(res['id']) unless current_user.nil?
-    res['is_product_like'] = product_like.status unless product_like.nil?
+    product_like = ProductLikeService.new(params).likes(current_user: User.find(user_info[:user_id])).last
     res['like_id'] = product_like.id unless product_like.nil?
-
+    res['is_product_like'] = product_like.status unless product_like.nil?
+    
     render json: {
       product: res
     }
@@ -29,7 +26,7 @@ class ProductApiController < ApplicationController
   def user_info
     # user_id = cuif user_signed_in?
     user_id = -1
-    user_id = current_user.id if user_signed_in?
+    user_id = custom_current_user.id unless custom_current_user.nil?
     {
       "user_id": user_id
     }

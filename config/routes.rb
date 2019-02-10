@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     sessions: 'user/sessions'
   }
 
+  # resource :sessions
+
   ActiveAdmin.routes(self)
 
   resources :userupdaters
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
   get 'api/search/products' => 'search_api#products'
   post 'api/product_like' => 'product_like_api#create'
   put 'api/product_like/:product_id' => 'product_like_api#update'
+  get 'api/product_like/p/:product_id' => 'product_like_api#last'
 
   resources :product_option, param: :product_option_id
   resources :maker, param: :maker_response_id
