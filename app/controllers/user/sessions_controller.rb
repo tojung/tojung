@@ -6,6 +6,7 @@ class User::SessionsController < Devise::SessionsController
     resource = warden.authenticate!(:scope => resource_name,
                                     :recall => "#{controller_path}#failure")
     token = Tiddle.create_and_return_token(resource, request, expires_in: 1.days)
+
     render :status => 200,
            :json => { :success => true,
                       :info => "Logged in",
