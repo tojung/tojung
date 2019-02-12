@@ -8,4 +8,7 @@ class CalculateService
     ordered_product_count = uproducts.length
     ordered_product_count
   end
+  def self.user_liked_product_count(user:)
+    user.product_likes.where(status: true).count
+  end
 end
