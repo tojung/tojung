@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   post 'api/product_like' => 'product_like_api#create'
   put 'api/product_like/:product_id' => 'product_like_api#update'
   get 'api/product_like/p/:product_id' => 'product_like_api#last'
+  get 'api/check_user' => 'user_api#check_token'
 
   resources :product_option, param: :product_option_id
   resources :maker, param: :maker_response_id
