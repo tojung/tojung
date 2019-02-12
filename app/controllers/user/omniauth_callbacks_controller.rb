@@ -5,7 +5,15 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       def #{provider}
         @user = User.find_for_oauth(env["omniauth.auth"], current_user)
         if @user.persisted?
-          sign_in_and_redirect @user, event: :authentication
+          sign_in @user
+          token = Tiddle.create_and_return_token(@user, request, expires_in: 1.days)
+      render :status => 200,
+             :json => { :success => true,
+                        :info => "Logged in",
+                        :resource => resource,
+                        :token => token
+             }
+          # sign_in_and_redirect @user, event: :authentication
           set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
         else
           session["devise.#{provider}_data"] = env["omniauth.auth"]
@@ -50,14 +58,14 @@ def google_oauth2
     if @user.persisted?
       #sign_in_and_redirect edit_user_registration_path, :event => :authentication
 	    #redirect_to(edit_user_registration_path) and return
-      # sign_in_and_redirect @user, :event => :authentication
-      token = Tiddle.create_and_return_token(@user, request, expires_in: 1.days)
-      render :status => 200,
-             :json => { :success => true,
-                        :info => "Logged in",
-                        :resource => resource,
-                        :token => token
-             }
+      sign_in_and_redirect @user, :event => :authentication
+      # token = Tiddle.create_and_return_token(@user, request, expires_in: 1.days)
+      # render :status => 200,
+      #        :json => { :success => true,
+      #                   :info => "Logged in",
+      #                   :resource => resource,
+      #                   :token => token
+      #        }
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
