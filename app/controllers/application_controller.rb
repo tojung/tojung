@@ -2,12 +2,23 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cdn_url
   skip_before_action :verify_authenticity_token
+  before_action :set_token
   # acts_as_token_authentication_handler_for User
 
   # before_action
   # , :require_more_data
 
   protected
+  def set_token
+    unless current_user.nil?
+      tokens = current_user.authentication_tokens
+      if tokens.empty?
+        @token = nil
+        return
+      end
+      @token = tokens.last if tokens.last.created_at + tokens.last.expires_in < Time.now
+    end
+  end
 
   def read_user_infos
     if !current_user.nil?
