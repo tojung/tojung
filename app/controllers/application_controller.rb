@@ -53,6 +53,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user_json!
-    render json: { 'error' => 'auth error' } if custom_current_user.nil?
+    render json: {'error'=> 'auth error'}, status: 401 if custom_current_user.nil?
+    # render json: { 'error' => 'auth error' } if custom_current_user.nil?
+    return
   end
 end
