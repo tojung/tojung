@@ -50,7 +50,7 @@
             var expires = "expires=" + d.toUTCString();
             document.cookie =
                 cookieName + "=" + cookieValue + ";" + expires + ";path=/;domain=tojung.me";
-            // location.href="https://vuejs.tojung.me"
+            location.href="https://vuejs.tojung.me"
         };
         <% unless @token.nil? %>
           setCookie("token", "<%= @token.body %>")
