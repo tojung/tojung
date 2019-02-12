@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     # if token.empty?
     #   token = AuthenticationToken.where(body: request.headers['X-USER-TOKEN'])
     # end
-    tokens = read_token
+    tokens = read_tokens
     return nil if tokens.empty?
     return nil if tokens.last.created_at + tokens.last.expires_in < Time.now
     tokens.last.user
