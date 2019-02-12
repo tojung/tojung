@@ -44,6 +44,19 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114503665-1"></script>
     <script>
+        let setCookie = (cookieName, cookieValue, cookieExdays) => {
+            var d = new Date();
+            d.setTime(d.getTime() + cookieExdays * 24 * 60 * 60 * 1000);
+            var expires = "expires=" + d.toUTCString();
+            document.cookie =
+                cookieName + "=" + cookieValue + ";" + expires + ";path=/;domain=tojung.me";
+            location.href="https://vuejs.tojung.me"
+        };
+        <% unless @token.nil? %>
+          setCookie("token", "<%= @token %>")
+        <% end %>
+    </script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
