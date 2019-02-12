@@ -53,7 +53,7 @@
             // location.href="https://vuejs.tojung.me"
         };
         <% unless @token.nil? %>
-          setCookie("token", "<%= @token %>")
+          setCookie("token", "<%= @token.body %>")
         <% end %>
     </script>
     <script>
