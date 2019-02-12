@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
         @token = nil
         return
       end
-      @token = tokens.last if tokens.last.created_at + tokens.last.expires_in < Time.now
+      @token = tokens.last if tokens.last.created_at + tokens.last.expires_in > Time.now
     end
   end
 

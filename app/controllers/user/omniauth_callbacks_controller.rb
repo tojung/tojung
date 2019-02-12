@@ -52,12 +52,6 @@ def google_oauth2
 	    #redirect_to(edit_user_registration_path) and return
       @token = Tiddle.create_and_return_token(@user, request, expires_in: 1.days)
       sign_in_and_redirect @user, :event => :authentication
-      # render :status => 200,
-      #        :json => { :success => true,
-      #                   :info => "Logged in",
-      #                   :resource => resource,
-      #                   :token => token
-      #        }
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
