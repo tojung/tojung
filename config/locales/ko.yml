@@ -13,3 +13,7 @@ ko:
                             confirmation: "을 새 비밀번호와 다르게 입력하셨습니다."
                         confirmation_token:
                             blank: "."
+                        email:
+                            blank: "이 비어있습니다."
+                        password:
+                            blank: "이 비어있습니다."

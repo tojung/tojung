@@ -13,10 +13,20 @@ class User::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     resource.save
+    if resource.errors.count != 0
+      render :status => 403,
+             json: {
+                 :success => false,
+                 :info => resource.errors.full_messages
+             }
+      return
+    end
+    token = Tiddle.create_and_return_token(resource, request, expires_in: 1.days)
     render :status => 200,
            :json => { :success => true,
                       :info => "SignUp clear!",
-                      :user => current_user
+                      :user => current_user,
+                      :token => token
            }
   end
   # POST /resource
