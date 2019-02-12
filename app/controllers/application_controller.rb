@@ -54,6 +54,20 @@ class ApplicationController < ActionController::Base
   end
 
   def custom_current_user
+    # body = Devise.token_generator.digest(User.first.authentication_tokens,
+    #                                      :body,
+    #                                      request.headers['X-USER-TOKEN'])
+    # token = AuthenticationToken.where(body: body)
+    # if token.empty?
+    #   token = AuthenticationToken.where(body: request.headers['X-USER-TOKEN'])
+    # end
+    tokens = read_token
+    return nil if tokens.empty?
+    return nil if tokens.last.created_at + tokens.last.expires_in < Time.now
+    tokens.last.user
+  end
+
+  def read_tokens
     body = Devise.token_generator.digest(User.first.authentication_tokens,
                                          :body,
                                          request.headers['X-USER-TOKEN'])
@@ -61,9 +75,7 @@ class ApplicationController < ActionController::Base
     if token.empty?
       token = AuthenticationToken.where(body: request.headers['X-USER-TOKEN'])
     end
-    return nil if token.empty?
-    return nil if token.last.created_at + token.last.expires_in < Time.now
-    token.last.user
+    token
   end
 
   def authenticate_user_json!

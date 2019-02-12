@@ -17,7 +17,17 @@ class User::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    Tiddle.expire_token(current_user, request) if current_user
+    # Tiddle.expire_token(current_user, request) if current_user
+    # if custom_current_user.nil?
+    #   render json: {}
+    # end
+    # tokens = custom_current_user.authentication_tokens
+    tokens = read_tokens
+    if tokens.empty?
+      render json: {}
+      return
+    end
+    tokens.last.destroy
     render json: {}
   end
 
