@@ -5,7 +5,13 @@ class ProductApiController < ApplicationController
     res = ProductSerializerService.new(params)
                                   .product_more
     res['user_id'] = user_info[:user_id]
-    product_like = ProductLikeService.new(params).likes(current_user: User.find(user_info[:user_id])).last
+    if user_info[:user_id] != -1
+      product_like = ProductLikeService.new(params)
+                                       .likes(current_user: User.find(user_info[:user_id]))
+                                       .last
+    end
+    res['like_id'] = -1
+    res['is_product_like'] = false
     res['like_id'] = product_like.id unless product_like.nil?
     res['is_product_like'] = product_like.status unless product_like.nil?
     render json: {
