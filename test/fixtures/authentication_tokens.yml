@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyString
+  user: one
+  last_used_at: 2019-02-10 08:32:46
+  expires_in: 1
+  ip_address: MyString
+  user_agent: MyString
+
+two:
+  body: MyString
+  user: two
+  last_used_at: 2019-02-10 08:32:46
+  expires_in: 1
+  ip_address: MyString
+  user_agent: MyString

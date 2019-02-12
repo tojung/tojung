@@ -8,7 +8,6 @@ class ProductApiController < ApplicationController
     product_like = ProductLikeService.new(params).likes(current_user: User.find(user_info[:user_id])).last
     res['like_id'] = product_like.id unless product_like.nil?
     res['is_product_like'] = product_like.status unless product_like.nil?
-    
     render json: {
       product: res
     }
