@@ -55,12 +55,14 @@ class HomeController < ApplicationController
   private
 
   def cal_uproduct_count
-    @ordered_product_count = 0
-    uproducts = []
-    current_user.product_orders.each do |product_order|
-      uproducts.append(product_order.product.id) unless uproducts.include? product_order.product.id
-    end
-    @ordered_product_count = uproducts.length
+    # @ordered_product_count = 0
+    # uproducts = []
+    # current_user.product_orders.each do |product_order|
+    #   uproducts.append(product_order.product.id) unless uproducts.include? product_order.product.id
+    # end
+    # @ordered_product_count = uproducts.length
+    @ordered_product_count = CalculateService
+                             .user_ordered_product_count(user: current_user)
   end
 
   def read_images

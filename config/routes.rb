@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :userupdaters
   resources :product, param: :product_id
   # resources :product_api, param: :product_id
+
   get 'api/product/:product_id' => 'product_api#show'
   get 'api/product' => 'product_api#index'
   get 'api/product_option/:product_option_id' => 'product_option_api#show'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   put 'api/product_like/:product_id' => 'product_like_api#update'
   get 'api/product_like/p/:product_id' => 'product_like_api#last'
   get 'api/check_user' => 'user_api#check_token'
-
+  post 'api/user/update' => 'userupdater_api#update'
   resources :product_option, param: :product_option_id
   resources :maker, param: :maker_response_id
   resources :product_like, param: :product_like_id
