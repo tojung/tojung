@@ -4,7 +4,7 @@ ActiveAdmin.register Maker do
 
   permit_params :image0
   form title: 'm' do |_f|
-    input 'image_0', label: '메인 이미지'
+    input 'image0', label: '메인 이미지'
     actions
   end
 end
