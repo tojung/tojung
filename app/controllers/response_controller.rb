@@ -23,6 +23,10 @@ class ResponseController < ApplicationController
       return
     end
     @maker_response.update(response_type: "반대")
+    begin
+      Responselog.create(title: "반대", maker_response_id: @maker_response[0].id)
+    rescue
+    end
   end
 
   # POST '/discuss'
