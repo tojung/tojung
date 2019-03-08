@@ -89,7 +89,6 @@ class TossPaymentService
 
       total_price = @product_order.package.price + @product_order.package.delivery_price
       total_price += 3000 if !@product_order.package.hard_only && (@product_order.package.phone == 'y') && (@product_order.case_type == '하드케이스')
-
       if JSON.parse(@response.body)['amount'] != total_price
         @product_order.status = '토스비정상결제/조작'
         @product_order.save
@@ -97,6 +96,13 @@ class TossPaymentService
         @is_wrong = true
         product_order_detail = @product_order.product_order_detail
         product_order_detail.payment_method = '토스비정상결제/조작'
+        product_order_detail.save
+      else
+        product = @product_order.product
+        product.funded_money += total_price
+        product.save
+        product_order_detail = @product_order.product_order_detail
+        product_order_detail.total_price = total_price
         product_order_detail.save
       end
     else
