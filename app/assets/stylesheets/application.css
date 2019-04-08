@@ -629,12 +629,3 @@ width: 100%;
 position: fixed;
 content: " ";
 }
-
-.btn-subscribe{
-  width: 180px;
-  height: 32px;
-  background-color: #eb5555;
-  display: block;
-  margin: 0 auto;
-  border: 0;
-}
