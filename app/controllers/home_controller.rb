@@ -52,6 +52,19 @@ class HomeController < ApplicationController
     cal_uproduct_count
   end
 
+  def recommend
+    if Recommend.count == 0
+      r = Recommend.new
+      r.count = 1
+      r.save
+    else
+      r = Recommend.last
+      r.count += 1
+      r.save
+    end
+    redirect_root
+  end
+
   private
 
   def cal_uproduct_count

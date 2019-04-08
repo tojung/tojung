@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get 'home/mypage'
   get 'home/myorder'
 
+  get '/recommend' => 'home#recommend'
+
   get 'order_info' => 'order_info#new'
   post 'order_info' => 'order_info#show'
 
