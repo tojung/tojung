@@ -42,7 +42,8 @@ Rails.application.routes.draw do
   get 'home/privacy'
   get 'home/mypage'
   get 'home/myorder'
-
+  get 'home/subscribe'
+  
   get '/recommend' => 'home#recommend'
 
   get 'order_info' => 'order_info#new'
