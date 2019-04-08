@@ -66,6 +66,13 @@ class HomeController < ApplicationController
     # redirect_to '/'
   end
 
+  def subscribe_create
+    e = EmailList.new
+    e.name = params[:name]
+    e.email = params[:email]
+    e.save
+  end
+
   private
 
   def cal_uproduct_count

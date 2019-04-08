@@ -14,6 +14,7 @@
 2) 투정이 그동안 진행했던 캠페인 이후 
 추가 법안 심사 소식이 있는지를  받아 보실 수 있습니다.</pre>
     </section>
+  <%= form_tag '/subscribe', method: "post" do %>
     <section class="newsletter-apply font-14 py-4">
         <h4 class="font-18 font-weight-bold pb-2 border-bottom-black">뉴스레터 신청하기</h4>
         <div class="form-group row py-2 mb-0 mx-0">
@@ -37,9 +38,9 @@
                 <% end %>
             </div>
         </div>
-        <button type="button" class="btn-subscribe text-white text-center my-4">구독하기</button>
+        <button type="submit" class="btn-subscribe text-white text-center my-4">구독하기</button>
     </section>
-
+  <% end %>
     <section class="newsletter-overlook">
         <h4 class="font-18 font-weight-bold pb-2 border-bottom-black mb-3">뉴스레터 엿보기</h4>
         <%=image_tag("newsletter-overlook.png", width: "100%", class: "d-block mx-auto")%>

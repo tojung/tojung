@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get 'home/mypage'
   get 'home/myorder'
   get 'home/subscribe'
-  
+  post '/subscribe' => 'home#subscribe_create'
   get '/recommend' => 'home#recommend'
 
   get 'order_info' => 'order_info#new'
