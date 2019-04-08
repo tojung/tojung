@@ -638,3 +638,15 @@ content: " ";
   margin: 0 auto;
   border: 0;
 }
+
+.newsletter-main{
+  width: 70%;
+  margin: 0 auto;
+  display: block;
+}
+
+@media screen and (max-width: 576px){
+  .newsletter-main{
+    width: 100%;
+  }
+}

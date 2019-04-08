@@ -43,19 +43,6 @@ ActiveRecord::Schema.define(version: 20190408125109) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "authentication_tokens", force: :cascade do |t|
-    t.string "body"
-    t.integer "user_id"
-    t.datetime "last_used_at"
-    t.integer "expires_in"
-    t.string "ip_address"
-    t.string "user_agent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["body"], name: "index_authentication_tokens_on_body"
-    t.index ["user_id"], name: "index_authentication_tokens_on_user_id"
-  end
-
   create_table "best_bills", force: :cascade do |t|
     t.string "category"
     t.text "title"
@@ -102,11 +89,6 @@ ActiveRecord::Schema.define(version: 20190408125109) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identities_on_user_id"
-  end
-
-  create_table "jwt_blacklist", force: :cascade do |t|
-    t.string "jti", null: false
-    t.index ["jti"], name: "index_jwt_blacklist_on_jti"
   end
 
   create_table "mainimages", force: :cascade do |t|
@@ -305,8 +287,8 @@ ActiveRecord::Schema.define(version: 20190408125109) do
   create_table "products", force: :cascade do |t|
     t.text "name"
     t.text "subname"
-    t.datetime "start_date", default: "2018-08-16 20:46:42", null: false
-    t.datetime "end_date", default: "2018-09-15 20:46:42", null: false
+    t.datetime "start_date", default: "2018-08-08 06:16:42", null: false
+    t.datetime "end_date", default: "2018-09-07 06:16:42", null: false
     t.text "youtb_url"
     t.text "video_text"
     t.text "bill_url"
@@ -353,6 +335,11 @@ ActiveRecord::Schema.define(version: 20190408125109) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tosslogs", force: :cascade do |t|
     t.text "orderno"
     t.integer "amount"
@@ -393,9 +380,6 @@ ActiveRecord::Schema.define(version: 20190408125109) do
     t.text "address_extra"
     t.boolean "admin", default: false
     t.text "image0"
-    t.text "tokens"
-    t.string "authentication_token", limit: 30
-    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
