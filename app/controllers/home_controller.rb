@@ -62,7 +62,8 @@ class HomeController < ApplicationController
       r.count += 1
       r.save
     end
-    redirect_root
+    # flash[:notice] = "추천이 완료되었습니다"
+    # redirect_to '/'
   end
 
   private
