@@ -217,6 +217,13 @@
         </label>
 
         </div>
+          <div class="bg-white mb-3 font-14 font-weight-bold px-3 py-3">
+    <h4 class="font-18 pb-2 font-weight-bold border-bottom-black mb-3">개인정보 관련 안내</h4>
+    <p class="font-14 font-weight-normal mr-3">수집항목 (1) : 이름, 이메일, 휴대폰번호, 배송지주소  </p>
+    <p class="font-14 font-weight-normal mr-3">수집항목 (2) (택1) : 카드정보(신용카드결제), 계좌정보(계좌이체) </p>
+    <p class="font-14 font-weight-normal mr-3">목적 : 회원가입시 본인확인 여부, 서비스 이용 및 상담, 공지사항 전달, 주문상품 결제, 주문확인</p>
+    <p class="font-14 font-weight-normal mr-3 mb-2">보유기간 : 회원 탈퇴시까지 보유</p>    
+  </div>
         <!-- // 주문 금액 -->
         <% if @package.price != 0 %>
           <!-- 결제 -->
@@ -236,6 +243,8 @@
         <%#= submit_tag '내인생으로 배송받기', class: 'btn-pay-finish text-center my-4'%>
         </div>
   <% end %>
+
+
 <button type="button" class="btn-pay-finish text-center my-4" onclick="fuckin_submit()">내 인생으로 배송받기</button>
 
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
