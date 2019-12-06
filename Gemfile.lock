@@ -214,7 +214,7 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.2)
     rack (2.0.6)
     rack-cors (1.0.2)
     rack-protection (2.0.4)
@@ -371,7 +371,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-google-oauth2
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-cors
   rails (~> 5.1.6)
   rails_real_favicon
